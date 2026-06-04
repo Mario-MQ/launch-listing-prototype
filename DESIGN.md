@@ -25,9 +25,9 @@
 - 少卡片，只保留主表单和 Amazon 预览容器。
 - 每一步像日常确认清单一样往下走。
 - 默认展示重点，但每一行都可以展开查看完整执行要求。
-- `Strategy Map` 和 Product Lock 都是后台能力，不作为主步骤。
+- Strategy Map 和产品准确性检查都是后台能力，不作为主步骤。
 - 用户只需要确认两次：系统是否理解产品、生成方案是否正确。
-- Alexa for Shopping / Amazon AI shopping assistant 只作为趋势和结构化内容背景，不承诺被官方推荐。
+- Amazon conversational shopping 只作为趋势和结构化内容背景，不承诺被官方推荐。
 
 ## 宣传重点
 
@@ -46,9 +46,9 @@
 页面核心卖点：
 
 - Complete package：标题、五点、搜索词、组图、A+、预览、导出
-- Plan before generation：先给方案，用户确认后再生成
+- Review plan first：先给方案，用户确认后再生成
 - Built for Amazon shopping：围绕买家问题、图片顺序、A+ 模块组织
-- Product-aware image generation：用源图锁定产品，不乱改主体
+- Product-accurate images：用产品图保持主体准确，不乱改主体
 - Ready checklist：最后整理上传前需要看的东西
 
 ## 页面结构
@@ -62,30 +62,30 @@
 
 2. **Why**
    - Complete package
-   - Plan before generation
+   - Review plan first
    - Built for Amazon shopping
-   - Product-aware image generation
+   - Product-accurate images
    - Ready checklist
    - 段落底部 CTA 回到创建方案
 
-3. **AI shopping ready**
+3. **Buyer questions**
    - Product identity
    - Buyer question coverage
    - Wording review
    - Module mapping
 
 4. **How it works**
-   - Provide product sources
+   - Add product info
    - Create a free plan
    - Generate preview
-   - Unlock handoff
+   - Download package
    - 段落底部 CTA 回到产品资料输入
 
-5. **Output package**
-   - Listing text：Title、5 bullets、backend search terms、Markdown
+5. **What you get**
+   - Listing text：Title、5 bullets、backend search terms、editable text file
    - Listing images：7 images、2000 x 2000、briefs/prompts
-   - A+：Standard 970 x 600；Premium 1464 x 600 + 600 x 450 mobile crops
-   - Ready checklist：product accuracy、claim wording、image dimensions、upload order、ZIP
+   - A+：Standard 970 x 600；Premium 1464 x 600 + 600 x 450 mobile-ready crops
+   - Ready checklist：product accuracy、benefit wording、image dimensions、upload order、ZIP
 
 6. **Packages**
    - Starter Listing Kit
@@ -109,7 +109,7 @@
    - 产品图片素材
    - 套餐选择
    - 如果选择 Improve existing listing，则先输入 Amazon URL / ASIN 并 Fetch
-   - 创建或抓取方案前提示：免费账号包含 1 个 launch plan，复制和下载需购买 export package
+   - 创建或抓取方案前提示：免费账号包含 1 个 launch plan，复制和下载需购买 download package
 
 2. **Listing Snapshot**（仅已有链接模式）
    - 按 Amazon listing 结构顺序展示 fetch 结果：Title -> Five bullet points -> Product images -> A+ content
@@ -130,7 +130,7 @@
    - Listing text
    - Listing image plan
    - A+ plan
-   - Generation guardrails
+   - Product accuracy rules
    - 每行默认只显示重点，点击 Details 展开完整要求
 
 5. **Generate**
@@ -138,16 +138,16 @@
    - 文案 preview
    - 商品组图 preview
    - A+ preview
-   - Product Lock 后台检查
+   - 产品准确性后台检查
    - Results 准备
 
 6. **Results**
    - 顶部状态条显示 Ready checklist 状态
    - Listing text：Title、5 bullets、backend search terms
    - Images：Listing images、A+ images
-   - Preview：Amazon PDP desktop / mobile preview
+   - Preview：Amazon page desktop / mobile preview
    - 默认状态为 preview ready，但复制、高清图和 ZIP 处于 locked 状态
-   - Unlock exports：购买对应 export package 后解锁 text copying、listing images、aplus、ZIP
+   - Unlock final files：购买对应 download package 后解锁 copyable text、listing images、A+、ZIP
 
 ## 付费转化逻辑
 
@@ -158,13 +158,13 @@
 - 用户可以免费开始，但免费只覆盖“理解产品 + 生成方案 + 预览结果”。
 - 第一次需要后端保存和生成计划时要求注册 / 登录，而不是一进页面就拦截。
 - 每个注册用户默认 1 次免费 launch plan。
-- 不免费交付完整可商用资产：复制按钮、高清图片、A+ 图片和 ZIP 下载都需要购买对应 export package。
+- 不免费交付完整可商用资产：复制按钮、高清图片、A+ 图片和 ZIP 下载都需要购买对应 download package。
 - 付费点放在 Results 和 plan confirmation 后，不在首屏强压付费。
 
 推荐漏斗：
 
 ```text
-Landing -> Intake -> Sign in / create free account -> Free launch plan -> Free preview -> Unlock exports modal -> Results unlocked
+Landing -> Intake -> Sign in / create free account -> Free launch plan -> Free preview -> Unlock final files modal -> Final files unlocked
 ```
 
 登录触发点：
@@ -172,7 +172,7 @@ Landing -> Intake -> Sign in / create free account -> Free launch plan -> Free p
 - `Create free launch plan`
 - `Fetch listing`
 - 后续如果用户直接从链接进入已有项目并尝试 `Generate preview`
-- `Unlock exports`
+- `Unlock final files`
 
 弹窗主文案：
 
@@ -203,7 +203,7 @@ We do not request Google Drive, Gmail or advertising account access in this flow
 - ready checklist preview
 - text copying 和 downloads locked
 
-Export packages：
+Download packages：
 
 - Starter Listing Kit：$19/export
 - Full Listing：$49/export
@@ -211,7 +211,7 @@ Export packages：
 
 结果页解锁交互：
 
-- Results 里的 `Unlock exports` 不跳转到 Pricing 页面。
+- Results 里的 `Unlock final files` 不跳转到 Pricing 页面。
 - 点击后打开当前 listing 的 checkout modal。
 - Modal 里选择 Starter Listing Kit / Full Listing / Premium Listing Kit。
 - 点击 `Continue to payment` 后进入 processing 状态。
@@ -223,7 +223,7 @@ Export packages：
 - Text copying
 - high-resolution listing images
 - high-resolution A+ images
-- ZIP package for Seller Central handoff
+- ZIP package for Seller Central upload
 - Ready checklist
 
 ## Product Sources
@@ -284,9 +284,9 @@ MVP 不让用户选择抽象的 Marketing direction。
 每行可展开完整内容：
 
 ```text
-Purpose
-Buyer question answered
-Conversion job
+Why this matters
+Buyer question
+Sales role
 ```
 
 这样用户可以先扫重点，需要时再看完整方案。
@@ -299,7 +299,7 @@ Launch Plan 必须支持生成前手动调整：
 
 ## Generation Guardrails
 
-Product Lock 保留为后台机制，但页面不把它做成大模块。用户看到的是更清楚的 Generation guardrails：
+产品准确性检查保留为后台机制，但页面不把它做成大模块。用户看到的是更清楚的 Product accuracy rules：
 
 - Keep the product body unchanged from the source photo.
 - Only generate supporting scenes, backgrounds, shadows and text-safe layouts.
@@ -314,11 +314,11 @@ Results 只保留 3 个 tab：
 
 - Listing text：Title、5 bullets、backend search terms；免费状态下可预览但复制按钮 locked
 - Images：Listing images 和 A+ images，展示用途和尺寸；免费状态下显示 preview 水印 / locked
-- Preview：Amazon PDP desktop / mobile preview
+- Preview：Amazon page desktop / mobile preview
 
 默认打开 Listing text，因为这是用户最快能使用的内容。
 
-Unlock exports 后的 ZIP 只包含：
+Unlock final files 后的 ZIP 只包含：
 
 - `copy.md`
 - `listing-images/`
@@ -332,11 +332,11 @@ MVP 先不做：
 - upload-order.md
 - version history
 
-MVP 先不做复杂订阅中心。Landing 里的 Pricing 只用于提前了解价格；Results 里的购买使用 checkout modal。Pricing 展示为单次 export packages：
+MVP 先不做复杂订阅中心。Landing 里的 Pricing 只用于提前了解价格；Results 里的购买使用 checkout modal。Pricing 展示为单次 download packages：
 
 - Starter Listing Kit：$19/export，解锁 listing text 和 5 张 listing images
 - Full Listing：$49/export，解锁 listing text、7 张 listing images、6 个 Standard A+ 和 ZIP
-- Premium Listing Kit：$89/export，解锁 Full Listing、wide A+、mobile crops 和 text variants
+- Premium Listing Kit：$89/export，解锁 Full Listing、wide A+、mobile-ready crops 和 text variants
 
 生成后自动准备：
 
