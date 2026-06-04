@@ -2,7 +2,7 @@
 
 ## 设计原则
 
-当前页面拆成“介绍页”和“生成工作区”两种视图，整体视觉对齐 Luckee Listing：
+当前页面拆成“首页直接开始入口”和“生成工作区”两种视图，整体视觉对齐 Luckee Listing：
 
 - 深森林色 hero
 - oat / white / soft 分段
@@ -13,9 +13,9 @@
 
 信息架构原则：
 
-- 介绍页只负责解释产品价值、工作方式、输出包和价格。
-- 工作区是独立入口，不嵌在介绍页长内容里，避免用户滚到页面底部才开始操作。
-- 顶部 CTA、Hero CTA、Final CTA 都进入工作区。
+- 首屏直接提供开始入口：New listing / Amazon URL，用户不用滚到页面底部才开始。
+- 功能介绍页只负责解释产品价值、工作方式、输出包和价格，同时每个关键段落都引导回开始动作。
+- 顶部 CTA、Hero CTA、Feature CTA、How CTA、Final CTA 都进入工作区。
 - 进入工作区后导航切换为 Intake -> Summary -> Plan -> Generate -> Results。
 - 工作区提供 Back to overview 返回介绍页。
 - 不在用户理解产品价值之前强制付费。免费给计划和预览，付费解锁可交付资产。
@@ -37,7 +37,7 @@
 
 页面标题：
 
-> Launch Listing Agent
+> Launch Listing
 
 一句话定位：
 
@@ -55,7 +55,9 @@
 
 1. **Hero**
    - 产品定位：完整 Amazon listing 生成，不只是生图工具
-   - CTA 进入工作区
+   - 首屏直接提供 `Start your listing` 输入区
+   - 支持 New listing 和 Amazon URL 两种开始方式
+   - CTA 进入工作区并把首屏输入带入 Intake
    - 右侧展示生成包 mockup
 
 2. **Why**
@@ -64,6 +66,7 @@
    - Built for Amazon shopping
    - Product-aware image generation
    - Ready checklist
+   - 段落底部 CTA 回到创建方案
 
 3. **AI shopping ready**
    - Product identity
@@ -76,6 +79,7 @@
    - Create a free plan
    - Generate preview
    - Unlock handoff
+   - 段落底部 CTA 回到产品资料输入
 
 5. **Output package**
    - Copy：Title、5 bullets、backend search terms、Markdown

@@ -121,6 +121,16 @@
     .hero-trust { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:22px; color:var(--forest-100); font-size:.82rem; }
     .hero-trust span { display:inline-flex; align-items:center; gap:7px; }
     .hero-trust span::before { content:""; width:6px; height:6px; border-radius:50%; background:#E8C96A; }
+    .hero-start { margin-top:30px; max-width:680px; border:1px solid rgba(217,232,218,.18); border-radius:22px; background:rgba(255,255,255,.07); box-shadow:0 24px 70px -42px rgba(0,0,0,.6); overflow:hidden; }
+    .hero-start-head { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:15px 16px; border-bottom:1px solid rgba(217,232,218,.14); }
+    .hero-start-head strong { color:var(--oat-100); font-size:.9rem; }
+    .hero-start-tabs { display:inline-flex; gap:4px; padding:4px; border:1px solid rgba(217,232,218,.14); border-radius:var(--r-pill); background:rgba(0,0,0,.12); }
+    .hero-start-tabs button { height:30px; padding:0 12px; border:0; border-radius:var(--r-pill); background:transparent; color:var(--forest-100); font-size:.7rem; font-weight:800; }
+    .hero-start-tabs button.active { background:var(--oat-100); color:var(--forest-800); }
+    .hero-start-body { display:grid; grid-template-columns:minmax(0,1fr) 150px auto; gap:10px; padding:15px 16px; }
+    .hero-start-input,.hero-start-select { height:46px; min-width:0; border:1px solid rgba(217,232,218,.18); border-radius:var(--r-pill); background:rgba(255,255,255,.92); color:var(--neutral-900); padding:0 16px; outline:none; font-size:.86rem; }
+    .hero-start-input:focus,.hero-start-select:focus { border-color:#E8C96A; box-shadow:0 0 0 3px rgba(232,201,106,.16); }
+    .hero-start-note { padding:0 16px 16px; color:var(--forest-100); font-size:.72rem; line-height:1.45; }
     .hero-stage { position:relative; }
     .hero-stage::before { content:""; position:absolute; inset:-8% -10% -14% -6%; background:radial-gradient(60% 60% at 70% 30%, rgba(201,168,76,.18), transparent 70%); filter:blur(8px); }
     .launch-device { position:relative; border:1px solid rgba(217,232,218,.14); border-radius:28px; background:rgba(255,255,255,.06); backdrop-filter:blur(12px); box-shadow:0 30px 80px -28px rgba(0,0,0,.55), 0 0 0 1px rgba(217,232,218,.10) inset; overflow:hidden; }
@@ -660,6 +670,7 @@
       .feature-grid,.price-grid { grid-template-columns:1fr; }
       .how-flow { grid-template-columns:repeat(2,1fr); }
       .how-flow::before { display:none; }
+      .hero-start-body { grid-template-columns:1fr; }
       .snapshot-images { grid-template-columns:repeat(4,1fr); }
       .aplus-thumbs { grid-template-columns:1fr; }
       .image-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -674,6 +685,7 @@
       .hero { padding:78px 0 84px; }
       .band { padding:62px 0; }
       .hero-actions .btn { width:100%; }
+      .hero-start-head { align-items:flex-start; flex-direction:column; }
       .how-flow { grid-template-columns:1fr; }
       .output-grid { grid-template-columns:1fr; }
       .image-grid { grid-template-columns:1fr; }
@@ -741,18 +753,37 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing agent</span>
-            <h1>Launch Listing <em>Agent</em>.</h1>
+            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing generator</span>
+            <h1>Launch <em>Listing</em>.</h1>
             <p class="hero-sub">Generate a complete Amazon listing package with a plan you can review before creation.</p>
             <div class="hero-actions">
-              <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Start a listing</a>
-              <a class="btn btn-outline btn-lg" href="#how" style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">See workflow</a>
+              <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
+              <a class="btn btn-outline btn-lg" href="#workspace" data-start-workspace data-open-existing style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Paste Amazon URL</a>
             </div>
             <div class="hero-trust">
               <span>Complete package</span>
               <span>Plan before generation</span>
               <span>Product-aware image generation</span>
               <span>Ready checklist</span>
+            </div>
+            <div class="hero-start" aria-label="start your listing">
+              <div class="hero-start-head">
+                <strong>Start your listing</strong>
+                <div class="hero-start-tabs" aria-label="source type">
+                  <button class="active" type="button" data-hero-mode="new">New listing</button>
+                  <button type="button" data-hero-mode="existing">Amazon URL</button>
+                </div>
+              </div>
+              <div class="hero-start-body">
+                <input class="hero-start-input" id="hero-start-input" value="Rechargeable Salt and Pepper Grinder Set" aria-label="product name or Amazon URL">
+                <select class="hero-start-select" id="hero-package" aria-label="package">
+                  <option>Full Listing</option>
+                  <option>Starter Gallery</option>
+                  <option>Premium Launch</option>
+                </select>
+                <a class="btn btn-on-dark" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
+              </div>
+              <div class="hero-start-note">No account needed to prepare inputs. Sign in only when creating or fetching a saved launch plan.</div>
             </div>
           </div>
           <div class="hero-stage">
@@ -799,6 +830,9 @@
           <div class="feature"><div class="feature-k">04</div><h3>Product-aware image generation</h3><p>Use source photos to keep the product body accurate while generating scenes and layouts.</p></div>
           <div class="feature"><div class="feature-k">05</div><h3>Ready checklist</h3><p>Review product accuracy, wording, image dimensions and upload order before handoff.</p></div>
         </div>
+        <div class="toolbar">
+          <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Create your free plan</a>
+        </div>
       </div>
     </section>
 
@@ -831,6 +865,9 @@
           <div class="how-step"><div class="how-num">2</div><h3>Create a free plan</h3><p>Sign in when the system creates your first saved plan. Each account gets one free launch plan.</p></div>
           <div class="how-step"><div class="how-num">3</div><h3>Generate preview</h3><p>Review listing copy, gallery images, A+ modules and the Amazon preview before export.</p></div>
           <div class="how-step"><div class="how-num">4</div><h3>Unlock handoff</h3><p>Choose an export package when you want copy actions, high-resolution downloads and the Seller Central ZIP.</p></div>
+        </div>
+        <div class="toolbar">
+          <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Start with product sources</a>
         </div>
       </div>
     </section>
@@ -866,7 +903,7 @@
     <section class="page workspace-band" id="workspace" hidden>
       <div class="workspace-intro">
         <span class="eyebrow">Workspace</span>
-        <h2>Launch Listing Agent</h2>
+        <h2>Launch Listing</h2>
         <p>Add a product, confirm the plan, then generate the listing kit.</p>
       </div>
     <div class="wrap" id="wrap">
@@ -1002,21 +1039,21 @@ Stainless steel look for modern kitchens</textarea>
             </div>
             <p class="section-note" style="margin-bottom:12px">Choose the deliverable set. Custom sections stay under advanced options.</p>
             <div class="package-list">
-              <button class="package-row" type="button">
+              <button class="package-row" type="button" data-package-name="Starter Gallery">
                 <div class="package-main">
                   <div class="row-title">Starter Gallery</div>
                   <div class="row-desc">Copy plus 5 gallery images. No A+.</div>
                 </div>
                 <div class="row-meta"><span class="chip chip-lock">$19</span><span class="pkg-spec">2000 x 2000</span></div>
               </button>
-              <button class="package-row active" type="button">
+              <button class="package-row active" type="button" data-package-name="Full Listing">
                 <div class="package-main">
                   <div class="row-title">Full Listing</div>
                   <div class="row-desc">Copy, 7 gallery images and 6 Standard A+ modules.</div>
                 </div>
                 <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">$49</span><span class="pkg-spec">A+ 970 x 600</span></div>
               </button>
-              <button class="package-row" type="button">
+              <button class="package-row" type="button" data-package-name="Premium Launch">
                 <div class="package-main">
                   <div class="row-title">Premium Launch</div>
                   <div class="row-desc">Full Listing plus wide A+, mobile crops and copy variants.</div>
@@ -1552,8 +1589,8 @@ Stainless steel look for modern kitchens</textarea>
         <h2>Move from product idea to <em>Seller Central-ready</em> listing.</h2>
         <p>Use the workspace to confirm the strategy, edit the plan, generate assets and preview the listing before export.</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Start a listing</a>
-          <a class="btn btn-outline btn-lg" href="#how" style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Review workflow</a>
+          <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Create free plan</a>
+          <a class="btn btn-outline btn-lg" href="#workspace" data-start-workspace data-open-existing style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Use Amazon URL</a>
         </div>
       </div>
     </section>
@@ -1712,6 +1749,7 @@ Stainless steel look for modern kitchens</textarea>
       let signedIn = false;
       let pendingAuthAction = null;
       let exportsUnlocked = false;
+      let heroMode = 'new';
 
       function setWorkspaceVisible(visible) {
         landingSections.forEach(section => { section.hidden = visible; });
@@ -1747,6 +1785,7 @@ Stainless steel look for modern kitchens</textarea>
           event.preventDefault();
           history.replaceState(null, '', '#workspace');
           showWorkspace(true);
+          applyHeroStart(link);
         });
       });
       backOverview.addEventListener('click', showLanding);
@@ -1757,6 +1796,47 @@ Stainless steel look for modern kitchens</textarea>
         }
       });
       if (window.location.hash === '#workspace') requestAnimationFrame(() => showWorkspace(false));
+
+      function setHeroMode(mode) {
+        heroMode = mode;
+        document.querySelectorAll('[data-hero-mode]').forEach(button => {
+          button.classList.toggle('active', button.dataset.heroMode === mode);
+        });
+        const input = document.getElementById('hero-start-input');
+        if (!input) return;
+        if (mode === 'existing') {
+          input.value = input.value.startsWith('http') ? input.value : 'https://www.amazon.com/dp/B0G1MJWK3Z';
+          input.setAttribute('aria-label', 'Amazon URL or ASIN');
+        } else {
+          input.value = input.value.startsWith('http') ? 'Rechargeable Salt and Pepper Grinder Set' : input.value;
+          input.setAttribute('aria-label', 'product name');
+        }
+      }
+      document.querySelectorAll('[data-hero-mode]').forEach(button => {
+        button.addEventListener('click', () => setHeroMode(button.dataset.heroMode));
+      });
+      function selectWorkspacePackage(packageName) {
+        if (!packageName) return;
+        document.querySelectorAll('.package-row').forEach(row => {
+          row.classList.toggle('active', row.dataset.packageName === packageName);
+        });
+      }
+      function applyHeroStart(trigger) {
+        if (trigger && trigger.dataset.openExisting !== undefined) setHeroMode('existing');
+        const input = document.getElementById('hero-start-input');
+        const heroPackage = document.getElementById('hero-package');
+        const value = input ? input.value.trim() : '';
+        if (trigger && (trigger.dataset.heroCreate !== undefined || trigger.dataset.openExisting !== undefined)) {
+          selectWorkspacePackage(heroPackage ? heroPackage.value : '');
+          if (heroMode === 'existing' || trigger.dataset.openExisting !== undefined) {
+            setProjectMode('existing');
+            if (value) document.getElementById('existing-url').value = value;
+          } else {
+            setProjectMode('scratch');
+            if (value) document.getElementById('product-name').value = value;
+          }
+        }
+      }
 
       const authModal = document.getElementById('auth-modal');
       const authCard = document.getElementById('auth-card');
