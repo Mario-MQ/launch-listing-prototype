@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launch Listing</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    :root {
+      --forest-900:#1C2B1D; --forest-800:#233324; --forest-700:#324933; --forest-600:#3E5B3F; --forest-500:#4d704e; --forest-100:#D9E8DA; --forest-050:#EDF4ED;
+      --oat-100:#FAF8F5; --oat-200:#F5F1EA; --oat-250:#EEEBE7; --card:#fff;
+      --neutral-900:#2E2E2E; --neutral-700:#4a4a4a; --muted:#6b6b66; --border:#E0E0E0; --border-soft:#ebe7e0;
+      --success-600:#059467; --success-bg:#E8F6EF; --warning-600:#DB7706; --warning-bg:#FCF1E2; --error-600:#DC2828; --error-bg:#FBEAEA; --info-600:#2563EB; --info-bg:#EAF1FE;
+      --serif:'Instrument Serif', Georgia, 'Times New Roman', serif; --sans:'Montserrat', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --r-input:16px; --r-card:20px; --r-pill:9999px; --hair:rgba(28,43,29,.08); --shadow-card:0 1px 2px rgba(28,43,29,.05), 0 8px 28px -12px rgba(28,43,29,.18); --shadow-brand:0 8px 28px rgba(61,90,62,.22); --ease:cubic-bezier(.22,.61,.36,1);
+    }
+
+    * { box-sizing:border-box; }
+    html { font-size:15px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth; }
+    body {
+      margin:0; font-family:var(--sans); color:var(--neutral-900); line-height:1.55; overflow-x:hidden;
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(61,90,62,.05), transparent 55%),
+        radial-gradient(90% 60% at 0% 100%, rgba(201,168,76,.045), transparent 50%),
+        var(--oat-100);
+    }
+    button,input,textarea,select { font:inherit; }
+    button { cursor:pointer; }
+    h1,h2,h3 { margin:0; font-family:var(--serif); font-weight:400; line-height:1.06; letter-spacing:-.01em; color:var(--neutral-900); overflow-wrap:anywhere; }
+    h1 { font-size:clamp(2.45rem,4.8vw,3.7rem); letter-spacing:-.018em; }
+    h2 { font-size:clamp(1.7rem,3vw,2.35rem); }
+    h3 { font-family:var(--sans); font-size:.94rem; font-weight:800; letter-spacing:.02em; color:var(--forest-800); }
+    p { margin:0; }
+    a { color:inherit; text-decoration:none; }
+    .mono { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+    .muted { color:var(--muted); }
+    svg.icon { width:18px; height:18px; flex-shrink:0; }
+
+    .nav { position:sticky; top:0; z-index:40; background:rgba(250,248,245,.84); backdrop-filter:blur(14px); border-bottom:1px solid var(--border-soft); }
+    .nav-inner { max-width:1120px; height:68px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { display:flex; align-items:center; gap:10px; color:var(--forest-800); min-width:0; }
+    .mark { width:30px; height:30px; border-radius:9px; background:var(--forest-600); color:var(--oat-100); display:grid; place-items:center; font-family:var(--serif); font-size:1.1rem; box-shadow:var(--shadow-brand); flex-shrink:0; }
+    .brand-name { font-family:var(--serif); font-size:1.3rem; white-space:nowrap; }
+    .steps { display:flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--muted); min-width:0; }
+    .steps .step.active { color:var(--forest-600); font-weight:800; }
+    .steps .sep { color:var(--border); }
+
+    .page { padding:76px 0 104px; overflow-x:clip; }
+    .wrap { width:100%; max-width:820px; margin:0 auto; padding:0 28px; }
+    .wrap-preview { max-width:1120px; }
+    .head { text-align:center; margin-bottom:42px; }
+    .eyebrow { display:inline-flex; align-items:center; justify-content:center; gap:8px; margin-bottom:18px; color:var(--forest-600); font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .eyebrow::before,.eyebrow::after { content:""; width:22px; height:1px; background:currentColor; opacity:.55; }
+    .lede { max-width:650px; margin:16px auto 0; color:var(--neutral-700); font-size:1.08rem; line-height:1.62; }
+
+    .state[hidden], .details[hidden], .advanced[hidden] { display:none; }
+    .state { animation:fadeUp .42s var(--ease) both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+    .panel { background:var(--card); border:1px solid var(--hair); border-radius:var(--r-card); box-shadow:var(--shadow-card); padding:34px; }
+    .section { padding:26px 0; border-top:1px solid var(--border-soft); }
+    .section:first-child { padding-top:0; border-top:0; }
+    .section-head { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:14px; }
+    .section-note { color:var(--muted); font-size:.78rem; line-height:1.45; }
+
+    .field + .field { margin-top:18px; }
+    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .field-grid .field + .field { margin-top:0; }
+    .label { display:block; margin-bottom:7px; color:var(--neutral-700); font-size:.82rem; font-weight:800; }
+    .input,.select,.textarea { width:100%; padding:13px 16px; border:1px solid var(--border); border-radius:var(--r-input); background:var(--card); color:var(--neutral-900); outline:none; font-size:.95rem; transition:border-color .15s, box-shadow .15s; }
+    .textarea { min-height:96px; resize:vertical; line-height:1.5; }
+    .input:focus,.select:focus,.textarea:focus { border-color:var(--forest-600); box-shadow:0 0 0 3px rgba(61,90,62,.14); }
+    .field-help { margin-top:7px; color:var(--muted); font-size:.78rem; line-height:1.45; }
+
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; height:44px; padding:0 22px; border:1px solid transparent; border-radius:var(--r-pill); font-weight:800; white-space:nowrap; transition:transform .15s var(--ease), background .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease); }
+    .btn:hover { transform:translateY(-1px); }
+    .btn:active { transform:scale(.97); }
+    .btn-lg { height:54px; padding:0 30px; font-size:1rem; }
+    .btn-sm { height:34px; padding:0 14px; font-size:.78rem; }
+    .btn-block { width:100%; }
+    .btn-primary { background:var(--forest-600); color:var(--oat-100); box-shadow:var(--shadow-brand); }
+    .btn-primary:hover { background:var(--forest-700); }
+    .btn-outline { background:transparent; border-color:rgba(61,90,62,.3); color:var(--forest-700); }
+    .btn-outline:hover { background:var(--forest-050); border-color:var(--forest-600); }
+    .toolbar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:28px; }
+
+    /* Landing shell, aligned with Luckee Listing */
+    .nav-links { display:flex; align-items:center; gap:24px; margin-left:auto; }
+    .nav-links a { color:var(--neutral-700); font-size:.86rem; font-weight:700; transition:color .15s var(--ease); }
+    .nav-links a:hover { color:var(--forest-600); }
+    .nav-cta { margin-left:12px; }
+    .nav-workflow { display:none; }
+    .nav-back { display:none; margin-left:12px; }
+    body.workspace-active .nav-links,
+    body.workspace-active .nav-cta { display:none; }
+    body.workspace-active .nav-workflow { display:flex; margin-left:auto; }
+    body.workspace-active .nav-back { display:inline-flex; }
+    [hidden] { display:none !important; }
+    .band { position:relative; padding:86px 0; overflow:hidden; }
+    .band-oat { background:var(--oat-100); }
+    .band-white { background:var(--card); }
+    .band-soft { background:var(--oat-200); }
+    .band-dark { background:var(--forest-900); color:var(--oat-100); }
+    .band-dark::before {
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(58% 70% at 12% -8%, rgba(77,112,78,.5), transparent 60%),
+        radial-gradient(50% 64% at 100% 116%, rgba(201,168,76,.13), transparent 58%);
+    }
+    .container { width:100%; max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1; }
+    .hero { padding:112px 0 122px; }
+    .hero-grid { display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:58px; align-items:center; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:9px; color:var(--forest-100); font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .hero-eyebrow .pulse { width:7px; height:7px; border-radius:50%; background:#E8C96A; box-shadow:0 0 0 7px rgba(232,201,106,.14); }
+    .hero h1 { margin-top:22px; max-width:14ch; color:var(--oat-100); font-size:clamp(2.7rem,5.2vw,4.55rem); line-height:1.02; }
+    .hero h1 em { color:#E8C96A; font-family:var(--serif); font-style:italic; }
+    .hero-sub { margin-top:24px; max-width:51ch; color:var(--forest-100); font-size:1.12rem; line-height:1.68; }
+    .hero-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:34px; }
+    .hero-trust { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:22px; color:var(--forest-100); font-size:.82rem; }
+    .hero-trust span { display:inline-flex; align-items:center; gap:7px; }
+    .hero-trust span::before { content:""; width:6px; height:6px; border-radius:50%; background:#E8C96A; }
+    .hero-stage { position:relative; }
+    .hero-stage::before { content:""; position:absolute; inset:-8% -10% -14% -6%; background:radial-gradient(60% 60% at 70% 30%, rgba(201,168,76,.18), transparent 70%); filter:blur(8px); }
+    .launch-device { position:relative; border:1px solid rgba(217,232,218,.14); border-radius:28px; background:rgba(255,255,255,.06); backdrop-filter:blur(12px); box-shadow:0 30px 80px -28px rgba(0,0,0,.55), 0 0 0 1px rgba(217,232,218,.10) inset; overflow:hidden; }
+    .device-chrome { display:flex; align-items:center; gap:7px; padding:13px 16px; border-bottom:1px solid rgba(217,232,218,.14); background:rgba(0,0,0,.12); }
+    .device-chrome i { width:10px; height:10px; border-radius:50%; display:block; }
+    .device-chrome i:nth-child(1){ background:#e06c5e; } .device-chrome i:nth-child(2){ background:#e0bd5e; } .device-chrome i:nth-child(3){ background:#7fae80; }
+    .device-url { margin-left:8px; min-width:0; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:var(--mono); font-size:.7rem; color:var(--forest-100); background:rgba(0,0,0,.16); padding:4px 11px; border-radius:var(--r-pill); }
+    .device-body { padding:22px; }
+    .device-row { display:grid; grid-template-columns:82px minmax(0,1fr) auto; gap:14px; align-items:center; padding:14px 0; border-bottom:1px solid rgba(217,232,218,.12); }
+    .device-row:last-child { border-bottom:0; }
+    .device-img { aspect-ratio:1; border-radius:14px; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
+    .device-img::before { content:""; position:absolute; width:44%; height:34%; left:28%; bottom:18%; border-radius:16px 16px 24px 24px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 18px 34px rgba(46,46,46,.18); }
+    .device-title { color:var(--oat-100); font-size:.9rem; font-weight:800; line-height:1.36; }
+    .device-desc { color:var(--forest-100); margin-top:4px; font-size:.74rem; line-height:1.45; }
+    .device-chip { color:#E8C96A; background:rgba(201,168,76,.14); border:1px solid rgba(232,201,106,.28); border-radius:var(--r-pill); padding:5px 10px; font-size:.68rem; font-weight:800; white-space:nowrap; }
+    .sec-head { max-width:720px; margin-bottom:42px; }
+    .sec-head.center { margin-inline:auto; text-align:center; }
+    .sec-head .eyebrow { margin-bottom:18px; }
+    .sec-head h2 { margin-bottom:14px; }
+    .feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .feature { padding:28px 30px; background:var(--card); border:1px solid var(--hair); border-radius:var(--r-card); box-shadow:var(--shadow-card); }
+    .feature-k { color:var(--forest-600); font-family:var(--mono); font-size:.74rem; font-weight:800; margin-bottom:18px; }
+    .feature h3 { font-size:1.22rem; margin-bottom:10px; }
+    .feature p { color:var(--muted); font-size:.9rem; line-height:1.6; }
+    .split { display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:54px; align-items:center; }
+    .line-list { border-top:1px solid var(--border-soft); }
+    .line-item { display:grid; grid-template-columns:46px minmax(0,1fr); gap:16px; padding:18px 0; border-bottom:1px solid var(--border-soft); }
+    .line-num { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:var(--forest-050); border:1px solid var(--forest-100); color:var(--forest-700); font-family:var(--mono); font-size:.76rem; font-weight:800; }
+    .line-item strong { display:block; font-size:.96rem; margin-bottom:4px; }
+    .line-item span { color:var(--muted); font-size:.86rem; line-height:1.5; }
+    .output-frame { background:var(--card); border:1px solid var(--hair); border-radius:24px; box-shadow:0 2px 6px rgba(28,43,29,.06), 0 36px 80px -34px rgba(28,43,29,.42); overflow:hidden; }
+    .output-top { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--border-soft); background:var(--oat-100); }
+    .output-body { padding:22px; }
+    .output-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .output-tile { min-height:126px; border:1px solid var(--border-soft); background:linear-gradient(145deg,#fff,var(--oat-100)); border-radius:16px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; }
+    .output-tile strong { font-size:.86rem; }
+    .output-tile span { color:var(--muted); font-size:.74rem; }
+    .how-flow { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; }
+    .how-flow::before { content:""; position:absolute; top:28px; left:11%; right:11%; height:2px; background:linear-gradient(90deg,var(--forest-100),var(--forest-300),var(--forest-100)); opacity:.7; }
+    .how-step { position:relative; z-index:1; }
+    .how-num { width:58px; height:58px; border-radius:50%; background:var(--card); border:2px solid var(--forest-100); display:grid; place-items:center; margin-bottom:20px; font-family:var(--serif); font-size:1.55rem; color:var(--forest-600); box-shadow:0 2px 8px rgba(0,0,0,.04); }
+    .how-step h3 { font-size:1.15rem; margin-bottom:8px; }
+    .how-step p { color:var(--muted); font-size:.88rem; line-height:1.6; }
+    .workspace-band { background:var(--oat-100); border-top:1px solid var(--border-soft); }
+    .workspace-intro { text-align:center; max-width:720px; margin:0 auto 36px; }
+    .workspace-intro h2 { margin-bottom:14px; }
+    .workspace-intro p { color:var(--neutral-700); line-height:1.65; }
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .price-card { padding:32px 30px; border:1px solid var(--hair); border-radius:var(--r-card); background:var(--card); box-shadow:var(--shadow-card); }
+    .price-card.featured { background:var(--forest-600); color:var(--oat-100); transform:translateY(-8px); box-shadow:0 30px 70px -30px rgba(28,43,29,.6), var(--shadow-brand); }
+    .price-card.featured h3,.price-card.featured .price { color:var(--oat-100); }
+    .price-name { font-size:.9rem; font-weight:800; }
+    .price-card .price { font-family:var(--serif); font-size:3rem; line-height:1; margin:12px 0 6px; }
+    .price-desc { color:var(--muted); font-size:.86rem; margin-bottom:22px; }
+    .price-card.featured .price-desc { color:var(--forest-100); }
+    .price-card ul { list-style:none; padding:0; margin:0; display:grid; gap:12px; color:var(--neutral-700); font-size:.88rem; }
+    .price-card.featured ul { color:var(--forest-100); }
+    .price-card li::before { content:"✓"; color:var(--forest-600); font-weight:800; margin-right:8px; }
+    .price-card.featured li::before { color:var(--forest-100); }
+    .pricing-sub { max-width:620px; margin:14px auto 0; color:var(--muted); font-size:1rem; line-height:1.6; text-align:center; }
+    .billing-toggle { display:flex; justify-content:center; margin:24px 0 54px; }
+    .billing-toggle-inner { display:inline-flex; gap:4px; padding:5px; border:1px solid var(--border-soft); border-radius:var(--r-pill); background:var(--card); box-shadow:var(--shadow-card); }
+    .billing-toggle button { height:40px; border:0; border-radius:var(--r-pill); padding:0 24px; background:transparent; color:var(--muted); font-weight:800; }
+    .billing-toggle button.active { background:var(--forest-600); color:var(--oat-100); box-shadow:var(--shadow-brand); }
+    .price-card .btn { width:100%; margin:20px 0 22px; }
+    .plan-export-row { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 22px; padding:12px 14px; border:1px solid var(--border-soft); border-radius:14px; background:linear-gradient(145deg,#fff,var(--oat-100)); color:var(--forest-700); font-size:.82rem; font-weight:800; }
+    .price-card.featured .plan-export-row { background:rgba(250,248,245,.12); border-color:rgba(217,232,218,.22); color:var(--oat-100); }
+    .final-cta { text-align:center; }
+    .final-cta h2 { color:var(--oat-100); max-width:18ch; margin:0 auto; font-size:clamp(2.2rem,4.4vw,3.4rem); }
+    .final-cta h2 em { color:#E8C96A; font-style:italic; }
+    .final-cta p { color:var(--forest-100); max-width:48ch; margin:18px auto 0; font-size:1.04rem; line-height:1.65; }
+
+    .chip { display:inline-flex; align-items:center; gap:6px; min-height:24px; padding:3px 10px; border-radius:var(--r-pill); font-size:.72rem; font-weight:800; line-height:1.25; white-space:nowrap; }
+    .chip .dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+    .chip-clear { background:var(--success-bg); color:var(--success-600); }
+    .chip-warn { background:var(--warning-bg); color:var(--warning-600); }
+    .chip-info { background:var(--info-bg); color:var(--info-600); }
+    .chip-alert { background:var(--error-bg); color:var(--error-600); }
+    .chip-forest { background:var(--forest-050); color:var(--forest-700); border:1px solid var(--forest-100); }
+    .chip-lock { background:#F7EBD2; color:#9A5B08; }
+
+    .access-note {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:14px;
+      align-items:center;
+      margin:0 0 18px;
+      padding:14px 16px;
+      border:1px solid var(--forest-100);
+      border-radius:16px;
+      background:var(--forest-050);
+    }
+    .access-note strong { display:block; color:var(--forest-800); font-size:.86rem; }
+    .access-note span { display:block; margin-top:3px; color:var(--muted); font-size:.75rem; line-height:1.45; }
+    .pay-note {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      align-items:center;
+      margin-top:20px;
+      padding:15px 16px;
+      border:1px solid var(--border-soft);
+      border-radius:16px;
+      background:linear-gradient(145deg,var(--oat-100),#fff);
+    }
+    .pay-note strong { display:block; font-size:.88rem; color:var(--neutral-900); }
+    .pay-note span { display:block; margin-top:3px; color:var(--muted); font-size:.76rem; line-height:1.45; }
+    .unlock-banner {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      align-items:center;
+      margin-bottom:22px;
+      padding:16px 18px;
+      border:1px solid rgba(219,119,6,.22);
+      border-radius:18px;
+      background:var(--warning-bg);
+    }
+    .unlock-banner strong { display:block; font-size:.9rem; color:var(--neutral-900); }
+    .unlock-banner span { display:block; margin-top:3px; color:var(--muted); font-size:.76rem; line-height:1.45; }
+    .locked-action { border-color:rgba(219,119,6,.34); color:var(--warning-600); background:rgba(252,241,226,.45); }
+    .watermark { position:absolute; right:10px; bottom:10px; z-index:2; padding:4px 8px; border-radius:var(--r-pill); background:rgba(250,248,245,.86); color:var(--forest-700); font-size:.62rem; font-weight:800; }
+    .auth-backdrop {
+      position:fixed;
+      inset:0;
+      z-index:80;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:rgba(28,43,29,.42);
+      backdrop-filter:blur(10px);
+    }
+    .auth-backdrop[hidden] { display:none; }
+    .auth-modal {
+      width:min(100%,460px);
+      border:1px solid rgba(217,232,218,.24);
+      border-radius:24px;
+      background:var(--card);
+      box-shadow:0 30px 90px -34px rgba(0,0,0,.55);
+      overflow:hidden;
+      animation:fadeUp .28s var(--ease) both;
+    }
+    .auth-modal-head {
+      padding:24px 26px 18px;
+      border-bottom:1px solid var(--border-soft);
+      background:linear-gradient(145deg,var(--forest-050),#fff);
+    }
+    .auth-modal-head h2 { font-family:var(--sans); font-size:1.2rem; font-weight:800; letter-spacing:0; }
+    .auth-modal-head p { margin-top:8px; color:var(--muted); font-size:.86rem; line-height:1.55; }
+    .auth-modal-body { padding:22px 26px 26px; }
+    .auth-benefits { display:grid; gap:10px; margin:0 0 18px; padding:0; list-style:none; }
+    .auth-benefits li { display:grid; grid-template-columns:8px minmax(0,1fr); gap:10px; color:var(--neutral-700); font-size:.82rem; line-height:1.45; }
+    .auth-benefits li::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--forest-600); margin-top:7px; }
+    .auth-actions { display:grid; gap:10px; margin-top:16px; }
+    .auth-secondary { display:flex; justify-content:center; margin-top:14px; }
+    .auth-link { border:0; background:transparent; color:var(--muted); font-size:.78rem; font-weight:800; }
+    .auth-view[hidden] { display:none; }
+    .google-card { border:1px solid var(--border-soft); border-radius:18px; background:var(--card); overflow:hidden; }
+    .google-top {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:17px 18px;
+      border-bottom:1px solid var(--border-soft);
+      background:linear-gradient(145deg,#fff,var(--oat-100));
+    }
+    .google-mark {
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--border-soft);
+      background:#fff;
+      color:#4285F4;
+      font-weight:800;
+      font-size:1rem;
+    }
+    .google-top strong { display:block; font-size:.9rem; color:var(--neutral-900); }
+    .google-top span { display:block; margin-top:2px; color:var(--muted); font-size:.72rem; }
+    .google-account {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 18px;
+      border-bottom:1px solid var(--border-soft);
+    }
+    .google-avatar {
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--forest-600);
+      color:var(--oat-100);
+      font-weight:800;
+    }
+    .google-account strong { display:block; font-size:.84rem; }
+    .google-account span { display:block; margin-top:2px; color:var(--muted); font-size:.72rem; }
+    .google-permissions { padding:16px 18px 18px; }
+    .google-permissions h3 { margin-bottom:10px; }
+    .permission-list { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+    .permission-list li { display:grid; grid-template-columns:22px minmax(0,1fr); gap:9px; color:var(--neutral-700); font-size:.78rem; line-height:1.45; }
+    .permission-icon {
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--forest-050);
+      color:var(--forest-700);
+      font-size:.68rem;
+      font-weight:800;
+    }
+    .google-note { margin-top:12px; color:var(--muted); font-size:.72rem; line-height:1.45; }
+    .auth-modal.google-mode { width:min(100%,520px); }
+    .checkout-backdrop {
+      position:fixed;
+      inset:0;
+      z-index:82;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:rgba(28,43,29,.42);
+      backdrop-filter:blur(10px);
+    }
+    .checkout-backdrop[hidden], .checkout-view[hidden] { display:none; }
+    .checkout-modal {
+      width:min(100%,720px);
+      max-height:min(92vh,820px);
+      overflow:auto;
+      border:1px solid rgba(217,232,218,.24);
+      border-radius:24px;
+      background:var(--card);
+      box-shadow:0 30px 90px -34px rgba(0,0,0,.55);
+      animation:fadeUp .28s var(--ease) both;
+    }
+    .checkout-head {
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+      padding:26px 28px 20px;
+      border-bottom:1px solid var(--border-soft);
+      background:linear-gradient(145deg,var(--forest-050),#fff);
+    }
+    .checkout-head h2 { font-family:var(--sans); font-size:1.2rem; font-weight:800; letter-spacing:0; }
+    .checkout-head p { margin-top:8px; color:var(--muted); font-size:.84rem; line-height:1.55; }
+    .checkout-close { width:38px; height:38px; border:0; border-radius:50%; background:var(--oat-200); color:var(--muted); font-size:1.1rem; font-weight:800; flex-shrink:0; }
+    .checkout-body { padding:24px 28px 28px; }
+    .checkout-packages { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .checkout-package {
+      min-height:190px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px;
+      border:1px solid var(--border-soft);
+      border-radius:18px;
+      background:var(--card);
+      text-align:left;
+      color:inherit;
+      font:inherit;
+      appearance:none;
+    }
+    .checkout-package.active { border-color:var(--forest-600); background:var(--forest-050); box-shadow:0 0 0 1px var(--forest-600) inset; }
+    .checkout-package strong { display:block; font-size:.92rem; color:var(--neutral-900); }
+    .checkout-package span { display:block; margin-top:4px; color:var(--muted); font-size:.74rem; line-height:1.45; }
+    .checkout-price { margin-top:12px; font-family:var(--serif); font-size:2rem; line-height:1; color:var(--neutral-900); }
+    .checkout-footer { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:22px; padding-top:18px; border-top:1px solid var(--border-soft); }
+    .checkout-footnote { color:var(--muted); font-size:.74rem; line-height:1.45; }
+    .checkout-success { text-align:center; padding:18px 0 4px; }
+    .success-mark { width:58px; height:58px; margin:0 auto 18px; border-radius:50%; display:grid; place-items:center; background:var(--success-bg); color:var(--success-600); font-size:1.35rem; font-weight:800; }
+    .checkout-success h2 { font-family:var(--serif); font-size:2.35rem; }
+    .checkout-success p { max-width:460px; margin:14px auto 0; color:var(--neutral-700); line-height:1.6; }
+    .unlocked-only { display:none; }
+    #state-preview.exports-unlocked .locked-only { display:none; }
+    #state-preview.exports-unlocked .unlocked-only { display:inline-flex; }
+    #state-preview.exports-unlocked .watermark { display:none; }
+    .mode-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; padding:5px; border:1px solid var(--border-soft); border-radius:18px; background:var(--oat-200); }
+    .mode-row {
+      width:100%; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center;
+      min-height:86px; padding:14px 16px; border:1px solid transparent; border-radius:14px; background:transparent;
+      color:inherit; font:inherit; text-align:left; cursor:pointer; appearance:none;
+      transition:background .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease), transform .18s var(--ease);
+    }
+    .mode-row:hover { background:rgba(255,255,255,.56); }
+    .mode-row.active { background:var(--card); border-color:var(--forest-100); box-shadow:0 8px 24px -18px rgba(28,43,29,.42); }
+    .mode-row.active .row-title { color:var(--forest-700); }
+    .mode-main { min-width:0; }
+    .existing-source { margin-top:18px; padding:18px 20px; border:1px solid var(--forest-100); border-radius:var(--r-input); background:var(--forest-050); }
+    .fetch-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:end; margin-top:12px; }
+    .scratch-hidden { display:none; }
+    .snapshot-stack { display:grid; gap:0; }
+    .snapshot-module { padding:24px 0; border-bottom:1px solid var(--border-soft); }
+    .snapshot-module:last-child { border-bottom:0; padding-bottom:0; }
+    .snapshot-module-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+    .snapshot-module-head h3 { margin-top:2px; }
+    .snapshot-module-head p { color:var(--muted); font-size:.8rem; line-height:1.5; margin-top:4px; }
+    .snapshot-images { display:grid; grid-template-columns:repeat(8,1fr); gap:10px; }
+    .snapshot-img { aspect-ratio:1; border:1px solid var(--border-soft); border-radius:10px; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
+    .snapshot-img::before { content:""; position:absolute; width:42%; height:32%; left:29%; bottom:20%; border-radius:14px 14px 22px 22px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 14px 26px rgba(46,46,46,.13); }
+    .aplus-thumbs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px; }
+    .aplus-thumb { min-height:112px; border:1px solid var(--border-soft); border-radius:12px; background:var(--oat-100); overflow:hidden; display:grid; grid-template-rows:minmax(68px,1fr) auto; }
+    .aplus-thumb-img { position:relative; background:linear-gradient(145deg,#eff5f7,#fff 48%,#f6eee0); overflow:hidden; }
+    .aplus-thumb-img::before { content:""; position:absolute; width:36%; height:30%; left:32%; bottom:20%; border-radius:14px 14px 20px 20px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 16px 30px rgba(46,46,46,.12); }
+    .aplus-thumb-copy { padding:10px 11px; }
+    .aplus-thumb-copy strong { display:block; font-size:.76rem; line-height:1.25; }
+    .aplus-thumb-copy span { display:block; margin-top:3px; color:var(--muted); font-size:.68rem; line-height:1.35; }
+    .fetched-text { border:1px solid var(--border-soft); border-radius:var(--r-input); background:var(--oat-100); padding:16px 18px; color:var(--neutral-900); font-size:.9rem; line-height:1.62; }
+    .fetched-bullets { margin:0; padding:0; list-style:none; display:grid; gap:10px; }
+    .fetched-bullets li { display:grid; grid-template-columns:28px minmax(0,1fr); gap:10px; align-items:start; }
+    .fetched-bullets b { width:24px; height:24px; border-radius:50%; display:grid; place-items:center; background:var(--forest-050); color:var(--forest-700); font-family:var(--mono); font-size:.68rem; }
+    .check-list { display:grid; gap:11px; margin-top:12px; }
+    .check-row { display:flex; gap:10px; align-items:flex-start; color:var(--neutral-700); font-size:.86rem; line-height:1.45; }
+    .check-row input { margin-top:3px; accent-color:var(--forest-600); }
+    .scope-list { border-top:1px solid var(--border-soft); margin-top:12px; }
+    .scope-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center; padding:13px 0; border-bottom:1px solid var(--border-soft); }
+    .scope-row strong { font-size:.88rem; }
+    .scope-row span { display:block; margin-top:3px; color:var(--muted); font-size:.76rem; }
+    .rebuild-defaults { margin-top:20px; padding:16px 18px; border:1px solid var(--forest-100); border-radius:var(--r-input); background:var(--forest-050); }
+    .rebuild-defaults-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+    .rebuild-defaults-head strong { font-size:.9rem; }
+    .scope-picker { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:12px 0 14px; }
+    .scope-option { border:1px solid var(--forest-100); border-radius:12px; background:var(--card); padding:11px 12px; color:var(--neutral-700); font-size:.74rem; line-height:1.35; }
+    .scope-option strong { display:block; color:var(--neutral-900); font-size:.8rem; margin-bottom:3px; }
+    .scope-option.active { background:var(--forest-600); border-color:var(--forest-600); color:var(--forest-100); }
+    .scope-option.active strong { color:var(--oat-100); }
+    .rebuild-inline { display:flex; flex-wrap:wrap; gap:12px 18px; color:var(--neutral-700); font-size:.82rem; line-height:1.45; }
+    .rebuild-inline label { display:inline-flex; align-items:flex-start; gap:8px; }
+    .rebuild-inline input { margin-top:3px; accent-color:var(--forest-600); }
+    .rebuild-scope { margin-top:10px; color:var(--muted); font-size:.78rem; }
+
+    .summary-list,.plan-list,.progress-list { border-top:1px solid var(--border-soft); }
+    .package-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .package-row,.summary-row,.plan-row,.progress-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-soft); }
+    .package-main,.summary-main,.plan-main,.progress-main { min-width:0; }
+    .row-title { font-size:.92rem; font-weight:800; color:var(--neutral-900); }
+    .row-desc { margin-top:4px; color:var(--muted); font-size:.78rem; line-height:1.45; }
+    .row-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .upload-btn { height:36px; border:1px solid rgba(61,90,62,.3); color:var(--forest-700); background:transparent; border-radius:var(--r-pill); padding:0 14px; font-size:.78rem; font-weight:800; }
+    .upload-panel { display:grid; grid-template-columns:minmax(0,1fr) 250px; gap:18px; align-items:stretch; }
+    .dropzone {
+      min-height:176px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:26px;
+      border:1.5px dashed rgba(61,90,62,.34);
+      border-radius:18px;
+      background:linear-gradient(145deg,#fff,var(--forest-050));
+      text-align:center;
+      cursor:pointer;
+      transition:border-color .16s var(--ease), background .16s var(--ease), transform .16s var(--ease);
+    }
+    .dropzone:hover,.dropzone.dragging { border-color:var(--forest-600); background:linear-gradient(145deg,#fff,var(--oat-100)); transform:translateY(-1px); }
+    .dropzone-icon { width:42px; height:42px; border-radius:14px; display:grid; place-items:center; background:var(--card); color:var(--forest-700); border:1px solid var(--forest-100); box-shadow:0 8px 24px -18px rgba(28,43,29,.4); }
+    .dropzone strong { font-size:.98rem; color:var(--neutral-900); }
+    .dropzone span { color:var(--muted); font-size:.78rem; line-height:1.45; }
+    .file-input { display:none; }
+    .upload-guide { border:1px solid var(--border-soft); border-radius:18px; padding:18px; background:var(--card); }
+    .upload-guide h4 { margin:0 0 10px; font-size:.82rem; font-weight:800; color:var(--forest-800); }
+    .upload-guide ul { list-style:none; padding:0; margin:0; display:grid; gap:9px; }
+    .upload-guide li { display:grid; grid-template-columns:8px minmax(0,1fr); gap:9px; color:var(--neutral-700); font-size:.76rem; line-height:1.45; }
+    .upload-guide li::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--forest-600); margin-top:7px; }
+    .upload-status { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; color:var(--muted); font-size:.76rem; }
+    .uploaded-preview { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    .uploaded-preview:empty { display:none; }
+    .upload-thumb { position:relative; min-width:0; border-radius:12px; border:1px solid var(--border-soft); background:var(--card); overflow:hidden; box-shadow:0 8px 24px -20px rgba(28,43,29,.36); }
+    .upload-thumb-img { aspect-ratio:1; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); overflow:hidden; }
+    .upload-thumb-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .upload-thumb-meta { padding:8px; }
+    .upload-thumb-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--neutral-900); font-size:.68rem; font-weight:800; }
+    .upload-thumb-type { margin-top:2px; color:var(--muted); font-size:.62rem; }
+    .upload-remove { position:absolute; top:6px; right:6px; width:22px; height:22px; border:0; border-radius:50%; background:rgba(28,43,29,.78); color:var(--oat-100); display:grid; place-items:center; font-size:.86rem; line-height:1; }
+    .package-row {
+      width:100%;
+      display:flex;
+      min-height:156px;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border:1px solid var(--border-soft);
+      background:var(--card);
+      color:inherit;
+      font:inherit;
+      text-align:left;
+      cursor:pointer;
+      border-radius:16px;
+      transition:background .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease), transform .18s var(--ease);
+      appearance:none;
+    }
+    .package-row:hover { background:var(--forest-050); transform:translateY(-1px); }
+    .package-row.active .row-title { color:var(--forest-700); }
+    .package-row.active { background:var(--forest-050); border-color:var(--forest-600); box-shadow:0 0 0 1px var(--forest-600) inset, 0 12px 32px -24px rgba(28,43,29,.46); }
+    .package-row .row-meta { width:100%; justify-content:space-between; gap:6px; }
+    .pkg-spec { color:var(--forest-600); font-family:var(--mono); font-size:.72rem; white-space:nowrap; }
+
+    .adv-toggle,.detail-toggle { display:inline-flex; align-items:center; gap:8px; padding:6px 0; border:0; background:transparent; color:var(--forest-700); font-size:.88rem; font-weight:800; }
+    .adv-toggle { margin-top:18px; }
+    .chev { transition:transform .2s var(--ease); }
+    .adv-toggle[aria-expanded="true"] .chev,.detail-toggle[aria-expanded="true"] .chev { transform:rotate(90deg); }
+    .advanced,.details { margin-top:16px; padding:18px 20px; border:1px solid var(--hair); border-radius:var(--r-input); background:var(--oat-100); animation:fadeIn .32s var(--ease) both; }
+    .reassure { display:flex; align-items:center; justify-content:center; gap:9px; margin-top:20px; color:var(--muted); font-size:.82rem; text-align:center; }
+
+    .summary-hero { padding:22px 0 26px; border-bottom:1px solid var(--border-soft); }
+    .summary-label { color:var(--forest-600); font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
+    .summary-title { font-family:var(--serif); font-size:1.8rem; line-height:1.12; }
+    .summary-row { grid-template-columns:190px minmax(0,1fr) auto; align-items:start; }
+    .summary-key { font-size:.78rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+    .summary-value { color:var(--neutral-900); font-size:.92rem; line-height:1.5; }
+
+    .plan-intro { padding-bottom:22px; border-bottom:1px solid var(--border-soft); }
+    .plan-intro h2 { margin-bottom:10px; }
+    .plan-intro p { color:var(--neutral-700); font-size:.95rem; line-height:1.6; }
+    .plan-intro-top { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:10px; }
+    .plan-intro-top h2 { margin-bottom:0; }
+    .plan-block { padding:24px 0; border-bottom:1px solid var(--border-soft); }
+    .plan-block:last-child { border-bottom:0; padding-bottom:0; }
+    .plan-block h3 { margin-bottom:12px; }
+    .plan-row { grid-template-columns:44px minmax(0,1fr) auto; align-items:start; padding:14px 0; }
+    .plan-row > .details { grid-column:2 / -1; width:100%; margin-top:0; }
+    .plan-num { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:var(--forest-050); border:1px solid var(--forest-100); color:var(--forest-700); font-family:var(--mono); font-size:.76rem; font-weight:800; }
+    .plan-detail { margin-top:12px; color:var(--neutral-700); font-size:.82rem; line-height:1.55; }
+    .plan-detail b { color:var(--neutral-900); }
+    .rule-list { display:grid; gap:10px; margin-top:6px; }
+    .rule { display:flex; gap:9px; color:var(--neutral-700); font-size:.88rem; line-height:1.45; }
+    .rule::before { content:""; width:7px; height:7px; margin-top:7px; border-radius:50%; background:var(--forest-600); flex-shrink:0; }
+    .plan-editing .row-title[contenteditable="true"],
+    .plan-editing .row-desc[contenteditable="true"],
+    .plan-editing .plan-detail[contenteditable="true"],
+    .plan-editing .rule[contenteditable="true"],
+    .plan-editing .plan-intro p[contenteditable="true"] {
+      outline:0;
+      background:var(--card);
+      box-shadow:0 0 0 1px rgba(61,90,62,.24);
+      border-radius:10px;
+      padding:6px 8px;
+    }
+    .plan-editing .rule[contenteditable="true"] { display:block; margin-left:16px; }
+    .plan-editing .rule[contenteditable="true"]::before { display:none; }
+
+    .progress-row { grid-template-columns:32px minmax(0,1fr) auto; }
+    .progress-icon { width:24px; height:24px; display:grid; place-items:center; border-radius:50%; background:var(--oat-200); color:var(--muted); }
+    .progress-row.active .progress-icon { background:var(--forest-050); color:var(--forest-600); }
+    .progress-row.done .progress-icon { background:var(--success-bg); color:var(--success-600); }
+    .spinner { width:16px; height:16px; border:2px solid var(--forest-100); border-top-color:var(--forest-600); border-radius:50%; animation:spin .7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    .preview-topbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:14px 0 18px; border-bottom:1px solid var(--border-soft); margin-bottom:22px; }
+    .safe-status { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .preview-panel { background:var(--card); border:1px solid var(--hair); border-radius:var(--r-card); box-shadow:var(--shadow-card); overflow:hidden; }
+    .preview-toolbar { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border-bottom:1px solid var(--hair); background:var(--oat-100); }
+    .segmented { display:inline-flex; gap:4px; padding:4px; border:1px solid var(--hair); border-radius:var(--r-pill); background:var(--oat-200); }
+    .segmented button { height:32px; padding:0 13px; border:0; border-radius:var(--r-pill); background:transparent; color:var(--muted); font-size:.78rem; font-weight:800; cursor:pointer; transition:background .16s var(--ease), color .16s var(--ease); }
+    .segmented button:hover:not(.active) { background:rgba(255,255,255,.55); color:var(--forest-700); }
+    .segmented button.active { background:var(--forest-600); color:var(--oat-100); }
+    .preview-view[hidden], .result-view[hidden] { display:none; }
+    .result-tabs { display:flex; justify-content:center; margin:0 0 22px; }
+    .copy-stack { display:grid; gap:14px; }
+    .copy-block { border:1px solid var(--border-soft); border-radius:16px; background:var(--card); padding:18px; }
+    .copy-block-head { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:10px; }
+    .copy-block-head h3 { margin:0; }
+    .copy-text { color:var(--neutral-900); font-size:.92rem; line-height:1.6; }
+    .copy-text ol { margin:0; padding-left:20px; display:grid; gap:8px; }
+    .copy-meta { margin-top:10px; color:var(--muted); font-size:.72rem; }
+    .ready-checklist { margin:0 0 22px; border-top:1px solid var(--border-soft); }
+    .ready-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; align-items:center; padding:13px 0; border-bottom:1px solid var(--border-soft); }
+    .ready-row strong { display:block; font-size:.86rem; color:var(--neutral-900); }
+    .ready-row span { display:block; margin-top:3px; color:var(--muted); font-size:.74rem; line-height:1.45; }
+    .image-section + .image-section { margin-top:22px; }
+    .image-section h3 { margin-bottom:12px; }
+    .image-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .image-card { border:1px solid var(--border-soft); border-radius:16px; background:var(--card); overflow:hidden; }
+    .image-card-art { aspect-ratio:1; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
+    .image-card.wide .image-card-art { aspect-ratio:97 / 60; }
+    .image-card-art::before { content:""; position:absolute; width:42%; height:32%; left:29%; bottom:20%; border-radius:14px 14px 22px 22px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 14px 26px rgba(46,46,46,.13); }
+    .image-card-copy { padding:12px; }
+    .image-card-copy strong { display:block; font-size:.8rem; line-height:1.3; }
+    .image-card-copy span { display:block; margin-top:4px; color:var(--muted); font-family:var(--mono); font-size:.68rem; }
+    .mobile-preview { padding:28px; background:linear-gradient(145deg,var(--oat-100),#fff); display:flex; justify-content:center; }
+    .phone-frame { width:390px; max-width:100%; border:1px solid var(--border-soft); border-radius:30px; overflow:hidden; background:var(--card); box-shadow:0 18px 50px -28px rgba(28,43,29,.28); }
+    .mobile-storebar { padding:10px 12px; background:#edf6f7; border-bottom:1px solid var(--border-soft); }
+    .mobile-search { height:34px; border-radius:18px; background:#fff; border:1px solid rgba(28,43,29,.1); display:flex; align-items:center; padding:0 13px; color:var(--muted); font-size:.76rem; }
+    .mobile-content { padding:13px; }
+    .mobile-hero { aspect-ratio:1; border:1px solid var(--border-soft); background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
+    .mobile-hero::before { content:""; position:absolute; width:46%; height:34%; left:27%; bottom:19%; border-radius:18px 18px 26px 26px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 24px 52px rgba(46,46,46,.16); }
+    .mobile-hero::after { content:""; position:absolute; width:19%; height:42%; left:41%; top:16%; border-radius:999px; background:linear-gradient(180deg,#516e52,#d1b957); transform:rotate(-8deg); box-shadow:0 16px 30px rgba(62,91,63,.16); }
+    .mobile-dots { display:flex; justify-content:center; gap:5px; margin:10px 0 12px; }
+    .mobile-dots span { width:6px; height:6px; border-radius:50%; background:var(--border); }
+    .mobile-dots span:first-child { background:var(--forest-600); }
+    .mobile-title { font-size:.9rem; font-weight:700; line-height:1.42; }
+    .mobile-meta { display:flex; align-items:center; gap:8px; margin-top:9px; color:#b7791f; font-size:.76rem; }
+    .mobile-price { margin-top:10px; font-size:1.18rem; font-weight:800; }
+    .mobile-section { margin-top:16px; padding-top:14px; border-top:1px solid var(--border-soft); }
+    .mobile-section h4 { margin:0 0 8px; font-size:.78rem; font-weight:800; }
+    .mobile-bullets { margin:0; padding-left:18px; color:var(--neutral-700); font-size:.76rem; line-height:1.5; }
+    .mobile-aplus { display:grid; gap:10px; }
+    .mobile-aplus-block { border:1px solid var(--border-soft); background:var(--oat-100); }
+    .mobile-aplus-img { min-height:118px; background:linear-gradient(145deg,#eff5f7,#fff 48%,#f6eee0); position:relative; overflow:hidden; }
+    .mobile-aplus-img::before { content:""; position:absolute; width:36%; height:30%; left:32%; bottom:20%; border-radius:16px 16px 22px 22px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 20px 42px rgba(46,46,46,.13); }
+    .mobile-aplus-copy { padding:12px; }
+    .mobile-aplus-copy strong { display:block; font-size:.82rem; line-height:1.3; }
+    .mobile-aplus-copy span { display:block; margin-top:5px; color:var(--muted); font-size:.72rem; line-height:1.45; }
+    .export-package { margin-top:22px; padding:20px 0 0; border-top:1px solid var(--border-soft); }
+    .export-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .export-head p { margin-top:5px; color:var(--muted); font-size:.82rem; line-height:1.5; }
+    .asset-list { margin-top:14px; border-top:1px solid var(--border-soft); }
+    .asset-row { display:grid; grid-template-columns:180px minmax(0,1fr) auto; gap:14px; align-items:start; padding:13px 0; border-bottom:1px solid var(--border-soft); }
+    .asset-name { font-family:var(--mono); color:var(--forest-700); font-size:.76rem; white-space:nowrap; }
+    .asset-desc { color:var(--neutral-700); font-size:.82rem; line-height:1.45; }
+    .pdp { padding:22px; background:var(--card); }
+    .pdp-top { display:grid; grid-template-columns:370px minmax(0,1fr); gap:28px; align-items:start; }
+    .gallery { display:grid; grid-template-columns:68px minmax(0,1fr); gap:12px; }
+    .thumbs { display:flex; flex-direction:column; gap:8px; }
+    .thumb { aspect-ratio:1; border:1px solid var(--border-soft); border-radius:10px; background:linear-gradient(145deg,#fffaf1,#edf4ed); }
+    .main-img { aspect-ratio:1; border:1px solid var(--border-soft); border-radius:16px; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
+    .main-img::before,.aplus-img::before { content:""; position:absolute; width:46%; height:34%; left:27%; bottom:19%; border-radius:18px 18px 26px 26px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 24px 52px rgba(46,46,46,.16); }
+    .main-img::after,.aplus-img::after { content:""; position:absolute; width:19%; height:42%; left:41%; top:16%; border-radius:999px; background:linear-gradient(180deg,#516e52,#d1b957); transform:rotate(-8deg); box-shadow:0 16px 30px rgba(62,91,63,.16); }
+    .pdp-title { font-family:var(--sans); font-size:1.28rem; font-weight:700; line-height:1.34; letter-spacing:0; }
+    .rating { display:flex; align-items:center; gap:8px; margin-top:12px; color:#b7791f; font-size:.86rem; }
+    .price { margin-top:16px; font-size:1.35rem; font-weight:800; color:var(--neutral-900); }
+    .bullets { margin:16px 0 0; padding-left:18px; color:var(--neutral-700); font-size:.9rem; line-height:1.55; }
+    .aplus-preview { margin-top:28px; border-top:1px solid var(--border-soft); padding-top:22px; display:grid; gap:14px; }
+    .aplus-module { display:grid; grid-template-columns:1fr 1fr; min-height:190px; border:1px solid var(--border-soft); border-radius:16px; overflow:hidden; background:var(--oat-100); }
+    .aplus-copy { padding:24px; display:flex; flex-direction:column; justify-content:center; }
+    .aplus-copy h3 { font-family:var(--serif); font-size:1.65rem; font-weight:400; letter-spacing:-.01em; }
+    .aplus-copy p { margin-top:10px; color:var(--muted); font-size:.9rem; line-height:1.55; }
+    .aplus-img { position:relative; overflow:hidden; background:linear-gradient(145deg,#eff5f7,#fff 48%,#f6eee0); min-height:190px; }
+
+    @media (max-width:920px) {
+      .hero-grid,.split { grid-template-columns:1fr; gap:40px; }
+      .feature-grid,.price-grid { grid-template-columns:1fr; }
+      .how-flow { grid-template-columns:repeat(2,1fr); }
+      .how-flow::before { display:none; }
+      .snapshot-images { grid-template-columns:repeat(4,1fr); }
+      .aplus-thumbs { grid-template-columns:1fr; }
+      .image-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .pdp-top { grid-template-columns:1fr; }
+      .phone-frame { margin:0 auto; }
+      .upload-panel { grid-template-columns:1fr; }
+      .field-grid,.aplus-module { grid-template-columns:1fr; }
+      .summary-row { grid-template-columns:1fr; gap:7px; }
+    }
+    @media (max-width:760px) {
+      .nav-links { display:none; }
+      .hero { padding:78px 0 84px; }
+      .band { padding:62px 0; }
+      .hero-actions .btn { width:100%; }
+      .how-flow { grid-template-columns:1fr; }
+      .output-grid { grid-template-columns:1fr; }
+      .image-grid { grid-template-columns:1fr; }
+      .uploaded-preview { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .snapshot-source { grid-template-columns:1fr; }
+      .snapshot-images { grid-template-columns:repeat(2,1fr); }
+      .scope-picker { grid-template-columns:1fr; }
+      .mode-list,.package-list { grid-template-columns:1fr; }
+      .gallery { grid-template-columns:1fr; }
+      .thumbs { flex-direction:row; }
+      .thumb { width:56px; }
+      .package-row,.plan-row,.progress-row { grid-template-columns:minmax(0,1fr); }
+      .plan-row > .details { grid-column:1 / -1; }
+      .asset-row { grid-template-columns:1fr; gap:6px; }
+      .row-meta { justify-content:flex-start; }
+      .access-note,.pay-note,.unlock-banner { grid-template-columns:1fr; }
+    }
+    @media (max-width:640px) {
+      .nav-inner { padding:0 18px; }
+      .nav-cta { display:none; }
+      .steps { display:none; }
+      .page { padding:52px 0 78px; }
+      .wrap { padding:0 18px; }
+      .head { margin-bottom:34px; }
+      h1 { font-size:1.95rem; line-height:1.13; }
+      .hero h1 { font-size:2.45rem; max-width:12ch; }
+      .head h1 { max-width:10.5em; margin:0 auto; }
+      .lede { font-size:.98rem; max-width:100%; }
+      .panel { padding:24px 20px; }
+      .chip { max-width:100%; white-space:normal; }
+      .eyebrow::before,.eyebrow::after { width:16px; }
+      .preview-toolbar { align-items:flex-start; flex-direction:column; }
+      .pdp { padding:16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" id="brand-home">
+        <span class="mark">L</span>
+        <span class="brand-name">Launch Listing</span>
+      </a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="#why">Why</a>
+        <a href="#ai-ready">AI ready</a>
+        <a href="#how">How it works</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free</a>
+      <div class="steps nav-workflow" aria-label="workflow progress">
+        <span class="step active" id="step-1">Intake</span><span class="sep">/</span>
+        <span class="step" id="step-2">Summary</span><span class="sep">/</span>
+        <span class="step" id="step-3">Plan</span><span class="sep">/</span>
+        <span class="step" id="step-4">Generate</span><span class="sep">/</span>
+        <span class="step" id="step-5">Results</span>
+      </div>
+      <button class="btn btn-outline btn-sm nav-back" id="back-overview" type="button">Back to overview</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="band band-dark hero landing-section" id="top">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing agent</span>
+            <h1>Launch Listing <em>Agent</em>.</h1>
+            <p class="hero-sub">Generate a complete Amazon listing package with a plan you can review before creation.</p>
+            <div class="hero-actions">
+              <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Start a listing</a>
+              <a class="btn btn-outline btn-lg" href="#how" style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">See workflow</a>
+            </div>
+            <div class="hero-trust">
+              <span>Complete package</span>
+              <span>Plan before generation</span>
+              <span>Product-aware image generation</span>
+              <span>Ready checklist</span>
+            </div>
+          </div>
+          <div class="hero-stage">
+            <div class="launch-device">
+              <div class="device-chrome"><i></i><i></i><i></i><div class="device-url">launch-listing/workspace/full-listing</div></div>
+              <div class="device-body">
+                <div class="device-row">
+                  <div class="device-img"></div>
+                  <div><div class="device-title">Desktop + mobile PDP preview</div><div class="device-desc">See how gallery, title, bullets and A+ stack before export.</div></div>
+                  <span class="device-chip">Preview</span>
+                </div>
+                <div class="device-row">
+                  <div class="device-img"></div>
+                  <div><div class="device-title">7 gallery images · 2000 x 2000</div><div class="device-desc">Main image, benefit, proof, lifestyle, spec, package and trust.</div></div>
+                  <span class="device-chip">Ready</span>
+                </div>
+                <div class="device-row">
+                  <div class="device-img"></div>
+                  <div><div class="device-title">6 Standard A+ modules · 970 x 600</div><div class="device-desc">Generated from a confirmed launch plan, not a black-box prompt.</div></div>
+                  <span class="device-chip">A+</span>
+                </div>
+                <div class="device-row">
+                  <div class="device-img"></div>
+                  <div><div class="device-title">Ready checklist</div><div class="device-desc">Product accuracy, wording, dimensions and upload order are organized before handoff.</div></div>
+                  <span class="device-chip">Ready</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-oat landing-section" id="why">
+      <div class="container">
+        <div class="sec-head center">
+          <span class="eyebrow">Why it exists</span>
+          <h2>A complete listing package, planned before anything is made.</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><div class="feature-k">01</div><h3>Complete package</h3><p>Title, bullets, search terms, gallery images, A+, preview and export.</p></div>
+          <div class="feature"><div class="feature-k">02</div><h3>Plan before generation</h3><p>Review the generation plan before listing copy and images are created.</p></div>
+          <div class="feature"><div class="feature-k">03</div><h3>Built for Amazon shopping</h3><p>Organize buyer questions, image order and A+ modules around shopping decisions.</p></div>
+          <div class="feature"><div class="feature-k">04</div><h3>Product-aware image generation</h3><p>Use source photos to keep the product body accurate while generating scenes and layouts.</p></div>
+          <div class="feature"><div class="feature-k">05</div><h3>Ready checklist</h3><p>Review product accuracy, wording, image dimensions and upload order before handoff.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-white landing-section" id="ai-ready">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">AI shopping ready</span>
+            <h2>Built for the new conversational Amazon journey.</h2>
+            <p class="lede">Launch Listing organizes content around the questions shoppers ask before they decide.</p>
+          </div>
+          <div class="line-list">
+            <div class="line-item"><div class="line-num">1</div><div><strong>Product identity</strong><span>Make the product type, use case, material, fit and package contents explicit.</span></div></div>
+            <div class="line-item"><div class="line-num">2</div><div><strong>Buyer question coverage</strong><span>Map common buyer questions to title, bullets, gallery images and A+ modules.</span></div></div>
+            <div class="line-item"><div class="line-num">3</div><div><strong>Wording review</strong><span>Keep benefits clear and grounded in the product information provided.</span></div></div>
+            <div class="line-item"><div class="line-num">4</div><div><strong>Module mapping</strong><span>Every key benefit has a target section and image/A+ support, not just generated decoration.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-oat landing-section" id="how">
+      <div class="container">
+        <div class="sec-head center">
+          <span class="eyebrow">How it works</span>
+          <h2>The workflow stays short, even though the job is complex.</h2>
+        </div>
+        <div class="how-flow">
+          <div class="how-step"><div class="how-num">1</div><h3>Provide product sources</h3><p>Start with a product name, category, selling points and a clear white-background product photo. Detail and package images are optional.</p></div>
+          <div class="how-step"><div class="how-num">2</div><h3>Create a free plan</h3><p>Sign in when the system creates your first saved plan. Each account gets one free launch plan.</p></div>
+          <div class="how-step"><div class="how-num">3</div><h3>Generate preview</h3><p>Review listing copy, gallery images, A+ modules and the Amazon preview before export.</p></div>
+          <div class="how-step"><div class="how-num">4</div><h3>Unlock handoff</h3><p>Choose an export package when you want copy actions, high-resolution downloads and the Seller Central ZIP.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-soft landing-section" id="outputs">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Output package</span>
+            <h2>Everything needed for a launch package.</h2>
+            <div class="line-list" style="margin-top:28px">
+              <div class="line-item"><div class="line-num">C</div><div><strong>Listing copy</strong><span>Title, 5 bullets, backend search terms and editable Markdown export.</span></div></div>
+              <div class="line-item"><div class="line-num">G</div><div><strong>Gallery package</strong><span>7 gallery images at 2000 x 2000, organized by shopping purpose.</span></div></div>
+              <div class="line-item"><div class="line-num">A+</div><div><strong>A+ package</strong><span>Standard A+ at 970 x 600. Premium supports 1464 x 600 and 600 x 450 mobile crops.</span></div></div>
+              <div class="line-item"><div class="line-num">R</div><div><strong>Ready checklist</strong><span>Product accuracy, wording, dimensions, upload order and ZIP export.</span></div></div>
+            </div>
+          </div>
+          <div class="output-frame">
+            <div class="output-top"><strong>Full Listing kit</strong><span class="chip chip-clear">Ready after review</span></div>
+            <div class="output-body">
+              <div class="output-grid">
+                <div class="output-tile"><strong>Copy</strong><span>Title · 5 bullets · search terms · Markdown</span></div>
+                <div class="output-tile"><strong>Gallery</strong><span>7 images · 2000 x 2000 · by purpose</span></div>
+                <div class="output-tile"><strong>A+</strong><span>Standard 970 x 600 · Premium 1464 x 600 + 600 x 450</span></div>
+                <div class="output-tile"><strong>Ready checklist</strong><span>Accuracy · wording · dimensions · upload order</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page workspace-band" id="workspace" hidden>
+      <div class="workspace-intro">
+        <span class="eyebrow">Workspace</span>
+        <h2>Launch Listing Agent</h2>
+        <p>Add a product, confirm the plan, then generate the listing kit.</p>
+      </div>
+    <div class="wrap" id="wrap">
+      <section class="state" id="state-intake">
+        <header class="head">
+          <span class="eyebrow">Start a launch</span>
+          <h1>Generate a complete Amazon listing package</h1>
+          <p class="lede">Start from product details, source photos, or an existing Amazon URL.</p>
+        </header>
+
+        <div class="panel">
+          <div class="access-note">
+            <div>
+              <strong>Free account includes one launch plan</strong>
+              <span>No account is needed to fill inputs. Sign in when you create or fetch a saved launch plan.</span>
+            </div>
+            <span class="chip chip-clear">Preview first</span>
+          </div>
+          <div class="section">
+            <div class="section-head">
+              <h3>Start with</h3>
+              <span class="chip chip-clear">source type</span>
+            </div>
+            <div class="mode-list">
+              <button class="mode-row active" type="button" data-project-mode="scratch">
+                <div class="mode-main">
+                  <div class="row-title">New listing</div>
+                  <div class="row-desc">Use product details and source photos.</div>
+                </div>
+                <span class="chip chip-clear">Default</span>
+              </button>
+              <button class="mode-row" type="button" data-project-mode="existing">
+                <div class="mode-main">
+                  <div class="row-title">Existing listing</div>
+                  <div class="row-desc">Fetch an Amazon URL or ASIN first.</div>
+                </div>
+                <span class="chip chip-info">URL / ASIN</span>
+              </button>
+            </div>
+            <div class="existing-source" id="existing-source" hidden>
+              <div class="row-title">Amazon URL or ASIN</div>
+              <div class="row-desc">Paste a listing link first. We will fetch title, bullets, gallery images and A+ availability before creating the generation plan.</div>
+              <div class="fetch-row">
+                <div class="field" style="margin:0">
+                  <label class="label" for="existing-url">Listing source</label>
+                  <input class="input" id="existing-url" value="https://www.amazon.com/dp/B0G1MJWK3Z">
+                </div>
+                <button class="btn btn-primary" id="fetch-listing" type="button">Fetch listing</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section scratch-only">
+            <div class="section-head">
+              <h3>Product Basics</h3>
+              <span class="chip chip-info">minimum input</span>
+            </div>
+            <div class="field">
+              <label class="label" for="product-name">Product name</label>
+              <input class="input" id="product-name" value="Rechargeable Salt and Pepper Grinder Set">
+              <p class="field-help">Minimum: product name, category, three selling points, and one clear product photo.</p>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label class="label" for="marketplace">Marketplace</label>
+                <select class="select" id="marketplace">
+                  <option selected>Amazon.com — United States</option>
+                  <option>Amazon.co.uk — United Kingdom</option>
+                  <option>Amazon.de — Germany</option>
+                  <option>Amazon.ca — Canada</option>
+                  <option>Amazon.co.jp — Japan</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="label" for="category">Category</label>
+                <input class="input" id="category" value="Kitchen & Dining">
+              </div>
+            </div>
+            <div class="field" style="margin-top:18px">
+              <label class="label" for="audience">Target shopper <span class="muted" style="font-weight:400">(optional)</span></label>
+              <input class="input" id="audience" value="home cooks, gift buyers, small kitchens">
+            </div>
+          </div>
+
+          <div class="section scratch-only">
+            <div class="section-head">
+              <h3>Selling Points</h3>
+              <span class="chip chip-forest">used for copy + visuals</span>
+            </div>
+            <div class="field">
+              <label class="label" for="selling-points">Core selling points <span class="muted" style="font-weight:400">(one per line)</span></label>
+              <textarea class="textarea" id="selling-points">Rechargeable base with long battery life
+One-hand automatic grinding with adjustable coarseness
+Warm LED light helps control seasoning amount
+Stainless steel look for modern kitchens</textarea>
+            </div>
+          </div>
+
+          <div class="section scratch-only">
+            <div class="section-head">
+              <h3>Product Images</h3>
+              <span class="chip chip-warn">up to 8</span>
+            </div>
+            <div class="upload-panel">
+              <input class="file-input" id="product-image-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple>
+              <button class="dropzone" id="product-image-dropzone" type="button">
+                <span class="dropzone-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
+                </span>
+                <strong id="upload-drop-title">Drop images or click to upload</strong>
+                <span id="upload-drop-note">JPG, PNG, WebP or HEIC · up to 8 images</span>
+              </button>
+              <div class="upload-guide">
+                <h4>Best source images</h4>
+                <ul>
+                  <li>Required: one clear product photo, ideally on white.</li>
+                  <li>Recommended: close-ups, package contents and size references.</li>
+                  <li>Optional: logo, packaging, brand colors or lifestyle references.</li>
+                </ul>
+                <div class="upload-status">
+                  <span id="upload-count">0 / 8 uploaded</span>
+                  <span>Auto-classified after upload</span>
+                </div>
+                <div class="uploaded-preview" id="uploaded-preview" aria-label="uploaded product images"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section scratch-only">
+            <div class="section-head">
+              <h3>Package</h3>
+              <span class="chip chip-clear">scope included</span>
+            </div>
+            <p class="section-note" style="margin-bottom:12px">Choose the deliverable set. Custom sections stay under advanced options.</p>
+            <div class="package-list">
+              <button class="package-row" type="button">
+                <div class="package-main">
+                  <div class="row-title">Starter Gallery</div>
+                  <div class="row-desc">Copy plus 5 gallery images. No A+.</div>
+                </div>
+                <div class="row-meta"><span class="chip chip-lock">$19</span><span class="pkg-spec">2000 x 2000</span></div>
+              </button>
+              <button class="package-row active" type="button">
+                <div class="package-main">
+                  <div class="row-title">Full Listing</div>
+                  <div class="row-desc">Copy, 7 gallery images and 6 Standard A+ modules.</div>
+                </div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">$49</span><span class="pkg-spec">A+ 970 x 600</span></div>
+              </button>
+              <button class="package-row" type="button">
+                <div class="package-main">
+                  <div class="row-title">Premium Launch</div>
+                  <div class="row-desc">Full Listing plus wide A+, mobile crops and copy variants.</div>
+                </div>
+                <div class="row-meta"><span class="chip chip-lock">$89</span><span class="pkg-spec">1464 x 600 · 600 x 450</span></div>
+              </button>
+            </div>
+
+            <button class="adv-toggle" id="adv-toggle" type="button" aria-expanded="false">
+              <svg class="chev icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              Customize sections and constraints
+            </button>
+            <div class="advanced" id="advanced" hidden>
+              <div class="field-grid">
+                <div class="field">
+                  <label class="label" for="specs">Specs / material</label>
+                  <input class="input" id="specs" value="stainless steel finish, adjustable ceramic core, USB-C charging">
+                </div>
+                <div class="field">
+                  <label class="label" for="avoid">Do not use</label>
+                  <input class="input" id="avoid" value="best, guaranteed, medical language, competitor logos">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block scratch-only" id="analyze" type="button">Create free launch plan</button>
+          <div class="reassure">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Free plan first · preview before export · purchase unlocks handoff.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="state" id="state-snapshot" hidden>
+        <header class="head">
+          <span class="eyebrow">Listing snapshot</span>
+          <h1>Review the fetched listing</h1>
+        </header>
+        <div class="panel">
+          <div class="snapshot-stack">
+            <div class="snapshot-module">
+              <div class="snapshot-module-head">
+                <div>
+                  <h3>Title</h3>
+                  <p>Current title detected from the listing. It will be used as source context, not blindly preserved.</p>
+                </div>
+                <span class="chip chip-clear">Fetched</span>
+              </div>
+              <div class="fetched-text" id="snapshot-title">Rechargeable Salt and Pepper Grinder Set, Automatic Electric Spice Mills with Adjustable Coarseness and USB-C Charging Base</div>
+            </div>
+            <div class="snapshot-module">
+              <div class="snapshot-module-head">
+                <div>
+                  <h3>Five bullet points</h3>
+                  <p>Fetched buyer-facing bullets. The next step will reorder and tighten benefits before generation.</p>
+                </div>
+                <span class="chip chip-clear">5 bullets</span>
+              </div>
+              <ol class="fetched-bullets">
+                <li><b>1</b><span>Rechargeable automatic grinding for fast one-hand seasoning.</span></li>
+                <li><b>2</b><span>Adjustable ceramic core helps control fine to coarse texture.</span></li>
+                <li><b>3</b><span>Warm LED light makes seasoning amount easier to see while cooking.</span></li>
+                <li><b>4</b><span>Stainless steel finish fits modern kitchens and gift-ready setups.</span></li>
+                <li><b>5</b><span>Designed for daily cooking, dinner prep, BBQs and housewarming gifts.</span></li>
+              </ol>
+            </div>
+            <div class="snapshot-module">
+              <div class="snapshot-module-head">
+                <div>
+                  <h3>Product images</h3>
+                  <p>Fetched gallery assets. Main image will stay unchanged by default; supporting images and A+ can be rebuilt.</p>
+                </div>
+                <span class="chip chip-clear">8 images</span>
+              </div>
+              <div class="snapshot-images">
+                <div class="snapshot-img"></div><div class="snapshot-img"></div><div class="snapshot-img"></div><div class="snapshot-img"></div>
+                <div class="snapshot-img"></div><div class="snapshot-img"></div><div class="snapshot-img"></div><div class="snapshot-img"></div>
+              </div>
+            </div>
+            <div class="snapshot-module">
+              <div class="snapshot-module-head">
+                <div>
+                  <h3>A+ content</h3>
+                  <p>Partial A+ content detected. Use these modules as style reference, then rebuild into a complete Standard A+ set.</p>
+                </div>
+                <span class="chip chip-warn">Partial</span>
+              </div>
+              <div class="aplus-thumbs">
+                <div class="aplus-thumb">
+                  <div class="aplus-thumb-img"></div>
+                  <div class="aplus-thumb-copy"><strong>Hero module</strong><span>Visual tone detected</span></div>
+                </div>
+                <div class="aplus-thumb">
+                  <div class="aplus-thumb-img"></div>
+                  <div class="aplus-thumb-copy"><strong>Benefit module</strong><span>Text hierarchy weak</span></div>
+                </div>
+                <div class="aplus-thumb">
+                  <div class="aplus-thumb-img"></div>
+                  <div class="aplus-thumb-copy"><strong>Brand module</strong><span>Incomplete structure</span></div>
+                </div>
+              </div>
+              <div class="scope-list">
+                <div class="scope-row"><div><strong>Detected modules</strong><span>3 A+ modules detected. Brand story and comparison structure are missing or incomplete.</span></div><span class="chip chip-warn">Needs work</span></div>
+                <div class="scope-row"><div><strong>Recommended output</strong><span>6 Standard A+ modules at 970 x 600, generated after plan confirmation.</span></div><span class="chip chip-clear">A+ plan</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="rebuild-defaults">
+            <div class="rebuild-defaults-head">
+              <strong>Generation scope</strong>
+              <span class="chip chip-clear">Recommended</span>
+            </div>
+            <div class="scope-picker" aria-label="generation scope">
+              <button class="scope-option active" type="button"><strong>Gallery + A+</strong>Default for existing listings</button>
+              <button class="scope-option" type="button"><strong>Copy only</strong>Title, bullets, search terms</button>
+              <button class="scope-option" type="button"><strong>A+ only</strong>Standard A+ modules</button>
+              <button class="scope-option" type="button"><strong>Full rebuild</strong>Copy, gallery and A+</button>
+            </div>
+            <div class="rebuild-defaults-head" style="margin-top:4px">
+              <strong>Default safeguards</strong>
+              <span class="chip chip-clear">On</span>
+            </div>
+            <div class="rebuild-inline">
+              <label><input type="checkbox" checked><span>Keep main image unchanged</span></label>
+              <label><input type="checkbox" checked><span>Match current visual style</span></label>
+            </div>
+            <div class="rebuild-scope">Selected scope and safeguards will be carried into the launch plan.</div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn btn-outline btn-lg" id="back-fetch" type="button">Edit source</button>
+          <button class="btn btn-primary btn-lg" id="continue-existing-summary" type="button">Continue to strategy summary</button>
+        </div>
+      </section>
+
+      <section class="state" id="state-summary" hidden>
+        <header class="head">
+          <span class="eyebrow">Product summary</span>
+          <h1>Confirm the product understanding</h1>
+        </header>
+        <div class="panel">
+          <div class="summary-hero">
+            <div class="summary-label">Product understood as</div>
+            <div class="summary-title" id="summary-title">Rechargeable salt & pepper grinder set</div>
+          </div>
+          <div class="summary-list">
+            <div class="summary-row">
+              <div class="summary-key">Best launch angle</div>
+              <div class="summary-value">Rechargeable one-hand seasoning for modern kitchens.</div>
+              <span class="chip chip-clear">Clear</span>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">Core advantages</div>
+              <div class="summary-value">Rechargeable convenience · adjustable coarseness · LED visibility · giftable kitchen look.</div>
+              <span class="chip chip-clear">Ready</span>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">Source readiness</div>
+              <div class="summary-value">Product photo can support product-aware image generation. Detail proof and package contents are not yet provided.</div>
+              <span class="chip chip-warn">Partial</span>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">Before final upload</div>
+              <div class="summary-value">Confirm exact dimensions and included items. Battery-life language will be softened unless capacity is provided.</div>
+              <span class="chip chip-warn">Review</span>
+            </div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn btn-outline btn-lg" id="back-intake" type="button">Edit inputs</button>
+          <button class="btn btn-primary btn-lg" id="continue-plan" type="button">Continue to launch plan</button>
+        </div>
+      </section>
+
+      <section class="state" id="state-plan" hidden>
+        <header class="head">
+          <span class="eyebrow">Launch plan</span>
+          <h1>Confirm the generation checklist</h1>
+        </header>
+        <div class="panel">
+          <div class="plan-intro">
+            <div class="plan-intro-top">
+              <h2>Full Listing kit</h2>
+              <button class="btn btn-outline btn-sm" id="edit-plan" type="button">Edit plan</button>
+            </div>
+          </div>
+
+          <div class="plan-block">
+            <h3>Listing copy</h3>
+            <div class="plan-list">
+              <div class="plan-row">
+                <div class="plan-num">T</div>
+                <div class="plan-main">
+                  <div class="row-title">Title — product type, rechargeable convenience, adjustable control, kitchen/gift relevance</div>
+                  <div class="row-desc">Target 180-195 characters. Keep benefits specific and grounded.</div>
+                </div>
+                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <div class="details" hidden>
+                  <div class="plan-detail"><b>Purpose:</b> make the product type and main buying reason clear. <b>Buyer question answered:</b> what is this and why should I click? <b>Conversion job:</b> combine the core product phrase with strongest purchase modifiers.</div>
+                </div>
+              </div>
+              <div class="plan-row">
+                <div class="plan-num">5</div>
+                <div class="plan-main">
+                  <div class="row-title">Bullets — function, proof, use case, specs/package, trust</div>
+                  <div class="row-desc">Each bullet has one job and maps to a buyer decision question.</div>
+                </div>
+                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <div class="details" hidden>
+                  <div class="plan-detail"><b>Purpose:</b> explain the product in the order shoppers decide. <b>Buyer question answered:</b> what does it do, where does it fit, and what do I get? <b>Conversion job:</b> turn selling points into five clear purchase reasons.</div>
+                </div>
+              </div>
+              <div class="plan-row">
+                <div class="plan-num">S</div>
+                <div class="plan-main">
+                  <div class="row-title">Search Terms — backend-safe synonyms and long-tail kitchen/gift terms</div>
+                  <div class="row-desc">No front-end keyword stuffing. Terms stay relevant to the actual product.</div>
+                </div>
+                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <div class="details" hidden>
+                  <div class="plan-detail"><b>Purpose:</b> support backend discovery. <b>Buyer question answered:</b> which search phrases might shoppers use? <b>Conversion job:</b> add relevant synonyms and scenario terms without front-end keyword stuffing.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="plan-block">
+            <h3>Gallery plan · 2000 x 2000</h3>
+            <div class="plan-list" id="gallery-plan"></div>
+          </div>
+
+          <div class="plan-block">
+            <h3>A+ plan · Standard 970 x 600</h3>
+            <div class="plan-list" id="aplus-plan"></div>
+          </div>
+
+          <div class="plan-block">
+            <h3>Generation guardrails</h3>
+            <div class="rule-list">
+              <div class="rule">Keep the product body unchanged from the source photo.</div>
+              <div class="rule">Only generate supporting scenes, backgrounds, shadows and text-safe layouts.</div>
+              <div class="rule">Do not add unprovided items, certificates, ratings, awards or competitor marks.</div>
+              <div class="rule">Results include a ready checklist for product accuracy, wording, dimensions and upload order.</div>
+            </div>
+          </div>
+          <div class="pay-note">
+            <div>
+              <strong>Preview generation is included</strong>
+              <span>You can review the result first. Copy actions, high-resolution images and ZIP download unlock after choosing an export package.</span>
+            </div>
+            <span class="chip chip-lock">Export package required</span>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn btn-outline btn-lg" id="back-summary" type="button">Back to summary</button>
+          <button class="btn btn-primary btn-lg" id="approve-generate" type="button">Generate free preview</button>
+        </div>
+      </section>
+
+      <section class="state" id="state-generate" hidden>
+        <header class="head">
+          <span class="eyebrow">Generating</span>
+          <h1>Generating, checking and refining</h1>
+        </header>
+        <div class="panel">
+          <div class="progress-list" id="progress-list"></div>
+        </div>
+      </section>
+
+      <section class="state" id="state-preview" hidden>
+        <header class="head">
+          <span class="eyebrow">Results</span>
+          <h1>Review your listing kit</h1>
+        </header>
+        <div class="preview-topbar">
+          <div class="safe-status">
+            <span class="chip chip-clear">Ready checklist complete</span>
+            <span class="chip chip-clear">Mobile readable</span>
+            <span class="chip chip-lock locked-only">Exports locked</span>
+            <span class="chip chip-clear unlocked-only">Exports unlocked</span>
+          </div>
+          <button class="detail-toggle" id="checklist-toggle" type="button" aria-expanded="false">View checklist</button>
+        </div>
+        <div class="unlock-banner">
+          <div>
+            <strong><span class="locked-only">Preview is ready. Unlock exports when you are ready to use it.</span><span class="unlocked-only">Exports are unlocked for this listing.</span></strong>
+            <span><span class="locked-only">Unlock copy buttons, high-resolution gallery and A+ images, and a ZIP package for Seller Central handoff.</span><span class="unlocked-only">Copy actions, high-resolution images and ZIP download are now available.</span></span>
+          </div>
+          <button class="btn btn-primary btn-sm locked-only" id="unlock-export-top" type="button">Unlock exports</button>
+          <button class="btn btn-primary btn-sm unlocked-only" type="button" data-download-zip>Download ZIP</button>
+        </div>
+        <div class="details" id="checklist-details" hidden>
+          <div class="ready-checklist">
+            <div class="ready-row"><div><strong>Product accuracy</strong><span>Product body and key visible details match the uploaded source photos.</span></div><span class="chip chip-clear">Ready</span></div>
+            <div class="ready-row"><div><strong>Claim wording</strong><span>Benefit language stays specific and grounded in the product information provided.</span></div><span class="chip chip-clear">Ready</span></div>
+            <div class="ready-row"><div><strong>Image dimensions</strong><span>Gallery images and A+ modules are prepared in the selected export sizes.</span></div><span class="chip chip-clear">Ready</span></div>
+            <div class="ready-row"><div><strong>Upload order</strong><span>Copy, gallery images and A+ modules are organized for Seller Central handoff.</span></div><span class="chip chip-clear">Ready</span></div>
+          </div>
+        </div>
+
+        <div class="result-tabs">
+          <div class="segmented" role="tablist" aria-label="result sections">
+            <button class="active" type="button" role="tab" aria-selected="true" data-result-tab="copy">Copy</button>
+            <button type="button" role="tab" aria-selected="false" data-result-tab="images">Images</button>
+            <button type="button" role="tab" aria-selected="false" data-result-tab="preview">Preview</button>
+          </div>
+        </div>
+
+        <div class="result-view" id="result-copy" role="tabpanel">
+          <div class="copy-stack">
+            <div class="copy-block">
+              <div class="copy-block-head">
+                <h3>Title</h3>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock copy</button>
+                <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
+              </div>
+              <p class="copy-text">Rechargeable Salt and Pepper Grinder Set, Automatic Electric Spice Mills with Adjustable Coarseness, Warm LED Light, Stainless Steel Finish, USB-C Charging Base for Kitchen Cooking and Gifts</p>
+              <div class="copy-meta">178 characters</div>
+            </div>
+            <div class="copy-block">
+              <div class="copy-block-head">
+                <h3>Bullet Points</h3>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock copy</button>
+                <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
+              </div>
+              <div class="copy-text">
+                <ol>
+                  <li>Rechargeable automatic grinding for fast one-hand seasoning.</li>
+                  <li>Adjustable ceramic core helps control fine to coarse texture.</li>
+                  <li>Warm LED light makes seasoning amount easier to see while cooking.</li>
+                  <li>Stainless steel finish fits modern kitchens and gift-ready setups.</li>
+                  <li>Designed for daily cooking, dinner prep, BBQs and housewarming gifts.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="copy-block">
+              <div class="copy-block-head">
+                <h3>Backend Search Terms</h3>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock copy</button>
+                <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
+              </div>
+              <p class="copy-text">electric salt grinder rechargeable pepper mill automatic spice grinder adjustable coarseness kitchen seasoning set usb charging cooking gift</p>
+              <div class="copy-meta">Backend-safe terms, no competitor brands</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-view" id="result-images" role="tabpanel" hidden>
+          <div class="image-section">
+            <h3>Gallery images</h3>
+            <div class="image-grid">
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>01 Main image</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>02 Core benefit</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>03 Feature proof</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>04 Lifestyle</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>05 Size / spec</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>06 Package</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>07 Gift / trust</strong><span>2000 x 2000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+            </div>
+          </div>
+          <div class="image-section">
+            <h3>A+ images</h3>
+            <div class="image-grid">
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A1 Hero</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A2 Key benefits</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A3 How to use</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A4 Feature proof</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A5 Package / care</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A6 Brand trust</strong><span>970 x 600 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-view" id="result-preview" role="tabpanel" hidden>
+        <div class="preview-panel">
+          <div class="preview-toolbar">
+            <span class="section-note">Amazon PDP Preview</span>
+            <div class="segmented" role="tablist" aria-label="preview mode">
+              <button class="active" type="button" role="tab" aria-selected="true" data-preview-tab="desktop">Desktop</button>
+              <button type="button" role="tab" aria-selected="false" data-preview-tab="mobile">Mobile</button>
+            </div>
+          </div>
+          <div class="preview-view" id="preview-desktop" role="tabpanel">
+            <div class="pdp">
+              <div class="pdp-top">
+                <div class="gallery">
+                  <div class="thumbs">
+                    <span class="thumb"></span><span class="thumb"></span><span class="thumb"></span><span class="thumb"></span><span class="thumb"></span>
+                  </div>
+                  <div class="main-img" aria-label="Generated product image preview"></div>
+                </div>
+                <div>
+                  <h2 class="pdp-title">Rechargeable Salt and Pepper Grinder Set, Automatic Electric Spice Mills with Adjustable Coarseness, Warm LED Light, Stainless Steel Finish, USB-C Charging Base for Kitchen Cooking and Gifts</h2>
+                  <div class="rating">★★★★★ <span class="muted">rating placeholder</span></div>
+                  <div class="price">$--.--</div>
+                  <ul class="bullets">
+                    <li>Rechargeable automatic grinding for fast one-hand seasoning.</li>
+                    <li>Adjustable ceramic core helps control fine to coarse texture.</li>
+                    <li>Warm LED light makes seasoning amount easier to see while cooking.</li>
+                    <li>Stainless steel finish fits modern kitchens and gift-ready setups.</li>
+                    <li>Designed for daily cooking, dinner prep, BBQs and housewarming gifts.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="aplus-preview">
+                <div class="aplus-module">
+                  <div class="aplus-copy">
+                    <h3>Season with one touch</h3>
+                    <p>Rechargeable grinders help keep daily cooking fast, clean and easy to control.</p>
+                  </div>
+                  <div class="aplus-img"></div>
+                </div>
+                <div class="aplus-module">
+                  <div class="aplus-img"></div>
+                  <div class="aplus-copy">
+                    <h3>Built for modern kitchens</h3>
+                    <p>Adjustable grinding, warm LED visibility and a compact charging base support everyday prep.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-view" id="preview-mobile" role="tabpanel" hidden>
+            <div class="mobile-preview">
+              <div class="phone-frame">
+                <div class="mobile-storebar">
+                  <div class="mobile-search">Search Amazon</div>
+                </div>
+                <div class="mobile-content">
+                  <div class="mobile-hero" aria-label="Mobile product image preview"></div>
+                  <div class="mobile-dots"><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mobile-title">Rechargeable Salt and Pepper Grinder Set, Automatic Electric Spice Mills with Adjustable Coarseness, Warm LED Light, Stainless Steel Finish, USB-C Charging Base for Kitchen Cooking and Gifts</div>
+                  <div class="mobile-meta">★★★★★ <span class="muted">rating placeholder</span></div>
+                  <div class="mobile-price">$--.--</div>
+                  <div class="mobile-section">
+                    <h4>About this item</h4>
+                    <ul class="mobile-bullets">
+                      <li>Rechargeable automatic grinding for fast one-hand seasoning.</li>
+                      <li>Adjustable ceramic core helps control fine to coarse texture.</li>
+                      <li>Warm LED light makes seasoning amount easier to see while cooking.</li>
+                      <li>Stainless steel finish fits modern kitchens and gift-ready setups.</li>
+                    </ul>
+                  </div>
+                  <div class="mobile-section mobile-aplus">
+                    <div class="mobile-aplus-block">
+                      <div class="mobile-aplus-img"></div>
+                      <div class="mobile-aplus-copy"><strong>Season with one touch</strong><span>Rechargeable grinders help keep daily cooking fast, clean and easy to control.</span></div>
+                    </div>
+                    <div class="mobile-aplus-block">
+                      <div class="mobile-aplus-img"></div>
+                      <div class="mobile-aplus-copy"><strong>Built for modern kitchens</strong><span>Adjustable grinding, warm LED visibility and a compact charging base support everyday prep.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="btn btn-primary btn-lg locked-only" id="unlock-export" type="button">Unlock exports</button>
+          <button class="btn btn-primary btn-lg unlocked-only" type="button" data-download-zip>Download ZIP</button>
+          <button class="btn btn-outline btn-lg" id="result-back-plan" type="button">Back to edit plan</button>
+          <button class="btn btn-outline btn-lg" id="restart" type="button">Start new listing</button>
+        </div>
+      </section>
+    </div>
+    </section>
+
+    <section class="band band-white landing-section" id="pricing">
+      <div class="container">
+        <div class="sec-head center">
+          <span class="eyebrow">Launch Listing pricing</span>
+          <h2>Choose the export package for this listing.</h2>
+          <p class="pricing-sub">Plans and previews are free to review. Pay only when you are ready to copy, download and hand off the finished listing package.</p>
+        </div>
+        <div class="billing-toggle" aria-label="billing period">
+          <div class="billing-toggle-inner">
+            <button class="active" type="button">Single listing</button>
+            <button type="button">Team plan</button>
+          </div>
+        </div>
+        <div class="price-grid">
+          <div class="price-card">
+            <div class="price-name">Starter Gallery</div>
+            <p class="price-desc">For sellers who only need copy and gallery images.</p>
+            <div class="price">$19<span style="font-family:var(--sans);font-size:1rem;color:var(--muted)">/export</span></div>
+            <button class="btn btn-outline" type="button">Buy Starter</button>
+            <div class="plan-export-row"><span>Export package</span><strong>Gallery only</strong></div>
+            <ul>
+              <li>Title, bullets and search terms</li>
+              <li>5 gallery images at 2000 x 2000</li>
+              <li>Copy actions unlocked</li>
+              <li>No A+ modules</li>
+            </ul>
+          </div>
+          <div class="price-card featured">
+            <div class="price-name">Full Listing</div>
+            <p class="price-desc">The recommended package for a full Amazon listing launch.</p>
+            <div class="price">$49<span style="font-family:var(--sans);font-size:1rem;color:var(--forest-100)">/export</span></div>
+            <button class="btn btn-on-dark" type="button">Buy Full Listing</button>
+            <div class="plan-export-row"><span>Most popular</span><strong>Seller Central ZIP</strong></div>
+            <ul>
+              <li>Title, bullets and search terms</li>
+              <li>7 gallery images at 2000 x 2000</li>
+              <li>6 Standard A+ modules at 970 x 600</li>
+              <li>Copy actions and ZIP download</li>
+              <li>Ready checklist included</li>
+            </ul>
+          </div>
+          <div class="price-card">
+            <div class="price-name">Premium Launch</div>
+            <p class="price-desc">For launches that need wide A+, mobile crops and variants.</p>
+            <div class="price">$89<span style="font-family:var(--sans);font-size:1rem;color:var(--muted)">/export</span></div>
+            <button class="btn btn-primary" type="button">Buy Premium</button>
+            <div class="plan-export-row"><span>Premium export</span><strong>Wide + mobile</strong></div>
+            <ul>
+              <li>Full Listing package</li>
+              <li>Wide A+ exports at 1464 x 600</li>
+              <li>Mobile crops at 600 x 450</li>
+              <li>Copy variants</li>
+              <li>Priority export review</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-dark final-cta landing-section">
+      <div class="container">
+        <h2>Move from product idea to <em>Seller Central-ready</em> listing.</h2>
+        <p>Use the workspace to confirm the strategy, edit the plan, generate assets and preview the listing before export.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Start a listing</a>
+          <a class="btn btn-outline btn-lg" href="#how" style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Review workflow</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="auth-backdrop" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title" hidden>
+    <div class="auth-modal" id="auth-card">
+      <div class="auth-modal-head" id="auth-basic-head">
+        <h2 id="auth-title">Create a free account to continue</h2>
+        <p id="auth-copy">Save your launch plan, use your free preview, and keep the project available for export.</p>
+      </div>
+      <div class="auth-modal-body auth-view" id="auth-basic-view">
+        <ul class="auth-benefits">
+          <li>One free launch plan is included with every new account.</li>
+          <li>No payment is needed until you unlock copy actions or downloads.</li>
+          <li>Your product sources, plan edits and preview stay saved.</li>
+        </ul>
+        <div class="field">
+          <label class="label" for="auth-email">Work email</label>
+          <input class="input" id="auth-email" type="email" value="seller@example.com">
+        </div>
+        <div class="auth-actions">
+          <button class="btn btn-primary btn-lg btn-block" id="auth-continue" type="button">Continue free</button>
+          <button class="btn btn-outline btn-lg btn-block" id="auth-google" type="button">Continue with Google</button>
+        </div>
+        <div class="auth-secondary">
+          <button class="auth-link" id="auth-cancel" type="button">Back to editing inputs</button>
+        </div>
+      </div>
+      <div class="auth-modal-body auth-view" id="auth-google-view" hidden>
+        <div class="google-card">
+          <div class="google-top">
+            <div class="google-mark">G</div>
+            <div>
+              <strong>Sign in with Google</strong>
+              <span>Authorize Launch Listing to create your workspace account.</span>
+            </div>
+          </div>
+          <div class="google-account">
+            <div class="google-avatar">S</div>
+            <div>
+              <strong>seller@example.com</strong>
+              <span>Google Account</span>
+            </div>
+          </div>
+          <div class="google-permissions">
+            <h3>Launch Listing will use this to</h3>
+            <ul class="permission-list">
+              <li><span class="permission-icon">1</span><span>Create your free Launch Listing account.</span></li>
+              <li><span class="permission-icon">2</span><span>Save launch plans, uploaded product sources and generated previews.</span></li>
+              <li><span class="permission-icon">3</span><span>Send account, payment and export receipts to this email.</span></li>
+            </ul>
+            <p class="google-note">We do not request Google Drive, Gmail or advertising account access in this flow.</p>
+          </div>
+        </div>
+        <div class="auth-actions">
+          <button class="btn btn-primary btn-lg btn-block" id="google-authorize" type="button">Authorize and continue</button>
+          <button class="btn btn-outline btn-lg btn-block" id="google-back" type="button">Use another sign-in method</button>
+        </div>
+        <div class="auth-secondary">
+          <button class="auth-link" id="google-cancel" type="button">Back to editing inputs</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="checkout-modal">
+      <div class="checkout-view" id="checkout-select-view">
+        <div class="checkout-head">
+          <div>
+            <h2 id="checkout-title">Unlock this listing</h2>
+            <p>Choose the export package for this generated listing. Your preview stays here after checkout.</p>
+          </div>
+          <button class="checkout-close" id="checkout-close" type="button" aria-label="Close checkout">×</button>
+        </div>
+        <div class="checkout-body">
+          <div class="checkout-packages" aria-label="export packages">
+            <button class="checkout-package" type="button" data-checkout-package="starter">
+              <div>
+                <strong>Starter Gallery</strong>
+                <span>Copy plus 5 gallery images. No A+ modules.</span>
+                <div class="checkout-price">$19</div>
+              </div>
+              <span class="chip chip-forest">Gallery only</span>
+            </button>
+            <button class="checkout-package active" type="button" data-checkout-package="full">
+              <div>
+                <strong>Full Listing</strong>
+                <span>Copy, 7 gallery images, 6 Standard A+ modules and ZIP.</span>
+                <div class="checkout-price">$49</div>
+              </div>
+              <span class="chip chip-clear">Recommended</span>
+            </button>
+            <button class="checkout-package" type="button" data-checkout-package="premium">
+              <div>
+                <strong>Premium Launch</strong>
+                <span>Full Listing plus wide A+, mobile crops and copy variants.</span>
+                <div class="checkout-price">$89</div>
+              </div>
+              <span class="chip chip-forest">Wide + mobile</span>
+            </button>
+          </div>
+          <div class="checkout-footer">
+            <div class="checkout-footnote">Secure checkout simulation for this prototype. The export unlocks this listing only.</div>
+            <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Continue to payment</button>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-view" id="checkout-processing-view" hidden>
+        <div class="checkout-head">
+          <div>
+            <h2>Processing payment</h2>
+            <p>Confirming the export package for this listing.</p>
+          </div>
+        </div>
+        <div class="checkout-body">
+          <div class="progress-row active" style="border-bottom:0">
+            <div class="progress-icon"><span class="spinner"></span></div>
+            <div class="progress-main"><div class="row-title">Preparing unlock</div><div class="row-desc">Copy, images and ZIP will become available in Results.</div></div>
+            <span class="chip chip-warn">Working</span>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-view" id="checkout-success-view" hidden>
+        <div class="checkout-head">
+          <div>
+            <h2>Exports unlocked</h2>
+            <p>This listing is ready for handoff.</p>
+          </div>
+        </div>
+        <div class="checkout-body">
+          <div class="checkout-success">
+            <div class="success-mark">✓</div>
+            <h2>Exports unlocked</h2>
+            <p>Copy, high-resolution images and ZIP download are now available in your results.</p>
+            <div class="toolbar" style="margin-top:24px">
+              <button class="btn btn-primary btn-lg" id="checkout-back-results" type="button">Back to results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const states = ['intake', 'snapshot', 'summary', 'plan', 'generate', 'preview'];
+      const stepIndex = { intake: 1, snapshot: 2, summary: 2, plan: 3, generate: 4, preview: 5 };
+      const wrap = document.getElementById('wrap');
+      const workspaceSection = document.getElementById('workspace');
+      const landingSections = document.querySelectorAll('.landing-section');
+      const backOverview = document.getElementById('back-overview');
+      const brandHome = document.getElementById('brand-home');
+      let projectMode = 'scratch';
+      let signedIn = false;
+      let pendingAuthAction = null;
+      let exportsUnlocked = false;
+
+      function setWorkspaceVisible(visible) {
+        landingSections.forEach(section => { section.hidden = visible; });
+        workspaceSection.hidden = !visible;
+        document.body.classList.toggle('workspace-active', visible);
+      }
+
+      function showWorkspace(reset = true) {
+        setWorkspaceVisible(true);
+        if (reset) {
+          showState('intake');
+        } else {
+          window.scrollTo({ top: workspaceSection.offsetTop - 76, behavior: 'smooth' });
+        }
+      }
+
+      function showLanding() {
+        setWorkspaceVisible(false);
+        history.replaceState(null, '', '#top');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function showState(name) {
+        states.forEach(state => document.getElementById('state-' + state).hidden = state !== name);
+        wrap.classList.toggle('wrap-preview', name === 'preview');
+        for (let i = 1; i <= 5; i++) document.getElementById('step-' + i).classList.toggle('active', i === stepIndex[name]);
+        if (workspaceSection.hidden) setWorkspaceVisible(true);
+        window.scrollTo({ top: workspaceSection.offsetTop - 76, behavior: 'smooth' });
+      }
+
+      document.querySelectorAll('[data-start-workspace]').forEach(link => {
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          history.replaceState(null, '', '#workspace');
+          showWorkspace(true);
+        });
+      });
+      backOverview.addEventListener('click', showLanding);
+      brandHome.addEventListener('click', event => {
+        if (!workspaceSection.hidden) {
+          event.preventDefault();
+          showLanding();
+        }
+      });
+      if (window.location.hash === '#workspace') requestAnimationFrame(() => showWorkspace(false));
+
+      const authModal = document.getElementById('auth-modal');
+      const authCard = document.getElementById('auth-card');
+      const authBasicHead = document.getElementById('auth-basic-head');
+      const authBasicView = document.getElementById('auth-basic-view');
+      const authGoogleView = document.getElementById('auth-google-view');
+      const authCopy = document.getElementById('auth-copy');
+      function showAuthBasic() {
+        authBasicHead.hidden = false;
+        authBasicView.hidden = false;
+        authGoogleView.hidden = true;
+        authCard.classList.remove('google-mode');
+      }
+      function showGoogleAuth() {
+        authBasicHead.hidden = true;
+        authBasicView.hidden = true;
+        authGoogleView.hidden = false;
+        authCard.classList.add('google-mode');
+      }
+      function openAuthModal(action, copy) {
+        pendingAuthAction = action;
+        if (copy) authCopy.textContent = copy;
+        showAuthBasic();
+        authModal.hidden = false;
+        document.getElementById('auth-email').focus();
+      }
+      function closeAuthModal() {
+        authModal.hidden = true;
+      }
+      function completeAuth() {
+        signedIn = true;
+        closeAuthModal();
+        const action = pendingAuthAction;
+        pendingAuthAction = null;
+        if (typeof action === 'function') action();
+      }
+      document.getElementById('auth-continue').addEventListener('click', completeAuth);
+      document.getElementById('auth-google').addEventListener('click', showGoogleAuth);
+      document.getElementById('google-authorize').addEventListener('click', completeAuth);
+      document.getElementById('google-back').addEventListener('click', () => {
+        showAuthBasic();
+        document.getElementById('auth-email').focus();
+      });
+      document.getElementById('auth-cancel').addEventListener('click', () => {
+        pendingAuthAction = null;
+        closeAuthModal();
+      });
+      document.getElementById('google-cancel').addEventListener('click', () => {
+        pendingAuthAction = null;
+        closeAuthModal();
+      });
+      authModal.addEventListener('click', event => {
+        if (event.target === authModal) {
+          pendingAuthAction = null;
+          closeAuthModal();
+        }
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !authModal.hidden) {
+          pendingAuthAction = null;
+          closeAuthModal();
+        }
+      });
+      function requireAuth(action, copy) {
+        if (signedIn) {
+          action();
+          return;
+        }
+        openAuthModal(action, copy);
+      }
+
+      const checkoutModal = document.getElementById('checkout-modal');
+      const checkoutSelectView = document.getElementById('checkout-select-view');
+      const checkoutProcessingView = document.getElementById('checkout-processing-view');
+      const checkoutSuccessView = document.getElementById('checkout-success-view');
+      const previewState = document.getElementById('state-preview');
+      function showCheckoutView(name) {
+        checkoutSelectView.hidden = name !== 'select';
+        checkoutProcessingView.hidden = name !== 'processing';
+        checkoutSuccessView.hidden = name !== 'success';
+      }
+      function openCheckout() {
+        showCheckoutView('select');
+        checkoutModal.hidden = false;
+      }
+      function closeCheckout() {
+        checkoutModal.hidden = true;
+      }
+      function setExportsUnlocked(unlocked) {
+        exportsUnlocked = unlocked;
+        previewState.classList.toggle('exports-unlocked', unlocked);
+      }
+      function resetExportState() {
+        setExportsUnlocked(false);
+      }
+      document.getElementById('checkout-close').addEventListener('click', closeCheckout);
+      checkoutModal.addEventListener('click', event => {
+        if (event.target === checkoutModal) closeCheckout();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !checkoutModal.hidden) closeCheckout();
+      });
+      document.querySelectorAll('[data-checkout-package]').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('[data-checkout-package]').forEach(option => option.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+      document.getElementById('checkout-pay').addEventListener('click', () => {
+        showCheckoutView('processing');
+        setTimeout(() => {
+          setExportsUnlocked(true);
+          showCheckoutView('success');
+        }, 900);
+      });
+      document.getElementById('checkout-back-results').addEventListener('click', () => {
+        closeCheckout();
+        showState('preview');
+      });
+
+      function setProjectMode(mode) {
+        projectMode = mode;
+        document.querySelectorAll('[data-project-mode]').forEach(button => {
+          button.classList.toggle('active', button.dataset.projectMode === mode);
+        });
+        document.getElementById('existing-source').hidden = mode !== 'existing';
+        document.querySelectorAll('.scratch-only').forEach(node => {
+          node.classList.toggle('scratch-hidden', mode === 'existing');
+        });
+      }
+      document.querySelectorAll('[data-project-mode]').forEach(button => {
+        button.addEventListener('click', () => setProjectMode(button.dataset.projectMode));
+      });
+
+      document.querySelectorAll('.package-row').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.package-row').forEach(row => row.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+
+      function wireToggle(button, target) {
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!open));
+          target.hidden = open;
+        });
+      }
+      wireToggle(document.getElementById('adv-toggle'), document.getElementById('advanced'));
+      wireToggle(document.getElementById('checklist-toggle'), document.getElementById('checklist-details'));
+
+      const editPlanButton = document.getElementById('edit-plan');
+      const planState = document.getElementById('state-plan');
+      let planEditing = false;
+      function syncPlanEditing() {
+        planState.classList.toggle('plan-editing', planEditing);
+        planState.querySelectorAll('.plan-intro p, .plan-main .row-title, .plan-main .row-desc, .plan-detail, .rule').forEach(node => {
+          node.setAttribute('contenteditable', String(planEditing));
+          node.setAttribute('spellcheck', 'true');
+        });
+        editPlanButton.textContent = planEditing ? 'Done editing' : 'Edit plan';
+      }
+      editPlanButton.addEventListener('click', () => {
+        planEditing = !planEditing;
+        syncPlanEditing();
+      });
+
+      function showPreviewTab(name) {
+        document.querySelectorAll('[data-preview-tab]').forEach(button => {
+          const active = button.dataset.previewTab === name;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-selected', String(active));
+        });
+        document.querySelectorAll('.preview-view').forEach(view => {
+          view.hidden = view.id !== 'preview-' + name;
+        });
+      }
+      document.querySelectorAll('[data-preview-tab]').forEach(button => {
+        button.addEventListener('click', () => showPreviewTab(button.dataset.previewTab));
+      });
+      function showResultTab(name) {
+        document.querySelectorAll('[data-result-tab]').forEach(button => {
+          const active = button.dataset.resultTab === name;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-selected', String(active));
+        });
+        document.querySelectorAll('.result-view').forEach(view => {
+          view.hidden = view.id !== 'result-' + name;
+        });
+      }
+      document.querySelectorAll('[data-result-tab]').forEach(button => {
+        button.addEventListener('click', () => showResultTab(button.dataset.resultTab));
+      });
+      document.querySelectorAll('.copy-block .btn').forEach(button => {
+        button.addEventListener('click', async () => {
+          if (button.dataset.lockedAction !== undefined) {
+            openCheckout();
+            return;
+          }
+          if (button.dataset.copyAction === undefined && !exportsUnlocked) return;
+          const block = button.closest('.copy-block');
+          const text = block.querySelector('.copy-text').innerText.trim();
+          try {
+            await navigator.clipboard.writeText(text);
+            const previous = button.textContent;
+            button.textContent = 'Copied';
+            setTimeout(() => { button.textContent = previous; }, 900);
+          } catch {
+            button.textContent = 'Select text';
+          }
+        });
+      });
+      function wireUnlockButton(button) {
+        if (!button) return;
+        button.addEventListener('click', openCheckout);
+      }
+      wireUnlockButton(document.getElementById('unlock-export'));
+      wireUnlockButton(document.getElementById('unlock-export-top'));
+      document.querySelectorAll('[data-download-zip]').forEach(button => {
+        button.addEventListener('click', () => {
+          const previous = button.textContent;
+          button.textContent = 'Preparing ZIP';
+          setTimeout(() => { button.textContent = previous; }, 1000);
+        });
+      });
+      const imageInput = document.getElementById('product-image-input');
+      const imageDropzone = document.getElementById('product-image-dropzone');
+      const uploadedPreview = document.getElementById('uploaded-preview');
+      const uploadCount = document.getElementById('upload-count');
+      const uploadDropTitle = document.getElementById('upload-drop-title');
+      const uploadDropNote = document.getElementById('upload-drop-note');
+      let uploadedImages = [];
+
+      function escapeHtml(value) {
+        return value.replace(/[&<>"']/g, char => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char]));
+      }
+
+      function fileLabel(file) {
+        if (file.type.includes('png')) return 'PNG';
+        if (file.type.includes('webp')) return 'WebP';
+        if (file.type.includes('heic') || file.type.includes('heif')) return 'HEIC';
+        if (/\.(heic|heif)$/i.test(file.name)) return 'HEIC';
+        return 'JPG';
+      }
+
+      function isImageFile(file) {
+        return file.type.startsWith('image/') || /\.(jpe?g|png|webp|heic|heif)$/i.test(file.name);
+      }
+
+      function renderUploadedImages() {
+        uploadedPreview.innerHTML = uploadedImages.map((item, index) => `
+          <div class="upload-thumb">
+            <button class="upload-remove" type="button" aria-label="Remove ${escapeHtml(item.file.name)}" data-remove-image="${index}">×</button>
+            <div class="upload-thumb-img"><img src="${item.url}" alt="${escapeHtml(item.file.name)}"></div>
+            <div class="upload-thumb-meta">
+              <div class="upload-thumb-name">${escapeHtml(item.file.name)}</div>
+              <div class="upload-thumb-type">${fileLabel(item.file)}</div>
+            </div>
+          </div>`).join('');
+        uploadCount.textContent = `${uploadedImages.length} / 8 uploaded`;
+        uploadDropTitle.textContent = uploadedImages.length ? 'Add more product images' : 'Drop images or click to upload';
+        uploadDropNote.textContent = uploadedImages.length >= 8 ? 'Maximum reached' : 'JPG, PNG, WebP or HEIC · up to 8 images';
+      }
+
+      function addImageFiles(files) {
+        const imageFiles = Array.from(files).filter(isImageFile);
+        const remaining = Math.max(0, 8 - uploadedImages.length);
+        imageFiles.slice(0, remaining).forEach(file => {
+          uploadedImages.push({ file, url: URL.createObjectURL(file) });
+        });
+        renderUploadedImages();
+      }
+
+      function resetUploadedImages() {
+        uploadedImages.forEach(item => URL.revokeObjectURL(item.url));
+        uploadedImages = [];
+        renderUploadedImages();
+      }
+
+      imageDropzone.addEventListener('click', () => imageInput.click());
+      imageInput.addEventListener('change', event => {
+        addImageFiles(event.target.files);
+        imageInput.value = '';
+      });
+      ['dragenter', 'dragover'].forEach(type => {
+        imageDropzone.addEventListener(type, event => {
+          event.preventDefault();
+          imageDropzone.classList.add('dragging');
+        });
+      });
+      ['dragleave', 'drop'].forEach(type => {
+        imageDropzone.addEventListener(type, event => {
+          event.preventDefault();
+          imageDropzone.classList.remove('dragging');
+        });
+      });
+      imageDropzone.addEventListener('drop', event => addImageFiles(event.dataTransfer.files));
+      uploadedPreview.addEventListener('click', event => {
+        const removeButton = event.target.closest('[data-remove-image]');
+        if (!removeButton) return;
+        const index = Number(removeButton.dataset.removeImage);
+        URL.revokeObjectURL(uploadedImages[index].url);
+        uploadedImages.splice(index, 1);
+        renderUploadedImages();
+      });
+      renderUploadedImages();
+      document.querySelectorAll('.scope-option').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.scope-option').forEach(option => option.classList.remove('active'));
+          button.classList.add('active');
+        });
+      });
+
+      const galleryRows = [
+        ['01', 'Main image — product-only white background', 'Fast recognition, compliant product-only crop.', '<b>Purpose:</b> make the product instantly recognizable. <b>Buyer question answered:</b> what is this? <b>Conversion job:</b> establish product identity before benefit images.'],
+        ['02', 'Core benefit — one-touch rechargeable seasoning', 'Strongest reason to buy, shown visually.', '<b>Purpose:</b> show the main convenience benefit. <b>Buyer question answered:</b> why is this easier than manual grinding? <b>Conversion job:</b> turn the core feature into a quick purchase reason.'],
+        ['03', 'Feature proof — adjustable coarseness / mechanism', 'Prove control and cooking precision.', '<b>Purpose:</b> make adjustable control understandable. <b>Buyer question answered:</b> can I control the texture? <b>Conversion job:</b> connect a feature detail to cooking confidence.'],
+        ['04', 'Use context — kitchen cooking scene', 'Help buyer imagine daily use.', '<b>Purpose:</b> show where the product fits. <b>Buyer question answered:</b> does this fit my routine? <b>Conversion job:</b> make the product feel useful in everyday cooking.'],
+        ['05', 'Size / spec — dimensions and scale', 'Reduce wrong-purchase uncertainty.', '<b>Purpose:</b> clarify size and scale. <b>Buyer question answered:</b> will it fit my kitchen? <b>Conversion job:</b> reduce hesitation before purchase.'],
+        ['06', 'Package contents — set and included items', 'Clarify what the buyer receives.', '<b>Purpose:</b> set clear package expectations. <b>Buyer question answered:</b> what is included? <b>Conversion job:</b> reduce post-click uncertainty.'],
+        ['07', 'Gift / trust — giftable kitchen setup', 'Support scenario and confidence.', '<b>Purpose:</b> support gift and trust context. <b>Buyer question answered:</b> is this giftable? <b>Conversion job:</b> expand the product into a purchase occasion.']
+      ];
+      const aplusRows = [
+        ['A1', 'Hero — core promise', 'Opening module with concise product promise.', '<b>Purpose:</b> introduce the product story. <b>Buyer question answered:</b> why should I keep reading? <b>Conversion job:</b> connect the product to the main use case.'],
+        ['A2', 'Key benefits — rechargeable / adjustable / LED', 'Three benefit blocks with clear product logic.', '<b>Purpose:</b> organize major benefits. <b>Buyer question answered:</b> what are the main advantages? <b>Conversion job:</b> make benefits easy to scan.'],
+        ['A3', 'How to use — charge / fill / grind / clean', 'Step-by-step use flow.', '<b>Purpose:</b> remove first-use uncertainty. <b>Buyer question answered:</b> how does it work? <b>Conversion job:</b> make ownership feel simple.'],
+        ['A4', 'Feature proof — product logic', 'Explain mechanism, coarseness and control.', '<b>Purpose:</b> explain how key features create value. <b>Buyer question answered:</b> what makes it practical? <b>Conversion job:</b> support the benefit with product detail.'],
+        ['A5', 'Package / care — included items and cleaning', 'Set expectations around contents and maintenance.', '<b>Purpose:</b> clarify what arrives and how to maintain it. <b>Buyer question answered:</b> what do I get and how do I care for it? <b>Conversion job:</b> reduce uncertainty before checkout.'],
+        ['A6', 'Brand trust — clean giftable kitchen tone', 'Close with calm trust and giftability.', '<b>Purpose:</b> close with confidence. <b>Buyer question answered:</b> does this feel reliable and giftable? <b>Conversion job:</b> support final purchase confidence.']
+      ];
+      function renderPlan(targetId, rows) {
+        document.getElementById(targetId).innerHTML = rows.map((row, index) => `
+          <div class="plan-row">
+            <div class="plan-num">${row[0]}</div>
+            <div class="plan-main">
+              <div class="row-title">${row[1]}</div>
+              <div class="row-desc">${row[2]}</div>
+            </div>
+            <button class="detail-toggle" type="button" aria-expanded="false" data-detail="${targetId}-${index}">Details</button>
+            <div class="details" id="${targetId}-${index}" hidden>
+              <div class="plan-detail">${row[3]}</div>
+            </div>
+          </div>`).join('');
+        document.querySelectorAll('#' + targetId + ' [data-detail]').forEach(button => wireToggle(button, document.getElementById(button.dataset.detail)));
+        syncPlanEditing();
+      }
+      document.querySelectorAll('.plan-row .detail-toggle:not([data-detail])').forEach(button => {
+        const target = button.nextElementSibling;
+        if (target && target.classList.contains('details')) wireToggle(button, target);
+      });
+
+      function createFreePlan() {
+        const productName = document.getElementById('product-name').value.trim() || 'New Amazon product';
+        document.getElementById('summary-title').textContent = productName;
+        showState('summary');
+      }
+      function fetchExistingListing() {
+        document.getElementById('summary-title').textContent = 'Rechargeable Salt and Pepper Grinder Set';
+        showState('snapshot');
+      }
+      document.getElementById('analyze').addEventListener('click', () => {
+        requireAuth(createFreePlan, 'Create a free account to save this launch plan and use your free preview.');
+      });
+      document.getElementById('fetch-listing').addEventListener('click', () => {
+        requireAuth(fetchExistingListing, 'Sign in to fetch and save listing data from this Amazon URL.');
+      });
+      document.getElementById('back-fetch').addEventListener('click', () => showState('intake'));
+      document.getElementById('continue-existing-summary').addEventListener('click', () => showState('summary'));
+      document.getElementById('back-intake').addEventListener('click', () => showState('intake'));
+      document.getElementById('continue-plan').addEventListener('click', () => {
+        renderPlan('gallery-plan', galleryRows);
+        renderPlan('aplus-plan', aplusRows);
+        showState('plan');
+      });
+      document.getElementById('back-summary').addEventListener('click', () => showState('summary'));
+
+      const progress = [
+        ['Writing listing preview', 'Title, bullets and search terms'],
+        ['Generating gallery preview', '7 product-aware image previews'],
+        ['Building A+ preview', '6 Standard A+ module previews'],
+        ['Running Product Lock', 'Background product match check'],
+        ['Preparing Amazon preview', 'Desktop and mobile preview'],
+        ['Preparing ready checklist', 'Accuracy, wording, dimensions and upload order']
+      ];
+      const CHECK = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><path d="m4 8 3 3 7-7"/></svg>';
+      function renderProgress() {
+        document.getElementById('progress-list').innerHTML = progress.map((row, index) => `
+          <div class="progress-row" data-i="${index}">
+            <div class="progress-icon">•</div>
+            <div class="progress-main"><div class="row-title">${row[0]}</div><div class="row-desc">${row[1]}</div></div>
+            <span class="chip chip-info">Pending</span>
+          </div>`).join('');
+      }
+      function setProgress(index, status) {
+        const row = document.querySelector('.progress-row[data-i="' + index + '"]');
+        if (!row) return;
+        row.classList.remove('active', 'done');
+        row.classList.add(status);
+        const icon = row.querySelector('.progress-icon');
+        const chip = row.querySelector('.chip');
+        if (status === 'active') {
+          icon.innerHTML = '<span class="spinner"></span>';
+          chip.className = 'chip chip-warn';
+          chip.textContent = index === 3 ? 'Auto refining' : 'Working';
+        } else if (status === 'done') {
+          icon.innerHTML = CHECK;
+          chip.className = 'chip chip-clear';
+          chip.textContent = 'Done';
+        }
+      }
+      document.getElementById('approve-generate').addEventListener('click', () => {
+        resetExportState();
+        showState('generate');
+        renderProgress();
+        let index = 0;
+        setProgress(0, 'active');
+        const timer = setInterval(() => {
+          setProgress(index, 'done');
+          index++;
+          if (index < progress.length) {
+            setProgress(index, 'active');
+          } else {
+            clearInterval(timer);
+            setTimeout(() => {
+              showResultTab('copy');
+              showPreviewTab('desktop');
+              showState('preview');
+            }, 600);
+          }
+        }, 650);
+      });
+      document.getElementById('result-back-plan').addEventListener('click', () => showState('plan'));
+      document.getElementById('restart').addEventListener('click', () => {
+        resetUploadedImages();
+        resetExportState();
+        showState('intake');
+      });
+    })();
+  </script>
+</body>
+</html>
