@@ -83,14 +83,14 @@
 
 5. **Output package**
    - Listing text：Title、5 bullets、backend search terms、Markdown
-   - Gallery：7 images、2000 x 2000、briefs/prompts
+   - Listing images：7 images、2000 x 2000、briefs/prompts
    - A+：Standard 970 x 600；Premium 1464 x 600 + 600 x 450 mobile crops
    - Ready checklist：product accuracy、claim wording、image dimensions、upload order、ZIP
 
 6. **Packages**
-   - Starter Gallery
+   - Starter Listing Kit
    - Full Listing
-   - Premium Launch
+   - Premium Listing Kit
 
 7. **Final CTA**
    - 回到工作区开始生成
@@ -115,8 +115,8 @@
    - 按 Amazon listing 结构顺序展示 fetch 结果：Title -> Five bullet points -> Product images -> A+ content
    - 每个模块展示抓取状态和后续处理方式
    - 如果抓到 A+ 图片，A+ content 轻量展示 2-6 个模块缩略图，不做成和商品组图同等权重
-   - 底部轻量展示 Generation scope：Gallery + A+、Listing text only、A+ only、Full rebuild
-   - 默认选择 Gallery + A+
+   - 底部轻量展示 Generation scope：Images + A+、Listing text only、A+ only、Full rebuild
+   - 默认选择 Images + A+
    - 同一区域展示默认保护项：Keep main image unchanged、Match current visual style
    - 用户确认后进入 Product Summary
 
@@ -128,7 +128,7 @@
 
 4. **Launch Plan**
    - Listing text
-   - Gallery plan
+   - Listing image plan
    - A+ plan
    - Generation guardrails
    - 每行默认只显示重点，点击 Details 展开完整要求
@@ -144,10 +144,10 @@
 6. **Results**
    - 顶部状态条显示 Ready checklist 状态
    - Listing text：Title、5 bullets、backend search terms
-   - Images：Gallery images、A+ images
+   - Images：Listing images、A+ images
    - Preview：Amazon PDP desktop / mobile preview
    - 默认状态为 preview ready，但复制、高清图和 ZIP 处于 locked 状态
-   - Unlock exports：购买对应 export package 后解锁 text copying、gallery、aplus、ZIP
+   - Unlock exports：购买对应 export package 后解锁 text copying、listing images、aplus、ZIP
 
 ## 付费转化逻辑
 
@@ -205,15 +205,15 @@ We do not request Google Drive, Gmail or advertising account access in this flow
 
 Export packages：
 
-- Starter Gallery：$19/export
+- Starter Listing Kit：$19/export
 - Full Listing：$49/export
-- Premium Launch：$89/export
+- Premium Listing Kit：$89/export
 
 结果页解锁交互：
 
 - Results 里的 `Unlock exports` 不跳转到 Pricing 页面。
 - 点击后打开当前 listing 的 checkout modal。
-- Modal 里选择 Starter Gallery / Full Listing / Premium Launch。
+- Modal 里选择 Starter Listing Kit / Full Listing / Premium Listing Kit。
 - 点击 `Continue to payment` 后进入 processing 状态。
 - 支付成功后显示 `Exports unlocked`。
 - 点击 `Back to results` 回到同一个 Results 页面，并原地解锁 text copying、image downloads 和 ZIP。
@@ -221,7 +221,7 @@ Export packages：
 结果页解锁后提供：
 
 - Text copying
-- high-resolution gallery images
+- high-resolution listing images
 - high-resolution A+ images
 - ZIP package for Seller Central handoff
 - Ready checklist
@@ -263,9 +263,9 @@ MVP 不让用户选择抽象的 Marketing direction。
 
 套餐直接决定输出范围和购买价格：
 
-- Starter Gallery：Title、Bullets、Search Terms、5 张商品图，无 A+，$19/export
+- Starter Listing Kit：Title、Bullets、Search Terms、5 张商品图，无 A+，$19/export
 - Full Listing：Title、Bullets、Search Terms、7 张商品图、6 个 Standard A+ 模块，$49/export
-- Premium Launch：Full Listing 加宽版 A+、移动端裁切、文案多版本，$89/export
+- Premium Listing Kit：Full Listing 加宽版 A+、移动端裁切、文案多版本，$89/export
 
 如需自定义范围，放在折叠的 Customize 里。
 
@@ -313,7 +313,7 @@ Product Lock 保留为后台机制，但页面不把它做成大模块。用户�
 Results 只保留 3 个 tab：
 
 - Listing text：Title、5 bullets、backend search terms；免费状态下可预览但复制按钮 locked
-- Images：Gallery images 和 A+ images，展示用途和尺寸；免费状态下显示 preview 水印 / locked
+- Images：Listing images 和 A+ images，展示用途和尺寸；免费状态下显示 preview 水印 / locked
 - Preview：Amazon PDP desktop / mobile preview
 
 默认打开 Listing text，因为这是用户最快能使用的内容。
@@ -321,7 +321,7 @@ Results 只保留 3 个 tab：
 Unlock exports 后的 ZIP 只包含：
 
 - `copy.md`
-- `gallery/`
+- `listing-images/`
 - `aplus/`
 
 MVP 先不做：
@@ -334,9 +334,9 @@ MVP 先不做：
 
 MVP 先不做复杂订阅中心。Landing 里的 Pricing 只用于提前了解价格；Results 里的购买使用 checkout modal。Pricing 展示为单次 export packages：
 
-- Starter Gallery：$19/export，解锁 listing text 和 5 张 gallery images
-- Full Listing：$49/export，解锁 listing text、7 张 gallery images、6 个 Standard A+ 和 ZIP
-- Premium Launch：$89/export，解锁 Full Listing、wide A+、mobile crops 和 text variants
+- Starter Listing Kit：$19/export，解锁 listing text 和 5 张 listing images
+- Full Listing：$49/export，解锁 listing text、7 张 listing images、6 个 Standard A+ 和 ZIP
+- Premium Listing Kit：$89/export，解锁 Full Listing、wide A+、mobile crops 和 text variants
 
 生成后自动准备：
 
