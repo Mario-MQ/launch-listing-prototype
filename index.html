@@ -687,7 +687,7 @@
     .package-row.active { background:var(--forest-050); border-color:var(--forest-600); box-shadow:0 0 0 1px var(--forest-600) inset, 0 12px 32px -24px rgba(28,43,29,.46); }
     .package-row.premium { border-color:rgba(214,138,0,.32); }
     .package-row.premium.active { border-color:#D68A00; box-shadow:0 0 0 1px #D68A00 inset, 0 12px 32px -24px rgba(214,138,0,.52); }
-    .package-row .row-meta { width:100%; justify-content:space-between; gap:6px; padding-top:14px; margin-top:14px; border-top:1px solid var(--border-soft); }
+    .package-row .row-meta { width:100%; justify-content:flex-start; gap:6px; padding-top:14px; margin-top:14px; border-top:1px solid var(--border-soft); }
     .pkg-spec { color:var(--forest-600); font-family:var(--mono); font-size:.72rem; white-space:nowrap; }
     .package-summary { margin-top:7px; color:var(--muted); font-size:.78rem; line-height:1.45; }
     .package-features { list-style:none; display:grid; gap:9px; padding:0; margin:16px 0 0; color:var(--neutral-700); font-size:.76rem; line-height:1.4; }
@@ -1404,29 +1404,29 @@ Stainless steel look for modern kitchens</textarea>
               <button class="package-row active" type="button" data-package-name="Listing + Standard A+">
                 <div class="package-main">
                   <div class="row-title">Listing + Standard A+</div>
-                  <div class="package-summary">Listing Generator plus standard A+ modules.</div>
+                  <div class="package-summary">Full listing package — copy, 7 gallery images and Standard A+.</div>
                   <ul class="package-features">
-                    <li>Everything in Listing Generator</li>
+                    <li>7 gallery images (1024 x 1024 · 1K)</li>
+                    <li>SEO title + 5 bullets + backend search terms</li>
                     <li>6 Standard A+ modules (970 x 600 · 1K)</li>
-                    <li>Hero, features, lifestyle and trust modules</li>
                     <li>Seller Central ready ZIP</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">970 x 600 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
               </button>
               <button class="package-row premium" type="button" data-package-name="Listing + Premium A+">
                 <div class="package-main">
                   <div class="row-title">Listing + Premium A+</div>
-                  <div class="package-summary">High-credit package for premium launch pages.</div>
+                  <div class="package-summary">Premium full listing package — copy, 7 gallery images and Premium A+.</div>
                   <ul class="package-features">
-                    <li>Everything in Listing Generator</li>
+                    <li>7 gallery images (1024 x 1024 · 1K)</li>
+                    <li>SEO title + 5 bullets + backend search terms</li>
                     <li>Premium A+ banners (1464 x 600 · 4K)</li>
                     <li>Mobile-ready crops (600 x 450)</li>
-                    <li>Brand storytelling and text variants</li>
                   </ul>
                   <span class="package-note">Requires a paid plan or enough Luckee credits.</span>
                 </div>
-                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">12,000 Credits</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
+                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">12,000 Credits</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
               </button>
             </div>
 
@@ -2082,30 +2082,30 @@ Stainless steel look for modern kitchens</textarea>
             <button class="checkout-package active" type="button" data-checkout-package="full">
               <div>
                 <strong>Listing + Standard A+</strong>
-                <span>Listing Generator plus standard A+ modules.</span>
+                <span>Full listing package — copy, 7 gallery images and Standard A+.</span>
                 <ul class="checkout-features">
-                  <li>Everything in Listing Generator</li>
+                  <li>7 gallery images (1024 x 1024 · 1K)</li>
+                  <li>SEO title + 5 bullets + backend search terms</li>
                   <li>6 Standard A+ modules (970 x 600 · 1K)</li>
-                  <li>Hero, features, lifestyle and trust</li>
                   <li>Seller Central ready ZIP</li>
                 </ul>
                 <div class="checkout-price">3,000 Credits</div>
               </div>
-              <span class="chip chip-clear">970 x 600 · 1K</span>
+              <span class="chip chip-clear">1024 x 1024 · 1K + 970 x 600 · 1K</span>
             </button>
             <button class="checkout-package" type="button" data-checkout-package="premium">
               <div>
                 <strong>Listing + Premium A+</strong>
-                <span>High-credit package for premium launch pages.</span>
+                <span>Premium full listing package — copy, 7 gallery images and Premium A+.</span>
                 <ul class="checkout-features">
-                  <li>Everything in Listing Generator</li>
+                  <li>7 gallery images (1024 x 1024 · 1K)</li>
+                  <li>SEO title + 5 bullets + backend search terms</li>
                   <li>Premium A+ banners (1464 x 600 · 4K)</li>
                   <li>Mobile-ready crops (600 x 450)</li>
-                  <li>Brand storytelling and text variants</li>
                 </ul>
                 <div class="checkout-price">12,000 Credits</div>
               </div>
-              <span class="chip chip-forest">Paid · 4K</span>
+              <span class="chip chip-forest">1024 x 1024 · 1K + 1464 x 600 · 4K</span>
             </button>
           </div>
           <div class="checkout-footer">
