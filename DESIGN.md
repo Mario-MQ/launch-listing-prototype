@@ -45,11 +45,11 @@
 
 页面核心卖点：
 
-- Understand product details：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，不只是套模板
-- Find competitor differences：明确产品和竞品/同类款的差异，决定哪些差异要放到标题、五点、图片或 A+
-- Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
 - Plan before creating：先给可审核的 listing strategy，再生成文案和视觉资产
 - Complete package：标题、五点、搜索词、组图、A+、预览、导出和 ready checklist
+- Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
+- Find competitor differences：明确产品和竞品/同类款的差异，决定哪些差异要放到标题、五点、图片或 A+
+- Understand product details：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，不只是套模板
 
 ## 页面结构
 
@@ -62,11 +62,11 @@
    - 右侧展示生成包 mockup
 
 2. **Why**
-   - Understand product details
-   - Find competitor differences
-   - Answer buyer doubts
    - Plan before creating
    - Complete package
+   - Answer buyer doubts
+   - Find competitor differences
+   - Understand product details
    - 段落底部 CTA 回到创建方案
 
 3. **Buyer questions**
