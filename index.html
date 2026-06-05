@@ -214,19 +214,12 @@
     .scene-kitchen .window { position:absolute; inset:0 0 auto 0; height:54%; background:linear-gradient(180deg,rgba(146,188,206,.32),rgba(255,255,255,.12)); }
     .scene-kitchen .window::before,.scene-kitchen .window::after { content:""; position:absolute; top:0; bottom:0; width:1px; background:rgba(62,91,63,.13); }
     .scene-kitchen .window::before { left:34%; } .scene-kitchen .window::after { right:33%; }
-    .product-pair { position:absolute; left:50%; bottom:22px; width:156px; height:112px; transform:translateX(-50%); z-index:2; }
-    .grinder { position:absolute; bottom:0; width:44px; height:92px; border-radius:20px 20px 16px 16px; background:linear-gradient(165deg,#fff,#ebe0d4 56%,#c4a85a); box-shadow:0 22px 38px -24px rgba(46,46,46,.78); }
-    .grinder::before { content:""; position:absolute; left:12px; top:-24px; width:20px; height:46px; border-radius:999px; background:linear-gradient(180deg,#405c41,#d0b756); box-shadow:inset 0 8px 12px rgba(255,255,255,.22); }
-    .grinder::after { content:""; position:absolute; left:12px; bottom:18px; width:20px; height:28px; border-radius:999px; background:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.5); }
-    .grinder.one { left:34px; transform:rotate(-5deg); }
-    .grinder.two { right:34px; transform:rotate(5deg); background:linear-gradient(165deg,#fdfdfb,#dfe6df 50%,#4f6a50); }
     .ingredient { position:absolute; bottom:18px; width:10px; height:10px; border-radius:50%; background:#d9c15d; z-index:3; box-shadow:18px 5px 0 #6d4e32, 34px 1px 0 #cbb149, -24px 8px 0 #725437, -38px 2px 0 #ddc563; }
     .ingredient.left { left:42px; } .ingredient.right { right:52px; }
     .intent-path { position:absolute; z-index:4; left:18px; right:18px; bottom:14px; display:flex; justify-content:space-between; gap:8px; }
     .intent-path span { min-width:0; border:1px solid rgba(62,91,63,.16); border-radius:var(--r-pill); padding:5px 8px; background:rgba(255,255,255,.72); color:var(--forest-700); font-size:.62rem; font-weight:800; white-space:nowrap; }
     .kit-gallery { position:absolute; z-index:3; inset:18px; display:grid; grid-template-columns:1.15fr 1fr; gap:12px; }
     .kit-main { border-radius:16px; background:linear-gradient(145deg,#fff,#edf4ed); position:relative; overflow:hidden; border:1px solid rgba(62,91,63,.1); }
-    .kit-main .product-pair { transform:translateX(-50%) scale(.82); bottom:15px; }
     .kit-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .kit-thumb,.kit-banner { border:1px solid rgba(62,91,63,.1); border-radius:12px; background:linear-gradient(145deg,#fff8ed,#edf4ed); position:relative; overflow:hidden; }
     .kit-thumb::before { content:""; position:absolute; width:30px; height:48px; left:50%; top:50%; border-radius:14px; transform:translate(-50%,-38%); background:linear-gradient(165deg,#fff,#d7c281); box-shadow:0 16px 28px -18px rgba(46,46,46,.7); }
@@ -255,7 +248,6 @@
     .compare-card { position:relative; overflow:hidden; border:1px solid rgba(62,91,63,.10); border-radius:18px; background:linear-gradient(145deg,#fff,#f8f4ea); padding:12px; box-shadow:0 16px 42px -34px rgba(28,43,29,.5); }
     .compare-card.other { background:linear-gradient(145deg,#fff,#f1f1ed); opacity:.86; }
     .compare-label { position:relative; z-index:4; display:inline-flex; border-radius:var(--r-pill); padding:5px 8px; background:rgba(255,255,255,.78); border:1px solid rgba(62,91,63,.12); color:var(--forest-700); font-size:.6rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; }
-    .compare-card .product-pair { transform:translateX(-50%) scale(.66); bottom:16px; }
     .electric-render { position:absolute; z-index:3; left:50%; top:30px; width:132px; height:126px; transform:translateX(-50%); }
     .electric-unit { position:absolute; bottom:17px; width:42px; height:96px; border-radius:20px 20px 16px 16px; background:linear-gradient(165deg,#ffffff 0%,#f0e9dd 45%,#d6b866 100%); box-shadow:0 22px 34px -24px rgba(46,46,46,.78), inset -8px 0 18px rgba(62,91,63,.08); }
     .electric-unit::before { content:""; position:absolute; left:11px; top:-28px; width:20px; height:52px; border-radius:999px; background:linear-gradient(180deg,#4e684f 0%,#6f825e 44%,#dfc75b 100%); box-shadow:inset 0 8px 12px rgba(255,255,255,.2); }
@@ -266,9 +258,10 @@
     .electric-base::before { content:""; position:absolute; left:50%; top:10px; width:26px; height:7px; transform:translateX(-50%); border-radius:var(--r-pill); background:rgba(62,91,63,.35); }
     .electric-led { position:absolute; left:50%; bottom:49px; width:62px; height:28px; transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side,rgba(232,201,106,.42),transparent 72%); filter:blur(.2px); }
     .season-dots { position:absolute; left:6px; right:6px; bottom:1px; height:12px; background:radial-gradient(circle at 15% 50%,#d9c15d 0 3px,transparent 4px),radial-gradient(circle at 36% 42%,#6d4e32 0 3px,transparent 4px),radial-gradient(circle at 63% 54%,#cbb149 0 3px,transparent 4px),radial-gradient(circle at 83% 44%,#725437 0 3px,transparent 4px); }
-    .manual-mill { position:absolute; left:50%; bottom:22px; width:46px; height:100px; transform:translateX(-50%); border-radius:999px 999px 16px 16px; background:linear-gradient(165deg,#dfd2bf,#8b7159 58%,#463b32); box-shadow:0 22px 38px -24px rgba(46,46,46,.72); }
-    .manual-mill::before { content:""; position:absolute; left:7px; top:-12px; width:32px; height:24px; border-radius:999px; background:linear-gradient(180deg,#5b4a3d,#2f2822); }
-    .manual-mill::after { content:""; position:absolute; left:16px; bottom:18px; width:14px; height:38px; border-radius:999px; background:rgba(255,255,255,.16); }
+    .product-stage > .electric-render { top:27px; }
+    .kit-main .electric-render { transform:translateX(-50%) scale(.62); top:16px; }
+    .mini-electric { position:relative; width:78px; height:102px; margin:4px auto 0; }
+    .mini-electric .electric-render { transform:translateX(-50%) scale(.52); top:-6px; }
     .manual-render { position:absolute; z-index:3; left:50%; top:28px; width:86px; height:130px; transform:translateX(-50%); }
     .manual-render::before { content:""; position:absolute; left:30px; top:0; width:26px; height:26px; border-radius:50%; background:linear-gradient(180deg,#806f62,#40362f); box-shadow:0 10px 18px -14px rgba(0,0,0,.7); }
     .manual-render::after { content:""; position:absolute; left:25px; top:24px; width:36px; height:98px; border-radius:20px 20px 14px 14px; background:linear-gradient(165deg,#e2d3bf,#b79d84 38%,#f4eee5 39%,#d8c7b8 68%,#7c6656 69%,#4e4037); box-shadow:0 22px 34px -24px rgba(46,46,46,.72); }
@@ -288,8 +281,6 @@
     .shot-line { height:8px; border-radius:var(--r-pill); background:var(--forest-100); margin-top:8px; }
     .shot-line.short { width:66%; }
     .shot-line.gold { background:rgba(232,201,106,.58); }
-    .shot-product { width:70px; height:96px; border-radius:20px; margin:8px auto 0; background:linear-gradient(170deg,#fff,#e8ded2 62%,#cfb55e); box-shadow:0 18px 38px -24px rgba(46,46,46,.7); position:relative; }
-    .shot-product::before { content:""; position:absolute; width:24px; height:44px; left:23px; top:-24px; border-radius:var(--r-pill); background:linear-gradient(180deg,var(--forest-700),#d1b957); }
     .qa-stage { position:relative; z-index:1; margin:14px 18px 18px; display:grid; gap:12px; }
     .qa-head { display:grid; grid-template-columns:46px minmax(0,1fr) auto; gap:12px; align-items:center; padding:12px; border:1px solid rgba(62,91,63,.10); border-radius:18px; background:rgba(255,255,255,.72); }
     .qa-mark { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(145deg,#fff,#edf4ed); color:var(--forest-700); font-family:var(--serif); font-size:1.3rem; box-shadow:0 14px 32px -26px rgba(28,43,29,.7); }
@@ -894,8 +885,6 @@
       .kit-gallery { inset:12px; gap:8px; }
       .compare-stage { min-height:180px; margin:12px 12px 0; gap:8px; }
       .compare-card { padding:9px; border-radius:14px; }
-      .compare-card .product-pair { transform:translateX(-50%) scale(.48); bottom:10px; }
-      .manual-mill { transform:translateX(-50%) scale(.64); bottom:16px; }
       .electric-render { transform:translateX(-50%) scale(.76); top:26px; }
       .manual-render { transform:translateX(-50%) scale(.78); top:25px; }
       .compare-points { left:7px; right:7px; bottom:7px; gap:4px; }
@@ -1103,7 +1092,13 @@
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/launch-plan</div></div>
               <div class="product-stage scene-kitchen">
                 <div class="window"></div>
-                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                <div class="electric-render">
+                  <span class="electric-led"></span>
+                  <span class="electric-unit one"></span>
+                  <span class="electric-unit two"></span>
+                  <span class="electric-base"></span>
+                  <span class="season-dots"></span>
+                </div>
                 <span class="ingredient left"></span>
                 <div class="detail-callout"><span>Title angle</span><span>Image sequence</span><span>A+ module</span></div>
               </div>
@@ -1127,7 +1122,13 @@
                 <div class="kit-gallery">
                   <div class="kit-main photo-main">
                     <span class="photo-label">01 Main image</span>
-                    <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                    <div class="electric-render">
+                      <span class="electric-led"></span>
+                      <span class="electric-unit one"></span>
+                      <span class="electric-unit two"></span>
+                      <span class="electric-base"></span>
+                      <span class="season-dots"></span>
+                    </div>
                   </div>
                   <div class="kit-grid">
                     <span class="kit-thumb photo-feature"><b>Feature proof</b></span>
@@ -1141,7 +1142,7 @@
               <div class="shot-body">
                 <div class="shot-split">
                   <div class="shot-box"><strong>Listing text</strong><div class="shot-line"></div><div class="shot-line short"></div><div class="shot-line gold"></div></div>
-                  <div class="shot-box"><strong>Images</strong><div class="shot-product"></div></div>
+                  <div class="shot-box"><strong>Images</strong><div class="mini-electric"><div class="electric-render"><span class="electric-led"></span><span class="electric-unit one"></span><span class="electric-unit two"></span><span class="electric-base"></span><span class="season-dots"></span></div></div></div>
                 </div>
                 <div class="shot-chipline"><span>Title</span><span>Bullets</span><span>Search terms</span><span>Images</span><span>A+</span><span>Checklist</span></div>
               </div>
