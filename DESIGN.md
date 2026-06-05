@@ -69,7 +69,7 @@
    - Plan before creating：商品场景 + title / image / A+ 的生成前规划
    - Complete package：无品牌真实感商品主图、gallery 缩略图、A+ banner 缩略图 + title、bullets、search terms、checklist；不使用外部竞品或 Amazon 图片
    - Answer buyer doubts：Amazon shopper questions coverage simulation，展示多个常见疑虑如何进入 bullets / image / A+
-   - Position real differences：Your product vs similar option 的双产品对比，展示差异如何进入 Image / Bullet / A+ placement
+   - Position real differences：Your product vs similar option 的双产品对比，使用无品牌自绘电动研磨器和手动研磨器，展示差异如何进入 Image / Bullet / A+ placement
 
 3. **Differentiation**
    - 标题：Beautiful images are not enough.
