@@ -56,6 +56,7 @@
 1. **Hero**
    - 产品定位：完整 Amazon listing 生成，不只是生图工具
    - 首屏直接提供 `Start your listing` 输入区
+   - 不再在 Hero 文案下方放重复 CTA；Start panel 是唯一主入口
    - 支持 New listing 和 Amazon URL 两种开始方式
    - CTA 进入工作区并把首屏输入带入 Intake
    - 右侧展示生成包 mockup

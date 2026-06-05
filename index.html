@@ -118,19 +118,23 @@
     .hero h1 em { color:#E8C96A; font-family:var(--serif); font-style:italic; }
     .hero-sub { margin-top:24px; max-width:51ch; color:var(--forest-100); font-size:1.12rem; line-height:1.68; }
     .hero-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:34px; }
-    .hero-trust { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:22px; color:var(--forest-100); font-size:.82rem; }
+    .hero-trust { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:18px; color:var(--forest-100); font-size:.82rem; }
     .hero-trust span { display:inline-flex; align-items:center; gap:7px; }
     .hero-trust span::before { content:""; width:6px; height:6px; border-radius:50%; background:#E8C96A; }
-    .hero-start { margin-top:30px; max-width:680px; border:1px solid rgba(217,232,218,.18); border-radius:22px; background:rgba(255,255,255,.07); box-shadow:0 24px 70px -42px rgba(0,0,0,.6); overflow:hidden; }
-    .hero-start-head { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:15px 16px; border-bottom:1px solid rgba(217,232,218,.14); }
+    .hero-start { margin-top:34px; max-width:780px; border:1px solid rgba(217,232,218,.18); border-radius:24px; background:rgba(255,255,255,.07); box-shadow:0 24px 70px -42px rgba(0,0,0,.6); overflow:hidden; }
+    .hero-start-head { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border-bottom:1px solid rgba(217,232,218,.14); }
     .hero-start-head strong { color:var(--oat-100); font-size:.9rem; }
     .hero-start-tabs { display:inline-flex; gap:4px; padding:4px; border:1px solid rgba(217,232,218,.14); border-radius:var(--r-pill); background:rgba(0,0,0,.12); }
     .hero-start-tabs button { height:30px; padding:0 12px; border:0; border-radius:var(--r-pill); background:transparent; color:var(--forest-100); font-size:.7rem; font-weight:800; }
     .hero-start-tabs button.active { background:var(--oat-100); color:var(--forest-800); }
-    .hero-start-body { display:grid; grid-template-columns:minmax(0,1fr) 150px auto; gap:10px; padding:15px 16px; }
+    .hero-start-body { display:grid; grid-template-columns:minmax(280px,1fr) 180px auto; gap:12px; align-items:end; padding:18px; }
+    .hero-start-field { display:grid; gap:8px; min-width:0; }
+    .hero-start-label { color:var(--forest-100); font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
     .hero-start-input,.hero-start-select { height:46px; min-width:0; border:1px solid rgba(217,232,218,.18); border-radius:var(--r-pill); background:rgba(255,255,255,.92); color:var(--neutral-900); padding:0 16px; outline:none; font-size:.86rem; }
     .hero-start-input:focus,.hero-start-select:focus { border-color:#E8C96A; box-shadow:0 0 0 3px rgba(232,201,106,.16); }
-    .hero-start-note { padding:0 16px 16px; color:var(--forest-100); font-size:.72rem; line-height:1.45; }
+    .hero-start-submit { height:46px; background:#E8C96A; color:var(--forest-900); border-color:#E8C96A; box-shadow:0 18px 42px -24px rgba(232,201,106,.9); }
+    .hero-start-submit:hover { background:#f0d978; border-color:#f0d978; }
+    .hero-start-note { padding:0 18px 18px; color:var(--forest-100); font-size:.72rem; line-height:1.45; }
     .hero-stage { position:relative; }
     .hero-stage::before { content:""; position:absolute; inset:-8% -10% -14% -6%; background:radial-gradient(60% 60% at 70% 30%, rgba(201,168,76,.18), transparent 70%); filter:blur(8px); }
     .launch-device { position:relative; border:1px solid rgba(217,232,218,.14); border-radius:28px; background:rgba(255,255,255,.06); backdrop-filter:blur(12px); box-shadow:0 30px 80px -28px rgba(0,0,0,.55), 0 0 0 1px rgba(217,232,218,.10) inset; overflow:hidden; }
@@ -756,16 +760,6 @@
             <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing generator</span>
             <h1>Launch <em>Listing</em>.</h1>
             <p class="hero-sub">Generate a complete Amazon listing package with a plan you can review before creation.</p>
-            <div class="hero-actions">
-              <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
-              <a class="btn btn-outline btn-lg" href="#workspace" data-start-workspace data-open-existing style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Paste Amazon URL</a>
-            </div>
-            <div class="hero-trust">
-              <span>Complete package</span>
-              <span>Review plan first</span>
-              <span>Product-accurate images</span>
-              <span>Ready checklist</span>
-            </div>
             <div class="hero-start" aria-label="start your listing">
               <div class="hero-start-head">
                 <strong>Start your listing</strong>
@@ -775,15 +769,27 @@
                 </div>
               </div>
               <div class="hero-start-body">
-                <input class="hero-start-input" id="hero-start-input" value="Rechargeable Salt and Pepper Grinder Set" aria-label="product name or Amazon URL">
-                <select class="hero-start-select" id="hero-package" aria-label="package">
-                  <option>Full Listing</option>
-                  <option>Starter Listing Kit</option>
-                  <option>Premium Listing Kit</option>
-                </select>
-                <a class="btn btn-on-dark" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
+                <label class="hero-start-field" for="hero-start-input">
+                  <span class="hero-start-label" id="hero-input-label">Product name</span>
+                  <input class="hero-start-input" id="hero-start-input" value="Rechargeable Salt and Pepper Grinder Set" placeholder="Enter product name" aria-label="product name or Amazon URL">
+                </label>
+                <label class="hero-start-field" for="hero-package">
+                  <span class="hero-start-label">Package</span>
+                  <select class="hero-start-select" id="hero-package" aria-label="package">
+                    <option>Full Listing</option>
+                    <option>Starter Listing Kit</option>
+                    <option>Premium Listing Kit</option>
+                  </select>
+                </label>
+                <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
               </div>
-              <div class="hero-start-note">No account needed to prepare inputs. Sign in only when creating or fetching a saved launch plan.</div>
+              <div class="hero-start-note">No account needed to start. Sign in when saving your plan.</div>
+            </div>
+            <div class="hero-trust">
+              <span>Complete package</span>
+              <span>Review plan first</span>
+              <span>Product-accurate images</span>
+              <span>Ready checklist</span>
             </div>
           </div>
           <div class="hero-stage">
@@ -1803,13 +1809,21 @@ Stainless steel look for modern kitchens</textarea>
           button.classList.toggle('active', button.dataset.heroMode === mode);
         });
         const input = document.getElementById('hero-start-input');
+        const label = document.getElementById('hero-input-label');
+        const action = document.getElementById('hero-start-action');
         if (!input) return;
         if (mode === 'existing') {
           input.value = input.value.startsWith('http') ? input.value : 'https://www.amazon.com/dp/B0G1MJWK3Z';
+          input.placeholder = 'Paste Amazon URL or ASIN';
           input.setAttribute('aria-label', 'Amazon URL or ASIN');
+          if (label) label.textContent = 'Amazon URL or ASIN';
+          if (action) action.textContent = 'Fetch and create plan';
         } else {
           input.value = input.value.startsWith('http') ? 'Rechargeable Salt and Pepper Grinder Set' : input.value;
+          input.placeholder = 'Enter product name';
           input.setAttribute('aria-label', 'product name');
+          if (label) label.textContent = 'Product name';
+          if (action) action.textContent = 'Create free plan';
         }
       }
       document.querySelectorAll('[data-hero-mode]').forEach(button => {
