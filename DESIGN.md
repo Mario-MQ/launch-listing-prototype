@@ -16,6 +16,7 @@
 - 首屏直接提供开始入口：New listing / Amazon URL，用户不用滚到页面底部才开始。
 - 功能介绍页只负责解释产品价值、工作方式、输出包和价格，同时每个关键段落都引导回开始动作。
 - 顶部 CTA、Hero CTA、Feature CTA、How CTA、Final CTA 都进入工作区。
+- Why 区每个核心卖点都配一张产品内展示图，并提供对应的开始入口，避免只做抽象介绍。
 - 进入工作区后导航切换为 Intake -> Summary -> Plan -> Generate -> Results。
 - 工作区提供 Back to overview 返回介绍页。
 - 不在用户理解产品价值之前强制付费。免费给计划和预览，付费解锁可交付资产。
@@ -45,11 +46,11 @@
 
 页面核心卖点：
 
+- Map human and agent intent：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，再把 human shopper intent 和 shopping-agent answer intent 精细匹配到 listing 内容
 - Plan before creating：先给可审核的 listing strategy，再生成文案和视觉资产
 - Complete package：标题、五点、搜索词、组图、A+、预览、导出和 ready checklist
 - Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
 - Position real differences：区分真正影响购买判断的差异和泛泛卖点，再决定放到标题、五点、图片或 A+
-- Map human and agent intent：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，再把 human shopper intent 和 shopping-agent answer intent 精细匹配到 listing 内容
 
 ## 页面结构
 
@@ -62,12 +63,12 @@
    - 右侧展示生成包 mockup
 
 2. **Why**
-   - Plan before creating
-   - Complete package
-   - Answer buyer doubts
-   - Position real differences
-   - Map human and agent intent
-   - 段落底部 CTA 回到创建方案
+   - 每个卖点配一个产品内展示图和一个引导使用入口
+   - Map human and agent intent：展示 human shopper intent 和 shopping-agent answer intent 如何映射到 listing 内容
+   - Plan before creating：展示 title / image / A+ 的生成前规划
+   - Complete package：展示 title、bullets、search terms、images、A+、checklist 的输出包
+   - Answer buyer doubts：展示 buyer question 到 listing answer 的覆盖路径
+   - Position real differences：展示 generic claims 到 specific product proof 的差异定位
 
 3. **Buyer questions**
    - Product identity

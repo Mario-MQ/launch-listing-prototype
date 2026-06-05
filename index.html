@@ -196,11 +196,38 @@
     .sec-head.center { margin-inline:auto; text-align:center; }
     .sec-head .eyebrow { margin-bottom:18px; }
     .sec-head h2 { margin-bottom:14px; }
-    .feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .feature { padding:28px 30px; background:var(--card); border:1px solid var(--hair); border-radius:var(--r-card); box-shadow:var(--shadow-card); }
-    .feature-k { color:var(--forest-600); font-family:var(--mono); font-size:.74rem; font-weight:800; margin-bottom:18px; }
-    .feature h3 { font-size:1.22rem; margin-bottom:10px; }
-    .feature p { color:var(--muted); font-size:.9rem; line-height:1.6; }
+    .feature-showcase { display:grid; gap:22px; }
+    .feature-panel { display:grid; grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr); gap:30px; align-items:center; padding:24px; background:var(--card); border:1px solid var(--hair); border-radius:28px; box-shadow:var(--shadow-card); }
+    .feature-panel.reverse { grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); }
+    .feature-panel.reverse .feature-visual { order:2; }
+    .feature-panel.strong { border-color:rgba(62,91,63,.22); box-shadow:0 1px 2px rgba(28,43,29,.05), 0 22px 70px -42px rgba(62,91,63,.5); }
+    .feature-visual { min-height:232px; border:1px solid var(--border-soft); border-radius:22px; background:linear-gradient(145deg,#fff,var(--oat-100)); overflow:hidden; position:relative; }
+    .feature-visual::before { content:""; position:absolute; inset:0; background:radial-gradient(58% 72% at 20% 0%, rgba(217,232,218,.72), transparent 62%), radial-gradient(44% 60% at 100% 100%, rgba(232,201,106,.18), transparent 64%); pointer-events:none; }
+    .shot-chrome { position:relative; z-index:1; height:42px; display:flex; align-items:center; gap:7px; padding:0 14px; border-bottom:1px solid var(--border-soft); background:rgba(255,255,255,.64); }
+    .shot-chrome i { width:9px; height:9px; border-radius:50%; display:block; }
+    .shot-chrome i:nth-child(1){ background:#e06c5e; } .shot-chrome i:nth-child(2){ background:#e0bd5e; } .shot-chrome i:nth-child(3){ background:#7fae80; }
+    .shot-url { margin-left:7px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--forest-700); font-family:var(--mono); font-size:.66rem; font-weight:700; }
+    .shot-body { position:relative; z-index:1; padding:18px; display:grid; gap:12px; }
+    .shot-row { display:grid; grid-template-columns:86px minmax(0,1fr); gap:12px; align-items:center; padding:11px 12px; border:1px solid rgba(62,91,63,.10); border-radius:15px; background:rgba(255,255,255,.68); }
+    .shot-label { color:var(--forest-700); font-family:var(--mono); font-size:.64rem; font-weight:800; text-transform:uppercase; }
+    .shot-copy { color:var(--neutral-700); font-size:.76rem; line-height:1.4; }
+    .shot-chipline { display:flex; flex-wrap:wrap; gap:7px; }
+    .shot-chipline span,.shot-pill { display:inline-flex; align-items:center; min-height:26px; padding:5px 9px; border-radius:var(--r-pill); border:1px solid rgba(62,91,63,.14); background:rgba(255,255,255,.72); color:var(--forest-700); font-size:.66rem; font-weight:800; }
+    .shot-pill.gold { color:#80680e; border-color:rgba(201,168,76,.34); background:rgba(232,201,106,.2); }
+    .shot-split { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .shot-box { min-height:92px; padding:12px; border:1px solid rgba(62,91,63,.10); border-radius:16px; background:rgba(255,255,255,.7); }
+    .shot-box strong { display:block; color:var(--forest-800); font-size:.75rem; margin-bottom:8px; }
+    .shot-line { height:8px; border-radius:var(--r-pill); background:var(--forest-100); margin-top:8px; }
+    .shot-line.short { width:66%; }
+    .shot-line.gold { background:rgba(232,201,106,.58); }
+    .shot-product { width:70px; height:96px; border-radius:20px; margin:8px auto 0; background:linear-gradient(170deg,#fff,#e8ded2 62%,#cfb55e); box-shadow:0 18px 38px -24px rgba(46,46,46,.7); position:relative; }
+    .shot-product::before { content:""; position:absolute; width:24px; height:44px; left:23px; top:-24px; border-radius:var(--r-pill); background:linear-gradient(180deg,var(--forest-700),#d1b957); }
+    .feature-content { padding:4px 8px; }
+    .feature-k { display:inline-flex; margin-bottom:16px; color:var(--forest-600); font-family:var(--mono); font-size:.74rem; font-weight:800; letter-spacing:.08em; }
+    .feature-content h3 { font-family:var(--serif); font-size:clamp(1.55rem,2.6vw,2.2rem); font-weight:400; line-height:1.08; color:var(--neutral-900); margin-bottom:12px; }
+    .feature-content p { color:var(--muted); font-size:.94rem; line-height:1.65; max-width:48ch; }
+    .feature-entry { margin-top:20px; }
+    .feature-entry .btn { min-width:178px; justify-content:center; }
     .split { display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:54px; align-items:center; }
     .line-list { border-top:1px solid var(--border-soft); }
     .line-item { display:grid; grid-template-columns:46px minmax(0,1fr); gap:16px; padding:18px 0; border-bottom:1px solid var(--border-soft); }
@@ -726,7 +753,9 @@
 
     @media (max-width:920px) {
       .hero-grid,.split { grid-template-columns:1fr; gap:40px; }
-      .feature-grid,.price-grid { grid-template-columns:1fr; }
+      .feature-panel,.feature-panel.reverse { grid-template-columns:1fr; }
+      .feature-panel.reverse .feature-visual { order:0; }
+      .price-grid { grid-template-columns:1fr; }
       .credit-pack { grid-template-columns:1fr; }
       .credit-pack .btn { width:100%; }
       .how-flow { grid-template-columns:repeat(2,1fr); }
@@ -748,6 +777,12 @@
       .band { padding:62px 0; }
       .hero-actions .btn { width:100%; }
       .hero-start-head { align-items:flex-start; flex-direction:column; }
+      .feature-panel { padding:16px; border-radius:22px; gap:18px; }
+      .feature-visual { min-height:220px; border-radius:18px; }
+      .feature-content { padding:0 2px 4px; }
+      .feature-entry .btn { width:100%; }
+      .shot-split { grid-template-columns:1fr; }
+      .shot-row { grid-template-columns:1fr; gap:5px; }
       .assistant-head { grid-template-columns:52px minmax(0,1fr); }
       .assistant-pill { grid-column:1 / -1; width:max-content; }
       .question-bubble { margin-left:0; }
@@ -852,10 +887,10 @@
               <div class="hero-start-note">No account needed to start. Sign in when saving your plan.</div>
             </div>
             <div class="hero-trust">
+              <span>Human + agent intent</span>
               <span>Review plan first</span>
               <span>Creates the full kit</span>
               <span>Answers buyer doubts</span>
-              <span>Human + agent intent</span>
             </div>
           </div>
           <div class="hero-stage">
@@ -906,15 +941,89 @@
           <span class="eyebrow">Why sellers use it</span>
           <h2>It understands what shoppers and shopping agents need before it creates the listing.</h2>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><div class="feature-k">01</div><h3>Plans before creating</h3><p>Decide what belongs in title, bullets, images and A+ before writing copy or generating visuals.</p></div>
-          <div class="feature"><div class="feature-k">02</div><h3>Creates the full kit</h3><p>Title, bullets, search terms, listing images, A+, preview and upload checklist come from one approved plan.</p></div>
-          <div class="feature"><div class="feature-k">03</div><h3>Answers buyer doubts</h3><p>Turn size, fit, compatibility, cleaning, safety, usage and warranty concerns into concrete listing content.</p></div>
-          <div class="feature"><div class="feature-k">04</div><h3>Positions real differences</h3><p>Separate meaningful differences from generic claims, then route them to title, bullets, images or A+.</p></div>
-          <div class="feature"><div class="feature-k">05</div><h3>Maps human and agent intent</h3><p>Connect product specs, photos and use cases to shopper questions and shopping-agent answers before generation starts.</p></div>
-        </div>
-        <div class="toolbar">
-          <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Create your free plan</a>
+        <div class="feature-showcase">
+          <article class="feature-panel strong">
+            <div class="feature-visual" aria-hidden="true">
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/intent-map</div></div>
+              <div class="shot-body">
+                <div class="shot-row"><span class="shot-label">Human</span><span class="shot-copy">Will it fit my routine, kitchen and ingredients?</span></div>
+                <div class="shot-row"><span class="shot-label">Agent</span><span class="shot-copy">Can it answer compatibility, use case and proof questions?</span></div>
+                <div class="shot-chipline"><span>Title angle</span><span>Bullet proof</span><span>A+ answer</span><span class="shot-pill gold">Ready</span></div>
+              </div>
+            </div>
+            <div class="feature-content">
+              <div class="feature-k">01</div>
+              <h3>Maps human and agent intent</h3>
+              <p>Connect product specs, photos and use cases to shopper questions and shopping-agent answers before generation starts.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Map my intent</a></div>
+            </div>
+          </article>
+          <article class="feature-panel reverse">
+            <div class="feature-visual" aria-hidden="true">
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/launch-plan</div></div>
+              <div class="shot-body">
+                <div class="shot-row"><span class="shot-label">Title</span><span class="shot-copy">Lead with rechargeable automatic grinding.</span></div>
+                <div class="shot-row"><span class="shot-label">Image 4</span><span class="shot-copy">Show coarse-to-fine range with sea salt.</span></div>
+                <div class="shot-row"><span class="shot-label">A+</span><span class="shot-copy">Explain control, cleaning and gift use.</span></div>
+              </div>
+            </div>
+            <div class="feature-content">
+              <div class="feature-k">02</div>
+              <h3>Plans before creating</h3>
+              <p>Decide what belongs in title, bullets, images and A+ before writing copy or generating visuals.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Review a plan</a></div>
+            </div>
+          </article>
+          <article class="feature-panel">
+            <div class="feature-visual" aria-hidden="true">
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/output-kit</div></div>
+              <div class="shot-body">
+                <div class="shot-split">
+                  <div class="shot-box"><strong>Listing text</strong><div class="shot-line"></div><div class="shot-line short"></div><div class="shot-line gold"></div></div>
+                  <div class="shot-box"><strong>Images</strong><div class="shot-product"></div></div>
+                </div>
+                <div class="shot-chipline"><span>Title</span><span>Bullets</span><span>Search terms</span><span>Images</span><span>A+</span><span>Checklist</span></div>
+              </div>
+            </div>
+            <div class="feature-content">
+              <div class="feature-k">03</div>
+              <h3>Creates the full kit</h3>
+              <p>Title, bullets, search terms, listing images, A+, preview and upload checklist come from one approved plan.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Create my kit</a></div>
+            </div>
+          </article>
+          <article class="feature-panel reverse">
+            <div class="feature-visual" aria-hidden="true">
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/buyer-questions</div></div>
+              <div class="shot-body">
+                <div class="shot-row"><span class="shot-label">Question</span><span class="shot-copy">Will this grinder work for coarse sea salt?</span></div>
+                <div class="shot-row"><span class="shot-label">Answer</span><span class="shot-copy">Add ceramic core, coarseness range and salt compatibility.</span></div>
+                <div class="shot-chipline"><span>Size</span><span>Cleaning</span><span>Compatibility</span><span>Trust</span></div>
+              </div>
+            </div>
+            <div class="feature-content">
+              <div class="feature-k">04</div>
+              <h3>Answers buyer doubts</h3>
+              <p>Turn size, fit, compatibility, cleaning, safety, usage and warranty concerns into concrete listing content.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Cover doubts</a></div>
+            </div>
+          </article>
+          <article class="feature-panel">
+            <div class="feature-visual" aria-hidden="true">
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/difference-map</div></div>
+              <div class="shot-body">
+                <div class="shot-row"><span class="shot-label">Generic</span><span class="shot-copy">Premium, easy to use, modern design.</span></div>
+                <div class="shot-row"><span class="shot-label">Specific</span><span class="shot-copy">USB-C base, LED seasoning view, adjustable ceramic core.</span></div>
+                <div class="shot-chipline"><span>Bullet</span><span>Image claim</span><span>A+ compare</span><span class="shot-pill gold">Use</span></div>
+              </div>
+            </div>
+            <div class="feature-content">
+              <div class="feature-k">05</div>
+              <h3>Positions real differences</h3>
+              <p>Separate meaningful differences from generic claims, then route them to title, bullets, images or A+.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Find differences</a></div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
