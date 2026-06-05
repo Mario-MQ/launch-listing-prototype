@@ -86,8 +86,8 @@
 
 5. **What you get**
    - Listing text：Title、5 bullets、backend search terms、editable text file
-   - Listing images：7 images、1000 x 1000 · 1K、briefs/prompts
-   - A+：Standard 1000 px wide · 1K；Premium A+ · 4K + mobile-ready crops
+   - Listing images：7 images、1024 x 1024 · 1K、briefs/prompts
+   - A+：Standard 970 x 600 · 1K；Premium 1464 x 600 · 4K + 600 x 450 mobile crops
    - Ready checklist：product accuracy、benefit wording、image dimensions、upload order、ZIP
 
 6. **Packages**
@@ -267,9 +267,9 @@ MVP 不让用户选择抽象的 Marketing direction。
 
 套餐直接决定输出范围；实际消耗走 Luckee credits：
 
-- Listing Generator：Title、5 bullets、backend search terms、description、checklist、7 张商品组图（1000 x 1000 · 1K），无 A+
-- Listing + Standard A+：Listing Generator 全部内容，加 6 个 Standard A+ 模块（1000 px wide · 1K），推荐默认
-- Listing + Premium A+：Listing Generator 全部内容，加 Premium A+（4K）、移动端裁切、文案多版本；需要更高 credits 或付费计划
+- Listing Generator：Title、5 bullets、backend search terms、description、checklist、7 张商品组图（1024 x 1024 · 1K），无 A+
+- Listing + Standard A+：Listing Generator 全部内容，加 6 个 Standard A+ 模块（970 x 600 · 1K），推荐默认
+- Listing + Premium A+：Listing Generator 全部内容，加 Premium A+（1464 x 600 · 4K）、600 x 450 mobile crops、文案多版本；需要更高 credits 或付费计划
 
 如需自定义范围，放在折叠的 Customize 里。
 
