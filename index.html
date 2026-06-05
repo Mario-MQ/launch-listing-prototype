@@ -877,9 +877,9 @@
                 <label class="hero-start-field" for="hero-package">
                   <span class="hero-start-label">Package</span>
                   <select class="hero-start-select" id="hero-package" aria-label="package">
-                    <option>Full Listing</option>
-                    <option>Starter Listing Kit</option>
-                    <option disabled>Premium Listing Kit · Paid</option>
+                    <option>Listing + Standard A+</option>
+                    <option>Listing Generator</option>
+                    <option>Listing + Premium A+</option>
                   </select>
                 </label>
                 <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
@@ -1078,12 +1078,12 @@
             </div>
           </div>
           <div class="output-frame">
-            <div class="output-top"><strong>Full Listing kit</strong><span class="chip chip-clear">Ready after review</span></div>
+            <div class="output-top"><strong>Listing + Standard A+</strong><span class="chip chip-clear">Ready after review</span></div>
             <div class="output-body">
               <div class="output-grid">
                 <div class="output-tile"><strong>Listing text</strong><span>Title · 5 bullets · search terms · editable file</span></div>
-                <div class="output-tile"><strong>Listing images</strong><span>7 images · 2000 x 2000 · by purpose</span></div>
-                <div class="output-tile"><strong>A+</strong><span>Standard 970 x 600 · Premium 1464 x 600 + 600 x 450</span></div>
+                <div class="output-tile"><strong>Gallery images</strong><span>7 images · 2000 x 2000 · by purpose</span></div>
+                <div class="output-tile"><strong>Standard A+</strong><span>6 modules · 970 x 600 · Seller Central ready</span></div>
                 <div class="output-tile"><strong>Ready checklist</strong><span>Accuracy · wording · dimensions · upload order</span></div>
               </div>
             </div>
@@ -1229,28 +1229,28 @@ Stainless steel look for modern kitchens</textarea>
               <h3>Package</h3>
               <span class="chip chip-clear">included</span>
             </div>
-            <p class="section-note" style="margin-bottom:12px">Choose what you want Launch Listing to create. You can adjust details below.</p>
+            <p class="section-note" style="margin-bottom:12px">Choose how much of the Amazon page you want Launch Listing to create. You can adjust details below.</p>
             <div class="package-list">
-              <button class="package-row" type="button" data-package-name="Starter Listing Kit">
+              <button class="package-row" type="button" data-package-name="Listing Generator">
                 <div class="package-main">
-                  <div class="row-title">Starter Listing Kit</div>
-                  <div class="row-desc">Title, 5 bullets, search terms and 5 listing images. No A+.</div>
+                  <div class="row-title">Listing Generator</div>
+                  <div class="row-desc">Title, 5 bullets, backend search terms, description, checklist and 7 gallery images. No A+.</div>
                 </div>
-                <div class="row-meta"><span class="chip chip-lock">$19</span><span class="pkg-spec">2000 x 2000</span></div>
+                <div class="row-meta"><span class="chip chip-lock">1,500 Credits</span><span class="pkg-spec">7 images · 2000 x 2000</span></div>
               </button>
-              <button class="package-row active" type="button" data-package-name="Full Listing">
+              <button class="package-row active" type="button" data-package-name="Listing + Standard A+">
                 <div class="package-main">
-                  <div class="row-title">Full Listing</div>
-                  <div class="row-desc">Title, 5 bullets, search terms, 7 listing images and 6 Standard A+ modules.</div>
+                  <div class="row-title">Listing + Standard A+</div>
+                  <div class="row-desc">Everything in Listing Generator, plus 6 Standard A+ modules for a complete Amazon product page.</div>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">$49</span><span class="pkg-spec">A+ 970 x 600</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">A+ 970 x 600</span></div>
               </button>
-              <button class="package-row" type="button" data-package-name="Premium Listing Kit" disabled aria-disabled="true">
+              <button class="package-row" type="button" data-package-name="Listing + Premium A+">
                 <div class="package-main">
-                  <div class="row-title">Premium Listing Kit</div>
-                  <div class="row-desc">Full Listing plus wide A+, mobile-ready crops and text variants.</div>
+                  <div class="row-title">Listing + Premium A+</div>
+                  <div class="row-desc">Everything in Listing Generator, plus wide Premium A+ banners, mobile-ready crops and text variants.</div>
                 </div>
-                <div class="row-meta"><span class="chip chip-lock">Paid</span><span class="pkg-spec">1464 x 600 · 600 x 450</span></div>
+                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">6,000 Credits</span><span class="pkg-spec">1464 x 600 · 600 x 450</span></div>
               </button>
             </div>
 
@@ -1429,7 +1429,7 @@ Stainless steel look for modern kitchens</textarea>
         <div class="panel">
           <div class="plan-intro">
             <div class="plan-intro-top">
-              <h2>Full Listing kit</h2>
+              <h2>Listing + Standard A+</h2>
               <button class="btn btn-outline btn-sm" id="edit-plan" type="button">Edit plan</button>
             </div>
           </div>
@@ -1891,24 +1891,24 @@ Stainless steel look for modern kitchens</textarea>
           <div class="checkout-packages" aria-label="generation bundles">
             <button class="checkout-package" type="button" data-checkout-package="starter">
               <div>
-                <strong>Starter Listing Kit</strong>
-                <span>Title, 5 bullets, search terms and 5 listing images. No A+ modules.</span>
+                <strong>Listing Generator</strong>
+                <span>Title, 5 bullets, backend search terms, description, checklist and 7 gallery images. No A+ modules.</span>
                 <div class="checkout-price">1,500 Credits</div>
               </div>
-              <span class="chip chip-forest">Starter kit</span>
+              <span class="chip chip-forest">Base listing</span>
             </button>
             <button class="checkout-package active" type="button" data-checkout-package="full">
               <div>
-                <strong>Full Listing</strong>
-                <span>Title, bullets, search terms, 7 listing images, 6 Standard A+ modules and ZIP.</span>
+                <strong>Listing + Standard A+</strong>
+                <span>Everything in Listing Generator, plus 6 Standard A+ modules and Seller Central ZIP.</span>
                 <div class="checkout-price">3,000 Credits</div>
               </div>
               <span class="chip chip-clear">Recommended</span>
             </button>
             <button class="checkout-package" type="button" data-checkout-package="premium">
               <div>
-                <strong>Premium Listing Kit</strong>
-                <span>Full Listing plus wide A+, mobile-ready crops and text variants.</span>
+                <strong>Listing + Premium A+</strong>
+                <span>Everything in Listing Generator, plus wide Premium A+, mobile-ready crops and text variants.</span>
                 <div class="checkout-price">6,000 Credits</div>
               </div>
               <span class="chip chip-forest">Wide + mobile</span>

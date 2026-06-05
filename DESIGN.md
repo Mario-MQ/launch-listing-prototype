@@ -90,9 +90,9 @@
    - Ready checklist：product accuracy、benefit wording、image dimensions、upload order、ZIP
 
 6. **Packages**
-   - Starter Listing Kit
-   - Full Listing
-   - Premium Listing Kit
+   - Listing Generator
+   - Listing + Standard A+
+   - Listing + Premium A+
 
 7. **Final CTA**
    - 回到工作区开始生成
@@ -216,7 +216,7 @@ Luckee credits pricing：
 
 - Results 里的 `Unlock final files` 不跳转到 Pricing 页面。
 - 点击后打开当前 listing 的 checkout modal。
-- Modal 里选择 Starter Listing Kit / Full Listing / Premium Listing Kit 对应的 credits bundle。
+- Modal 里选择 Listing Generator / Listing + Standard A+ / Listing + Premium A+ 对应的 credits bundle。
 - 点击 `Use credits and unlock` 后进入 credits confirmation 状态。
 - credits 确认后显示 `Exports unlocked`。
 - 点击 `Back to results` 回到同一个 Results 页面，并原地解锁 text copying、image downloads 和 ZIP。
@@ -266,9 +266,9 @@ MVP 不让用户选择抽象的 Marketing direction。
 
 套餐直接决定输出范围；实际消耗走 Luckee credits：
 
-- Starter Listing Kit：Title、Bullets、Search Terms、5 张商品图，无 A+
-- Full Listing：Title、Bullets、Search Terms、7 张商品图、6 个 Standard A+ 模块
-- Premium Listing Kit：Full Listing 加宽版 A+、移动端裁切、文案多版本
+- Listing Generator：Title、5 bullets、backend search terms、description、checklist、7 张商品组图，无 A+
+- Listing + Standard A+：Listing Generator 全部内容，加 6 个 Standard A+ 模块
+- Listing + Premium A+：Listing Generator 全部内容，加宽版 Premium A+、移动端裁切、文案多版本
 
 如需自定义范围，放在折叠的 Customize 里。
 
