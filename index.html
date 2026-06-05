@@ -532,6 +532,8 @@
       appearance:none;
     }
     .package-row:hover { background:var(--forest-050); transform:translateY(-1px); }
+    .package-row:disabled { cursor:not-allowed; opacity:.58; transform:none; }
+    .package-row:disabled:hover { background:var(--card); transform:none; }
     .package-row.active .row-title { color:var(--forest-700); }
     .package-row.active { background:var(--forest-050); border-color:var(--forest-600); box-shadow:0 0 0 1px var(--forest-600) inset, 0 12px 32px -24px rgba(28,43,29,.46); }
     .package-row .row-meta { width:100%; justify-content:space-between; gap:6px; }
@@ -778,7 +780,6 @@
                   <select class="hero-start-select" id="hero-package" aria-label="package">
                     <option>Full Listing</option>
                     <option>Starter Listing Kit</option>
-                    <option>Premium Listing Kit</option>
                   </select>
                 </label>
                 <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
@@ -1059,12 +1060,12 @@ Stainless steel look for modern kitchens</textarea>
                 </div>
                 <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">$49</span><span class="pkg-spec">A+ 970 x 600</span></div>
               </button>
-              <button class="package-row" type="button" data-package-name="Premium Listing Kit">
+              <button class="package-row" type="button" data-package-name="Premium Listing Kit" disabled aria-disabled="true">
                 <div class="package-main">
                   <div class="row-title">Premium Listing Kit</div>
                   <div class="row-desc">Full Listing plus wide A+, mobile-ready crops and text variants.</div>
                 </div>
-                <div class="row-meta"><span class="chip chip-lock">$89</span><span class="pkg-spec">1464 x 600 · 600 x 450</span></div>
+                <div class="row-meta"><span class="chip chip-lock">Paid upgrade</span><span class="pkg-spec">1464 x 600 · 600 x 450</span></div>
               </button>
             </div>
 
@@ -1987,6 +1988,7 @@ Stainless steel look for modern kitchens</textarea>
 
       document.querySelectorAll('.package-row').forEach(button => {
         button.addEventListener('click', () => {
+          if (button.disabled) return;
           document.querySelectorAll('.package-row').forEach(row => row.classList.remove('active'));
           button.classList.add('active');
         });
