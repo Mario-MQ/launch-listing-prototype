@@ -249,6 +249,24 @@
     .shot-line.gold { background:rgba(232,201,106,.58); }
     .shot-product { width:70px; height:96px; border-radius:20px; margin:8px auto 0; background:linear-gradient(170deg,#fff,#e8ded2 62%,#cfb55e); box-shadow:0 18px 38px -24px rgba(46,46,46,.7); position:relative; }
     .shot-product::before { content:""; position:absolute; width:24px; height:44px; left:23px; top:-24px; border-radius:var(--r-pill); background:linear-gradient(180deg,var(--forest-700),#d1b957); }
+    .qa-stage { position:relative; z-index:1; margin:14px 18px 18px; display:grid; gap:12px; }
+    .qa-head { display:grid; grid-template-columns:46px minmax(0,1fr) auto; gap:12px; align-items:center; padding:12px; border:1px solid rgba(62,91,63,.10); border-radius:18px; background:rgba(255,255,255,.72); }
+    .qa-mark { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(145deg,#fff,#edf4ed); color:var(--forest-700); font-family:var(--serif); font-size:1.3rem; box-shadow:0 14px 32px -26px rgba(28,43,29,.7); }
+    .qa-name { color:var(--forest-800); font-size:.82rem; font-weight:900; line-height:1.2; }
+    .qa-meta { margin-top:3px; color:var(--muted); font-size:.66rem; font-weight:700; }
+    .qa-pill { border:1px solid rgba(201,168,76,.38); border-radius:var(--r-pill); background:rgba(232,201,106,.18); color:#80680e; padding:5px 9px; font-size:.62rem; font-weight:900; white-space:nowrap; }
+    .qa-question { padding:14px 16px; border-radius:18px; background:#fff; border:1px solid var(--border-soft); color:var(--neutral-900); font-size:.9rem; line-height:1.42; box-shadow:0 16px 36px -30px rgba(28,43,29,.45); }
+    .qa-answer { padding:13px 15px; border-radius:18px; border:1px solid rgba(62,91,63,.14); background:rgba(237,244,237,.7); color:var(--neutral-700); font-size:.76rem; line-height:1.48; }
+    .qa-answer.warning { border-color:rgba(220,40,40,.28); background:rgba(220,40,40,.08); }
+    .qa-answer strong { display:inline-flex; margin-right:6px; color:var(--forest-800); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; }
+    .qa-answer.warning strong { color:#b43333; }
+    .qa-route { display:flex; flex-wrap:wrap; gap:7px; }
+    .qa-route span { display:inline-flex; align-items:center; min-height:26px; border:1px solid rgba(62,91,63,.14); border-radius:var(--r-pill); background:rgba(255,255,255,.78); color:var(--forest-700); padding:5px 9px; font-size:.66rem; font-weight:900; }
+    .qa-stack { display:grid; gap:9px; }
+    .qa-line { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:10px 12px; border-radius:15px; border:1px solid rgba(62,91,63,.10); background:rgba(255,255,255,.76); }
+    .qa-line span:first-child { color:var(--neutral-700); font-size:.74rem; line-height:1.35; }
+    .qa-status { border-radius:var(--r-pill); background:var(--forest-050); color:var(--forest-700); padding:4px 8px; font-size:.6rem; font-weight:900; white-space:nowrap; }
+    .qa-status.gold { background:rgba(232,201,106,.2); color:#80680e; }
     .feature-content { padding:4px 8px; }
     .feature-k { display:inline-flex; margin-bottom:16px; color:var(--forest-600); font-family:var(--mono); font-size:.74rem; font-weight:800; letter-spacing:.08em; }
     .feature-content h3 { font-family:var(--serif); font-size:clamp(1.55rem,2.6vw,2.2rem); font-weight:400; line-height:1.08; color:var(--neutral-900); margin-bottom:12px; }
@@ -833,6 +851,12 @@
       .intent-path span { font-size:.55rem; padding-inline:6px; }
       .detail-callout { width:126px; right:10px; top:12px; }
       .kit-gallery { inset:12px; gap:8px; }
+      .qa-stage { margin:12px; }
+      .qa-head { grid-template-columns:42px minmax(0,1fr); }
+      .qa-mark { width:42px; height:42px; }
+      .qa-pill { grid-column:1 / -1; width:max-content; }
+      .qa-line { grid-template-columns:1fr; align-items:start; }
+      .qa-status { width:max-content; }
       .feature-content { padding:0 2px 4px; }
       .feature-entry .btn { width:100%; }
       .shot-split { grid-template-columns:1fr; }
@@ -1003,17 +1027,19 @@
         <div class="feature-showcase">
           <article class="feature-panel strong">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/intent-map</div></div>
-              <div class="product-stage scene-kitchen">
-                <div class="window"></div>
-                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
-                <span class="ingredient left"></span><span class="ingredient right"></span>
-                <div class="intent-path"><span>Shopper intent</span><span>Agent proof</span><span>Listing answer</span></div>
-              </div>
-              <div class="shot-body">
-                <div class="shot-row"><span class="shot-label">Human</span><span class="shot-copy">Will it fit my routine, kitchen and ingredients?</span></div>
-                <div class="shot-row"><span class="shot-label">Agent</span><span class="shot-copy">Can it answer compatibility, use case and proof questions?</span></div>
-                <div class="shot-chipline"><span>Title angle</span><span>Bullet proof</span><span>A+ answer</span><span class="shot-pill gold">Ready</span></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/dp/B0G1MJWK3Z · shopper question</div></div>
+              <div class="qa-stage">
+                <div class="qa-head">
+                  <div class="qa-mark">L</div>
+                  <div>
+                    <div class="qa-name">Rechargeable Salt and Pepper Grinder Set</div>
+                    <div class="qa-meta">Amazon shopping assistant simulation</div>
+                  </div>
+                  <span class="qa-pill">AI answer</span>
+                </div>
+                <div class="qa-question">Will this work for coarse sea salt?</div>
+                <div class="qa-answer warning"><strong>Needs proof</strong>The listing should confirm ceramic core, coarseness range and salt compatibility before this can be answered confidently.</div>
+                <div class="qa-route"><span>Title proof</span><span>Bullet answer</span><span>Image 4</span><span>A+ module</span></div>
               </div>
             </div>
             <div class="feature-content">
@@ -1071,17 +1097,23 @@
           </article>
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/buyer-questions</div></div>
-              <div class="product-stage scene-kitchen">
-                <div class="window"></div>
-                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
-                <span class="ingredient right"></span>
-                <div class="detail-callout"><span>Coarse sea salt?</span><span>Compatibility proof</span></div>
-              </div>
-              <div class="shot-body">
-                <div class="shot-row"><span class="shot-label">Question</span><span class="shot-copy">Will this grinder work for coarse sea salt?</span></div>
-                <div class="shot-row"><span class="shot-label">Answer</span><span class="shot-copy">Add ceramic core, coarseness range and salt compatibility.</span></div>
-                <div class="shot-chipline"><span>Size</span><span>Cleaning</span><span>Compatibility</span><span>Trust</span></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/questions · coverage check</div></div>
+              <div class="qa-stage">
+                <div class="qa-head">
+                  <div class="qa-mark">?</div>
+                  <div>
+                    <div class="qa-name">Amazon shopper questions</div>
+                    <div class="qa-meta">Coverage before export</div>
+                  </div>
+                  <span class="qa-pill">4 gaps</span>
+                </div>
+                <div class="qa-stack">
+                  <div class="qa-line"><span>Is it rechargeable?</span><span class="qa-status">Bullet</span></div>
+                  <div class="qa-line"><span>Can I adjust coarseness?</span><span class="qa-status gold">Image</span></div>
+                  <div class="qa-line"><span>How do I clean it?</span><span class="qa-status">A+</span></div>
+                  <div class="qa-line"><span>Is it good for gifting?</span><span class="qa-status gold">Trust</span></div>
+                </div>
+                <div class="qa-answer"><strong>Coverage plan</strong>Common doubts are routed into bullets, image sequence and A+ modules before generation.</div>
               </div>
             </div>
             <div class="feature-content">
@@ -1174,8 +1206,8 @@
             <h2>Everything needed to prepare the listing.</h2>
             <div class="line-list" style="margin-top:28px">
               <div class="line-item"><div class="line-num">T</div><div><strong>Listing text</strong><span>Title, 5 bullets, backend search terms and an editable text file.</span></div></div>
-              <div class="line-item"><div class="line-num">I</div><div><strong>Listing image set</strong><span>7 listing images at 1000 x 1000, organized by shopping purpose.</span></div></div>
-              <div class="line-item"><div class="line-num">A+</div><div><strong>A+ package</strong><span>Standard A+ supports 1K output. Premium supports 4K banners and mobile-ready crops.</span></div></div>
+              <div class="line-item"><div class="line-num">I</div><div><strong>Listing image set</strong><span>7 listing images at 1000 x 1000 · 1K, organized by shopping purpose.</span></div></div>
+              <div class="line-item"><div class="line-num">A+</div><div><strong>A+ package</strong><span>Standard A+ supports 1000 px wide · 1K. Premium supports 4K banners and mobile-ready crops.</span></div></div>
               <div class="line-item"><div class="line-num">R</div><div><strong>Ready checklist</strong><span>Product accuracy, wording, dimensions, upload order and ZIP download.</span></div></div>
             </div>
           </div>
@@ -1184,8 +1216,8 @@
             <div class="output-body">
               <div class="output-grid">
                 <div class="output-tile"><strong>Listing text</strong><span>Title · 5 bullets · search terms · editable file</span></div>
-                <div class="output-tile"><strong>Gallery images</strong><span>7 images · 1000 x 1000 · by purpose</span></div>
-                <div class="output-tile"><strong>Standard A+</strong><span>6 modules · 1K output · Seller Central ready</span></div>
+                <div class="output-tile"><strong>Gallery images</strong><span>7 images · 1000 x 1000 · 1K · by purpose</span></div>
+                <div class="output-tile"><strong>Standard A+</strong><span>6 modules · 1000 px wide · 1K · Seller Central ready</span></div>
                 <div class="output-tile"><strong>Ready checklist</strong><span>Accuracy · wording · dimensions · upload order</span></div>
               </div>
             </div>
@@ -1338,13 +1370,13 @@ Stainless steel look for modern kitchens</textarea>
                   <div class="row-title">Listing Generator</div>
                   <div class="package-summary">Full basic listing — copy + 7 gallery images.</div>
                   <ul class="package-features">
-                    <li>7 gallery images (1000 x 1000)</li>
+                    <li>7 gallery images (1000 x 1000 · 1K)</li>
                     <li>SEO title + 5 bullets</li>
                     <li>Description + backend search terms</li>
                     <li>Checklist for Seller Central upload</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-lock">1,500 Credits</span><span class="pkg-spec">1K output</span></div>
+                <div class="row-meta"><span class="chip chip-lock">1,500 Credits</span><span class="pkg-spec">1000 x 1000 · 1K</span></div>
               </button>
               <button class="package-row active" type="button" data-package-name="Listing + Standard A+">
                 <div class="package-main">
@@ -1352,12 +1384,12 @@ Stainless steel look for modern kitchens</textarea>
                   <div class="package-summary">Listing Generator plus standard A+ modules.</div>
                   <ul class="package-features">
                     <li>Everything in Listing Generator</li>
-                    <li>6 Standard A+ modules (1000 px wide)</li>
+                    <li>6 Standard A+ modules (1000 px wide · 1K)</li>
                     <li>Hero, features, lifestyle and trust modules</li>
                     <li>Seller Central ready ZIP</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">1K output</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">1000 px wide · 1K</span></div>
               </button>
               <button class="package-row premium" type="button" data-package-name="Listing + Premium A+">
                 <div class="package-main">
@@ -1365,13 +1397,13 @@ Stainless steel look for modern kitchens</textarea>
                   <div class="package-summary">High-credit package for premium launch pages.</div>
                   <ul class="package-features">
                     <li>Everything in Listing Generator</li>
-                    <li>Premium A+ banners up to 4K</li>
+                    <li>Premium A+ banners (up to 4K)</li>
                     <li>Desktop + mobile-ready crops</li>
                     <li>Brand storytelling and text variants</li>
                   </ul>
                   <span class="package-note">Requires a paid plan or enough Luckee credits.</span>
                 </div>
-                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">12,000 Credits</span><span class="pkg-spec">4K output</span></div>
+                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">12,000 Credits</span><span class="pkg-spec">Premium A+ · 4K</span></div>
               </button>
             </div>
 
@@ -1471,7 +1503,7 @@ Stainless steel look for modern kitchens</textarea>
               </div>
               <div class="scope-list">
                 <div class="scope-row"><div><strong>Detected modules</strong><span>3 A+ modules detected. Brand story and comparison structure are missing or incomplete.</span></div><span class="chip chip-warn">Needs work</span></div>
-                <div class="scope-row"><div><strong>Recommended A+ set</strong><span>6 Standard A+ modules at 1K output, created after plan confirmation.</span></div><span class="chip chip-clear">A+ plan</span></div>
+                <div class="scope-row"><div><strong>Recommended A+ set</strong><span>6 Standard A+ modules at 1000 px wide · 1K, created after plan confirmation.</span></div><span class="chip chip-clear">A+ plan</span></div>
               </div>
             </div>
           </div>
@@ -1595,12 +1627,12 @@ Stainless steel look for modern kitchens</textarea>
           </div>
 
           <div class="plan-block">
-            <h3>Listing image plan · 1000 x 1000</h3>
+            <h3>Listing image plan · 1000 x 1000 · 1K</h3>
             <div class="plan-list" id="gallery-plan"></div>
           </div>
 
           <div class="plan-block">
-            <h3>A+ plan · Standard 1K output</h3>
+            <h3>A+ plan · Standard 1000 px wide · 1K</h3>
             <div class="plan-list" id="aplus-plan"></div>
           </div>
 
@@ -1719,24 +1751,24 @@ Stainless steel look for modern kitchens</textarea>
           <div class="image-section">
             <h3>Listing images</h3>
             <div class="image-grid">
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>01 Main image</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>02 Core benefit</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>03 Feature proof</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>04 Lifestyle</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>05 Size / spec</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>06 Package</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>07 Gift / trust</strong><span>1000 x 1000 · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>01 Main image</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>02 Core benefit</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>03 Feature proof</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>04 Lifestyle</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>05 Size / spec</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>06 Package</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>07 Gift / trust</strong><span>1000 x 1000 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
             </div>
           </div>
           <div class="image-section">
             <h3>A+ images</h3>
             <div class="image-grid">
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A1 Hero</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A2 Key benefits</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A3 How to use</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A4 Feature proof</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A5 Package / care</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A6 Brand trust</strong><span>1K output · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A1 Hero</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A2 Key benefits</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A3 How to use</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A4 Feature proof</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A5 Package / care</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A6 Brand trust</strong><span>1000 px wide · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
             </div>
           </div>
         </div>
@@ -2015,14 +2047,14 @@ Stainless steel look for modern kitchens</textarea>
                 <strong>Listing Generator</strong>
                 <span>Full basic listing — copy + 7 gallery images.</span>
                 <ul class="checkout-features">
-                  <li>7 gallery images (1000 x 1000)</li>
+                  <li>7 gallery images (1000 x 1000 · 1K)</li>
                   <li>SEO title + 5 bullets</li>
                   <li>Description + backend search terms</li>
                   <li>Seller Central checklist</li>
                 </ul>
                 <div class="checkout-price">1,500 Credits</div>
               </div>
-              <span class="chip chip-forest">1K output</span>
+              <span class="chip chip-forest">1000 x 1000 · 1K</span>
             </button>
             <button class="checkout-package active" type="button" data-checkout-package="full">
               <div>
@@ -2030,13 +2062,13 @@ Stainless steel look for modern kitchens</textarea>
                 <span>Listing Generator plus standard A+ modules.</span>
                 <ul class="checkout-features">
                   <li>Everything in Listing Generator</li>
-                  <li>6 Standard A+ modules (1000 px wide)</li>
+                  <li>6 Standard A+ modules (1000 px wide · 1K)</li>
                   <li>Hero, features, lifestyle and trust</li>
                   <li>Seller Central ready ZIP</li>
                 </ul>
                 <div class="checkout-price">3,000 Credits</div>
               </div>
-              <span class="chip chip-clear">Recommended · 1K</span>
+              <span class="chip chip-clear">1000 px wide · 1K</span>
             </button>
             <button class="checkout-package" type="button" data-checkout-package="premium">
               <div>
@@ -2044,7 +2076,7 @@ Stainless steel look for modern kitchens</textarea>
                 <span>High-credit package for premium launch pages.</span>
                 <ul class="checkout-features">
                   <li>Everything in Listing Generator</li>
-                  <li>Premium A+ banners up to 4K</li>
+                  <li>Premium A+ banners (up to 4K)</li>
                   <li>Desktop + mobile-ready crops</li>
                   <li>Brand storytelling and text variants</li>
                 </ul>

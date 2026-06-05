@@ -65,16 +65,17 @@
 2. **Why**
    - 每个卖点配一个商品案例展示图和一个引导使用入口
    - 使用同一个盐胡椒研磨器案例贯穿，避免抽象 UI mockup
-   - Map human and agent intent：商品场景 + human shopper intent / shopping-agent answer intent / listing answer 路径
+   - Map human and agent intent：Amazon shopper question simulation + needs proof answer + title / bullet / image / A+ routing
    - Plan before creating：商品场景 + title / image / A+ 的生成前规划
    - Complete package：7 张商品组图 + A+ 模块缩略图 + title、bullets、search terms、checklist
-   - Answer buyer doubts：商品场景 + buyer question 到 listing answer 的覆盖路径
+   - Answer buyer doubts：Amazon shopper questions coverage simulation，展示多个常见疑虑如何进入 bullets / image / A+
    - Position real differences：产品细节特写 + generic claims 到 specific product proof 的差异定位
 
 3. **Differentiation**
    - 标题：Beautiful images are not enough.
    - 对比 Typical image generator 和 Launch Listing
    - 强调我们先做 product facts、human + agent intent、buyer doubts、proof routing，再生成 copy / gallery images / A+
+   - 页面只表达 shopping assistant / shopper question simulation，不承诺官方 Alexa 或 Amazon 一定这样展示
 
 4. **How it works**
    - Understand
@@ -85,8 +86,8 @@
 
 5. **What you get**
    - Listing text：Title、5 bullets、backend search terms、editable text file
-   - Listing images：7 images、1000 x 1000、briefs/prompts
-   - A+：Standard 1K output；Premium 4K banners + mobile-ready crops
+   - Listing images：7 images、1000 x 1000 · 1K、briefs/prompts
+   - A+：Standard 1000 px wide · 1K；Premium A+ · 4K + mobile-ready crops
    - Ready checklist：product accuracy、benefit wording、image dimensions、upload order、ZIP
 
 6. **Packages**
@@ -266,9 +267,9 @@ MVP 不让用户选择抽象的 Marketing direction。
 
 套餐直接决定输出范围；实际消耗走 Luckee credits：
 
-- Listing Generator：Title、5 bullets、backend search terms、description、checklist、7 张商品组图，1K 输出，无 A+
-- Listing + Standard A+：Listing Generator 全部内容，加 6 个 Standard A+ 模块，1K 输出，推荐默认
-- Listing + Premium A+：Listing Generator 全部内容，加 Premium A+、4K 输出、移动端裁切、文案多版本；需要更高 credits 或付费计划
+- Listing Generator：Title、5 bullets、backend search terms、description、checklist、7 张商品组图（1000 x 1000 · 1K），无 A+
+- Listing + Standard A+：Listing Generator 全部内容，加 6 个 Standard A+ 模块（1000 px wide · 1K），推荐默认
+- Listing + Premium A+：Listing Generator 全部内容，加 Premium A+（4K）、移动端裁切、文案多版本；需要更高 credits 或付费计划
 
 如需自定义范围，放在折叠的 Customize 里。
 
