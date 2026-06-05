@@ -63,18 +63,18 @@
    - 右侧展示生成包 mockup
 
 2. **Why**
-   - 每个卖点配一个产品内展示图和一个引导使用入口
-   - Map human and agent intent：展示 human shopper intent 和 shopping-agent answer intent 如何映射到 listing 内容
-   - Plan before creating：展示 title / image / A+ 的生成前规划
-   - Complete package：展示 title、bullets、search terms、images、A+、checklist 的输出包
-   - Answer buyer doubts：展示 buyer question 到 listing answer 的覆盖路径
-   - Position real differences：展示 generic claims 到 specific product proof 的差异定位
+   - 每个卖点配一个商品案例展示图和一个引导使用入口
+   - 使用同一个盐胡椒研磨器案例贯穿，避免抽象 UI mockup
+   - Map human and agent intent：商品场景 + human shopper intent / shopping-agent answer intent / listing answer 路径
+   - Plan before creating：商品场景 + title / image / A+ 的生成前规划
+   - Complete package：7 张商品组图 + A+ 模块缩略图 + title、bullets、search terms、checklist
+   - Answer buyer doubts：商品场景 + buyer question 到 listing answer 的覆盖路径
+   - Position real differences：产品细节特写 + generic claims 到 specific product proof 的差异定位
 
-3. **Buyer questions**
-   - Product identity
-   - Buyer question coverage
-   - Wording review
-   - Module mapping
+3. **Differentiation**
+   - 标题：Beautiful images are not enough.
+   - 对比 Typical image generator 和 Launch Listing
+   - 强调我们先做 product facts、human + agent intent、buyer doubts、proof routing，再生成 copy / gallery images / A+
 
 4. **How it works**
    - Understand

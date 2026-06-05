@@ -201,13 +201,40 @@
     .feature-panel.reverse { grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); }
     .feature-panel.reverse .feature-visual { order:2; }
     .feature-panel.strong { border-color:rgba(62,91,63,.22); box-shadow:0 1px 2px rgba(28,43,29,.05), 0 22px 70px -42px rgba(62,91,63,.5); }
-    .feature-visual { min-height:232px; border:1px solid var(--border-soft); border-radius:22px; background:linear-gradient(145deg,#fff,var(--oat-100)); overflow:hidden; position:relative; }
+    .feature-visual { min-height:312px; border:1px solid var(--border-soft); border-radius:22px; background:linear-gradient(145deg,#fff,var(--oat-100)); overflow:hidden; position:relative; }
     .feature-visual::before { content:""; position:absolute; inset:0; background:radial-gradient(58% 72% at 20% 0%, rgba(217,232,218,.72), transparent 62%), radial-gradient(44% 60% at 100% 100%, rgba(232,201,106,.18), transparent 64%); pointer-events:none; }
     .shot-chrome { position:relative; z-index:1; height:42px; display:flex; align-items:center; gap:7px; padding:0 14px; border-bottom:1px solid var(--border-soft); background:rgba(255,255,255,.64); }
     .shot-chrome i { width:9px; height:9px; border-radius:50%; display:block; }
     .shot-chrome i:nth-child(1){ background:#e06c5e; } .shot-chrome i:nth-child(2){ background:#e0bd5e; } .shot-chrome i:nth-child(3){ background:#7fae80; }
     .shot-url { margin-left:7px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--forest-700); font-family:var(--mono); font-size:.66rem; font-weight:700; }
-    .shot-body { position:relative; z-index:1; padding:18px; display:grid; gap:12px; }
+    .product-stage { position:relative; z-index:1; min-height:160px; margin:14px 18px 0; border:1px solid rgba(62,91,63,.10); border-radius:18px; overflow:hidden; background:linear-gradient(145deg,#f7faf6,#fff8ed); box-shadow:0 20px 54px -38px rgba(28,43,29,.45); }
+    .product-stage::before { content:""; position:absolute; left:-12%; right:-12%; bottom:-30%; height:62%; background:radial-gradient(70% 74% at 50% 0%, rgba(255,255,255,.95), rgba(217,232,218,.62) 58%, transparent 72%); }
+    .product-stage::after { content:""; position:absolute; left:0; right:0; bottom:0; height:38%; background:linear-gradient(180deg,transparent,rgba(46,46,46,.08)); }
+    .scene-kitchen { background:linear-gradient(145deg,#eef6f4 0%,#fff8eb 54%,#f1e4d5 100%); }
+    .scene-kitchen .window { position:absolute; inset:0 0 auto 0; height:54%; background:linear-gradient(180deg,rgba(146,188,206,.32),rgba(255,255,255,.12)); }
+    .scene-kitchen .window::before,.scene-kitchen .window::after { content:""; position:absolute; top:0; bottom:0; width:1px; background:rgba(62,91,63,.13); }
+    .scene-kitchen .window::before { left:34%; } .scene-kitchen .window::after { right:33%; }
+    .product-pair { position:absolute; left:50%; bottom:22px; width:156px; height:112px; transform:translateX(-50%); z-index:2; }
+    .grinder { position:absolute; bottom:0; width:44px; height:92px; border-radius:20px 20px 16px 16px; background:linear-gradient(165deg,#fff,#ebe0d4 56%,#c4a85a); box-shadow:0 22px 38px -24px rgba(46,46,46,.78); }
+    .grinder::before { content:""; position:absolute; left:12px; top:-24px; width:20px; height:46px; border-radius:999px; background:linear-gradient(180deg,#405c41,#d0b756); box-shadow:inset 0 8px 12px rgba(255,255,255,.22); }
+    .grinder::after { content:""; position:absolute; left:12px; bottom:18px; width:20px; height:28px; border-radius:999px; background:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.5); }
+    .grinder.one { left:34px; transform:rotate(-5deg); }
+    .grinder.two { right:34px; transform:rotate(5deg); background:linear-gradient(165deg,#fdfdfb,#dfe6df 50%,#4f6a50); }
+    .ingredient { position:absolute; bottom:18px; width:10px; height:10px; border-radius:50%; background:#d9c15d; z-index:3; box-shadow:18px 5px 0 #6d4e32, 34px 1px 0 #cbb149, -24px 8px 0 #725437, -38px 2px 0 #ddc563; }
+    .ingredient.left { left:42px; } .ingredient.right { right:52px; }
+    .intent-path { position:absolute; z-index:4; left:18px; right:18px; bottom:14px; display:flex; justify-content:space-between; gap:8px; }
+    .intent-path span { min-width:0; border:1px solid rgba(62,91,63,.16); border-radius:var(--r-pill); padding:5px 8px; background:rgba(255,255,255,.72); color:var(--forest-700); font-size:.62rem; font-weight:800; white-space:nowrap; }
+    .kit-gallery { position:absolute; z-index:3; inset:18px; display:grid; grid-template-columns:1.15fr 1fr; gap:12px; }
+    .kit-main { border-radius:16px; background:linear-gradient(145deg,#fff,#edf4ed); position:relative; overflow:hidden; border:1px solid rgba(62,91,63,.1); }
+    .kit-main .product-pair { transform:translateX(-50%) scale(.82); bottom:15px; }
+    .kit-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .kit-thumb,.kit-banner { border:1px solid rgba(62,91,63,.1); border-radius:12px; background:linear-gradient(145deg,#fff8ed,#edf4ed); position:relative; overflow:hidden; }
+    .kit-thumb::before { content:""; position:absolute; width:30px; height:48px; left:50%; top:50%; border-radius:14px; transform:translate(-50%,-38%); background:linear-gradient(165deg,#fff,#d7c281); box-shadow:0 16px 28px -18px rgba(46,46,46,.7); }
+    .kit-banner { grid-column:1 / -1; min-height:42px; background:linear-gradient(120deg,#eff5f0,#fff2d0); }
+    .kit-banner::before { content:"A+"; position:absolute; left:12px; top:10px; color:var(--forest-700); font-weight:900; font-size:.78rem; }
+    .detail-callout { position:absolute; z-index:4; display:grid; gap:7px; right:16px; top:18px; width:138px; }
+    .detail-callout span { border-radius:12px; padding:8px 9px; background:rgba(255,255,255,.78); border:1px solid rgba(62,91,63,.13); color:var(--forest-800); font-size:.66rem; font-weight:800; box-shadow:0 12px 28px -24px rgba(28,43,29,.55); }
+    .shot-body { position:relative; z-index:2; margin:-18px 18px 18px; padding:0; display:grid; gap:10px; }
     .shot-row { display:grid; grid-template-columns:86px minmax(0,1fr); gap:12px; align-items:center; padding:11px 12px; border:1px solid rgba(62,91,63,.10); border-radius:15px; background:rgba(255,255,255,.68); }
     .shot-label { color:var(--forest-700); font-family:var(--mono); font-size:.64rem; font-weight:800; text-transform:uppercase; }
     .shot-copy { color:var(--neutral-700); font-size:.76rem; line-height:1.4; }
@@ -228,6 +255,17 @@
     .feature-content p { color:var(--muted); font-size:.94rem; line-height:1.65; max-width:48ch; }
     .feature-entry { margin-top:20px; }
     .feature-entry .btn { min-width:178px; justify-content:center; }
+    .diff-frame { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:46px; align-items:start; }
+    .diff-copy h2 { margin-bottom:16px; color:var(--oat-100); }
+    .diff-copy p { color:var(--forest-100); font-size:1rem; line-height:1.7; max-width:50ch; }
+    .diff-compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .diff-card { border:1px solid rgba(217,232,218,.14); border-radius:24px; background:rgba(255,255,255,.06); padding:22px; box-shadow:0 22px 70px -44px rgba(0,0,0,.65); }
+    .diff-card.good { background:rgba(237,244,237,.10); border-color:rgba(232,201,106,.28); }
+    .diff-card h3 { color:var(--oat-100); font-size:1.02rem; margin-bottom:15px; }
+    .diff-card ul { list-style:none; display:grid; gap:12px; padding:0; margin:0; color:var(--forest-100); font-size:.84rem; line-height:1.5; }
+    .diff-card li { display:grid; grid-template-columns:20px minmax(0,1fr); gap:9px; align-items:start; }
+    .diff-card li::before { content:""; width:18px; height:18px; border-radius:50%; margin-top:1px; background:rgba(217,232,218,.18); border:1px solid rgba(217,232,218,.2); }
+    .diff-card.good li::before { content:"✓"; display:grid; place-items:center; background:#E8C96A; border-color:#E8C96A; color:var(--forest-900); font-size:.7rem; font-weight:900; }
     .split { display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:54px; align-items:center; }
     .line-list { border-top:1px solid var(--border-soft); }
     .line-item { display:grid; grid-template-columns:46px minmax(0,1fr); gap:16px; padding:18px 0; border-bottom:1px solid var(--border-soft); }
@@ -778,11 +816,19 @@
       .hero-actions .btn { width:100%; }
       .hero-start-head { align-items:flex-start; flex-direction:column; }
       .feature-panel { padding:16px; border-radius:22px; gap:18px; }
-      .feature-visual { min-height:220px; border-radius:18px; }
+      .feature-visual { min-height:330px; border-radius:18px; }
+      .product-stage { min-height:150px; margin:12px 12px 0; }
+      .shot-body { margin:-14px 12px 14px; }
+      .intent-path { left:10px; right:10px; gap:5px; }
+      .intent-path span { font-size:.55rem; padding-inline:6px; }
+      .detail-callout { width:126px; right:10px; top:12px; }
+      .kit-gallery { inset:12px; gap:8px; }
       .feature-content { padding:0 2px 4px; }
       .feature-entry .btn { width:100%; }
       .shot-split { grid-template-columns:1fr; }
       .shot-row { grid-template-columns:1fr; gap:5px; }
+      .diff-frame,.diff-compare { grid-template-columns:1fr; gap:18px; }
+      .diff-card { padding:18px; border-radius:20px; }
       .assistant-head { grid-template-columns:52px minmax(0,1fr); }
       .assistant-pill { grid-column:1 / -1; width:max-content; }
       .question-bubble { margin-left:0; }
@@ -945,6 +991,12 @@
           <article class="feature-panel strong">
             <div class="feature-visual" aria-hidden="true">
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/intent-map</div></div>
+              <div class="product-stage scene-kitchen">
+                <div class="window"></div>
+                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                <span class="ingredient left"></span><span class="ingredient right"></span>
+                <div class="intent-path"><span>Shopper intent</span><span>Agent proof</span><span>Listing answer</span></div>
+              </div>
               <div class="shot-body">
                 <div class="shot-row"><span class="shot-label">Human</span><span class="shot-copy">Will it fit my routine, kitchen and ingredients?</span></div>
                 <div class="shot-row"><span class="shot-label">Agent</span><span class="shot-copy">Can it answer compatibility, use case and proof questions?</span></div>
@@ -961,6 +1013,12 @@
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/launch-plan</div></div>
+              <div class="product-stage scene-kitchen">
+                <div class="window"></div>
+                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                <span class="ingredient left"></span>
+                <div class="detail-callout"><span>Title angle</span><span>Image sequence</span><span>A+ module</span></div>
+              </div>
               <div class="shot-body">
                 <div class="shot-row"><span class="shot-label">Title</span><span class="shot-copy">Lead with rechargeable automatic grinding.</span></div>
                 <div class="shot-row"><span class="shot-label">Image 4</span><span class="shot-copy">Show coarse-to-fine range with sea salt.</span></div>
@@ -977,6 +1035,12 @@
           <article class="feature-panel">
             <div class="feature-visual" aria-hidden="true">
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/output-kit</div></div>
+              <div class="product-stage">
+                <div class="kit-gallery">
+                  <div class="kit-main"><div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div></div>
+                  <div class="kit-grid"><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-banner"></span></div>
+                </div>
+              </div>
               <div class="shot-body">
                 <div class="shot-split">
                   <div class="shot-box"><strong>Listing text</strong><div class="shot-line"></div><div class="shot-line short"></div><div class="shot-line gold"></div></div>
@@ -995,6 +1059,12 @@
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/buyer-questions</div></div>
+              <div class="product-stage scene-kitchen">
+                <div class="window"></div>
+                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                <span class="ingredient right"></span>
+                <div class="detail-callout"><span>Coarse sea salt?</span><span>Compatibility proof</span></div>
+              </div>
               <div class="shot-body">
                 <div class="shot-row"><span class="shot-label">Question</span><span class="shot-copy">Will this grinder work for coarse sea salt?</span></div>
                 <div class="shot-row"><span class="shot-label">Answer</span><span class="shot-copy">Add ceramic core, coarseness range and salt compatibility.</span></div>
@@ -1011,6 +1081,11 @@
           <article class="feature-panel">
             <div class="feature-visual" aria-hidden="true">
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/difference-map</div></div>
+              <div class="product-stage">
+                <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                <span class="ingredient left"></span><span class="ingredient right"></span>
+                <div class="detail-callout"><span>USB-C base</span><span>Ceramic core</span><span>Warm LED view</span></div>
+              </div>
               <div class="shot-body">
                 <div class="shot-row"><span class="shot-label">Generic</span><span class="shot-copy">Premium, easy to use, modern design.</span></div>
                 <div class="shot-row"><span class="shot-label">Specific</span><span class="shot-copy">USB-C base, LED seasoning view, adjustable ceramic core.</span></div>
@@ -1028,19 +1103,33 @@
       </div>
     </section>
 
-    <section class="band band-white landing-section" id="ai-ready">
+    <section class="band band-dark landing-section" id="ai-ready">
       <div class="container">
-        <div class="split">
-          <div>
-            <span class="eyebrow">Built for Amazon shoppers</span>
-            <h2>Built around the questions that block the purchase.</h2>
-            <p class="lede">Launch Listing turns product facts and competitive differences into the answers shoppers need before they buy.</p>
+        <div class="diff-frame">
+          <div class="diff-copy">
+            <span class="hero-eyebrow"><span class="pulse"></span>Why it is different</span>
+            <h2>Beautiful images are not enough.</h2>
+            <p>Launch Listing plans what the page needs to answer before it generates copy, gallery images or A+ modules.</p>
           </div>
-          <div class="line-list">
-            <div class="line-item"><div class="line-num">1</div><div><strong>Product identity</strong><span>Make product type, use case, material, fit, size and package contents explicit.</span></div></div>
-            <div class="line-item"><div class="line-num">2</div><div><strong>Comparison logic</strong><span>Show what is different from cheaper, older or lookalike alternatives.</span></div></div>
-            <div class="line-item"><div class="line-num">3</div><div><strong>Purchase doubts</strong><span>Cover questions about compatibility, setup, cleaning, durability, gifting and after-sales support.</span></div></div>
-            <div class="line-item"><div class="line-num">4</div><div><strong>Listing placement</strong><span>Place each answer where shoppers will look: title, bullets, image sequence or A+.</span></div></div>
+          <div class="diff-compare">
+            <div class="diff-card">
+              <h3>Typical image generator</h3>
+              <ul>
+                <li>Starts from a prompt or style reference.</li>
+                <li>Makes good-looking gallery or A+ images.</li>
+                <li>Leaves title, bullets and buyer doubts disconnected.</li>
+                <li>Does not decide where product proof should appear.</li>
+              </ul>
+            </div>
+            <div class="diff-card good">
+              <h3>Launch Listing</h3>
+              <ul>
+                <li>Starts from product facts, photos and listing context.</li>
+                <li>Maps human shopper intent and shopping-agent answer intent.</li>
+                <li>Routes proof into title, bullets, gallery images and A+.</li>
+                <li>Checks product claims before export.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
