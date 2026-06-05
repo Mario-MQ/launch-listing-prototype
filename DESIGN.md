@@ -41,20 +41,20 @@
 
 一句话定位：
 
-> Turn product details, competitor differences and buyer doubts into a complete Amazon listing package.
+> Turn product details, shopper intent and agent-ready answers into a complete Amazon listing package.
 
 页面核心卖点：
 
 - Plan before creating：先给可审核的 listing strategy，再生成文案和视觉资产
 - Complete package：标题、五点、搜索词、组图、A+、预览、导出和 ready checklist
 - Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
-- Find competitor differences：明确产品和竞品/同类款的差异，决定哪些差异要放到标题、五点、图片或 A+
-- Understand product details：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，不只是套模板
+- Position real differences：区分真正影响购买判断的差异和泛泛卖点，再决定放到标题、五点、图片或 A+
+- Map human and agent intent：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，再把 human shopper intent 和 shopping-agent answer intent 精细匹配到 listing 内容
 
 ## 页面结构
 
 1. **Hero**
-   - 产品定位：把产品细节、竞品差异和买家疑虑转成完整 Amazon listing 资产
+   - 产品定位：把产品细节、买家意图和 agent-ready answer coverage 转成完整 Amazon listing 资产
    - 首屏直接提供 `Start your listing` 输入区
    - 不再在 Hero 文案下方放重复 CTA；Start panel 是唯一主入口
    - 支持 New listing 和 Amazon URL 两种开始方式
@@ -65,8 +65,8 @@
    - Plan before creating
    - Complete package
    - Answer buyer doubts
-   - Find competitor differences
-   - Understand product details
+   - Position real differences
+   - Map human and agent intent
    - 段落底部 CTA 回到创建方案
 
 3. **Buyer questions**
