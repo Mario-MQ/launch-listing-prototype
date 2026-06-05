@@ -232,6 +232,23 @@
     .kit-thumb::before { content:""; position:absolute; width:30px; height:48px; left:50%; top:50%; border-radius:14px; transform:translate(-50%,-38%); background:linear-gradient(165deg,#fff,#d7c281); box-shadow:0 16px 28px -18px rgba(46,46,46,.7); }
     .kit-banner { grid-column:1 / -1; min-height:42px; background:linear-gradient(120deg,#eff5f0,#fff2d0); }
     .kit-banner::before { content:"A+"; position:absolute; left:12px; top:10px; color:var(--forest-700); font-weight:900; font-size:.78rem; }
+    .photo-main { background:linear-gradient(145deg,#fbfbf7,#edf5ee 58%,#f4ead6); }
+    .photo-main::before { content:""; position:absolute; inset:16px 22px 18px; border-radius:20px; background:radial-gradient(66% 72% at 50% 42%, rgba(255,255,255,.95), rgba(234,226,208,.72) 58%, transparent 72%); }
+    .photo-label { position:absolute; z-index:5; left:10px; top:10px; padding:4px 7px; border-radius:var(--r-pill); background:rgba(255,255,255,.78); border:1px solid rgba(62,91,63,.12); color:var(--forest-700); font-size:.58rem; font-weight:900; text-transform:uppercase; }
+    .kit-thumb b,.kit-banner b,.kit-banner span { position:relative; z-index:3; display:block; }
+    .kit-thumb b { margin:8px 8px 0; color:var(--forest-800); font-size:.58rem; line-height:1.15; }
+    .photo-feature { background:linear-gradient(145deg,#f8fbf7,#fff7e7); }
+    .photo-feature::after { content:"LED"; position:absolute; right:8px; bottom:8px; padding:3px 6px; border-radius:var(--r-pill); background:rgba(232,201,106,.32); color:#80680e; font-size:.5rem; font-weight:900; }
+    .photo-lifestyle { background:linear-gradient(145deg,#e8f0ed,#fff2db); }
+    .photo-lifestyle::after { content:""; position:absolute; inset:auto -8px -16px -8px; height:48%; background:radial-gradient(80% 70% at 50% 0%, rgba(255,255,255,.9), rgba(232,201,106,.24) 55%, transparent 72%); }
+    .photo-spec { background:linear-gradient(145deg,#fff,#eef5ef); }
+    .photo-spec::after { content:"5.9 in"; position:absolute; right:7px; top:28px; color:var(--forest-700); font-family:var(--mono); font-size:.5rem; font-weight:900; transform:rotate(90deg); }
+    .photo-pack { background:linear-gradient(145deg,#fff8ec,#edf4ed); }
+    .photo-pack::after { content:"2 pcs"; position:absolute; right:7px; bottom:8px; color:var(--forest-700); font-size:.5rem; font-weight:900; }
+    .photo-aplus { padding:10px 12px; display:flex; flex-direction:column; justify-content:center; gap:3px; background:linear-gradient(120deg,rgba(62,91,63,.9),rgba(232,201,106,.34)), linear-gradient(145deg,#f6faf6,#fff0cc); }
+    .photo-aplus::before { content:""; position:absolute; left:54%; top:8px; bottom:8px; width:42px; border-radius:16px; background:linear-gradient(165deg,#fff,#d8c36e); box-shadow:0 14px 24px -18px rgba(0,0,0,.65); }
+    .photo-aplus b { color:#fff; font-size:.64rem; }
+    .photo-aplus span { color:rgba(255,255,255,.78); font-size:.5rem; font-weight:800; }
     .detail-callout { position:absolute; z-index:4; display:grid; gap:7px; right:16px; top:18px; width:138px; }
     .detail-callout span { border-radius:12px; padding:8px 9px; background:rgba(255,255,255,.78); border:1px solid rgba(62,91,63,.13); color:var(--forest-800); font-size:.66rem; font-weight:800; box-shadow:0 12px 28px -24px rgba(28,43,29,.55); }
     .compare-stage { position:relative; z-index:1; min-height:174px; margin:14px 18px 0; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
@@ -1092,8 +1109,17 @@
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/output-kit</div></div>
               <div class="product-stage">
                 <div class="kit-gallery">
-                  <div class="kit-main"><div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div></div>
-                  <div class="kit-grid"><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-thumb"></span><span class="kit-banner"></span></div>
+                  <div class="kit-main photo-main">
+                    <span class="photo-label">01 Main image</span>
+                    <div class="product-pair"><span class="grinder one"></span><span class="grinder two"></span></div>
+                  </div>
+                  <div class="kit-grid">
+                    <span class="kit-thumb photo-feature"><b>Feature proof</b></span>
+                    <span class="kit-thumb photo-lifestyle"><b>Lifestyle</b></span>
+                    <span class="kit-thumb photo-spec"><b>Size / spec</b></span>
+                    <span class="kit-thumb photo-pack"><b>Package</b></span>
+                    <span class="kit-banner photo-aplus"><b>A+ Hero</b><span>Season with one touch</span></span>
+                  </div>
                 </div>
               </div>
               <div class="shot-body">
