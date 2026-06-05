@@ -41,7 +41,8 @@
     .nav-inner { max-width:1120px; height:68px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
     .brand { display:flex; align-items:center; gap:10px; color:var(--forest-800); min-width:0; }
     .mark { width:30px; height:30px; border-radius:9px; background:var(--forest-600); color:var(--oat-100); display:grid; place-items:center; font-family:var(--serif); font-size:1.1rem; box-shadow:var(--shadow-brand); flex-shrink:0; }
-    .brand-name { font-family:var(--serif); font-size:1.3rem; white-space:nowrap; }
+    .brand-name { display:flex; align-items:baseline; gap:8px; font-family:var(--serif); font-size:1.3rem; white-space:nowrap; }
+    .brand-sep,.brand-product { color:var(--muted); font-weight:400; }
     .steps { display:flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--muted); min-width:0; }
     .steps .step.active { color:var(--forest-600); font-weight:800; }
     .steps .sep { color:var(--border); }
@@ -90,11 +91,39 @@
     .nav-links { display:flex; align-items:center; gap:24px; margin-left:auto; }
     .nav-links a { color:var(--neutral-700); font-size:.86rem; font-weight:700; transition:color .15s var(--ease); }
     .nav-links a:hover { color:var(--forest-600); }
-    .nav-cta { margin-left:12px; }
+    .nav-actions { display:flex; align-items:center; gap:12px; margin-left:12px; }
+    .nav-cta { flex-shrink:0; }
+    .account-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      min-height:38px;
+      padding:4px 12px 4px 5px;
+      border:1px solid var(--forest-100);
+      border-radius:var(--r-pill);
+      background:var(--forest-050);
+      color:var(--forest-800);
+      box-shadow:0 1px 2px rgba(28,43,29,.04);
+      white-space:nowrap;
+    }
+    .account-avatar {
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--forest-600);
+      color:var(--oat-100);
+      font:600 .88rem var(--serif);
+      flex-shrink:0;
+    }
+    .account-copy { display:flex; flex-direction:column; line-height:1.05; }
+    .account-copy strong { color:var(--forest-800); font-size:.78rem; }
+    .account-copy span { margin-top:3px; color:var(--muted); font-size:.66rem; font-weight:600; }
     .nav-workflow { display:none; }
     .nav-back { display:none; margin-left:12px; }
     body.workspace-active .nav-links,
-    body.workspace-active .nav-cta { display:none; }
+    body.workspace-active .nav-actions { display:none; }
     body.workspace-active .nav-workflow { display:flex; margin-left:auto; }
     body.workspace-active .nav-back { display:inline-flex; }
     [hidden] { display:none !important; }
@@ -142,14 +171,27 @@
     .device-chrome i { width:10px; height:10px; border-radius:50%; display:block; }
     .device-chrome i:nth-child(1){ background:#e06c5e; } .device-chrome i:nth-child(2){ background:#e0bd5e; } .device-chrome i:nth-child(3){ background:#7fae80; }
     .device-url { margin-left:8px; min-width:0; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:var(--mono); font-size:.7rem; color:var(--forest-100); background:rgba(0,0,0,.16); padding:4px 11px; border-radius:var(--r-pill); }
-    .device-body { padding:22px; }
-    .device-row { display:grid; grid-template-columns:82px minmax(0,1fr) auto; gap:14px; align-items:center; padding:14px 0; border-bottom:1px solid rgba(217,232,218,.12); }
-    .device-row:last-child { border-bottom:0; }
-    .device-img { aspect-ratio:1; border-radius:14px; background:linear-gradient(145deg,#fffaf1,#edf4ed 58%,#f7ece6); position:relative; overflow:hidden; }
-    .device-img::before { content:""; position:absolute; width:44%; height:34%; left:28%; bottom:18%; border-radius:16px 16px 24px 24px; background:linear-gradient(160deg,#fff,#e8ded2); box-shadow:0 18px 34px rgba(46,46,46,.18); }
-    .device-title { color:var(--oat-100); font-size:.9rem; font-weight:800; line-height:1.36; }
-    .device-desc { color:var(--forest-100); margin-top:4px; font-size:.74rem; line-height:1.45; }
-    .device-chip { color:#E8C96A; background:rgba(201,168,76,.14); border:1px solid rgba(232,201,106,.28); border-radius:var(--r-pill); padding:5px 10px; font-size:.68rem; font-weight:800; white-space:nowrap; }
+    .device-body { padding:24px; display:grid; gap:16px; }
+    .assistant-head { display:grid; grid-template-columns:52px minmax(0,1fr) auto; gap:14px; align-items:center; }
+    .assistant-mark { width:52px; height:52px; border-radius:16px; display:grid; place-items:center; background:linear-gradient(145deg,#4fb9ee,#56d0ff); color:#fff; font-family:var(--serif); font-size:1.55rem; box-shadow:0 18px 42px -28px rgba(0,0,0,.7); }
+    .assistant-name { color:var(--oat-100); font-size:1rem; font-weight:800; line-height:1.2; }
+    .assistant-meta { color:var(--forest-100); margin-top:4px; font-size:.78rem; }
+    .assistant-pill { color:#bdeaff; background:rgba(36,150,216,.16); border:1px solid rgba(104,213,255,.36); border-radius:var(--r-pill); padding:7px 12px; font-size:.68rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+    .question-bubble { margin-left:72px; padding:16px 18px; border-radius:18px; border-bottom-right-radius:6px; background:var(--oat-100); color:var(--neutral-900); font-size:1.02rem; line-height:1.38; box-shadow:0 18px 44px -34px rgba(0,0,0,.65); }
+    .insight-card { border:1px solid rgba(220,40,40,.36); background:rgba(220,40,40,.14); border-radius:18px; padding:14px 16px; color:#ffd9d9; }
+    .insight-label { display:inline-flex; align-items:center; gap:7px; margin-bottom:7px; color:#ff9b9b; font-size:.68rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .insight-label::before { content:"!"; width:16px; height:16px; border-radius:50%; display:grid; place-items:center; border:1px solid currentColor; font-size:.7rem; line-height:1; }
+    .insight-card p { color:#ffe3e3; font-size:.9rem; line-height:1.48; }
+    .plan-card { border:1px solid rgba(217,232,218,.14); border-radius:18px; background:rgba(0,0,0,.10); overflow:hidden; }
+    .plan-card-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-bottom:1px solid rgba(217,232,218,.12); color:var(--oat-100); font-size:.82rem; font-weight:800; }
+    .plan-chip { color:#E8C96A; background:rgba(201,168,76,.14); border:1px solid rgba(232,201,106,.28); border-radius:var(--r-pill); padding:4px 9px; font-size:.66rem; font-weight:800; white-space:nowrap; }
+    .route-list { display:grid; gap:0; }
+    .route-row { display:grid; grid-template-columns:78px minmax(0,1fr); gap:12px; padding:11px 14px; border-bottom:1px solid rgba(217,232,218,.10); }
+    .route-row:last-child { border-bottom:0; }
+    .route-target { color:#E8C96A; font-family:var(--mono); font-size:.7rem; font-weight:800; white-space:nowrap; }
+    .route-copy { color:var(--forest-100); font-size:.78rem; line-height:1.42; }
+    .output-strip { display:flex; align-items:center; flex-wrap:wrap; gap:8px; color:var(--forest-100); font-size:.72rem; font-weight:800; }
+    .output-strip span { display:inline-flex; align-items:center; min-height:26px; padding:4px 9px; border-radius:var(--r-pill); background:rgba(255,255,255,.055); border:1px solid rgba(217,232,218,.14); white-space:nowrap; }
     .sec-head { max-width:720px; margin-bottom:42px; }
     .sec-head.center { margin-inline:auto; text-align:center; }
     .sec-head .eyebrow { margin-bottom:18px; }
@@ -182,26 +224,37 @@
     .workspace-intro { text-align:center; max-width:720px; margin:0 auto 36px; }
     .workspace-intro h2 { margin-bottom:14px; }
     .workspace-intro p { color:var(--neutral-700); line-height:1.65; }
-    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-    .price-card { padding:32px 30px; border:1px solid var(--hair); border-radius:var(--r-card); background:var(--card); box-shadow:var(--shadow-card); }
-    .price-card.featured { background:var(--forest-600); color:var(--oat-100); transform:translateY(-8px); box-shadow:0 30px 70px -30px rgba(28,43,29,.6), var(--shadow-brand); }
-    .price-card.featured h3,.price-card.featured .price { color:var(--oat-100); }
-    .price-name { font-size:.9rem; font-weight:800; }
-    .price-card .price { font-family:var(--serif); font-size:3rem; line-height:1; margin:12px 0 6px; }
-    .price-desc { color:var(--muted); font-size:.86rem; margin-bottom:22px; }
-    .price-card.featured .price-desc { color:var(--forest-100); }
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; }
+    .price-card { position:relative; display:flex; flex-direction:column; padding:32px 30px; border:1px solid var(--border-soft); border-radius:28px; background:var(--card); box-shadow:var(--shadow-card); }
+    .price-card.featured { border-color:var(--border-soft); box-shadow:0 1px 2px rgba(28,43,29,.05), 0 18px 56px -34px rgba(28,43,29,.28); }
+    .price-name { font-family:var(--serif); font-size:1.22rem; font-weight:400; line-height:1.1; }
+    .price-card .price { display:flex; align-items:flex-end; gap:6px; margin:22px 0 6px; color:var(--neutral-900); }
+    .price-amount { font-family:var(--serif); font-size:3.2rem; line-height:.92; font-weight:400; }
+    .price-per { color:var(--muted); font-size:.95rem; font-weight:700; padding-bottom:5px; }
+    .price-desc { color:var(--muted); font-size:.92rem; margin-top:12px; }
+    .plan-savings { min-height:20px; color:var(--forest-700); font-size:.82rem; font-weight:800; margin:0 0 12px; }
     .price-card ul { list-style:none; padding:0; margin:0; display:grid; gap:12px; color:var(--neutral-700); font-size:.88rem; }
-    .price-card.featured ul { color:var(--forest-100); }
-    .price-card li::before { content:"✓"; color:var(--forest-600); font-weight:800; margin-right:8px; }
-    .price-card.featured li::before { color:var(--forest-100); }
+    .price-card li { display:flex; gap:10px; line-height:1.45; }
+    .price-card li::before { content:"✓"; color:var(--forest-600); font-weight:800; flex-shrink:0; }
     .pricing-sub { max-width:620px; margin:14px auto 0; color:var(--muted); font-size:1rem; line-height:1.6; text-align:center; }
     .billing-toggle { display:flex; justify-content:center; margin:24px 0 54px; }
     .billing-toggle-inner { display:inline-flex; gap:4px; padding:5px; border:1px solid var(--border-soft); border-radius:var(--r-pill); background:var(--card); box-shadow:var(--shadow-card); }
     .billing-toggle button { height:40px; border:0; border-radius:var(--r-pill); padding:0 24px; background:transparent; color:var(--muted); font-weight:800; }
     .billing-toggle button.active { background:var(--forest-600); color:var(--oat-100); box-shadow:var(--shadow-brand); }
     .price-card .btn { width:100%; margin:20px 0 22px; }
-    .plan-export-row { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 22px; padding:12px 14px; border:1px solid var(--border-soft); border-radius:14px; background:linear-gradient(145deg,#fff,var(--oat-100)); color:var(--forest-700); font-size:.82rem; font-weight:800; }
-    .price-card.featured .plan-export-row { background:rgba(250,248,245,.12); border-color:rgba(217,232,218,.22); color:var(--oat-100); }
+    .plan-export-row { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 24px; padding:12px 14px; border:1px solid var(--border-soft); border-radius:14px; background:linear-gradient(145deg,#fff,var(--oat-100)); color:var(--forest-700); font-size:.82rem; font-weight:800; }
+    .pc-badge { position:absolute; top:32px; right:30px; padding:7px 14px; border-radius:var(--r-pill); background:#d09100; color:#fff; font-size:.72rem; font-weight:800; letter-spacing:.02em; }
+    .credit-pack { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:center; margin-top:24px; padding:24px 28px; border:1px solid var(--border-soft); border-radius:28px; background:var(--card); box-shadow:var(--shadow-card); }
+    .credit-pack-main { display:grid; grid-template-columns:56px minmax(0,1fr); gap:18px; align-items:center; }
+    .credit-icon { width:56px; height:56px; border-radius:18px; display:grid; place-items:center; background:var(--forest-050); color:var(--forest-700); border:1px solid var(--forest-100); }
+    .credit-title-row { display:flex; align-items:center; flex-wrap:wrap; gap:9px; color:var(--neutral-900); font-size:1rem; }
+    .credit-title-row strong { font-size:1.08rem; }
+    .credit-status { padding:4px 10px; border-radius:9px; background:var(--forest-050); color:var(--forest-700); border:1px solid var(--forest-100); font-size:.72rem; font-weight:800; }
+    .credit-pack-price { color:var(--muted); font-size:.86rem; }
+    .credit-meta { margin-top:8px; color:var(--forest-800); font-size:.96rem; font-weight:800; }
+    .credit-bar { width:min(620px,100%); height:9px; margin-top:12px; border-radius:var(--r-pill); background:var(--oat-250); overflow:hidden; }
+    .credit-fill { display:block; height:100%; width:97.8%; border-radius:inherit; background:var(--forest-600); }
+    .price-boundary { max-width:780px; margin:26px auto 0; color:var(--muted); font-size:.92rem; line-height:1.6; text-align:center; }
     .final-cta { text-align:center; }
     .final-cta h2 { color:var(--oat-100); max-width:18ch; margin:0 auto; font-size:clamp(2.2rem,4.4vw,3.4rem); }
     .final-cta h2 em { color:#E8C96A; font-style:italic; }
@@ -674,6 +727,8 @@
     @media (max-width:920px) {
       .hero-grid,.split { grid-template-columns:1fr; gap:40px; }
       .feature-grid,.price-grid { grid-template-columns:1fr; }
+      .credit-pack { grid-template-columns:1fr; }
+      .credit-pack .btn { width:100%; }
       .how-flow { grid-template-columns:repeat(2,1fr); }
       .how-flow::before { display:none; }
       .hero-start-body { grid-template-columns:1fr; }
@@ -688,10 +743,14 @@
     }
     @media (max-width:760px) {
       .nav-links { display:none; }
+      .account-pill { display:none; }
       .hero { padding:78px 0 84px; }
       .band { padding:62px 0; }
       .hero-actions .btn { width:100%; }
       .hero-start-head { align-items:flex-start; flex-direction:column; }
+      .assistant-head { grid-template-columns:52px minmax(0,1fr); }
+      .assistant-pill { grid-column:1 / -1; width:max-content; }
+      .question-bubble { margin-left:0; }
       .how-flow { grid-template-columns:1fr; }
       .output-grid { grid-template-columns:1fr; }
       .image-grid { grid-template-columns:1fr; }
@@ -711,7 +770,7 @@
     }
     @media (max-width:640px) {
       .nav-inner { padding:0 18px; }
-      .nav-cta { display:none; }
+      .nav-actions { display:none; }
       .steps { display:none; }
       .page { padding:52px 0 78px; }
       .wrap { padding:0 18px; }
@@ -733,16 +792,21 @@
     <div class="nav-inner">
       <a class="brand" href="#top" id="brand-home">
         <span class="mark">L</span>
-        <span class="brand-name">Launch Listing</span>
+        <span class="brand-name">Luckee <span class="brand-sep">&middot;</span> <span class="brand-product">Launch Listing</span></span>
       </a>
       <div class="nav-links" aria-label="Primary navigation">
         <a href="#why">Why</a>
-        <a href="#ai-ready">Buyer questions</a>
-        <a href="#how">How it works</a>
-        <a href="#outputs">Outputs</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#how">Workflow</a>
+        <a href="#outputs">Output</a>
+        <a href="#pricing">Packages</a>
       </div>
-      <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free</a>
+      <div class="nav-actions">
+        <div class="account-pill" aria-label="Account status">
+          <span class="account-avatar">L</span>
+          <span class="account-copy"><strong>Luckee user</strong><span>Free plan available</span></span>
+        </div>
+        <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free plan</a>
+      </div>
       <div class="steps nav-workflow" aria-label="workflow progress">
         <span class="step active" id="step-1">Intake</span><span class="sep">/</span>
         <span class="step" id="step-2">Summary</span><span class="sep">/</span>
@@ -759,9 +823,9 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing generator</span>
+            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing strategy + generator</span>
             <h1>Launch <em>Listing</em>.</h1>
-            <p class="hero-sub">Generate a complete Amazon listing package with a plan you can review before creation.</p>
+            <p class="hero-sub">Turn product details, competitor differences and buyer doubts into a complete Amazon listing package.</p>
             <div class="hero-start" aria-label="start your listing">
               <div class="hero-start-head">
                 <strong>Start your listing</strong>
@@ -788,35 +852,46 @@
               <div class="hero-start-note">No account needed to start. Sign in when saving your plan.</div>
             </div>
             <div class="hero-trust">
-              <span>Complete package</span>
-              <span>Review plan first</span>
-              <span>Product-accurate images</span>
-              <span>Ready checklist</span>
+              <span>Understands the product</span>
+              <span>Finds real differences</span>
+              <span>Answers buyer doubts</span>
+              <span>Creates the full kit</span>
             </div>
           </div>
           <div class="hero-stage">
             <div class="launch-device">
-              <div class="device-chrome"><i></i><i></i><i></i><div class="device-url">launch-listing/workspace/full-listing</div></div>
+              <div class="device-chrome"><i></i><i></i><i></i><div class="device-url">sellercentral/listing-plan · Launch</div></div>
               <div class="device-body">
-                <div class="device-row">
-                  <div class="device-img"></div>
-                  <div><div class="device-title">Desktop + mobile Amazon preview</div><div class="device-desc">See how listing images, title, bullets and A+ appear before download.</div></div>
-                  <span class="device-chip">Preview</span>
+                <div class="assistant-head">
+                  <div class="assistant-mark">L</div>
+                  <div>
+                    <div class="assistant-name">Launch Listing</div>
+                    <div class="assistant-meta">Amazon listing plan</div>
+                  </div>
+                  <span class="assistant-pill">Buyer question</span>
                 </div>
-                <div class="device-row">
-                  <div class="device-img"></div>
-                  <div><div class="device-title">7 listing images · 2000 x 2000</div><div class="device-desc">Main image, benefit, proof, lifestyle, spec, package and trust.</div></div>
-                  <span class="device-chip">Ready</span>
+                <div class="question-bubble">Will this grinder work for coarse sea salt?</div>
+                <div class="insight-card">
+                  <span class="insight-label">Missing answer</span>
+                  <p>Current input does not confirm grinder core, coarseness range or salt compatibility.</p>
                 </div>
-                <div class="device-row">
-                  <div class="device-img"></div>
-                  <div><div class="device-title">6 Standard A+ modules · 970 x 600</div><div class="device-desc">Built from the listing plan you approve first.</div></div>
-                  <span class="device-chip">A+</span>
+                <div class="plan-card">
+                  <div class="plan-card-head">
+                    <span>Launch plan</span>
+                    <span class="plan-chip">Ready to review</span>
+                  </div>
+                  <div class="route-list">
+                    <div class="route-row"><span class="route-target">Bullet 2</span><span class="route-copy">Confirm ceramic core and coarse-to-fine range.</span></div>
+                    <div class="route-row"><span class="route-target">Image 4</span><span class="route-copy">Show sea salt, peppercorns and grind texture.</span></div>
+                    <div class="route-row"><span class="route-target">A+ module</span><span class="route-copy">Compare seasoning control against manual mills.</span></div>
+                  </div>
                 </div>
-                <div class="device-row">
-                  <div class="device-img"></div>
-                  <div><div class="device-title">Ready checklist</div><div class="device-desc">Product accuracy, wording, dimensions and upload order are checked before download.</div></div>
-                  <span class="device-chip">Ready</span>
+                <div class="output-strip" aria-label="output bundle">
+                  <span>Title</span>
+                  <span>Bullets</span>
+                  <span>Images</span>
+                  <span>A+</span>
+                  <span>Checklist</span>
                 </div>
               </div>
             </div>
@@ -829,14 +904,14 @@
       <div class="container">
         <div class="sec-head center">
           <span class="eyebrow">Why sellers use it</span>
-          <h2>A complete listing package, reviewed before anything is made.</h2>
+          <h2>It understands why your product should win before it creates the listing.</h2>
         </div>
         <div class="feature-grid">
-          <div class="feature"><div class="feature-k">01</div><h3>Complete package</h3><p>Title, bullets, search terms, listing images, A+, preview and download.</p></div>
-          <div class="feature"><div class="feature-k">02</div><h3>Review plan first</h3><p>Confirm the listing plan before title, bullets and images are created.</p></div>
-          <div class="feature"><div class="feature-k">03</div><h3>Built for Amazon shopping</h3><p>Organize buyer questions, image order and A+ modules around shopping decisions.</p></div>
-          <div class="feature"><div class="feature-k">04</div><h3>Product-accurate images</h3><p>Use product photos to keep shape, color and key details consistent while creating scenes and layouts.</p></div>
-          <div class="feature"><div class="feature-k">05</div><h3>Ready checklist</h3><p>Review product accuracy, wording, image dimensions and upload order before download.</p></div>
+          <div class="feature"><div class="feature-k">01</div><h3>Understands product details</h3><p>Materials, specs, dimensions, use cases, package contents and photo details are mapped before generation starts.</p></div>
+          <div class="feature"><div class="feature-k">02</div><h3>Finds competitor differences</h3><p>Clarify what shoppers should notice when they compare your product against similar options.</p></div>
+          <div class="feature"><div class="feature-k">03</div><h3>Answers buyer doubts</h3><p>Turn size, fit, compatibility, cleaning, safety, usage and warranty concerns into concrete listing content.</p></div>
+          <div class="feature"><div class="feature-k">04</div><h3>Plans before creating</h3><p>Decide what belongs in title, bullets, images and A+ before writing copy or generating visuals.</p></div>
+          <div class="feature"><div class="feature-k">05</div><h3>Creates the full kit</h3><p>Title, bullets, search terms, listing images, A+, preview and upload checklist come from one approved plan.</p></div>
         </div>
         <div class="toolbar">
           <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Create your free plan</a>
@@ -849,14 +924,14 @@
         <div class="split">
           <div>
             <span class="eyebrow">Built for Amazon shoppers</span>
-            <h2>Organized around real buyer questions.</h2>
-            <p class="lede">Launch Listing turns product details into the information shoppers look for before they buy.</p>
+            <h2>Built around the questions that block the purchase.</h2>
+            <p class="lede">Launch Listing turns product facts and competitive differences into the answers shoppers need before they buy.</p>
           </div>
           <div class="line-list">
-            <div class="line-item"><div class="line-num">1</div><div><strong>Product identity</strong><span>Make the product type, use case, material, fit and package contents explicit.</span></div></div>
-            <div class="line-item"><div class="line-num">2</div><div><strong>Buyer questions</strong><span>Answer common purchase questions across title, bullets, listing images and A+ modules.</span></div></div>
-            <div class="line-item"><div class="line-num">3</div><div><strong>Wording review</strong><span>Keep benefits clear and grounded in the product information provided.</span></div></div>
-            <div class="line-item"><div class="line-num">4</div><div><strong>Section planning</strong><span>Each key benefit is placed in the right part of the listing with image or A+ support.</span></div></div>
+            <div class="line-item"><div class="line-num">1</div><div><strong>Product identity</strong><span>Make product type, use case, material, fit, size and package contents explicit.</span></div></div>
+            <div class="line-item"><div class="line-num">2</div><div><strong>Comparison logic</strong><span>Show what is different from cheaper, older or lookalike alternatives.</span></div></div>
+            <div class="line-item"><div class="line-num">3</div><div><strong>Purchase doubts</strong><span>Cover questions about compatibility, setup, cleaning, durability, gifting and after-sales support.</span></div></div>
+            <div class="line-item"><div class="line-num">4</div><div><strong>Listing placement</strong><span>Place each answer where shoppers will look: title, bullets, image sequence or A+.</span></div></div>
           </div>
         </div>
       </div>
@@ -866,13 +941,13 @@
       <div class="container">
         <div class="sec-head center">
           <span class="eyebrow">How it works</span>
-          <h2>The workflow stays short, even though the job is complex.</h2>
+          <h2>Understand, position, answer, create, check.</h2>
         </div>
         <div class="how-flow">
-          <div class="how-step"><div class="how-num">1</div><h3>Add product info</h3><p>Start with a product name, category, selling points and a clear white-background product photo. Detail and package images are optional.</p></div>
-          <div class="how-step"><div class="how-num">2</div><h3>Create a free plan</h3><p>Sign in when the system creates your first saved plan. Each account gets one free launch plan.</p></div>
-          <div class="how-step"><div class="how-num">3</div><h3>Generate preview</h3><p>Review title, bullets, search terms, listing images, A+ modules and the Amazon preview before download.</p></div>
-          <div class="how-step"><div class="how-num">4</div><h3>Download package</h3><p>Choose a package when you want copyable listing text, high-resolution images and a Seller Central ZIP.</p></div>
+          <div class="how-step"><div class="how-num">1</div><h3>Understand</h3><p>Start with product details, selling points, photos and any existing Amazon URL or competitor context.</p></div>
+          <div class="how-step"><div class="how-num">2</div><h3>Position</h3><p>Review the plan that turns details, differences and buyer doubts into a listing strategy.</p></div>
+          <div class="how-step"><div class="how-num">3</div><h3>Create</h3><p>Generate title, bullets, search terms, listing images, A+ modules and the Amazon preview.</p></div>
+          <div class="how-step"><div class="how-num">4</div><h3>Check</h3><p>Confirm product accuracy, claims, image dimensions and upload order before downloading final files.</p></div>
         </div>
         <div class="toolbar">
           <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Start with product info</a>
@@ -1311,9 +1386,9 @@ Stainless steel look for modern kitchens</textarea>
           <div class="pay-note">
             <div>
               <strong>Free preview included</strong>
-              <span>You can review the result first. Copyable text, high-resolution images and ZIP download unlock after choosing a download package.</span>
+              <span>You can review the result first. Copyable text, high-resolution images and ZIP download unlock after confirming Luckee credits.</span>
             </div>
-            <span class="chip chip-lock">Download package required</span>
+            <span class="chip chip-lock">Credits required</span>
           </div>
         </div>
         <div class="toolbar">
@@ -1537,58 +1612,86 @@ Stainless steel look for modern kitchens</textarea>
       <div class="container">
         <div class="sec-head center">
           <span class="eyebrow">Launch Listing pricing</span>
-          <h2>Choose the download package for this listing.</h2>
-          <p class="pricing-sub">Plans and previews are free to review. Pay only when you are ready to copy text, download images and use the finished listing package.</p>
+          <h2>Same Luckee plan. Same credits.</h2>
+          <p class="pricing-sub">Launch Listing uses your main Luckee account. Your first loop is free; listings after that draw on your existing plan's credits.</p>
         </div>
         <div class="billing-toggle" aria-label="billing period">
           <div class="billing-toggle-inner">
-            <button class="active" type="button">Single listing</button>
-            <button type="button">Team plan</button>
+            <button class="active" type="button">Yearly · Save 25%</button>
+            <button type="button">Monthly</button>
           </div>
         </div>
         <div class="price-grid">
           <div class="price-card">
-            <div class="price-name">Starter Listing Kit</div>
-            <p class="price-desc">For sellers who only need listing text and core listing images.</p>
-            <div class="price">$19<span style="font-family:var(--sans);font-size:1rem;color:var(--muted)">/listing</span></div>
-            <button class="btn btn-outline" type="button">Buy Starter Kit</button>
-            <div class="plan-export-row"><span>Download package</span><strong>Starter kit</strong></div>
+            <div class="price-name">First loop free</div>
+            <p class="price-desc">Plan + preview one listing</p>
+            <div class="price"><span class="price-amount">$0</span><span class="price-per">/month</span></div>
+            <p class="plan-savings"></p>
+            <button class="btn btn-outline" type="button">Start free plan</button>
+            <div class="plan-export-row"><span>Luckee credits</span><strong>1,500 Credits</strong></div>
             <ul>
-              <li>Title, bullets and search terms</li>
-              <li>5 listing images at 2000 x 2000</li>
-              <li>Copyable title, bullets and search terms</li>
-              <li>No A+ modules</li>
+              <li>1 launch plan</li>
+              <li>Product detail map</li>
+              <li>Buyer-doubt coverage</li>
+              <li>1 listing kit preview</li>
+              <li>Title · Bullets · A+ · Search Terms plan</li>
+              <li>Prioritized fix list</li>
             </ul>
           </div>
           <div class="price-card featured">
-            <div class="price-name">Full Listing</div>
-            <p class="price-desc">The recommended package for a full Amazon listing launch.</p>
-            <div class="price">$49<span style="font-family:var(--sans);font-size:1rem;color:var(--forest-100)">/listing</span></div>
-            <button class="btn btn-on-dark" type="button">Buy Full Listing</button>
-            <div class="plan-export-row"><span>Most popular</span><strong>Seller Central ZIP</strong></div>
+            <span class="pc-badge">Most Popular</span>
+            <div class="price-name">Seller</div>
+            <p class="price-desc">Fix and ship</p>
+            <div class="price"><span class="price-amount">$29.25</span><span class="price-per">/month</span></div>
+            <p class="plan-savings">Save $127.8</p>
+            <button class="btn btn-primary" type="button">Subscribe</button>
+            <div class="plan-export-row"><span>Luckee credits</span><strong>30,000 Credits</strong></div>
             <ul>
-              <li>Title, bullets and search terms</li>
-              <li>7 listing images at 2000 x 2000</li>
-              <li>6 Standard A+ modules at 970 x 600</li>
-              <li>Copyable listing text and ZIP download</li>
-              <li>Ready checklist included</li>
+              <li>20 listings / mo</li>
+              <li>Full buyer-doubt mapping</li>
+              <li>Full competitor benchmark</li>
+              <li>Title · Bullets · A+ · Search Terms fixes</li>
+              <li>Ready-to-paste export</li>
+              <li>Compliance & claim checks</li>
+              <li>Re-audit + history</li>
+              <li><em>Includes monitoring & re-audits</em></li>
             </ul>
           </div>
           <div class="price-card">
-            <div class="price-name">Premium Listing Kit</div>
-            <p class="price-desc">For launches that need wide A+, mobile-ready image crops and text variants.</p>
-            <div class="price">$89<span style="font-family:var(--sans);font-size:1rem;color:var(--muted)">/listing</span></div>
-            <button class="btn btn-primary" type="button">Buy Premium</button>
-            <div class="plan-export-row"><span>Premium package</span><strong>Wide + mobile</strong></div>
+            <div class="price-name">Agency</div>
+            <p class="price-desc">Scale across listings</p>
+            <div class="price"><span class="price-amount">$74.25</span><span class="price-per">/month</span></div>
+            <p class="plan-savings">Save $297</p>
+            <button class="btn btn-primary" type="button">Subscribe</button>
+            <div class="plan-export-row"><span>Luckee credits</span><strong>100,000 Credits</strong></div>
             <ul>
-              <li>Full Listing package</li>
-              <li>Wide A+ images at 1464 x 600</li>
-              <li>Mobile-ready crops at 600 x 450</li>
-              <li>Text variants</li>
-              <li>Priority file review</li>
+              <li>100 listings / mo</li>
+              <li>Multi-ASIN management</li>
+              <li>Batch reports</li>
+              <li>White-label exports</li>
+              <li>Team collaboration</li>
+              <li>Client report templates</li>
             </ul>
           </div>
         </div>
+        <div class="credit-pack">
+          <div class="credit-pack-main">
+            <span class="credit-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z"/></svg>
+            </span>
+            <div>
+              <div class="credit-title-row">
+                <strong>Credit Pack</strong>
+                <span class="credit-status">Active</span>
+                <span class="credit-pack-price">· $39.9</span>
+              </div>
+              <div class="credit-meta">97,785.3 / 100,000 remaining</div>
+              <div class="credit-bar" aria-label="Credit pack remaining"><span class="credit-fill"></span></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="button">Buy More</button>
+        </div>
+        <p class="price-boundary">Launch Listing does not introduce a separate wallet or subscription. New listing plans and generation bundles consume the same <strong>Luckee credits</strong> after the free loop.</p>
       </div>
     </section>
 
@@ -1613,7 +1716,7 @@ Stainless steel look for modern kitchens</textarea>
       <div class="auth-modal-body auth-view" id="auth-basic-view">
         <ul class="auth-benefits">
           <li>One free launch plan is included with every new account.</li>
-          <li>No payment is needed until you unlock copyable text or downloads.</li>
+          <li>No credits are used until you unlock copyable text or downloads.</li>
           <li>Your product details, plan edits and preview stay saved.</li>
         </ul>
         <div class="field">
@@ -1670,18 +1773,18 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-select-view">
         <div class="checkout-head">
           <div>
-            <h2 id="checkout-title">Unlock this listing</h2>
-            <p>Choose the download package for this generated listing. Your preview stays here after checkout.</p>
+            <h2 id="checkout-title">Use Luckee credits</h2>
+            <p>Choose the generation bundle for this listing. Your preview stays here after credits are confirmed.</p>
           </div>
           <button class="checkout-close" id="checkout-close" type="button" aria-label="Close checkout">×</button>
         </div>
         <div class="checkout-body">
-          <div class="checkout-packages" aria-label="download packages">
+          <div class="checkout-packages" aria-label="generation bundles">
             <button class="checkout-package" type="button" data-checkout-package="starter">
               <div>
                 <strong>Starter Listing Kit</strong>
                 <span>Title, 5 bullets, search terms and 5 listing images. No A+ modules.</span>
-                <div class="checkout-price">$19</div>
+                <div class="checkout-price">1,500 Credits</div>
               </div>
               <span class="chip chip-forest">Starter kit</span>
             </button>
@@ -1689,7 +1792,7 @@ Stainless steel look for modern kitchens</textarea>
               <div>
                 <strong>Full Listing</strong>
                 <span>Title, bullets, search terms, 7 listing images, 6 Standard A+ modules and ZIP.</span>
-                <div class="checkout-price">$49</div>
+                <div class="checkout-price">3,000 Credits</div>
               </div>
               <span class="chip chip-clear">Recommended</span>
             </button>
@@ -1697,22 +1800,22 @@ Stainless steel look for modern kitchens</textarea>
               <div>
                 <strong>Premium Listing Kit</strong>
                 <span>Full Listing plus wide A+, mobile-ready crops and text variants.</span>
-                <div class="checkout-price">$89</div>
+                <div class="checkout-price">6,000 Credits</div>
               </div>
               <span class="chip chip-forest">Wide + mobile</span>
             </button>
           </div>
           <div class="checkout-footer">
-            <div class="checkout-footnote">Secure checkout. This purchase unlocks final files for this listing only.</div>
-            <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Continue to payment</button>
+            <div class="checkout-footnote">Uses Luckee credits from your main account. Final files unlock for this listing after confirmation.</div>
+            <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Use credits and unlock</button>
           </div>
         </div>
       </div>
       <div class="checkout-view" id="checkout-processing-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2>Processing payment</h2>
-            <p>Confirming the download package for this listing.</p>
+            <h2>Confirming credits</h2>
+            <p>Applying the selected generation bundle to this listing.</p>
           </div>
         </div>
         <div class="checkout-body">

@@ -41,20 +41,20 @@
 
 一句话定位：
 
-> Generate a complete Amazon listing package with a plan you can review before creation.
+> Turn product details, competitor differences and buyer doubts into a complete Amazon listing package.
 
 页面核心卖点：
 
-- Complete package：标题、五点、搜索词、组图、A+、预览、导出
-- Review plan first：先给方案，用户确认后再生成
-- Built for Amazon shopping：围绕买家问题、图片顺序、A+ 模块组织
-- Product-accurate images：用产品图保持主体准确，不乱改主体
-- Ready checklist：最后整理上传前需要看的东西
+- Understand product details：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，不只是套模板
+- Find competitor differences：明确产品和竞品/同类款的差异，决定哪些差异要放到标题、五点、图片或 A+
+- Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
+- Plan before creating：先给可审核的 listing strategy，再生成文案和视觉资产
+- Complete package：标题、五点、搜索词、组图、A+、预览、导出和 ready checklist
 
 ## 页面结构
 
 1. **Hero**
-   - 产品定位：完整 Amazon listing 生成，不只是生图工具
+   - 产品定位：把产品细节、竞品差异和买家疑虑转成完整 Amazon listing 资产
    - 首屏直接提供 `Start your listing` 输入区
    - 不再在 Hero 文案下方放重复 CTA；Start panel 是唯一主入口
    - 支持 New listing 和 Amazon URL 两种开始方式
@@ -62,11 +62,11 @@
    - 右侧展示生成包 mockup
 
 2. **Why**
+   - Understand product details
+   - Find competitor differences
+   - Answer buyer doubts
+   - Plan before creating
    - Complete package
-   - Review plan first
-   - Built for Amazon shopping
-   - Product-accurate images
-   - Ready checklist
    - 段落底部 CTA 回到创建方案
 
 3. **Buyer questions**
@@ -76,10 +76,10 @@
    - Module mapping
 
 4. **How it works**
-   - Add product info
-   - Create a free plan
-   - Generate preview
-   - Download package
+   - Understand
+   - Position
+   - Create
+   - Check
    - 段落底部 CTA 回到产品资料输入
 
 5. **What you get**
@@ -110,7 +110,7 @@
    - 产品图片素材
    - 套餐选择
    - 如果选择 Improve existing listing，则先输入 Amazon URL / ASIN 并 Fetch
-   - 创建或抓取方案前提示：免费账号包含 1 个 launch plan，复制和下载需购买 download package
+   - 创建或抓取方案前提示：免费账号包含 1 个 launch plan，复制和下载需确认 Luckee credits
 
 2. **Listing Snapshot**（仅已有链接模式）
    - 按 Amazon listing 结构顺序展示 fetch 结果：Title -> Five bullet points -> Product images -> A+ content
@@ -148,7 +148,7 @@
    - Images：Listing images、A+ images
    - Preview：Amazon page desktop / mobile preview
    - 默认状态为 preview ready，但复制、高清图和 ZIP 处于 locked 状态
-   - Unlock final files：购买对应 download package 后解锁 copyable text、listing images、A+、ZIP
+   - Unlock final files：确认对应 generation bundle credits 后解锁 copyable text、listing images、A+、ZIP
 
 ## 付费转化逻辑
 
@@ -159,7 +159,7 @@
 - 用户可以免费开始，但免费只覆盖“理解产品 + 生成方案 + 预览结果”。
 - 第一次需要后端保存和生成计划时要求注册 / 登录，而不是一进页面就拦截。
 - 每个注册用户默认 1 次免费 launch plan。
-- 不免费交付完整可商用资产：复制按钮、高清图片、A+ 图片和 ZIP 下载都需要购买对应 download package。
+- 不免费交付完整可商用资产：复制按钮、高清图片、A+ 图片和 ZIP 下载都需要确认对应 Luckee credits 消耗。
 - 付费点放在 Results 和 plan confirmation 后，不在首屏强压付费。
 
 推荐漏斗：
@@ -186,7 +186,7 @@ Google 授权页：
 
 - 点击 `Continue with Google` 后不直接通过，先进入授权确认页。
 - 页面展示当前 Google account、Launch Listing 将使用的权限和继续按钮。
-- 授权范围只表达账号创建、保存项目、接收 payment/export receipt。
+- 授权范围只表达账号创建、保存项目、接收 credits/export receipt。
 - 明确说明不请求 Google Drive、Gmail 或广告账号权限。
 
 关键文案：
@@ -204,19 +204,20 @@ We do not request Google Drive, Gmail or advertising account access in this flow
 - ready checklist preview
 - text copying 和 downloads locked
 
-Download packages：
+Luckee credits pricing：
 
-- Starter Listing Kit：$19/export
-- Full Listing：$49/export
-- Premium Listing Kit：$89/export
+- First loop free：$0/month，1,500 Credits，包含 1 个 launch plan 和 1 个 listing kit preview
+- Seller：$29.25/month（Yearly · Save 25%），30,000 Credits，适合持续修 listing 和生成导出
+- Agency：$74.25/month（Yearly · Save 25%），100,000 Credits，适合多 ASIN、批量报告和团队协作
+- Credit Pack：$39.9，100,000 Credits，可单独购买补充额度
 
 结果页解锁交互：
 
 - Results 里的 `Unlock final files` 不跳转到 Pricing 页面。
 - 点击后打开当前 listing 的 checkout modal。
-- Modal 里选择 Starter Listing Kit / Full Listing / Premium Listing Kit。
-- 点击 `Continue to payment` 后进入 processing 状态。
-- 支付成功后显示 `Exports unlocked`。
+- Modal 里选择 Starter Listing Kit / Full Listing / Premium Listing Kit 对应的 credits bundle。
+- 点击 `Use credits and unlock` 后进入 credits confirmation 状态。
+- credits 确认后显示 `Exports unlocked`。
 - 点击 `Back to results` 回到同一个 Results 页面，并原地解锁 text copying、image downloads 和 ZIP。
 
 结果页解锁后提供：
@@ -262,11 +263,11 @@ MVP 不让用户选择抽象的 Marketing direction。
 
 不单独展示 Output Scope，避免和 Package 冲突。
 
-套餐直接决定输出范围和购买价格：
+套餐直接决定输出范围；实际消耗走 Luckee credits：
 
-- Starter Listing Kit：Title、Bullets、Search Terms、5 张商品图，无 A+，$19/export
-- Full Listing：Title、Bullets、Search Terms、7 张商品图、6 个 Standard A+ 模块，$49/export
-- Premium Listing Kit：Full Listing 加宽版 A+、移动端裁切、文案多版本，$89/export
+- Starter Listing Kit：Title、Bullets、Search Terms、5 张商品图，无 A+
+- Full Listing：Title、Bullets、Search Terms、7 张商品图、6 个 Standard A+ 模块
+- Premium Listing Kit：Full Listing 加宽版 A+、移动端裁切、文案多版本
 
 如需自定义范围，放在折叠的 Customize 里。
 
@@ -333,11 +334,14 @@ MVP 先不做：
 - upload-order.md
 - version history
 
-MVP 先不做复杂订阅中心。Landing 里的 Pricing 只用于提前了解价格；Results 里的购买使用 checkout modal。Pricing 展示为单次 download packages：
+Landing 里的 Pricing 对齐 Luckee 主账号和 credits，不引入独立钱包或独立订阅。页面展示为：
 
-- Starter Listing Kit：$19/export，解锁 listing text 和 5 张 listing images
-- Full Listing：$49/export，解锁 listing text、7 张 listing images、6 个 Standard A+ 和 ZIP
-- Premium Listing Kit：$89/export，解锁 Full Listing、wide A+、mobile-ready crops 和 text variants
+- First loop free：$0/month，1,500 Credits
+- Seller：$29.25/month，30,000 Credits，Most Popular
+- Agency：$74.25/month，100,000 Credits
+- Credit Pack：$39.9，100,000 Credits
+
+Results 里的解锁弹窗使用 Luckee credits confirmation，不作为独立单次下载钱包来设计。
 
 生成后自动准备：
 
