@@ -230,6 +230,16 @@
     .photo-label { position:absolute; z-index:5; left:10px; top:10px; padding:4px 7px; border-radius:var(--r-pill); background:rgba(255,255,255,.78); border:1px solid rgba(62,91,63,.12); color:var(--forest-700); font-size:.58rem; font-weight:900; text-transform:uppercase; }
     .kit-thumb b,.kit-banner b,.kit-banner span { position:relative; z-index:3; display:block; }
     .kit-thumb b { margin:8px 8px 0; color:var(--forest-800); font-size:.58rem; line-height:1.15; }
+    .product-photo { position:absolute; z-index:3; display:block; background:url("assets/grinder-set-product.png") center / contain no-repeat; pointer-events:none; filter:saturate(.98) contrast(1.02); }
+    .product-photo.stage-photo { left:24px; right:126px; top:8px; bottom:4px; background-position:center bottom; }
+    .product-photo.kit-photo { inset:18px 12px 6px; background-position:center bottom; }
+    .product-photo.thumb-photo { left:6px; right:6px; top:18px; bottom:2px; background-position:center bottom; opacity:.82; }
+    .product-photo.compare-photo { left:8px; right:8px; top:30px; bottom:48px; background-position:center bottom; }
+    .kit-main.has-photo .electric-render,.mini-electric.has-photo .electric-render { display:none; }
+    .kit-thumb.has-photo::before { display:none; }
+    .kit-thumb.has-photo b { position:relative; z-index:5; }
+    .mini-electric.has-photo { border-radius:14px; overflow:hidden; background:linear-gradient(145deg,#fff,#edf4ed); border:1px solid rgba(62,91,63,.08); }
+    .mini-electric.has-photo .product-photo { inset:7px 5px 2px; }
     .photo-feature { background:linear-gradient(145deg,#f8fbf7,#fff7e7); }
     .photo-feature::after { content:"LED"; position:absolute; right:8px; bottom:8px; padding:3px 6px; border-radius:var(--r-pill); background:rgba(232,201,106,.32); color:#80680e; font-size:.5rem; font-weight:900; }
     .photo-lifestyle { background:linear-gradient(145deg,#e8f0ed,#fff2db); }
@@ -882,6 +892,8 @@
       .intent-path { left:10px; right:10px; gap:5px; }
       .intent-path span { font-size:.55rem; padding-inline:6px; }
       .detail-callout { width:126px; right:10px; top:12px; }
+      .product-photo.stage-photo { left:10px; right:118px; }
+      .product-photo.compare-photo { top:34px; bottom:58px; }
       .kit-gallery { inset:12px; gap:8px; }
       .compare-stage { min-height:180px; margin:12px 12px 0; gap:8px; }
       .compare-card { padding:9px; border-radius:14px; }
@@ -1092,13 +1104,7 @@
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/launch-plan</div></div>
               <div class="product-stage scene-kitchen">
                 <div class="window"></div>
-                <div class="electric-render">
-                  <span class="electric-led"></span>
-                  <span class="electric-unit one"></span>
-                  <span class="electric-unit two"></span>
-                  <span class="electric-base"></span>
-                  <span class="season-dots"></span>
-                </div>
+                <i class="product-photo stage-photo"></i>
                 <span class="ingredient left"></span>
                 <div class="detail-callout"><span>Title angle</span><span>Image sequence</span><span>A+ module</span></div>
               </div>
@@ -1120,21 +1126,15 @@
               <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/output-kit</div></div>
               <div class="product-stage">
                 <div class="kit-gallery">
-                  <div class="kit-main photo-main">
+                  <div class="kit-main photo-main has-photo">
                     <span class="photo-label">01 Main image</span>
-                    <div class="electric-render">
-                      <span class="electric-led"></span>
-                      <span class="electric-unit one"></span>
-                      <span class="electric-unit two"></span>
-                      <span class="electric-base"></span>
-                      <span class="season-dots"></span>
-                    </div>
+                    <i class="product-photo kit-photo"></i>
                   </div>
                   <div class="kit-grid">
-                    <span class="kit-thumb photo-feature"><b>Feature proof</b></span>
-                    <span class="kit-thumb photo-lifestyle"><b>Lifestyle</b></span>
-                    <span class="kit-thumb photo-spec"><b>Size / spec</b></span>
-                    <span class="kit-thumb photo-pack"><b>Package</b></span>
+                    <span class="kit-thumb photo-feature has-photo"><b>Feature proof</b><i class="product-photo thumb-photo"></i></span>
+                    <span class="kit-thumb photo-lifestyle has-photo"><b>Lifestyle</b><i class="product-photo thumb-photo"></i></span>
+                    <span class="kit-thumb photo-spec has-photo"><b>Size / spec</b><i class="product-photo thumb-photo"></i></span>
+                    <span class="kit-thumb photo-pack has-photo"><b>Package</b><i class="product-photo thumb-photo"></i></span>
                     <span class="kit-banner photo-aplus"><b>A+ Hero</b><span>Season with one touch</span></span>
                   </div>
                 </div>
@@ -1142,7 +1142,7 @@
               <div class="shot-body">
                 <div class="shot-split">
                   <div class="shot-box"><strong>Listing text</strong><div class="shot-line"></div><div class="shot-line short"></div><div class="shot-line gold"></div></div>
-                  <div class="shot-box"><strong>Images</strong><div class="mini-electric"><div class="electric-render"><span class="electric-led"></span><span class="electric-unit one"></span><span class="electric-unit two"></span><span class="electric-base"></span><span class="season-dots"></span></div></div></div>
+                  <div class="shot-box"><strong>Images</strong><div class="mini-electric has-photo"><i class="product-photo"></i></div></div>
                 </div>
                 <div class="shot-chipline"><span>Title</span><span>Bullets</span><span>Search terms</span><span>Images</span><span>A+</span><span>Checklist</span></div>
               </div>
@@ -1188,13 +1188,7 @@
               <div class="compare-stage">
                 <div class="compare-card">
                   <span class="compare-label">Your product</span>
-                  <div class="electric-render">
-                    <span class="electric-led"></span>
-                    <span class="electric-unit one"></span>
-                    <span class="electric-unit two"></span>
-                    <span class="electric-base"></span>
-                    <span class="season-dots"></span>
-                  </div>
+                  <i class="product-photo compare-photo"></i>
                   <div class="compare-points"><span>USB-C base</span><span>Warm LED view</span><span>Adjustable ceramic core</span></div>
                 </div>
                 <div class="compare-card other">
