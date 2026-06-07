@@ -66,10 +66,10 @@
    - 每个卖点配一个商品案例展示图和一个引导使用入口
    - 使用同一个盐胡椒研磨器案例贯穿，避免抽象 UI mockup
    - Map human and agent intent：Amazon shopper question simulation + needs proof answer + title / bullet / image / A+ routing
-   - Plan before creating：项目内生成的无品牌研磨器产品图 + title / image / A+ 的生成前规划
-   - Complete package：项目内生成的无品牌研磨器主图、gallery 缩略图、A+ banner 缩略图 + title、bullets、search terms、checklist；不使用外部竞品或 Amazon 图片
+   - Plan before creating：项目内生成的无品牌厨房使用场景图 + title / image / A+ 的生成前规划
+   - Complete package：项目内生成的无品牌研磨器主图、生活场景、差异对比图、gallery 缩略图、A+ banner 缩略图 + title、bullets、search terms、checklist；不使用外部竞品或 Amazon 图片
    - Answer buyer doubts：Amazon shopper questions coverage simulation，展示多个常见疑虑如何进入 bullets / image / A+
-   - Position real differences：Your product vs similar option 的双产品对比，使用项目内生成的无品牌电动研磨器产品图和无品牌自绘手动研磨器，展示差异如何进入 Image / Bullet / A+ placement
+   - Position real differences：Your product vs similar option 的双产品对比，使用项目内生成的无品牌电动研磨器 vs 手动研磨器对比图，展示差异如何进入 Image / Bullet / A+ placement
 
 3. **Differentiation**
    - 标题：Beautiful images are not enough.
