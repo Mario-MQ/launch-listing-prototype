@@ -85,20 +85,23 @@
     .btn-primary:hover { background:var(--forest-700); }
     .btn-outline { background:transparent; border-color:rgba(61,90,62,.3); color:var(--forest-700); }
     .btn-outline:hover { background:var(--forest-050); border-color:var(--forest-600); }
+    .btn-ghost { background:transparent; color:var(--neutral-700); }
+    .btn-ghost:hover { background:var(--oat-250); color:var(--forest-700); }
     .toolbar { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:28px; }
 
     /* Landing shell, aligned with Luckee Listing */
     .nav-links { display:flex; align-items:center; gap:24px; margin-left:auto; }
     .nav-links a { color:var(--neutral-700); font-size:.86rem; font-weight:700; transition:color .15s var(--ease); }
     .nav-links a:hover { color:var(--forest-600); }
-    .nav-actions { display:flex; align-items:center; gap:12px; margin-left:12px; }
+    .nav-actions { display:flex; align-items:center; gap:10px; margin-left:12px; }
     .nav-cta { flex-shrink:0; }
+    .account-auth { display:flex; align-items:center; gap:6px; }
     .account-pill {
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      min-height:38px;
-      padding:4px 12px 4px 5px;
+      gap:9px;
+      min-height:36px;
+      padding:4px 9px 4px 5px;
       border:1px solid var(--forest-100);
       border-radius:var(--r-pill);
       background:var(--forest-050);
@@ -107,23 +110,31 @@
       white-space:nowrap;
     }
     .account-avatar {
-      width:28px;
-      height:28px;
+      width:26px;
+      height:26px;
       border-radius:50%;
       display:grid;
       place-items:center;
       background:var(--forest-600);
       color:var(--oat-100);
-      font:600 .88rem var(--serif);
+      font:600 .78rem var(--serif);
       flex-shrink:0;
     }
     .account-copy { display:flex; flex-direction:column; line-height:1.05; }
     .account-copy strong { color:var(--forest-800); font-size:.78rem; }
-    .account-copy span { margin-top:3px; color:var(--muted); font-size:.66rem; font-weight:600; }
+    .account-copy span { margin-top:3px; color:var(--muted); font-size:.64rem; font-weight:600; }
+    .account-signout {
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      font:700 .68rem var(--sans);
+      padding:0 3px;
+    }
+    .account-signout:hover { color:var(--forest-700); }
     .nav-workflow { display:none; }
     .nav-back { display:none; margin-left:12px; }
     body.workspace-active .nav-links,
-    body.workspace-active .nav-actions { display:none; }
+    body.workspace-active .nav-cta { display:none; }
     body.workspace-active .nav-workflow { display:flex; margin-left:auto; }
     body.workspace-active .nav-back { display:inline-flex; }
     [hidden] { display:none !important; }
@@ -458,88 +469,122 @@
     }
     .auth-backdrop[hidden] { display:none; }
     .auth-modal {
-      width:min(100%,460px);
-      border:1px solid rgba(217,232,218,.24);
-      border-radius:24px;
+      width:min(390px,calc(100vw - 32px));
+      max-height:calc(100vh - 32px);
+      overflow-y:auto;
+      position:relative;
+      text-align:center;
+      border:1px solid var(--border-soft);
+      border-radius:var(--r-card);
       background:var(--card);
       box-shadow:0 30px 90px -34px rgba(0,0,0,.55);
-      overflow:hidden;
+      padding:24px 28px 22px;
       animation:fadeUp .28s var(--ease) both;
     }
-    .auth-modal-head {
-      padding:24px 26px 18px;
-      border-bottom:1px solid var(--border-soft);
-      background:linear-gradient(145deg,var(--forest-050),#fff);
-    }
-    .auth-modal-head h2 { font-family:var(--sans); font-size:1.2rem; font-weight:800; letter-spacing:0; }
-    .auth-modal-head p { margin-top:8px; color:var(--muted); font-size:.86rem; line-height:1.55; }
-    .auth-modal-body { padding:22px 26px 26px; }
-    .auth-benefits { display:grid; gap:10px; margin:0 0 18px; padding:0; list-style:none; }
-    .auth-benefits li { display:grid; grid-template-columns:8px minmax(0,1fr); gap:10px; color:var(--neutral-700); font-size:.82rem; line-height:1.45; }
-    .auth-benefits li::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--forest-600); margin-top:7px; }
-    .auth-actions { display:grid; gap:10px; margin-top:16px; }
-    .auth-secondary { display:flex; justify-content:center; margin-top:14px; }
-    .auth-link { border:0; background:transparent; color:var(--muted); font-size:.78rem; font-weight:800; }
-    .auth-view[hidden] { display:none; }
-    .google-card { border:1px solid var(--border-soft); border-radius:18px; background:var(--card); overflow:hidden; }
-    .google-top {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:17px 18px;
-      border-bottom:1px solid var(--border-soft);
-      background:linear-gradient(145deg,#fff,var(--oat-100));
-    }
-    .google-mark {
-      width:36px;
-      height:36px;
+    .auth-close {
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:34px;
+      height:34px;
+      border:0;
       border-radius:50%;
+      background:var(--oat-200);
+      color:var(--muted);
+      font-size:1.25rem;
+      line-height:1;
+    }
+    .auth-close:hover { background:var(--oat-250); color:var(--neutral-900); }
+    .auth-logo {
+      width:44px;
+      height:44px;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      border:1px solid var(--border-soft);
-      background:#fff;
-      color:#4285F4;
-      font-weight:800;
-      font-size:1rem;
-    }
-    .google-top strong { display:block; font-size:.9rem; color:var(--neutral-900); }
-    .google-top span { display:block; margin-top:2px; color:var(--muted); font-size:.72rem; }
-    .google-account {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:16px 18px;
-      border-bottom:1px solid var(--border-soft);
-    }
-    .google-avatar {
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
+      margin:0 auto 10px;
       background:var(--forest-600);
       color:var(--oat-100);
-      font-weight:800;
+      font:1.45rem var(--serif);
+      box-shadow:var(--shadow-brand);
     }
-    .google-account strong { display:block; font-size:.84rem; }
-    .google-account span { display:block; margin-top:2px; color:var(--muted); font-size:.72rem; }
-    .google-permissions { padding:16px 18px 18px; }
-    .google-permissions h3 { margin-bottom:10px; }
-    .permission-list { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
-    .permission-list li { display:grid; grid-template-columns:22px minmax(0,1fr); gap:9px; color:var(--neutral-700); font-size:.78rem; line-height:1.45; }
-    .permission-icon {
+    .auth-modal h2 {
+      margin:0;
+      font-family:var(--serif);
+      font-size:1.55rem;
+      font-weight:400;
+      line-height:1.12;
+    }
+    .auth-modal > p { margin:6px auto 0; color:var(--muted); font-size:.78rem; line-height:1.45; }
+    .auth-google {
+      width:100%;
+      height:42px;
+      margin-top:16px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:1px solid var(--border);
+      border-radius:var(--r-pill);
+      background:var(--card);
+      color:var(--neutral-900);
+      font:800 .84rem var(--sans);
+      box-shadow:0 1px 2px rgba(28,43,29,.04);
+      transition:transform .15s var(--ease), border-color .15s var(--ease), box-shadow .15s var(--ease);
+    }
+    .auth-google:hover { transform:translateY(-1px); border-color:var(--forest-100); box-shadow:0 10px 28px -20px rgba(28,43,29,.34); }
+    .google-mark {
       width:22px;
       height:22px;
       border-radius:50%;
       display:grid;
       place-items:center;
-      background:var(--forest-050);
-      color:var(--forest-700);
-      font-size:.68rem;
-      font-weight:800;
+      background:#fff;
+      box-shadow:0 0 0 1px rgba(0,0,0,.04);
     }
-    .google-note { margin-top:12px; color:var(--muted); font-size:.72rem; line-height:1.45; }
-    .auth-modal.google-mode { width:min(100%,520px); }
+    .auth-divider {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.64rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .auth-divider::before,
+    .auth-divider::after { content:""; height:1px; flex:1; background:var(--border-soft); }
+    .auth-tabs {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:4px;
+      padding:4px;
+      margin-top:12px;
+      border:1px solid var(--border-soft);
+      border-radius:var(--r-pill);
+      background:var(--oat-200);
+    }
+    .auth-tabs button {
+      height:32px;
+      border:0;
+      border-radius:var(--r-pill);
+      background:transparent;
+      color:var(--neutral-700);
+      font:800 .8rem var(--sans);
+    }
+    .auth-tabs button.is-active { background:var(--forest-600); color:var(--oat-100); box-shadow:var(--shadow-brand); }
+    .auth-panel { margin-top:12px; text-align:left; }
+    .auth-panel[hidden] { display:none; }
+    .auth-panel label { display:block; margin-top:9px; color:var(--neutral-700); font-size:.72rem; font-weight:800; }
+    .auth-panel .input { margin-top:5px; height:38px; padding:8px 12px; font-size:.82rem; border-radius:14px; }
+    .auth-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:10px; }
+    .auth-inline { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:end; margin-top:5px; }
+    .auth-inline .input { margin-top:0; }
+    .auth-row { display:flex; justify-content:flex-end; margin:8px 0 12px; }
+    .auth-row a { color:var(--forest-600); font-size:.72rem; font-weight:700; }
+    .auth-panel .btn-block { height:40px; margin-top:12px; }
+    .auth-legal { margin-top:10px; color:var(--muted); font-size:.68rem; line-height:1.35; text-align:center; }
+    .auth-context { margin-top:12px; padding:10px 12px; border:1px solid var(--forest-100); border-radius:14px; background:var(--forest-050); color:var(--forest-700); font-size:.74rem; font-weight:700; line-height:1.4; text-align:left; }
     .checkout-backdrop {
       position:fixed;
       inset:0;
@@ -552,8 +597,8 @@
     }
     .checkout-backdrop[hidden], .checkout-view[hidden] { display:none; }
     .checkout-modal {
-      width:min(100%,980px);
-      max-height:min(92vh,820px);
+      width:min(520px,100%);
+      max-height:min(92vh,720px);
       overflow:auto;
       border:1px solid rgba(217,232,218,.24);
       border-radius:24px;
@@ -570,35 +615,15 @@
       border-bottom:1px solid var(--border-soft);
       background:linear-gradient(145deg,var(--forest-050),#fff);
     }
-    .checkout-head h2 { font-family:var(--sans); font-size:1.2rem; font-weight:800; letter-spacing:0; }
+    .checkout-head .eyebrow { margin-bottom:10px; }
+    .checkout-head h2 { font-family:var(--serif); font-size:2rem; font-weight:400; letter-spacing:0; line-height:1.12; }
     .checkout-head p { margin-top:8px; color:var(--muted); font-size:.84rem; line-height:1.55; }
     .checkout-close { width:38px; height:38px; border:0; border-radius:50%; background:var(--oat-200); color:var(--muted); font-size:1.1rem; font-weight:800; flex-shrink:0; }
     .checkout-body { padding:24px 28px 28px; }
-    .checkout-packages { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-    .checkout-package {
-      min-height:330px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:14px;
-      padding:18px;
-      border:1px solid var(--border-soft);
-      border-radius:18px;
-      background:var(--card);
-      text-align:left;
-      color:inherit;
-      font:inherit;
-      appearance:none;
-    }
-    .checkout-package.active { border-color:var(--forest-600); background:var(--forest-050); box-shadow:0 0 0 1px var(--forest-600) inset; }
-    .checkout-package strong { display:block; font-size:.92rem; color:var(--neutral-900); }
-    .checkout-package span { display:block; margin-top:4px; color:var(--muted); font-size:.74rem; line-height:1.45; }
-    .checkout-price { margin-top:12px; font-family:var(--serif); font-size:2rem; line-height:1; color:var(--neutral-900); }
-    .checkout-features { list-style:none; display:grid; gap:8px; padding:0; margin:12px 0 0; color:var(--neutral-700); font-size:.72rem; line-height:1.38; }
-    .checkout-features li { display:grid; grid-template-columns:15px minmax(0,1fr); gap:7px; align-items:start; }
-    .checkout-features li::before { content:"✓"; color:#D68A00; font-weight:900; line-height:1.2; }
     .checkout-footer { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:22px; padding-top:18px; border-top:1px solid var(--border-soft); }
     .checkout-footnote { color:var(--muted); font-size:.74rem; line-height:1.45; }
+    .credit-cost { margin-top:2px; padding:14px 16px; border-radius:var(--r-input); background:var(--warning-bg); border:1px solid rgba(219,119,6,.28); color:#8a5108; font-weight:800; }
+    .credit-foot { margin-top:12px; color:var(--muted); font-size:.82rem; line-height:1.5; }
     .checkout-success { text-align:center; padding:18px 0 4px; }
     .success-mark { width:58px; height:58px; margin:0 auto 18px; border-radius:50%; display:grid; place-items:center; background:var(--success-bg); color:var(--success-600); font-size:1.35rem; font-weight:800; }
     .checkout-success h2 { font-family:var(--serif); font-size:2.35rem; }
@@ -724,6 +749,8 @@
       appearance:none;
     }
     .package-row:hover { background:var(--forest-050); transform:translateY(-1px); }
+    .package-row.locked { cursor:pointer; opacity:.74; }
+    .package-row.locked:hover { background:var(--warning-bg); border-color:rgba(214,138,0,.34); transform:translateY(-1px); }
     .package-row:disabled { cursor:not-allowed; opacity:.58; transform:none; }
     .package-row:disabled:hover { background:var(--card); transform:none; }
     .package-row.active .row-title { color:var(--forest-700); }
@@ -891,7 +918,7 @@
     }
     @media (max-width:760px) {
       .nav-links { display:none; }
-      .account-pill { display:none; }
+      .nav-actions { display:none; }
       .hero { padding:78px 0 84px; }
       .band { padding:62px 0; }
       .hero-actions .btn { width:100%; }
@@ -922,8 +949,6 @@
       .shot-row { grid-template-columns:1fr; gap:5px; }
       .diff-frame,.diff-compare { grid-template-columns:1fr; gap:18px; }
       .diff-card { padding:18px; border-radius:20px; }
-      .checkout-packages { grid-template-columns:1fr; }
-      .checkout-package { min-height:auto; }
       .checkout-footer { flex-direction:column; align-items:stretch; }
       .assistant-head { grid-template-columns:52px minmax(0,1fr); }
       .assistant-pill { grid-column:1 / -1; width:max-content; }
@@ -977,13 +1002,8 @@
         <a href="#outputs">Output</a>
         <a href="#pricing">Packages</a>
       </div>
-      <div class="nav-actions">
-        <div class="account-pill" aria-label="Account status">
-          <span class="account-avatar">L</span>
-          <span class="account-copy"><strong>Luckee user</strong><span>Free plan available</span></span>
-        </div>
-        <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free plan</a>
-      </div>
+      <div class="nav-actions" id="account-slot" aria-label="Account"></div>
+      <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free plan</a>
       <div class="steps nav-workflow" aria-label="workflow progress">
         <span class="step active" id="step-1">Intake</span><span class="sep">/</span>
         <span class="step" id="step-2">Summary</span><span class="sep">/</span>
@@ -1021,7 +1041,7 @@
                   <select class="hero-start-select" id="hero-package" aria-label="package">
                     <option>Listing + Standard A+</option>
                     <option>Listing Generator</option>
-                    <option>Listing + Premium A+</option>
+                    <option value="Listing + Premium A+" disabled>Listing + Premium A+ (Paid)</option>
                   </select>
                 </label>
                 <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
@@ -1439,7 +1459,7 @@ Stainless steel look for modern kitchens</textarea>
             </div>
             <p class="section-note" style="margin-bottom:12px">Choose how much of the Amazon page you want Launch Listing to create. You can adjust details below.</p>
             <div class="package-list">
-              <button class="package-row" type="button" data-package-name="Listing Generator">
+              <button class="package-row" type="button" data-package-name="Listing Generator" data-free-once="true">
                 <div class="package-main">
                   <div class="row-title">Listing Generator</div>
                   <div class="package-summary">Full basic listing — copy + 7 gallery images.</div>
@@ -1450,9 +1470,9 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Checklist for Seller Central upload</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-lock">1,500 Credits</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">1 free use</span><span class="chip chip-lock">1,500 Credits after free use</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
               </button>
-              <button class="package-row active" type="button" data-package-name="Listing + Standard A+">
+              <button class="package-row active" type="button" data-package-name="Listing + Standard A+" data-free-once="true">
                 <div class="package-main">
                   <div class="row-title">Listing + Standard A+</div>
                   <div class="package-summary">Full listing package — copy, 7 gallery images and Standard A+.</div>
@@ -1463,9 +1483,9 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Seller Central ready ZIP</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-lock">3,000 Credits</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-clear">1 free use</span><span class="chip chip-lock">3,000 Credits after free use</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
               </button>
-              <button class="package-row premium" type="button" data-package-name="Listing + Premium A+">
+              <button class="package-row premium" type="button" data-package-name="Listing + Premium A+" data-paid-only="true">
                 <div class="package-main">
                   <div class="row-title">Listing + Premium A+</div>
                   <div class="package-summary">Premium full listing package — copy, 7 gallery images and Premium A+.</div>
@@ -2045,61 +2065,44 @@ Stainless steel look for modern kitchens</textarea>
 
   <div class="auth-backdrop" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title" hidden>
     <div class="auth-modal" id="auth-card">
-      <div class="auth-modal-head" id="auth-basic-head">
-        <h2 id="auth-title">Create a free account to continue</h2>
-        <p id="auth-copy">Save your launch plan, use your free preview, and keep the project available for download.</p>
+      <button class="auth-close" id="auth-close" type="button" aria-label="Close dialog">×</button>
+      <div class="auth-logo">L</div>
+      <h2 id="auth-title">Welcome to Luckee</h2>
+      <p>AI E-commerce helper, making operations easier</p>
+      <div class="auth-context" id="auth-copy">Save your launch plan, use your free preview, and keep the project available for export.</div>
+      <button class="auth-google" id="auth-google" type="button">
+        <span class="google-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/>
+            <path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.69 9c0-.6.1-1.18.28-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.05l3.01-2.33z"/>
+            <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.46 3.44 1.35l2.58-2.58A8.66 8.66 0 0 0 9 0 9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/>
+          </svg>
+        </span>
+        Continue with Google
+      </button>
+      <div class="auth-divider"><span>or use email</span></div>
+      <div class="auth-tabs" role="tablist" aria-label="Luckee account">
+        <button type="button" role="tab" data-auth-tab="login">Login</button>
+        <button type="button" role="tab" data-auth-tab="register">Sign up</button>
       </div>
-      <div class="auth-modal-body auth-view" id="auth-basic-view">
-        <ul class="auth-benefits">
-          <li>One free launch plan is included with every new account.</li>
-          <li>No credits are used until you unlock copyable text or downloads.</li>
-          <li>Your product details, plan edits and preview stay saved.</li>
-        </ul>
-        <div class="field">
-          <label class="label" for="auth-email">Work email</label>
-          <input class="input" id="auth-email" type="email" value="seller@example.com">
-        </div>
-        <div class="auth-actions">
-          <button class="btn btn-primary btn-lg btn-block" id="auth-continue" type="button">Continue free</button>
-          <button class="btn btn-outline btn-lg btn-block" id="auth-google" type="button">Continue with Google</button>
-        </div>
-        <div class="auth-secondary">
-          <button class="auth-link" id="auth-cancel" type="button">Back to editing inputs</button>
-        </div>
+      <div class="auth-panel" data-auth-panel="login">
+        <label>Username/Email<input class="input" id="auth-login-email" type="text" placeholder="Username/Email" value="seller@example.com"></label>
+        <label>Password<input class="input" type="password" placeholder="Password" value="prototype"></label>
+        <div class="auth-row"><a href="https://luckee.ai/login" target="_blank" rel="noreferrer">Forgot password?</a></div>
+        <button class="btn btn-primary btn-block" id="auth-login-submit" type="button">SIGN IN</button>
+        <p class="auth-legal">By logging in, you agree to our Terms of Service and Privacy Policy</p>
       </div>
-      <div class="auth-modal-body auth-view" id="auth-google-view" hidden>
-        <div class="google-card">
-          <div class="google-top">
-            <div class="google-mark">G</div>
-            <div>
-              <strong>Sign in with Google</strong>
-              <span>Create your Launch Listing account with Google.</span>
-            </div>
-          </div>
-          <div class="google-account">
-            <div class="google-avatar">S</div>
-            <div>
-              <strong>seller@example.com</strong>
-              <span>Google Account</span>
-            </div>
-          </div>
-          <div class="google-permissions">
-            <h3>Launch Listing will use this to</h3>
-            <ul class="permission-list">
-              <li><span class="permission-icon">1</span><span>Create your free Launch Listing account.</span></li>
-              <li><span class="permission-icon">2</span><span>Save launch plans, uploaded product photos and generated previews.</span></li>
-              <li><span class="permission-icon">3</span><span>Send account and purchase receipts to this email.</span></li>
-            </ul>
-            <p class="google-note">We do not request Google Drive, Gmail or advertising account access in this flow.</p>
-          </div>
+      <div class="auth-panel" data-auth-panel="register">
+        <label>Email<span class="auth-inline"><input class="input" id="auth-register-email" type="email" placeholder="Enter your email" value="seller@example.com"><button class="btn btn-outline btn-sm" type="button">Send</button></span></label>
+        <div class="auth-grid">
+          <label>Code<input class="input" type="text" placeholder="Enter code" value="000000"></label>
+          <label>Username<input class="input" id="auth-register-name" type="text" placeholder="Username" value="Luckee user"></label>
+          <label>Password<input class="input" type="password" placeholder="Password" value="prototype"></label>
+          <label>Confirm<input class="input" type="password" placeholder="Repeat password" value="prototype"></label>
         </div>
-        <div class="auth-actions">
-          <button class="btn btn-primary btn-lg btn-block" id="google-authorize" type="button">Authorize and continue</button>
-          <button class="btn btn-outline btn-lg btn-block" id="google-back" type="button">Use another sign-in method</button>
-        </div>
-        <div class="auth-secondary">
-          <button class="auth-link" id="google-cancel" type="button">Back to editing inputs</button>
-        </div>
+        <button class="btn btn-primary btn-block" id="auth-register-submit" type="button">SIGN UP</button>
+        <p class="auth-legal">By signing up, you agree to our Terms of Service and Privacy Policy</p>
       </div>
     </div>
   </div>
@@ -2109,73 +2112,32 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-select-view">
         <div class="checkout-head">
           <div>
+            <span class="eyebrow" id="checkpoint-eyebrow">Credit checkpoint</span>
             <h2 id="checkout-title">Use Luckee credits</h2>
-            <p>Choose the generation bundle for this listing. Your preview stays here after credits are confirmed.</p>
+            <p id="checkout-copy">Confirm the Luckee credits checkpoint before continuing.</p>
           </div>
-          <button class="checkout-close" id="checkout-close" type="button" aria-label="Close checkout">×</button>
+          <button class="checkout-close" id="checkout-close" type="button" aria-label="Close credit checkpoint">×</button>
         </div>
         <div class="checkout-body">
-          <div class="checkout-packages" aria-label="generation bundles">
-            <button class="checkout-package" type="button" data-checkout-package="starter">
-              <div>
-                <strong>Listing Generator</strong>
-                <span>Full basic listing — copy + 7 gallery images.</span>
-                <ul class="checkout-features">
-                  <li>7 gallery images (1024 x 1024 · 1K)</li>
-                  <li>SEO title + 5 bullets</li>
-                  <li>Description + backend search terms</li>
-                  <li>Seller Central checklist</li>
-                </ul>
-                <div class="checkout-price">1,500 Credits</div>
-              </div>
-              <span class="chip chip-forest">1024 x 1024 · 1K</span>
-            </button>
-            <button class="checkout-package active" type="button" data-checkout-package="full">
-              <div>
-                <strong>Listing + Standard A+</strong>
-                <span>Full listing package — copy, 7 gallery images and Standard A+.</span>
-                <ul class="checkout-features">
-                  <li>7 gallery images (1024 x 1024 · 1K)</li>
-                  <li>SEO title + 5 bullets + backend search terms</li>
-                  <li>6 Standard A+ modules (970 x 600 · 1K)</li>
-                  <li>Seller Central ready ZIP</li>
-                </ul>
-                <div class="checkout-price">3,000 Credits</div>
-              </div>
-              <span class="chip chip-clear">1024 x 1024 · 1K + 970 x 600 · 1K</span>
-            </button>
-            <button class="checkout-package" type="button" data-checkout-package="premium">
-              <div>
-                <strong>Listing + Premium A+</strong>
-                <span>Premium full listing package — copy, 7 gallery images and Premium A+.</span>
-                <ul class="checkout-features">
-                  <li>7 gallery images (1024 x 1024 · 1K)</li>
-                  <li>SEO title + 5 bullets + backend search terms</li>
-                  <li>Premium A+ banners (1464 x 600 · 4K)</li>
-                  <li>Mobile-ready crops (600 x 450)</li>
-                </ul>
-                <div class="checkout-price">12,000 Credits</div>
-              </div>
-              <span class="chip chip-forest">1024 x 1024 · 1K + 1464 x 600 · 4K</span>
-            </button>
-          </div>
+          <div class="credit-cost" id="checkout-cost">Free — included in your first complete loop</div>
+          <p class="credit-foot" id="checkout-footnote">No card needed for the first loop. Later runs use Luckee credits.</p>
           <div class="checkout-footer">
-            <div class="checkout-footnote">Uses Luckee credits from your main account. Final files unlock for this listing after confirmation.</div>
-            <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Use credits and unlock</button>
+            <button class="btn btn-ghost" id="checkpoint-cancel" type="button">Cancel</button>
+            <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Continue</button>
           </div>
         </div>
       </div>
       <div class="checkout-view" id="checkout-processing-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2>Confirming credits</h2>
-            <p>Applying the selected generation bundle to this listing.</p>
+            <h2 id="checkpoint-processing-title">Confirming credits</h2>
+            <p id="checkpoint-processing-copy">Applying the checkpoint to this listing.</p>
           </div>
         </div>
         <div class="checkout-body">
           <div class="progress-row active" style="border-bottom:0">
             <div class="progress-icon"><span class="spinner"></span></div>
-            <div class="progress-main"><div class="row-title">Preparing files</div><div class="row-desc">Listing text, images and ZIP will become available in Results.</div></div>
+            <div class="progress-main"><div class="row-title" id="checkpoint-progress-title">Preparing files</div><div class="row-desc" id="checkpoint-progress-desc">Listing text, images and ZIP will become available in Results.</div></div>
             <span class="chip chip-warn">Processing</span>
           </div>
         </div>
@@ -2183,17 +2145,17 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-success-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2>Final files unlocked</h2>
-            <p>Your listing files are ready.</p>
+            <h2 id="checkpoint-success-head">Checkpoint confirmed</h2>
+            <p id="checkpoint-success-sub">Your Luckee credits checkpoint is complete.</p>
           </div>
         </div>
         <div class="checkout-body">
           <div class="checkout-success">
             <div class="success-mark">✓</div>
-            <h2>Final files unlocked</h2>
-            <p>Listing text, high-resolution images and ZIP download are now available in your results.</p>
+            <h2 id="checkpoint-success-title">Checkpoint confirmed</h2>
+            <p id="checkpoint-success-copy">You can continue with this listing.</p>
             <div class="toolbar" style="margin-top:24px">
-              <button class="btn btn-primary btn-lg" id="checkout-back-results" type="button">Back to results</button>
+              <button class="btn btn-primary btn-lg" id="checkout-back-results" type="button">Continue</button>
             </div>
           </div>
         </div>
@@ -2211,10 +2173,80 @@ Stainless steel look for modern kitchens</textarea>
       const backOverview = document.getElementById('back-overview');
       const brandHome = document.getElementById('brand-home');
       let projectMode = 'scratch';
-      let signedIn = false;
       let pendingAuthAction = null;
       let exportsUnlocked = false;
       let heroMode = 'new';
+      const ACCOUNT_KEY = 'luckee-launch-listing-account-v1';
+      const defaultAccountState = {
+        signedIn: false,
+        authMode: 'guest',
+        accountName: '',
+        accountEmail: '',
+        freeLaunchPlanUsed: false,
+        finalFilesUnlocked: false,
+        hasPaidAccess: false
+      };
+      function readAccountState() {
+        try {
+          const raw = window.localStorage && window.localStorage.getItem(ACCOUNT_KEY);
+          return Object.assign({}, defaultAccountState, raw ? JSON.parse(raw) : {});
+        } catch {
+          return Object.assign({}, defaultAccountState);
+        }
+      }
+      let accountState = readAccountState();
+      function writeAccountState(patch) {
+        accountState = Object.assign({}, accountState, patch || {});
+        try {
+          if (window.localStorage) window.localStorage.setItem(ACCOUNT_KEY, JSON.stringify(accountState));
+        } catch {
+          // Keep the prototype usable when localStorage is blocked.
+        }
+        renderAccountSlot();
+        syncPackageAvailability();
+      }
+      function safeText(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char]));
+      }
+      function renderAccountSlot() {
+        const slot = document.getElementById('account-slot');
+        if (!slot) return;
+        if (!accountState.signedIn) {
+          slot.innerHTML = `
+            <div class="account-auth">
+              <button class="btn btn-ghost btn-sm" type="button" data-auth-action="login">Sign in</button>
+              <button class="btn btn-outline btn-sm" type="button" data-auth-action="register">Sign up</button>
+            </div>`;
+          return;
+        }
+        const name = accountState.accountName || 'Luckee user';
+        const email = accountState.accountEmail || 'seller@example.com';
+        const credit = accountState.hasPaidAccess ? 'Paid access active' : (accountState.freeLaunchPlanUsed ? 'Free use spent · credits ready' : '1 free use available');
+        slot.innerHTML = `
+          <div class="account-pill" title="${safeText(email)}">
+            <span class="account-avatar">${safeText(name.slice(0, 1).toUpperCase())}</span>
+            <span class="account-copy"><strong>${safeText(name)}</strong><span>${safeText(credit)}</span></span>
+            <button class="account-signout" type="button" data-auth-action="signout">Sign out</button>
+          </div>`;
+      }
+      renderAccountSlot();
+      document.getElementById('account-slot').addEventListener('click', event => {
+        const trigger = event.target.closest('[data-auth-action]');
+        if (!trigger) return;
+        event.preventDefault();
+        const action = trigger.dataset.authAction;
+        if (action === 'signout') {
+          writeAccountState(Object.assign({}, defaultAccountState));
+          return;
+        }
+        openAuthModal(null, '', action === 'login' ? 'login' : 'register');
+      });
 
       function setWorkspaceVisible(visible) {
         landingSections.forEach(section => { section.hidden = visible; });
@@ -2288,8 +2320,45 @@ Stainless steel look for modern kitchens</textarea>
       document.querySelectorAll('[data-hero-mode]').forEach(button => {
         button.addEventListener('click', () => setHeroMode(button.dataset.heroMode));
       });
+      function selectedPackageName() {
+        const active = document.querySelector('.package-row.active');
+        return active ? active.dataset.packageName : 'Listing + Standard A+';
+      }
+      function packageCreditCost(packageName) {
+        if (packageName === 'Listing Generator') return '1,500 Credits';
+        if (packageName === 'Listing + Premium A+') return '12,000 Credits';
+        return '3,000 Credits';
+      }
+      function needsPaidAccess(packageName) {
+        if (packageName === 'Listing + Premium A+') return !accountState.hasPaidAccess;
+        return accountState.freeLaunchPlanUsed && !accountState.hasPaidAccess;
+      }
+      function syncPackageAvailability() {
+        const premiumLocked = !accountState.hasPaidAccess;
+        const premiumRow = document.querySelector('[data-package-name="Listing + Premium A+"]');
+        if (premiumRow) {
+          premiumRow.classList.toggle('locked', premiumLocked);
+          premiumRow.setAttribute('aria-disabled', String(premiumLocked));
+          if (premiumLocked && premiumRow.classList.contains('active')) {
+            premiumRow.classList.remove('active');
+            const fallback = document.querySelector('[data-package-name="Listing + Standard A+"]');
+            if (fallback) fallback.classList.add('active');
+          }
+        }
+        const premiumOption = document.querySelector('#hero-package option[value="Listing + Premium A+"]');
+        if (premiumOption) {
+          premiumOption.disabled = premiumLocked;
+          premiumOption.textContent = premiumLocked ? 'Listing + Premium A+ (Paid)' : 'Listing + Premium A+';
+        }
+        const heroPackage = document.getElementById('hero-package');
+        if (heroPackage && premiumLocked && heroPackage.value === 'Listing + Premium A+') {
+          heroPackage.value = 'Listing + Standard A+';
+        }
+      }
+      syncPackageAvailability();
       function selectWorkspacePackage(packageName) {
         if (!packageName) return;
+        if (needsPaidAccess(packageName)) packageName = 'Listing + Standard A+';
         document.querySelectorAll('.package-row').forEach(row => {
           row.classList.toggle('active', row.dataset.packageName === packageName);
         });
@@ -2312,52 +2381,51 @@ Stainless steel look for modern kitchens</textarea>
       }
 
       const authModal = document.getElementById('auth-modal');
-      const authCard = document.getElementById('auth-card');
-      const authBasicHead = document.getElementById('auth-basic-head');
-      const authBasicView = document.getElementById('auth-basic-view');
-      const authGoogleView = document.getElementById('auth-google-view');
       const authCopy = document.getElementById('auth-copy');
-      function showAuthBasic() {
-        authBasicHead.hidden = false;
-        authBasicView.hidden = false;
-        authGoogleView.hidden = true;
-        authCard.classList.remove('google-mode');
+      function setAuthMode(mode) {
+        const activeMode = mode === 'login' ? 'login' : 'register';
+        document.querySelectorAll('[data-auth-tab]').forEach(button => {
+          const active = button.dataset.authTab === activeMode;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-selected', String(active));
+        });
+        document.querySelectorAll('[data-auth-panel]').forEach(panel => {
+          panel.hidden = panel.dataset.authPanel !== activeMode;
+        });
       }
-      function showGoogleAuth() {
-        authBasicHead.hidden = true;
-        authBasicView.hidden = true;
-        authGoogleView.hidden = false;
-        authCard.classList.add('google-mode');
-      }
-      function openAuthModal(action, copy) {
+      function openAuthModal(action, copy, mode = 'register') {
         pendingAuthAction = action;
-        if (copy) authCopy.textContent = copy;
-        showAuthBasic();
+        authCopy.textContent = copy || 'Sign in or create a Luckee account to continue with your free Launch Listing loop.';
+        setAuthMode(mode);
         authModal.hidden = false;
-        document.getElementById('auth-email').focus();
+        const target = mode === 'login' ? document.getElementById('auth-login-email') : document.getElementById('auth-register-email');
+        requestAnimationFrame(() => target && target.focus());
       }
       function closeAuthModal() {
         authModal.hidden = true;
       }
-      function completeAuth() {
-        signedIn = true;
+      function completeAuth(mode) {
+        const registerName = document.getElementById('auth-register-name').value.trim();
+        const registerEmail = document.getElementById('auth-register-email').value.trim();
+        const loginEmail = document.getElementById('auth-login-email').value.trim();
+        writeAccountState({
+          signedIn: true,
+          authMode: mode || 'login',
+          accountName: registerName || 'Luckee user',
+          accountEmail: mode === 'login' ? (loginEmail || 'seller@example.com') : (registerEmail || 'seller@example.com')
+        });
         closeAuthModal();
         const action = pendingAuthAction;
         pendingAuthAction = null;
         if (typeof action === 'function') action();
       }
-      document.getElementById('auth-continue').addEventListener('click', completeAuth);
-      document.getElementById('auth-google').addEventListener('click', showGoogleAuth);
-      document.getElementById('google-authorize').addEventListener('click', completeAuth);
-      document.getElementById('google-back').addEventListener('click', () => {
-        showAuthBasic();
-        document.getElementById('auth-email').focus();
+      document.querySelectorAll('[data-auth-tab]').forEach(button => {
+        button.addEventListener('click', () => setAuthMode(button.dataset.authTab));
       });
-      document.getElementById('auth-cancel').addEventListener('click', () => {
-        pendingAuthAction = null;
-        closeAuthModal();
-      });
-      document.getElementById('google-cancel').addEventListener('click', () => {
+      document.getElementById('auth-google').addEventListener('click', () => completeAuth('google'));
+      document.getElementById('auth-login-submit').addEventListener('click', () => completeAuth('login'));
+      document.getElementById('auth-register-submit').addEventListener('click', () => completeAuth('register'));
+      document.getElementById('auth-close').addEventListener('click', () => {
         pendingAuthAction = null;
         closeAuthModal();
       });
@@ -2374,11 +2442,11 @@ Stainless steel look for modern kitchens</textarea>
         }
       });
       function requireAuth(action, copy) {
-        if (signedIn) {
+        if (accountState.signedIn) {
           action();
           return;
         }
-        openAuthModal(action, copy);
+        openAuthModal(action, copy, 'register');
       }
 
       const checkoutModal = document.getElementById('checkout-modal');
@@ -2386,14 +2454,118 @@ Stainless steel look for modern kitchens</textarea>
       const checkoutProcessingView = document.getElementById('checkout-processing-view');
       const checkoutSuccessView = document.getElementById('checkout-success-view');
       const previewState = document.getElementById('state-preview');
+      let checkpointContext = { type: 'export', onConfirm: null };
+      const checkpointCopy = {
+        'free-plan': {
+          eyebrow: 'First loop · free',
+          title: 'Create the launch plan?',
+          body: 'This creates and saves your free Launch Listing plan for the selected package.',
+          cost: 'Free — included in your first complete loop',
+          footnote: 'No card needed. Later launch plans use your existing Luckee credits.',
+          primary: 'Create free plan',
+          processingTitle: 'Creating free plan',
+          processingCopy: 'Saving your product inputs and preparing the launch plan.',
+          progressTitle: 'Preparing launch plan',
+          progressDesc: 'Summary and plan steps will become available after this checkpoint.',
+          successHead: 'Free plan created',
+          successSub: 'Your first Launch Listing loop is attached to your Luckee account.',
+          successTitle: 'Free plan created',
+          successCopy: 'You can continue reviewing the generated plan.',
+          successButton: 'Continue'
+        },
+        'paid-plan': {
+          eyebrow: 'Luckee credits',
+          title: 'Use credits for this launch plan?',
+          body: 'Your free Launch Listing plan has already been used. Continue with Luckee credits from your main account.',
+          cost: 'Uses the selected package credits',
+          footnote: 'This follows the same Luckee credits checkpoint used by the listing optimization flow.',
+          primary: 'Use credits and continue',
+          processingTitle: 'Confirming credits',
+          processingCopy: 'Applying Luckee credits to this launch plan.',
+          progressTitle: 'Preparing launch plan',
+          progressDesc: 'The selected package will continue after credits are confirmed.',
+          successHead: 'Credits confirmed',
+          successSub: 'The launch plan can continue.',
+          successTitle: 'Credits confirmed',
+          successCopy: 'You can continue with this Launch Listing plan.',
+          successButton: 'Continue'
+        },
+        premium: {
+          eyebrow: 'Luckee credits',
+          title: 'Premium A+ requires credits',
+          body: 'Premium A+ uses larger 4K modules and mobile crops, so it is available after a paid plan or enough Luckee credits.',
+          cost: '12,000 Credits',
+          footnote: 'Confirming credits unlocks Premium A+ for this prototype session.',
+          primary: 'Use credits and select Premium',
+          processingTitle: 'Confirming Premium A+ credits',
+          processingCopy: 'Unlocking the Premium A+ package for this listing.',
+          progressTitle: 'Unlocking Premium A+',
+          progressDesc: 'Premium banners and mobile crops will become selectable.',
+          successHead: 'Premium A+ unlocked',
+          successSub: 'The Premium package is now available.',
+          successTitle: 'Premium A+ unlocked',
+          successCopy: 'The Premium A+ package is selected for this listing.',
+          successButton: 'Continue with Premium'
+        },
+        export: {
+          eyebrow: 'Luckee credits',
+          title: 'Unlock final files?',
+          body: 'Confirm Luckee credits to unlock copyable text, high-resolution images and ZIP download for this listing.',
+          cost: 'Uses the selected generation bundle credits',
+          footnote: 'Your preview stays here after credits are confirmed.',
+          primary: 'Use credits and unlock',
+          processingTitle: 'Confirming credits',
+          processingCopy: 'Applying the selected generation bundle to this listing.',
+          progressTitle: 'Preparing files',
+          progressDesc: 'Listing text, images and ZIP will become available in Results.',
+          successHead: 'Final files unlocked',
+          successSub: 'Your listing files are ready.',
+          successTitle: 'Final files unlocked',
+          successCopy: 'Listing text, high-resolution images and ZIP download are now available in your results.',
+          successButton: 'Back to results'
+        }
+      };
       function showCheckoutView(name) {
         checkoutSelectView.hidden = name !== 'select';
         checkoutProcessingView.hidden = name !== 'processing';
         checkoutSuccessView.hidden = name !== 'success';
       }
-      function openCheckout() {
+      function currentCheckpointCopy() {
+        const copy = Object.assign({}, checkpointCopy[checkpointContext.type] || checkpointCopy.export);
+        if (checkpointContext.type === 'paid-plan') {
+          copy.cost = packageCreditCost(selectedPackageName());
+        }
+        return copy;
+      }
+      function applyCheckpointCopy(copy) {
+        document.getElementById('checkpoint-eyebrow').textContent = copy.eyebrow;
+        document.getElementById('checkout-title').textContent = copy.title;
+        document.getElementById('checkout-copy').textContent = copy.body;
+        document.getElementById('checkout-cost').textContent = copy.cost;
+        document.getElementById('checkout-footnote').textContent = copy.footnote;
+        document.getElementById('checkout-pay').textContent = copy.primary;
+        document.getElementById('checkpoint-processing-title').textContent = copy.processingTitle;
+        document.getElementById('checkpoint-processing-copy').textContent = copy.processingCopy;
+        document.getElementById('checkpoint-progress-title').textContent = copy.progressTitle;
+        document.getElementById('checkpoint-progress-desc').textContent = copy.progressDesc;
+        document.getElementById('checkpoint-success-head').textContent = copy.successHead;
+        document.getElementById('checkpoint-success-sub').textContent = copy.successSub;
+        document.getElementById('checkpoint-success-title').textContent = copy.successTitle;
+        document.getElementById('checkpoint-success-copy').textContent = copy.successCopy;
+        document.getElementById('checkout-back-results').textContent = copy.successButton;
+      }
+      function openCreditCheckpoint(type = 'export', options = {}) {
+        if (!accountState.signedIn) {
+          openAuthModal(() => openCreditCheckpoint(type, options), 'Sign in to continue with your Luckee credits checkpoint.', 'login');
+          return;
+        }
+        checkpointContext = { type, onConfirm: options.onConfirm || null };
+        applyCheckpointCopy(currentCheckpointCopy());
         showCheckoutView('select');
         checkoutModal.hidden = false;
+      }
+      function openCheckout() {
+        openCreditCheckpoint('export');
       }
       function closeCheckout() {
         checkoutModal.hidden = true;
@@ -2401,6 +2573,10 @@ Stainless steel look for modern kitchens</textarea>
       function setExportsUnlocked(unlocked) {
         exportsUnlocked = unlocked;
         previewState.classList.toggle('exports-unlocked', unlocked);
+        writeAccountState({
+          finalFilesUnlocked: unlocked,
+          hasPaidAccess: unlocked ? true : accountState.hasPaidAccess
+        });
       }
       function resetExportState() {
         setExportsUnlocked(false);
@@ -2412,22 +2588,29 @@ Stainless steel look for modern kitchens</textarea>
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && !checkoutModal.hidden) closeCheckout();
       });
-      document.querySelectorAll('[data-checkout-package]').forEach(button => {
-        button.addEventListener('click', () => {
-          document.querySelectorAll('[data-checkout-package]').forEach(option => option.classList.remove('active'));
-          button.classList.add('active');
-        });
-      });
+      document.getElementById('checkpoint-cancel').addEventListener('click', closeCheckout);
       document.getElementById('checkout-pay').addEventListener('click', () => {
         showCheckoutView('processing');
         setTimeout(() => {
-          setExportsUnlocked(true);
+          if (checkpointContext.type === 'export') {
+            setExportsUnlocked(true);
+          } else if (checkpointContext.type === 'premium') {
+            writeAccountState({ hasPaidAccess: true });
+            selectWorkspacePackage('Listing + Premium A+');
+          } else if (checkpointContext.type === 'paid-plan') {
+            writeAccountState({ hasPaidAccess: true });
+          }
+          if (typeof checkpointContext.onConfirm === 'function') {
+            const action = checkpointContext.onConfirm;
+            checkpointContext.onConfirm = null;
+            action();
+          }
           showCheckoutView('success');
         }, 900);
       });
       document.getElementById('checkout-back-results').addEventListener('click', () => {
         closeCheckout();
-        showState('preview');
+        if (checkpointContext.type === 'export') showState('preview');
       });
 
       function setProjectMode(mode) {
@@ -2447,6 +2630,10 @@ Stainless steel look for modern kitchens</textarea>
       document.querySelectorAll('.package-row').forEach(button => {
         button.addEventListener('click', () => {
           if (button.disabled) return;
+          if (button.dataset.paidOnly === 'true' && !accountState.hasPaidAccess) {
+            openCreditCheckpoint('premium');
+            return;
+          }
           document.querySelectorAll('.package-row').forEach(row => row.classList.remove('active'));
           button.classList.add('active');
         });
@@ -2668,14 +2855,40 @@ Stainless steel look for modern kitchens</textarea>
         if (target && target.classList.contains('details')) wireToggle(button, target);
       });
 
-      function createFreePlan() {
+      function createFreePlanAfterCheckpoint() {
         const productName = document.getElementById('product-name').value.trim() || 'New Amazon product';
         document.getElementById('summary-title').textContent = productName;
+        writeAccountState({ freeLaunchPlanUsed: true });
         showState('summary');
       }
-      function fetchExistingListing() {
+      function createFreePlan() {
+        const packageName = selectedPackageName();
+        if (needsPaidAccess(packageName)) {
+          openCreditCheckpoint('paid-plan', { onConfirm: createFreePlanAfterCheckpoint });
+          return;
+        }
+        if (!accountState.freeLaunchPlanUsed && !accountState.hasPaidAccess) {
+          openCreditCheckpoint('free-plan', { onConfirm: createFreePlanAfterCheckpoint });
+          return;
+        }
+        createFreePlanAfterCheckpoint();
+      }
+      function fetchExistingListingAfterCheckpoint() {
         document.getElementById('summary-title').textContent = 'Rechargeable Salt and Pepper Grinder Set';
+        writeAccountState({ freeLaunchPlanUsed: true });
         showState('snapshot');
+      }
+      function fetchExistingListing() {
+        const packageName = selectedPackageName();
+        if (needsPaidAccess(packageName)) {
+          openCreditCheckpoint('paid-plan', { onConfirm: fetchExistingListingAfterCheckpoint });
+          return;
+        }
+        if (!accountState.freeLaunchPlanUsed && !accountState.hasPaidAccess) {
+          openCreditCheckpoint('free-plan', { onConfirm: fetchExistingListingAfterCheckpoint });
+          return;
+        }
+        fetchExistingListingAfterCheckpoint();
       }
       document.getElementById('analyze').addEventListener('click', () => {
         requireAuth(createFreePlan, 'Create a free account to save this launch plan and use your free preview.');
