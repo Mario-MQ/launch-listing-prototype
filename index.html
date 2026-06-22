@@ -154,9 +154,10 @@
     .hero-grid { display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr); gap:58px; align-items:center; }
     .hero-eyebrow { display:inline-flex; align-items:center; gap:9px; color:var(--forest-100); font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
     .hero-eyebrow .pulse { width:7px; height:7px; border-radius:50%; background:#E8C96A; box-shadow:0 0 0 7px rgba(232,201,106,.14); }
-    .hero h1 { margin-top:22px; max-width:14ch; color:var(--oat-100); font-size:clamp(2.7rem,5.2vw,4.55rem); line-height:1.02; }
+    .hero h1 { margin-top:22px; max-width:760px; color:var(--oat-100); font-size:clamp(2.45rem,4.4vw,4.05rem); line-height:1.04; }
     .hero h1 em { color:#E8C96A; font-family:var(--serif); font-style:italic; }
     .hero-sub { margin-top:24px; max-width:51ch; color:var(--forest-100); font-size:1.12rem; line-height:1.68; }
+    .hero-proof { margin-top:18px; max-width:58ch; color:rgba(217,232,218,.9); font-size:.95rem; line-height:1.62; }
     .hero-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:34px; }
     .hero-trust { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:18px; color:var(--forest-100); font-size:.82rem; }
     .hero-trust span { display:inline-flex; align-items:center; gap:7px; }
@@ -1218,7 +1219,7 @@
       .wrap { padding:0 18px; }
       .head { margin-bottom:34px; }
       h1 { font-size:1.95rem; line-height:1.13; }
-      .hero h1 { font-size:2.45rem; max-width:12ch; }
+      .hero h1 { font-size:2.45rem; max-width:100%; }
       .head h1 { max-width:10.5em; margin:0 auto; }
       .lede { font-size:.98rem; max-width:100%; }
       .panel { padding:24px 20px; }
@@ -1243,7 +1244,7 @@
         <a href="#pricing">Packages</a>
       </div>
       <div class="nav-actions" id="account-slot" aria-label="Account"></div>
-      <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free plan</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="#workspace" data-start-workspace>Start free preview</a>
       <div class="steps nav-workflow" aria-label="workflow progress">
         <span class="step active" id="step-1">Intake</span><span class="sep">/</span>
         <span class="step" id="step-2">Summary</span><span class="sep">/</span>
@@ -1260,9 +1261,10 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing strategy + generator</span>
-            <h1>Launch <em>Listing</em>.</h1>
-            <p class="hero-sub">Turn product details, shopper intent and agent-ready answers into a complete Amazon listing package.</p>
+            <span class="hero-eyebrow"><span class="pulse"></span>Amazon listing package generator</span>
+            <h1>Create a complete Amazon listing package from product details, photos, or an Amazon URL.</h1>
+            <p class="hero-sub">Generate ready-to-review title, bullets, search terms, listing images, A+ content, Amazon page preview, and Seller Central-ready export files in one workflow.</p>
+            <p class="hero-proof">Built to cover key purchase questions, check product facts, and avoid unsupported claims before export.</p>
             <div class="hero-start" aria-label="start your listing">
               <div class="hero-start-head">
                 <strong>Start your listing</strong>
@@ -1284,37 +1286,31 @@
                     <option value="Listing + Premium A+" disabled>Listing + Premium A+ (Paid)</option>
                   </select>
                 </label>
-                <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Create free plan</a>
+                <a class="btn hero-start-submit" id="hero-start-action" href="#workspace" data-start-workspace data-hero-create>Start free preview</a>
               </div>
-              <div class="hero-start-note">No account needed to start. Sign in when saving your plan.</div>
-            </div>
-            <div class="hero-trust">
-              <span>Human + agent intent</span>
-              <span>Review plan first</span>
-              <span>Creates the full kit</span>
-              <span>Answers buyer doubts</span>
+              <div class="hero-start-note">No account needed to start. Sign in when saving your package plan.</div>
             </div>
           </div>
           <div class="hero-stage">
             <div class="launch-device">
-              <div class="device-chrome"><i></i><i></i><i></i><div class="device-url">sellercentral/listing-plan · Launch</div></div>
+              <div class="device-chrome"><i></i><i></i><i></i><div class="device-url">sellercentral/package-plan · Launch</div></div>
               <div class="device-body">
                 <div class="assistant-head">
                   <div class="assistant-mark">L</div>
                   <div>
                     <div class="assistant-name">Launch Listing</div>
-                    <div class="assistant-meta">Amazon listing plan</div>
+                    <div class="assistant-meta">Amazon listing package</div>
                   </div>
-                  <span class="assistant-pill">Buyer question</span>
+                  <span class="assistant-pill">Review point</span>
                 </div>
                 <div class="question-bubble">Will this grinder work for coarse sea salt?</div>
                 <div class="insight-card">
-                  <span class="insight-label">Missing answer</span>
-                  <p>Current input does not confirm grinder core, coarseness range or salt compatibility.</p>
+                  <span class="insight-label">Needs confirmation</span>
+                  <p>Confirm grinder core, coarseness range and salt compatibility before using this claim.</p>
                 </div>
                 <div class="plan-card">
                   <div class="plan-card-head">
-                    <span>Launch plan</span>
+                    <span>Package plan</span>
                     <span class="plan-chip">Ready to review</span>
                   </div>
                   <div class="route-list">
@@ -1326,9 +1322,10 @@
                 <div class="output-strip" aria-label="output bundle">
                   <span>Title</span>
                   <span>Bullets</span>
+                  <span>Search terms</span>
                   <span>Images</span>
                   <span>A+</span>
-                  <span>Checklist</span>
+                  <span>ZIP</span>
                 </div>
               </div>
             </div>
@@ -1341,36 +1338,36 @@
       <div class="container">
         <div class="sec-head center">
           <span class="eyebrow">Why sellers use it</span>
-          <h2>It understands what shoppers and shopping agents need before it creates the listing.</h2>
+          <h2>It plans the page around what buyers need to understand before they buy.</h2>
         </div>
         <div class="feature-showcase">
           <article class="feature-panel strong">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/dp/B0G1MJWK3Z · shopper question</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/dp/B0G1MJWK3Z · purchase question</div></div>
               <div class="qa-stage">
                 <div class="qa-head">
                   <div class="qa-mark">L</div>
                   <div>
                     <div class="qa-name">Rechargeable Salt and Pepper Grinder Set</div>
-                    <div class="qa-meta">Amazon shopping assistant simulation</div>
+                    <div class="qa-meta">Listing coverage check</div>
                   </div>
-                  <span class="qa-pill">AI answer</span>
+                  <span class="qa-pill">Review</span>
                 </div>
                 <div class="qa-question">Will this work for coarse sea salt?</div>
-                <div class="qa-answer warning"><strong>Needs proof</strong>The listing should confirm ceramic core, coarseness range and salt compatibility before this can be answered confidently.</div>
-                <div class="qa-route"><span>Title proof</span><span>Bullet answer</span><span>Image 4</span><span>A+ module</span></div>
+                <div class="qa-answer warning"><strong>Needs confirmation</strong>Confirm ceramic core, coarseness range and salt compatibility before making this claim.</div>
+                <div class="qa-route"><span>Title</span><span>Bullet</span><span>Image 4</span><span>A+ module</span></div>
               </div>
             </div>
             <div class="feature-content">
               <div class="feature-k">01</div>
-              <h3>Maps human and agent intent</h3>
-              <p>Connect product specs, photos and use cases to shopper questions and shopping-agent answers before generation starts.</p>
-              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Map my intent</a></div>
+              <h3>Covers buyer questions</h3>
+              <p>Connect product specs, photos and use cases to the questions your listing needs to answer.</p>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Check my listing</a></div>
             </div>
           </article>
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">launch-plan</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">package-plan</div></div>
               <div class="product-stage scene-kitchen">
                 <i class="product-photo lifestyle-photo stage-photo"></i>
                 <span class="ingredient left"></span>
@@ -1414,7 +1411,7 @@
                           <i class="product-photo main-photo"></i>
                         </div>
                         <div class="kit-visual-thumb">
-                          <span class="photo-label">Feature proof</span>
+                          <span class="photo-label">Feature detail</span>
                           <i class="product-photo main-photo"></i>
                         </div>
                         <div class="kit-visual-thumb">
@@ -1466,13 +1463,13 @@
           </article>
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/questions · coverage check</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">amazon.com/questions · listing coverage</div></div>
               <div class="qa-stage">
                 <div class="qa-head">
                   <div class="qa-mark">?</div>
                   <div>
                     <div class="qa-name">Amazon shopper questions</div>
-                    <div class="qa-meta">Coverage before export</div>
+                    <div class="qa-meta">Checked before export</div>
                   </div>
                   <span class="qa-pill">4 gaps</span>
                 </div>
@@ -1482,14 +1479,14 @@
                   <div class="qa-line"><span>How do I clean it?</span><span class="qa-status">A+</span></div>
                   <div class="qa-line"><span>Is it good for gifting?</span><span class="qa-status gold">Trust</span></div>
                 </div>
-                <div class="qa-answer"><strong>Coverage plan</strong>Common doubts are routed into bullets, image sequence and A+ modules before generation.</div>
+                <div class="qa-answer"><strong>Content placement</strong>Common purchase questions are placed into bullets, image sequence and A+ modules before generation.</div>
               </div>
             </div>
             <div class="feature-content">
               <div class="feature-k">04</div>
-              <h3>Answers buyer doubts</h3>
+              <h3>Answers purchase questions</h3>
               <p>Turn size, fit, compatibility, cleaning, safety, usage and warranty concerns into concrete listing content.</p>
-              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Cover doubts</a></div>
+              <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Cover key questions</a></div>
             </div>
           </article>
           <article class="feature-panel">
@@ -1509,13 +1506,13 @@
               </div>
               <div class="shot-body">
                 <div class="shot-row"><span class="shot-label">Image 2</span><span class="shot-copy">Show USB-C rechargeable base against manual mills.</span></div>
-                <div class="shot-row"><span class="shot-label">Bullet 3</span><span class="shot-copy">Use warm LED view as a cooking-control proof.</span></div>
-                <div class="shot-chipline"><span>USB-C base</span><span>LED view</span><span>A+ compare</span><span class="shot-pill gold">Position</span></div>
+                <div class="shot-row"><span class="shot-label">Bullet 3</span><span class="shot-copy">Use warm LED view as a cooking-control detail.</span></div>
+                <div class="shot-chipline"><span>USB-C base</span><span>LED view</span><span>A+ compare</span><span class="shot-pill gold">Placement</span></div>
               </div>
             </div>
             <div class="feature-content">
               <div class="feature-k">05</div>
-              <h3>Positions real differences</h3>
+              <h3>Highlights real differences</h3>
               <p>Compare your product against similar options, then place meaningful differences into bullets, images and A+ modules.</p>
               <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Find differences</a></div>
             </div>
@@ -1538,16 +1535,16 @@
               <ul>
                 <li>Starts from a prompt or style reference.</li>
                 <li>Makes good-looking gallery or A+ images.</li>
-                <li>Leaves title, bullets and buyer doubts disconnected.</li>
-                <li>Does not decide where product proof should appear.</li>
+                <li>Leaves title, bullets and purchase questions disconnected.</li>
+                <li>Does not decide where key product details should appear.</li>
               </ul>
             </div>
             <div class="diff-card good">
               <h3>Launch Listing</h3>
               <ul>
                 <li>Starts from product facts, photos and listing context.</li>
-                <li>Maps human shopper intent and shopping-agent answer intent.</li>
-                <li>Routes proof into title, bullets, gallery images and A+.</li>
+                <li>Connects copy, gallery images and A+ before generation.</li>
+                <li>Places key details into title, bullets, gallery images and A+.</li>
                 <li>Checks product claims before export.</li>
               </ul>
             </div>
@@ -1560,16 +1557,16 @@
       <div class="container">
         <div class="sec-head center">
           <span class="eyebrow">How it works</span>
-          <h2>Understand, position, answer, create, check.</h2>
+          <h2>Start, understand, plan, preview & export.</h2>
         </div>
         <div class="how-flow">
-          <div class="how-step"><div class="how-num">1</div><h3>Understand</h3><p>Start with product details, selling points, photos and any existing Amazon URL or competitor context.</p></div>
-          <div class="how-step"><div class="how-num">2</div><h3>Position</h3><p>Review the plan that turns details, differences and buyer doubts into a listing strategy.</p></div>
-          <div class="how-step"><div class="how-num">3</div><h3>Create</h3><p>Generate title, bullets, search terms, listing images, A+ modules and the Amazon preview.</p></div>
-          <div class="how-step"><div class="how-num">4</div><h3>Check</h3><p>Confirm product accuracy, claims, image dimensions and upload order before downloading final files.</p></div>
+          <div class="how-step"><div class="how-num">1</div><h3>Start</h3><p>Start with product details, product photos, or an existing Amazon URL.</p></div>
+          <div class="how-step"><div class="how-num">2</div><h3>Understand</h3><p>We organize product facts, selling points, buyer questions and unsupported claims before generation.</p></div>
+          <div class="how-step"><div class="how-num">3</div><h3>Plan</h3><p>Review how title, bullets, search terms, images and A+ will work together.</p></div>
+          <div class="how-step"><div class="how-num">4</div><h3>Preview & Export</h3><p>Generate a preview, check the listing kit, then unlock final files for Seller Central.</p></div>
         </div>
         <div class="toolbar">
-          <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Start with product info</a>
+          <a class="btn btn-primary btn-lg" href="#workspace" data-start-workspace>Start free preview</a>
         </div>
       </div>
     </section>
@@ -1619,8 +1616,8 @@
         <div class="panel">
           <div class="access-note">
             <div>
-              <strong>Free account includes one launch plan</strong>
-              <span>No account is needed to fill inputs. Sign in when you create or fetch a saved launch plan.</span>
+              <strong>Free account includes one package plan</strong>
+              <span>No account is needed to fill inputs. Sign in when you create or fetch a saved package plan.</span>
             </div>
             <span class="chip chip-clear">Preview first</span>
           </div>
@@ -1647,7 +1644,7 @@
             </div>
             <div class="existing-source" id="existing-source" hidden>
               <div class="row-title">Amazon URL or ASIN</div>
-              <div class="row-desc">Paste a listing link first. We will fetch title, bullets, listing images and A+ content before creating the listing plan.</div>
+              <div class="row-desc">Paste a listing link first. We will fetch title, bullets, listing images and A+ content before creating the package plan.</div>
               <div class="fetch-row">
                 <div class="field" style="margin:0">
                   <label class="label" for="existing-url">Amazon listing URL or ASIN</label>
@@ -1706,7 +1703,7 @@ Stainless steel look for modern kitchens</textarea>
 
           <div class="section scratch-only">
             <div class="section-head">
-              <h3>Product Images</h3>
+              <h3>Product photos</h3>
               <span class="chip chip-warn">up to 8</span>
             </div>
             <div class="upload-panel">
@@ -1719,15 +1716,15 @@ Stainless steel look for modern kitchens</textarea>
                 <span id="upload-drop-note">JPG, PNG, WebP or HEIC · up to 8 images</span>
               </button>
               <div class="upload-guide">
-                <h4>Best product photos</h4>
+                <h4>What to upload</h4>
                 <ul>
                   <li>Required: one clear product photo, ideally on white.</li>
-                  <li>Recommended: close-ups, package contents and size references.</li>
+                  <li>Helpful: close-ups, package contents and size references.</li>
                   <li>Optional: logo, packaging, brand colors or lifestyle references.</li>
                 </ul>
                 <div class="upload-status">
                   <span id="upload-count">0 / 8 uploaded</span>
-                  <span>Sorted by image use after upload</span>
+                  <span>We’ll classify them after upload.</span>
                 </div>
                 <div class="uploaded-preview" id="uploaded-preview" aria-label="uploaded product images"></div>
               </div>
@@ -1752,7 +1749,7 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Checklist for Seller Central upload</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">1 free use</span><span class="chip chip-lock">1,500 Credits after free use</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Preview included</span><span class="chip chip-lock">Final files locked</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
               </button>
               <button class="package-row active" type="button" data-package-name="Listing + Standard A+" data-free-once="true">
                 <div class="package-main">
@@ -1765,7 +1762,7 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Seller Central ready ZIP</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-clear">1 free use</span><span class="chip chip-lock">3,000 Credits after free use</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-clear">Preview included</span><span class="chip chip-lock">Final files locked</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
               </button>
               <button class="package-row premium" type="button" data-package-name="Listing + Premium A+" data-paid-only="true">
                 <div class="package-main">
@@ -1777,9 +1774,9 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Premium A+ banners (1464 x 600 · 4K)</li>
                     <li>Mobile-ready crops (600 x 450)</li>
                   </ul>
-                  <span class="package-note">Requires a paid plan or enough Luckee credits.</span>
+                  <span class="package-note">Premium final files unlock after preview.</span>
                 </div>
-                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">12,000 Credits</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
+                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">Unlock required</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
               </button>
             </div>
 
@@ -1801,10 +1798,10 @@ Stainless steel look for modern kitchens</textarea>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block scratch-only" id="analyze" type="button">Create free launch plan</button>
+          <button class="btn btn-primary btn-lg btn-block scratch-only" id="analyze" type="button">Create free package plan</button>
           <div class="reassure">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span>Free plan first · preview before download · purchase unlocks final files.</span>
+            <span>Free preview first · purchase unlocks final files.</span>
           </div>
         </div>
       </section>
@@ -1879,13 +1876,13 @@ Stainless steel look for modern kitchens</textarea>
               </div>
               <div class="scope-list">
                 <div class="scope-row"><div><strong>Detected modules</strong><span>3 A+ modules detected. Brand story and comparison structure are missing or incomplete.</span></div><span class="chip chip-warn">Needs work</span></div>
-                <div class="scope-row"><div><strong>Recommended A+ set</strong><span>6 Standard A+ modules at 970 x 600 · 1K, created after plan confirmation.</span></div><span class="chip chip-clear">A+ plan</span></div>
+                <div class="scope-row"><div><strong>Recommended A+ set</strong><span>6 Standard A+ modules at 970 x 600 · 1K, created after confirmation.</span></div><span class="chip chip-clear">A+ modules</span></div>
               </div>
             </div>
           </div>
           <div class="rebuild-defaults">
             <div class="rebuild-defaults-head">
-              <strong>What should we create?</strong>
+              <strong>Rebuild scope for existing listing</strong>
               <span class="chip chip-clear">Recommended</span>
             </div>
             <div class="scope-picker" aria-label="what should be created">
@@ -1902,7 +1899,7 @@ Stainless steel look for modern kitchens</textarea>
               <label><input type="checkbox" checked><span>Keep main image unchanged</span></label>
               <label><input type="checkbox" checked><span>Match current visual style</span></label>
             </div>
-            <div class="rebuild-scope">We’ll use these choices in your plan.</div>
+            <div class="rebuild-scope">Choose Full rebuild if you want title, bullets, search terms, images and A+ regenerated together.</div>
           </div>
         </div>
         <div class="toolbar">
@@ -1946,19 +1943,19 @@ Stainless steel look for modern kitchens</textarea>
         </div>
         <div class="toolbar">
           <button class="btn btn-outline btn-lg" id="back-intake" type="button">Edit inputs</button>
-          <button class="btn btn-primary btn-lg" id="continue-plan" type="button">Continue to launch plan</button>
+          <button class="btn btn-primary btn-lg" id="continue-plan" type="button">Continue to package plan</button>
         </div>
       </section>
 
       <section class="state" id="state-planning" hidden>
         <header class="head">
-          <span class="eyebrow">Launch plan</span>
-          <h1>Building the launch plan</h1>
+          <span class="eyebrow">Package plan</span>
+          <h1>Building the package plan</h1>
         </header>
         <div class="panel pipeline-shell">
           <div class="pipeline-hero">
             <div class="pipeline-hero-copy">
-              <div class="pipeline-status" id="planning-status-label">Building your launch plan</div>
+              <div class="pipeline-status" id="planning-status-label">Building your package plan</div>
               <p>This usually takes 3 to 5 minutes. We’ll show the main parts of your plan as soon as they’re ready, so you can start reviewing before everything finishes.</p>
               <div class="pipeline-kpis">
                 <div class="pipeline-kpi">
@@ -1999,8 +1996,8 @@ Stainless steel look for modern kitchens</textarea>
 
       <section class="state" id="state-plan" hidden>
         <header class="head">
-          <span class="eyebrow">Launch plan</span>
-          <h1>Review the listing plan</h1>
+          <span class="eyebrow">Package plan</span>
+          <h1>Review the package plan</h1>
         </header>
         <div class="panel">
           <div class="plan-intro">
@@ -2019,20 +2016,20 @@ Stainless steel look for modern kitchens</textarea>
                   <div class="row-title">Title — product type, rechargeable convenience, adjustable control, kitchen/gift relevance</div>
                   <div class="row-desc">Target 180-195 characters. Keep benefits specific and grounded.</div>
                 </div>
-                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <button class="detail-toggle" type="button" aria-expanded="false">Notes</button>
                 <div class="details" hidden>
-                  <div class="plan-detail"><b>Why this matters:</b> make the product type and main buying reason clear. <b>Buyer question:</b> what is this and why should I click? <b>Sales role:</b> combine the core product phrase with the strongest purchase modifiers.</div>
+                  <div class="plan-detail"><b>Purpose:</b> make the product type and main buying reason clear before shoppers reach the bullets. <b>Placement:</b> title and first image.</div>
                 </div>
               </div>
               <div class="plan-row">
                 <div class="plan-num">5</div>
                 <div class="plan-main">
-                  <div class="row-title">Bullets — function, proof, use case, specs/package, trust</div>
-                  <div class="row-desc">Each bullet has one job and maps to a buyer decision question.</div>
+                  <div class="row-title">Bullets — function, support, use case, specs/package, trust</div>
+                  <div class="row-desc">Each bullet answers one purchase question.</div>
                 </div>
-                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <button class="detail-toggle" type="button" aria-expanded="false">Notes</button>
                 <div class="details" hidden>
-                  <div class="plan-detail"><b>Why this matters:</b> explain the product in the order shoppers decide. <b>Buyer question:</b> what does it do, where does it fit, and what do I get? <b>Sales role:</b> turn selling points into five clear purchase reasons.</div>
+                  <div class="plan-detail"><b>Purpose:</b> explain the product in the order shoppers decide. <b>Placement:</b> turn selling points into five clear purchase reasons.</div>
                 </div>
               </div>
               <div class="plan-row">
@@ -2041,21 +2038,21 @@ Stainless steel look for modern kitchens</textarea>
                   <div class="row-title">Search Terms — Amazon backend keywords and long-tail kitchen/gift terms</div>
                   <div class="row-desc">Terms stay relevant to the actual product and do not repeat unnaturally in shopper-facing text.</div>
                 </div>
-                <button class="detail-toggle" type="button" aria-expanded="false">Details</button>
+                <button class="detail-toggle" type="button" aria-expanded="false">Notes</button>
                 <div class="details" hidden>
-                  <div class="plan-detail"><b>Why this matters:</b> support Amazon search discovery. <b>Buyer question:</b> which search phrases might shoppers use? <b>Sales role:</b> add relevant synonyms and scenario terms without making the visible listing feel stuffed.</div>
+                  <div class="plan-detail"><b>Purpose:</b> support Amazon search discovery with relevant synonyms and scenario terms. Keep shopper-facing copy natural.</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="plan-block" id="plan-gallery-block">
-            <h3>Listing image plan · 1024 x 1024 · 1K</h3>
+          <h3>Listing images · 1024 x 1024 · 1K</h3>
             <div class="plan-list" id="gallery-plan"></div>
           </div>
 
           <div class="plan-block" id="plan-aplus-block">
-            <h3 id="plan-aplus-heading">A+ plan · Standard 970 x 600 · 1K</h3>
+            <h3 id="plan-aplus-heading">A+ modules · Standard 970 x 600 · 1K</h3>
             <div class="plan-list" id="aplus-plan"></div>
           </div>
 
@@ -2071,7 +2068,7 @@ Stainless steel look for modern kitchens</textarea>
           <div class="pay-note">
             <div>
               <strong>Free preview included</strong>
-              <span>You can review the preview first. Export access gives you copyable text, high-resolution images, A+ modules and the ZIP. Downloads are included with that generation.</span>
+              <span>You can review the preview first. Final files include copyable text, high-resolution images, A+ modules and the ZIP.</span>
             </div>
             <span class="chip chip-lock">Export requires access</span>
           </div>
@@ -2101,17 +2098,17 @@ Stainless steel look for modern kitchens</textarea>
           <div class="safe-status">
             <span class="chip chip-clear">Ready checklist complete</span>
             <span class="chip chip-clear">Mobile readable</span>
-            <span class="chip chip-lock locked-only">Export access needed</span>
-            <span class="chip chip-clear unlocked-only">Export included</span>
+            <span class="chip chip-lock locked-only">Final files locked</span>
+            <span class="chip chip-clear unlocked-only">Final files unlocked</span>
           </div>
           <button class="detail-toggle" id="checklist-toggle" type="button" aria-expanded="false">View checklist</button>
         </div>
         <div class="unlock-banner">
           <div>
-            <strong><span class="locked-only">Preview is ready. Upgrade to export the final kit.</span><span class="unlocked-only">Final files are ready for this listing.</span></strong>
-            <span><span class="locked-only">Export access includes copyable listing text, high-resolution images, A+ modules and a Seller Central ZIP. Downloads are included after upgrade.</span><span class="unlocked-only">Copyable text, high-resolution images, A+ modules and ZIP download are included with this generation.</span></span>
+            <strong><span class="locked-only">Preview is ready. Unlock final files when you’re ready to use them.</span><span class="unlocked-only">Final files are ready for this listing.</span></strong>
+            <span><span class="locked-only">Final files include copyable listing text, high-resolution images, A+ modules and a Seller Central ZIP.</span><span class="unlocked-only">Copyable text, high-resolution images, A+ modules and ZIP download are included with this generation.</span></span>
           </div>
-          <button class="btn btn-primary btn-sm locked-only" id="unlock-export-top" type="button">Upgrade to export</button>
+          <button class="btn btn-primary btn-sm locked-only" id="unlock-export-top" type="button">Unlock final files</button>
           <button class="btn btn-primary btn-sm unlocked-only" type="button" data-download-zip>Download ZIP</button>
         </div>
         <div class="details" id="checklist-details" hidden>
@@ -2136,7 +2133,7 @@ Stainless steel look for modern kitchens</textarea>
             <div class="copy-block">
               <div class="copy-block-head">
                 <h3>Title</h3>
-                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Upgrade to copy</button>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock to copy</button>
                 <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
               </div>
               <p class="copy-text">Rechargeable Salt and Pepper Grinder Set, Automatic Electric Spice Mills with Adjustable Coarseness, Warm LED Light, Stainless Steel Finish, USB-C Charging Base for Kitchen Cooking and Gifts</p>
@@ -2145,7 +2142,7 @@ Stainless steel look for modern kitchens</textarea>
             <div class="copy-block">
               <div class="copy-block-head">
                 <h3>Bullet Points</h3>
-                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Upgrade to copy</button>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock to copy</button>
                 <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
               </div>
               <div class="copy-text">
@@ -2161,7 +2158,7 @@ Stainless steel look for modern kitchens</textarea>
             <div class="copy-block">
               <div class="copy-block-head">
                 <h3>Backend Search Terms</h3>
-                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Upgrade to copy</button>
+                <button class="btn btn-outline btn-sm locked-action locked-only" type="button" data-locked-action>Unlock to copy</button>
                 <button class="btn btn-outline btn-sm unlocked-only" type="button" data-copy-action>Copy</button>
               </div>
               <p class="copy-text">electric salt grinder rechargeable pepper mill automatic spice grinder adjustable coarseness kitchen seasoning set usb charging cooking gift</p>
@@ -2176,7 +2173,7 @@ Stainless steel look for modern kitchens</textarea>
             <div class="image-grid">
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>01 Main image</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>02 Core benefit</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>03 Feature proof</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>03 Feature detail</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>04 Lifestyle</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>05 Size / spec</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>06 Package</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
@@ -2189,7 +2186,7 @@ Stainless steel look for modern kitchens</textarea>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A1 Hero</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A2 Key benefits</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A3 How to use</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
-              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A4 Feature proof</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
+              <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A4 Feature detail</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A5 Package / care</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A6 Brand trust</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
             </div>
@@ -2284,7 +2281,7 @@ Stainless steel look for modern kitchens</textarea>
         </div>
 
         <div class="toolbar">
-          <button class="btn btn-primary btn-lg locked-only" id="unlock-export" type="button">Upgrade to export</button>
+          <button class="btn btn-primary btn-lg locked-only" id="unlock-export" type="button">Unlock final files</button>
           <button class="btn btn-primary btn-lg unlocked-only" type="button" data-download-zip>Download ZIP</button>
           <button class="btn btn-outline btn-lg" id="result-back-plan" type="button">Back to edit plan</button>
           <button class="btn btn-outline btn-lg" id="restart" type="button">Start new listing</button>
@@ -2315,11 +2312,11 @@ Stainless steel look for modern kitchens</textarea>
             <button class="btn btn-outline" type="button">Start free plan</button>
             <div class="plan-export-row"><span>Luckee credits</span><strong>1,500 Credits</strong></div>
             <ul>
-              <li>1 launch plan</li>
+              <li>1 package plan</li>
               <li>Product detail map</li>
-              <li>Buyer-doubt coverage</li>
+              <li>Purchase-question coverage</li>
               <li>1 listing kit preview</li>
-              <li>Title · Bullets · A+ · Search Terms plan</li>
+              <li>Title · Bullets · A+ · Search terms</li>
               <li>Prioritized fix list</li>
             </ul>
           </div>
@@ -2333,7 +2330,7 @@ Stainless steel look for modern kitchens</textarea>
             <div class="plan-export-row"><span>Luckee credits</span><strong>30,000 Credits</strong></div>
             <ul>
               <li>20 listings / mo</li>
-              <li>Full buyer-doubt mapping</li>
+              <li>Full purchase-question coverage</li>
               <li>Full competitor benchmark</li>
               <li>Title · Bullets · A+ · Search Terms fixes</li>
               <li>Ready-to-paste export</li>
@@ -2367,25 +2364,24 @@ Stainless steel look for modern kitchens</textarea>
             <div>
               <div class="credit-title-row">
                 <strong>Credit Pack</strong>
-                <span class="credit-status">Active</span>
+                <span class="credit-status">Optional</span>
                 <span class="credit-pack-price">· $39.9</span>
               </div>
-              <div class="credit-meta">97,785.3 / 100,000 remaining</div>
-              <div class="credit-bar" aria-label="Credit pack remaining"><span class="credit-fill"></span></div>
+              <div class="credit-meta">Add extra generation credits when your plan runs low.</div>
             </div>
           </div>
           <button class="btn btn-primary" type="button">Buy More</button>
         </div>
-        <p class="price-boundary">Launch Listing does not introduce a separate wallet or subscription. New listing plans and generation bundles consume the same <strong>Luckee credits</strong> after the free loop.</p>
+        <p class="price-boundary">Launch Listing does not introduce a separate wallet or subscription. New package plans and generation bundles consume the same <strong>Luckee credits</strong> after the free loop.</p>
       </div>
     </section>
 
     <section class="band band-dark final-cta landing-section">
       <div class="container">
-        <h2>Move from product idea to <em>Seller Central-ready</em> listing.</h2>
+        <h2>Move from product details, photos, or an Amazon URL to a <em>Seller Central-ready</em> listing kit.</h2>
         <p>Review the plan, edit details, generate images and preview the listing before download.</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Create free plan</a>
+          <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Start free preview</a>
           <a class="btn btn-outline btn-lg" href="#workspace" data-start-workspace data-open-existing style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Use Amazon URL</a>
         </div>
       </div>
@@ -2398,7 +2394,7 @@ Stainless steel look for modern kitchens</textarea>
       <div class="auth-logo">L</div>
       <h2 id="auth-title">Welcome to Luckee</h2>
       <p>AI E-commerce helper, making operations easier</p>
-      <div class="auth-context" id="auth-copy">Save your launch plan, use your free preview, and keep the project available for export.</div>
+      <div class="auth-context" id="auth-copy">Save your package plan, use your free preview, and keep the project available for export.</div>
       <button class="auth-google" id="auth-google" type="button">
         <span class="google-mark" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
@@ -2441,15 +2437,15 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-select-view">
         <div class="checkout-head">
           <div>
-            <span class="eyebrow" id="checkpoint-eyebrow">Export access</span>
-            <h2 id="checkout-title">Upgrade to export</h2>
-            <p id="checkout-copy">Choose export access for this listing. You will return to these results after payment.</p>
+            <span class="eyebrow" id="checkpoint-eyebrow">Final files</span>
+            <h2 id="checkout-title">Unlock final files</h2>
+            <p id="checkout-copy">Confirm access for this listing. You will return to these results after unlock.</p>
           </div>
           <button class="checkout-close" id="checkout-close" type="button" aria-label="Close payment dialog">×</button>
         </div>
         <div class="checkout-body">
-          <div class="credit-cost" id="checkout-cost">Paid plan or generation credits required</div>
-          <p class="credit-foot" id="checkout-footnote">Downloads are included after upgrade. You will not pay again to download this result.</p>
+          <div class="credit-cost" id="checkout-cost">Plan access or generation credits required</div>
+          <p class="credit-foot" id="checkout-footnote">Downloads are included after unlock. You will not pay again to download this result.</p>
           <div class="checkout-footer">
             <button class="btn btn-ghost" id="checkpoint-cancel" type="button">Cancel</button>
             <button class="btn btn-primary btn-lg" id="checkout-pay" type="button">Continue</button>
@@ -2459,8 +2455,8 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-processing-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2 id="checkpoint-processing-title">Confirming credits</h2>
-            <p id="checkpoint-processing-copy">Applying your credits to this listing.</p>
+            <h2 id="checkpoint-processing-title">Confirming access</h2>
+            <p id="checkpoint-processing-copy">Preparing access for this listing.</p>
           </div>
         </div>
         <div class="checkout-body">
@@ -2474,14 +2470,14 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-success-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2 id="checkpoint-success-head">Credits confirmed</h2>
+            <h2 id="checkpoint-success-head">Access confirmed</h2>
             <p id="checkpoint-success-sub">Your listing is ready to continue.</p>
           </div>
         </div>
         <div class="checkout-body">
           <div class="checkout-success">
             <div class="success-mark">✓</div>
-            <h2 id="checkpoint-success-title">Credits confirmed</h2>
+            <h2 id="checkpoint-success-title">Access confirmed</h2>
             <p id="checkpoint-success-copy">You can continue with this listing.</p>
             <div class="toolbar" style="margin-top:24px">
               <button class="btn btn-primary btn-lg" id="checkout-back-results" type="button">Continue</button>
@@ -2612,7 +2608,7 @@ Stainless steel look for modern kitchens</textarea>
         }
         const name = accountState.accountName || 'Luckee user';
         const email = accountState.accountEmail || 'seller@example.com';
-        const credit = accountState.hasPaidAccess ? 'Paid access active' : (accountState.freeLaunchPlanUsed ? 'Free use spent · credits ready' : '1 free use available');
+        const credit = accountState.hasPaidAccess ? 'Final files available' : (accountState.freeLaunchPlanUsed ? 'Free use spent' : '1 free use available');
         slot.innerHTML = `
           <div class="account-pill" title="${safeText(email)}">
             <span class="account-avatar">${safeText(name.slice(0, 1).toUpperCase())}</span>
@@ -2693,13 +2689,13 @@ Stainless steel look for modern kitchens</textarea>
           input.placeholder = 'Paste Amazon URL or ASIN';
           input.setAttribute('aria-label', 'Amazon URL or ASIN');
           if (label) label.textContent = 'Amazon URL or ASIN';
-          if (action) action.textContent = 'Fetch and create plan';
+          if (action) action.textContent = 'Use Amazon URL';
         } else {
           input.value = input.value.startsWith('http') ? 'Rechargeable Salt and Pepper Grinder Set' : input.value;
           input.placeholder = 'Enter product name';
           input.setAttribute('aria-label', 'product name');
           if (label) label.textContent = 'Product name';
-          if (action) action.textContent = 'Create free plan';
+          if (action) action.textContent = 'Start free preview';
         }
       }
       document.querySelectorAll('[data-hero-mode]').forEach(button => {
@@ -2718,21 +2714,21 @@ Stainless steel look for modern kitchens</textarea>
           label: 'Listing Generator',
           packageType: 'listing_generator',
           generationScope: 'derived_from_package_type',
-          aplusHeading: 'A+ plan',
+          aplusHeading: 'A+ modules',
           modules: { copy: true, gallery: true, aplus: false }
         },
         'Listing + Standard A+': {
           label: 'Listing + Standard A+',
           packageType: 'listing_standard_aplus',
           generationScope: 'derived_from_package_type',
-          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          aplusHeading: 'A+ modules · Standard 970 x 600 · 1K',
           modules: { copy: true, gallery: true, aplus: true }
         },
         'Listing + Premium A+': {
           label: 'Listing + Premium A+',
           packageType: 'listing_premium_aplus',
           generationScope: 'derived_from_package_type',
-          aplusHeading: 'A+ plan · Premium 1464 x 600 · 4K + mobile crops',
+          aplusHeading: 'A+ modules · Premium 1464 x 600 · 4K + mobile crops',
           modules: { copy: true, gallery: true, aplus: true }
         }
       };
@@ -2741,28 +2737,28 @@ Stainless steel look for modern kitchens</textarea>
           label: 'Images + A+',
           packageType: 'listing_standard_aplus',
           generationScope: 'images_aplus',
-          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          aplusHeading: 'A+ modules · Standard 970 x 600 · 1K',
           modules: { copy: false, gallery: true, aplus: true }
         },
         listing_text_only: {
           label: 'Listing text only',
           packageType: 'listing_standard_aplus',
           generationScope: 'listing_text_only',
-          aplusHeading: 'A+ plan',
+          aplusHeading: 'A+ modules',
           modules: { copy: true, gallery: false, aplus: false }
         },
         aplus_only: {
           label: 'A+ only',
           packageType: 'listing_standard_aplus',
           generationScope: 'aplus_only',
-          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          aplusHeading: 'A+ modules · Standard 970 x 600 · 1K',
           modules: { copy: false, gallery: false, aplus: true }
         },
         full_rebuild: {
           label: 'Full rebuild',
           packageType: 'listing_standard_aplus',
           generationScope: 'full_rebuild',
-          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          aplusHeading: 'A+ modules · Standard 970 x 600 · 1K',
           modules: { copy: true, gallery: true, aplus: true }
         }
       };
@@ -2824,13 +2820,13 @@ Stainless steel look for modern kitchens</textarea>
         } else if (config.modules.gallery && config.modules.aplus) {
           moduleDetail = 'We’re lining up the listing images and A+ so they support the same main message.';
         } else if (config.modules.copy) {
-          moduleDetail = 'We’re drafting the copy around the questions shoppers are most likely to have.';
+          moduleDetail = 'We’re drafting the copy around the questions shoppers are most likely to check.';
         }
         return [
           {
             title: 'Understand your product',
-            desc: 'Confirming product type, buyer angle and missing proof before drafting.',
-            phase: 'Positioning',
+            desc: 'Confirming product type, buyer angle and missing details before drafting.',
+            phase: 'Planning',
             artifact: {
               label: 'Product summary',
               title: productName,
@@ -2845,7 +2841,7 @@ Stainless steel look for modern kitchens</textarea>
             artifact: {
               label: 'Claim check',
               title: 'Main claims are now sorted',
-              desc: 'Core messaging can stay around convenience, control and kitchen fit. Battery-life and included-item language will stay softer until you confirm them.',
+              desc: 'Core messaging can stay around convenience, control and kitchen fit. Battery-life and included-item language will stay cautious until you confirm them.',
               meta: 'Ready to review'
             }
           },
@@ -2866,7 +2862,7 @@ Stainless steel look for modern kitchens</textarea>
             phase: 'Review',
             artifact: {
               label: 'Plan status',
-              title: 'Your launch plan is ready',
+              title: 'Your package plan is ready',
               desc: 'The main checks are done and the full plan is ready for your review.',
               meta: 'Next step: review and edit'
             }
@@ -2942,7 +2938,7 @@ Stainless steel look for modern kitchens</textarea>
         const steps = buildPlanningSteps(config);
         document.getElementById('planning-scope-pill').textContent = config.label;
         document.getElementById('planning-eta').textContent = config.modules.aplus ? '3-5 minutes' : '2-4 minutes';
-        document.getElementById('planning-status-label').textContent = 'Building your launch plan';
+        document.getElementById('planning-status-label').textContent = 'Building your package plan';
         renderPlanningSteps(steps);
         renderPlanningOutputCards(steps);
         updatePlanningOverview(steps, 0);
@@ -2962,7 +2958,7 @@ Stainless steel look for modern kitchens</textarea>
             planningTimeouts.push(window.setTimeout(advance, delays[activeIndex] || 2600));
             return;
           }
-          document.getElementById('planning-status-label').textContent = 'Your launch plan is ready';
+          document.getElementById('planning-status-label').textContent = 'Your package plan is ready';
           updatePlanningOverview(steps, steps.length);
           planningTimeouts.push(window.setTimeout(() => {
             if (token !== planningRunToken) return;
@@ -3109,47 +3105,47 @@ Stainless steel look for modern kitchens</textarea>
       let checkpointContext = { type: 'export', onConfirm: null };
       const checkpointCopy = {
         'free-plan': {
-          eyebrow: 'First plan · free',
-          title: 'Create the launch plan?',
-          body: 'This creates and saves your free Launch Listing plan for the selected package.',
+          eyebrow: 'First package plan · free',
+          title: 'Create the package plan?',
+          body: 'This creates and saves your free package plan for the selected option.',
           cost: 'Free — included in your first complete loop',
-          footnote: 'No card needed. Later launch plans use your existing Luckee credits.',
-          primary: 'Create free plan',
-          processingTitle: 'Creating free plan',
-          processingCopy: 'Saving your product inputs and preparing the launch plan.',
-          progressTitle: 'Preparing launch plan',
-          progressDesc: 'Your summary and plan will open next.',
-          successHead: 'Free plan created',
+          footnote: 'No card needed. Later package plans use your existing Luckee credits.',
+          primary: 'Create free package plan',
+          processingTitle: 'Creating free package plan',
+          processingCopy: 'Saving your product inputs and preparing the package plan.',
+          progressTitle: 'Preparing package plan',
+          progressDesc: 'Your summary and package plan will open next.',
+          successHead: 'Free package plan created',
           successSub: 'Your first Launch Listing loop is attached to your Luckee account.',
-          successTitle: 'Free plan created',
-          successCopy: 'You can continue reviewing the generated plan.',
+          successTitle: 'Free package plan created',
+          successCopy: 'You can continue reviewing the package plan.',
           successButton: 'Continue'
         },
         'paid-plan': {
           eyebrow: 'Luckee credits',
-          title: 'Use credits for this launch plan?',
-          body: 'Your free Launch Listing plan has already been used. Continue with Luckee credits from your main account.',
+          title: 'Use credits for this package plan?',
+          body: 'Your free package plan has already been used. Continue with Luckee credits from your main account.',
           cost: 'Uses the selected package credits',
           footnote: 'This uses the same Luckee credits as the rest of your account.',
           primary: 'Use credits and continue',
           processingTitle: 'Confirming credits',
-          processingCopy: 'Applying Luckee credits to this launch plan.',
-          progressTitle: 'Preparing launch plan',
+          processingCopy: 'Applying Luckee credits to this package plan.',
+          progressTitle: 'Preparing package plan',
           progressDesc: 'The selected package will continue after credits are confirmed.',
           successHead: 'Credits confirmed',
-          successSub: 'The launch plan can continue.',
+          successSub: 'The package plan can continue.',
           successTitle: 'Credits confirmed',
-          successCopy: 'You can continue with this Launch Listing plan.',
+          successCopy: 'You can continue with this package plan.',
           successButton: 'Continue'
         },
         premium: {
-          eyebrow: 'Luckee credits',
-          title: 'Premium A+ requires credits',
-          body: 'Premium A+ uses larger 4K modules and mobile crops, so it is available after a paid plan or enough Luckee credits.',
+          eyebrow: 'Premium A+',
+          title: 'Unlock Premium A+',
+          body: 'Premium A+ uses larger 4K modules and mobile crops, so it unlocks before final generation.',
           cost: '12,000 Credits',
-          footnote: 'Once confirmed, Premium A+ will be available for this listing.',
-          primary: 'Use credits and select Premium',
-          processingTitle: 'Confirming Premium A+ credits',
+          footnote: 'Credits are confirmed here before Premium A+ is selected.',
+          primary: 'Unlock Premium A+',
+          processingTitle: 'Confirming Premium A+',
           processingCopy: 'Unlocking the Premium A+ package for this listing.',
           progressTitle: 'Unlocking Premium A+',
           progressDesc: 'Premium banners and mobile crops will become selectable.',
@@ -3160,20 +3156,20 @@ Stainless steel look for modern kitchens</textarea>
           successButton: 'Continue with Premium'
         },
         export: {
-          eyebrow: 'Export access',
-          title: 'Upgrade to export',
-          body: 'Choose export access for this listing. You will return to these results after payment.',
-          cost: 'Paid plan or generation credits required',
-          footnote: 'Downloads are included after upgrade. You will not pay again to download this result.',
-          primary: 'Continue to payment',
-          processingTitle: 'Confirming export access',
-          processingCopy: 'Keeping this listing open while payment is confirmed.',
+          eyebrow: 'Final files',
+          title: 'Unlock final files',
+          body: 'Unlock copyable text, high-resolution images, A+ modules and the Seller Central ZIP for this listing.',
+          cost: 'Plan access or generation credits required',
+          footnote: 'Downloads are included after unlock. You will not pay again to download this result.',
+          primary: 'Continue',
+          processingTitle: 'Unlocking final files',
+          processingCopy: 'Keeping this listing open while access is confirmed.',
           progressTitle: 'Preparing final files',
           progressDesc: 'Copyable text, high-resolution images, A+ modules and ZIP will become available.',
           successHead: 'Final files ready',
           successSub: 'Downloads are included with this generation.',
           successTitle: 'Final files ready',
-          successCopy: 'You are back in Results. Copy listing text and download images, A+ modules and the ZIP without extra download credits.',
+          successCopy: 'You are back in Results. Copy listing text and download images, A+ modules and the ZIP without another unlock.',
           successButton: 'Return to results'
         }
       };
@@ -3208,7 +3204,7 @@ Stainless steel look for modern kitchens</textarea>
       }
       function openCreditCheckpoint(type = 'export', options = {}) {
         if (!accountState.signedIn) {
-          openAuthModal(() => openCreditCheckpoint(type, options), 'Sign in to continue to export access.', 'login');
+          openAuthModal(() => openCreditCheckpoint(type, options), 'Sign in to unlock final files.', 'login');
           return;
         }
         checkpointContext = { type, onConfirm: options.onConfirm || null };
@@ -3474,21 +3470,21 @@ Stainless steel look for modern kitchens</textarea>
       syncScopeDependentViews();
 
       const galleryRows = [
-        ['01', 'Main image — product-only white background', 'Fast recognition, product-only crop.', '<b>Why this matters:</b> make the product instantly recognizable. <b>Buyer question:</b> what is this? <b>Sales role:</b> establish product identity before benefit images.'],
-        ['02', 'Core benefit — one-touch rechargeable seasoning', 'Strongest reason to buy, shown visually.', '<b>Why this matters:</b> show the main convenience benefit. <b>Buyer question:</b> why is this easier than manual grinding? <b>Sales role:</b> turn the core feature into a quick purchase reason.'],
-        ['03', 'Feature proof — adjustable coarseness / mechanism', 'Prove control and cooking precision.', '<b>Why this matters:</b> make adjustable control understandable. <b>Buyer question:</b> can I control the texture? <b>Sales role:</b> connect a feature detail to cooking confidence.'],
-        ['04', 'Use context — kitchen cooking scene', 'Help buyer imagine daily use.', '<b>Why this matters:</b> show where the product fits. <b>Buyer question:</b> does this fit my routine? <b>Sales role:</b> make the product feel useful in everyday cooking.'],
-        ['05', 'Size / spec — dimensions and scale', 'Reduce wrong-purchase uncertainty.', '<b>Why this matters:</b> clarify size and scale. <b>Buyer question:</b> will it fit my kitchen? <b>Sales role:</b> reduce hesitation before purchase.'],
-        ['06', 'Package contents — set and included items', 'Clarify what the buyer receives.', '<b>Why this matters:</b> set clear package expectations. <b>Buyer question:</b> what is included? <b>Sales role:</b> reduce post-click uncertainty.'],
-        ['07', 'Gift / trust — giftable kitchen setup', 'Support scenario and confidence.', '<b>Why this matters:</b> support gift and trust context. <b>Buyer question:</b> is this giftable? <b>Sales role:</b> expand the product into a purchase occasion.']
+        ['01', 'Main image — product-only white background', 'Fast recognition, product-only crop.', '<b>Purpose:</b> make the product instantly recognizable. <b>Placement:</b> establish product identity before benefit images.'],
+        ['02', 'Core benefit — one-touch rechargeable seasoning', 'Strongest reason to buy, shown visually.', '<b>Purpose:</b> show the main convenience benefit. <b>Placement:</b> turn the core feature into a quick purchase reason.'],
+        ['03', 'Feature detail — adjustable coarseness / mechanism', 'Show control and cooking precision.', '<b>Purpose:</b> make adjustable control easy to understand. <b>Placement:</b> connect a feature detail to cooking confidence.'],
+        ['04', 'Use context — kitchen cooking scene', 'Help buyer imagine daily use.', '<b>Purpose:</b> show where the product fits. <b>Placement:</b> make the product feel useful in everyday cooking.'],
+        ['05', 'Size / spec — dimensions and scale', 'Reduce wrong-purchase uncertainty.', '<b>Purpose:</b> clarify size and scale. <b>Placement:</b> reduce hesitation before purchase.'],
+        ['06', 'Package contents — set and included items', 'Clarify what the buyer receives.', '<b>Purpose:</b> set clear package expectations. <b>Placement:</b> reduce uncertainty before checkout.'],
+        ['07', 'Gift / trust — giftable kitchen setup', 'Support scenario and confidence.', '<b>Purpose:</b> support gift and trust context. <b>Placement:</b> expand the product into a purchase occasion.']
       ];
       const aplusRows = [
-        ['A1', 'Hero — core promise', 'Opening module with concise product promise.', '<b>Why this matters:</b> introduce the product story. <b>Buyer question:</b> why should I keep reading? <b>Sales role:</b> connect the product to the main use case.'],
-        ['A2', 'Key benefits — rechargeable / adjustable / LED', 'Three benefit blocks with clear product logic.', '<b>Why this matters:</b> organize major benefits. <b>Buyer question:</b> what are the main advantages? <b>Sales role:</b> make benefits easy to scan.'],
-        ['A3', 'How to use — charge / fill / grind / clean', 'Step-by-step use flow.', '<b>Why this matters:</b> remove first-use uncertainty. <b>Buyer question:</b> how does it work? <b>Sales role:</b> make ownership feel simple.'],
-        ['A4', 'Feature proof — product logic', 'Explain mechanism, coarseness and control.', '<b>Why this matters:</b> explain how key features create value. <b>Buyer question:</b> what makes it practical? <b>Sales role:</b> support the benefit with product detail.'],
-        ['A5', 'Package / care — included items and cleaning', 'Set expectations around contents and maintenance.', '<b>Why this matters:</b> clarify what arrives and how to maintain it. <b>Buyer question:</b> what do I get and how do I care for it? <b>Sales role:</b> reduce uncertainty before checkout.'],
-        ['A6', 'Brand trust — clean giftable kitchen tone', 'Close with calm trust and giftability.', '<b>Why this matters:</b> close with confidence. <b>Buyer question:</b> does this feel reliable and giftable? <b>Sales role:</b> support final purchase confidence.']
+        ['A1', 'Hero — core promise', 'Opening module with concise product promise.', '<b>Purpose:</b> introduce the product story. <b>Placement:</b> connect the product to the main use case.'],
+        ['A2', 'Key benefits — rechargeable / adjustable / LED', 'Three benefit blocks with clear product logic.', '<b>Purpose:</b> organize major benefits. <b>Placement:</b> make benefits easy to scan.'],
+        ['A3', 'How to use — charge / fill / grind / clean', 'Step-by-step use flow.', '<b>Purpose:</b> remove first-use uncertainty. <b>Placement:</b> make ownership feel simple.'],
+        ['A4', 'Feature detail — product logic', 'Explain mechanism, coarseness and control.', '<b>Purpose:</b> explain how key features create value. <b>Placement:</b> support the benefit with product detail.'],
+        ['A5', 'Package / care — included items and cleaning', 'Set expectations around contents and maintenance.', '<b>Purpose:</b> clarify what arrives and how to maintain it. <b>Placement:</b> reduce uncertainty before checkout.'],
+        ['A6', 'Brand trust — clean giftable kitchen tone', 'Close with calm trust and giftability.', '<b>Purpose:</b> close with confidence. <b>Placement:</b> support final purchase confidence.']
       ];
       function renderPlan(targetId, rows) {
         document.getElementById(targetId).innerHTML = rows.map((row, index) => `
@@ -3498,7 +3494,7 @@ Stainless steel look for modern kitchens</textarea>
               <div class="row-title">${row[1]}</div>
               <div class="row-desc">${row[2]}</div>
             </div>
-            <button class="detail-toggle" type="button" aria-expanded="false" data-detail="${targetId}-${index}">Details</button>
+            <button class="detail-toggle" type="button" aria-expanded="false" data-detail="${targetId}-${index}">Notes</button>
             <div class="details" id="${targetId}-${index}" hidden>
               <div class="plan-detail">${row[3]}</div>
             </div>
@@ -3551,7 +3547,7 @@ Stainless steel look for modern kitchens</textarea>
         fetchExistingListingAfterCheckpoint();
       }
       document.getElementById('analyze').addEventListener('click', () => {
-        requireAuth(createFreePlan, 'Create a free account to save this launch plan and use your free preview.');
+        requireAuth(createFreePlan, 'Create a free account to save this package plan and use your free preview.');
       });
       document.getElementById('fetch-listing').addEventListener('click', () => {
         requireAuth(fetchExistingListing, 'Sign in to fetch and save listing data from this Amazon URL.');

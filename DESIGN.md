@@ -42,46 +42,57 @@
 
 一句话定位：
 
-> Turn product details, shopper intent and agent-ready answers into a complete Amazon listing package.
+> Create a complete Amazon listing package from product details, photos, or an Amazon URL.
+
+首屏副标题：
+
+> Generate ready-to-review title, bullets, search terms, listing images, A+ content, Amazon page preview, and Seller Central-ready export files in one workflow.
+
+第二层增强卖点：
+
+> Built to cover key purchase questions, check product facts, and avoid unsupported claims before export.
 
 页面核心卖点：
 
-- Map human and agent intent：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，再把 human shopper intent 和 shopping-agent answer intent 精细匹配到 listing 内容
-- Plan before creating：先给可审核的 listing strategy，再生成文案和视觉资产
+- Covers buyer questions：先理解材质、规格、尺寸、使用场景、套装内容和图片细节，再判断 listing 需要回答哪些购买问题
+- Plan before creating：先给可审核的 package plan，再生成文案和视觉资产
 - Complete package：标题、五点、搜索词、组图、A+、预览、导出和 ready checklist
-- Answer buyer doubts：把尺寸、适配、清洁、耐用、安全、安装、售后等购买疑虑变成 listing 内容
-- Position real differences：区分真正影响购买判断的差异和泛泛卖点，再决定放到标题、五点、图片或 A+
+- Answers purchase questions：把尺寸、适配、清洁、耐用、安全、安装、售后等购买问题变成 listing 内容
+- Highlights real differences：区分真正影响购买判断的差异和泛泛卖点，再决定放到标题、五点、图片或 A+
 
 ## 页面结构
 
 1. **Hero**
-   - 产品定位：把产品细节、买家意图和 agent-ready answer coverage 转成完整 Amazon listing 资产
+   - H1：Create a complete Amazon listing package from product details, photos, or an Amazon URL.
+   - Subtitle：Generate ready-to-review title, bullets, search terms, listing images, A+ content, Amazon page preview, and Seller Central-ready export files in one workflow.
+   - 第二层增强卖点：Built to cover key purchase questions, check product facts, and avoid unsupported claims before export.
    - 首屏直接提供 `Start your listing` 输入区
    - 不再在 Hero 文案下方放重复 CTA；Start panel 是唯一主入口
    - 支持 New listing 和 Amazon URL 两种开始方式
+   - CTA 使用 `Start free preview` 和 `Use Amazon URL`
    - CTA 进入工作区并把首屏输入带入 Intake
    - 右侧展示生成包 mockup
 
 2. **Why**
    - 每个卖点配一个商品案例展示图和一个引导使用入口
    - 使用同一个盐胡椒研磨器案例贯穿，避免抽象 UI mockup
-   - Map human and agent intent：Amazon shopper question simulation + needs proof answer + title / bullet / image / A+ routing
+   - Covers buyer questions：purchase question + needs confirmation + title / bullet / image / A+ placement
    - Plan before creating：项目内生成的无品牌厨房使用场景图 + title / image / A+ 的生成前规划
    - Complete package：项目内生成的无品牌研磨器主图、生活场景、差异对比图、gallery 缩略图、A+ banner 缩略图 + title、bullets、search terms、checklist；不使用外部竞品或 Amazon 图片
-   - Answer buyer doubts：Amazon shopper questions coverage simulation，展示多个常见疑虑如何进入 bullets / image / A+
-   - Position real differences：Your product vs similar option 的双产品对比，使用项目内生成的无品牌电动研磨器 vs 手动研磨器对比图，展示差异如何进入 Image / Bullet / A+ placement
+   - Answers purchase questions：展示多个常见购买问题如何进入 bullets / image / A+
+   - Highlights real differences：Your product vs similar option 的双产品对比，使用项目内生成的无品牌电动研磨器 vs 手动研磨器对比图，展示差异如何进入 Image / Bullet / A+ placement
 
 3. **Differentiation**
    - 标题：Beautiful images are not enough.
    - 对比 Typical image generator 和 Launch Listing
-   - 强调我们先做 product facts、human + agent intent、buyer doubts、proof routing，再生成 copy / gallery images / A+
-   - 页面只表达 shopping assistant / shopper question simulation，不承诺官方 Alexa 或 Amazon 一定这样展示
+   - 强调我们先做 product facts、purchase questions、content placement，再生成 copy / gallery images / A+
+   - 页面只表达 listing coverage check，不承诺官方 Alexa 或 Amazon 一定这样展示
 
 4. **How it works**
+   - Start
    - Understand
-   - Position
-   - Create
-   - Check
+   - Plan
+   - Preview & Export
    - 段落底部 CTA 回到产品资料输入
 
 5. **What you get**
@@ -112,14 +123,15 @@
    - 产品图片素材
    - 套餐选择
    - 如果选择 Improve existing listing，则先输入 Amazon URL / ASIN 并 Fetch
-   - 创建或抓取方案前提示：免费账号包含 1 个 launch plan，复制和下载需确认 Luckee credits
+   - 创建或抓取方案前提示：免费账号包含 1 个 package plan，复制和下载需确认 Luckee credits
 
 2. **Listing Snapshot**（仅已有链接模式）
    - 按 Amazon listing 结构顺序展示 fetch 结果：Title -> Five bullet points -> Product images -> A+ content
    - 每个模块展示抓取状态和后续处理方式
    - 如果抓到 A+ 图片，A+ content 轻量展示 2-6 个模块缩略图，不做成和商品组图同等权重
-   - 底部轻量展示 Generation scope：Images + A+、Listing text only、A+ only、Full rebuild
+   - 底部轻量展示 `Rebuild scope for existing listing`：Images + A+、Listing text only、A+ only、Full rebuild
    - 默认选择 Images + A+
+   - 补充说明：Choose Full rebuild if you want title, bullets, search terms, images and A+ regenerated together.
    - 同一区域展示默认保护项：Keep main image unchanged、Match current visual style
    - 用户确认后进入 Product Summary
 
@@ -132,9 +144,9 @@
 4. **Launch Plan**
    - Listing text
    - Listing image plan
-   - A+ plan
+   - A+ modules
    - Product accuracy rules
-   - 每行默认只显示重点，点击 Details 展开完整要求
+   - 每行默认只显示重点，点击 Notes 展开完整要求
 
 5. **Generate**
    - 免费生成 preview
@@ -149,7 +161,7 @@
    - Listing text：Title、5 bullets、backend search terms
    - Images：Listing images、A+ images
    - Preview：Amazon page desktop / mobile preview
-   - 默认状态为 preview ready，但复制、高清图和 ZIP 处于 locked 状态
+   - 默认状态为 preview ready，但复制、高清图和 ZIP 处于 locked 状态，状态文案使用 `Final files locked`
    - Unlock final files：确认对应 generation bundle credits 后解锁 copyable text、listing images、A+、ZIP
 
 ## 付费转化逻辑
@@ -157,22 +169,23 @@
 商业化原则：
 
 - 未注册用户可以浏览页面、填写输入、选择套餐、上传本地素材。
-- 未注册用户不能执行会产生成本或需要保存的动作：Fetch listing、Create free launch plan、Generate preview、Export。
+- 未注册用户不能执行会产生成本或需要保存的动作：Fetch listing、Create free package plan、Generate preview、Export。
 - 用户可以免费开始，但免费只覆盖“理解产品 + 生成方案 + 预览结果”。
 - 第一次需要后端保存和生成计划时要求注册 / 登录，而不是一进页面就拦截。
-- 每个注册用户默认 1 次免费 launch plan。
+- 每个注册用户默认 1 次免费 package plan。
 - 不免费交付完整可商用资产：复制按钮、高清图片、A+ 图片和 ZIP 下载都需要确认对应 Luckee credits 消耗。
 - 付费点放在 Results 和 plan confirmation 后，不在首屏强压付费。
+- 主流程不提前展示具体消耗数字。套餐卡片只表达 `Preview included`、`Final files locked`、`Unlock required`；具体 credits 只在用户确认消耗的 checkout / unlock 弹窗中展示。
 
 推荐漏斗：
 
 ```text
-Landing -> Intake -> Sign in / create free account -> Free launch plan -> Free preview -> Unlock final files modal -> Final files unlocked
+Landing -> Intake -> Sign in / create free account -> Free package plan -> Free preview -> Unlock final files modal -> Final files unlocked
 ```
 
 登录触发点：
 
-- `Create free launch plan`
+- `Create free package plan`
 - `Fetch listing`
 - 后续如果用户直接从链接进入已有项目并尝试 `Generate preview`
 - `Unlock final files`
@@ -181,7 +194,7 @@ Landing -> Intake -> Sign in / create free account -> Free launch plan -> Free p
 
 ```text
 Create a free account to continue
-Save your launch plan, use your free preview, and keep the project available for export.
+Save your package plan, use your free preview, and keep the project available for export.
 ```
 
 Google 授权页：
@@ -201,14 +214,14 @@ We do not request Google Drive, Gmail or advertising account access in this flow
 
 免费账号：
 
-- 1 saved launch plan
+- 1 saved package plan
 - preview generation
 - ready checklist preview
 - text copying 和 downloads locked
 
 Luckee credits pricing：
 
-- First loop free：$0/month，1,500 Credits，包含 1 个 launch plan 和 1 个 listing kit preview
+- First loop free：$0/month，1,500 Credits，包含 1 个 package plan 和 1 个 listing kit preview
 - Seller：$29.25/month（Yearly · Save 25%），30,000 Credits，适合持续修 listing 和生成导出
 - Agency：$74.25/month（Yearly · Save 25%），100,000 Credits，适合多 ASIN、批量报告和团队协作
 - Credit Pack：$39.9，100,000 Credits，可单独购买补充额度
@@ -218,8 +231,8 @@ Luckee credits pricing：
 - Results 里的 `Unlock final files` 不跳转到 Pricing 页面。
 - 点击后打开当前 listing 的 checkout modal。
 - Modal 里选择 Listing Generator / Listing + Standard A+ / Listing + Premium A+ 对应的 credits bundle。
-- 点击 `Use credits and unlock` 后进入 credits confirmation 状态。
-- credits 确认后显示 `Exports unlocked`。
+- 点击 `Continue` 后进入 access confirmation 状态。
+- access 确认后显示 `Final files ready` / `Final files unlocked`。
 - 点击 `Back to results` 回到同一个 Results 页面，并原地解锁 text copying、image downloads 和 ZIP。
 
 结果页解锁后提供：
@@ -243,8 +256,9 @@ Luckee credits pricing：
 说明只保留最关键规则：
 
 - Required：one clear product photo, ideally on white
-- Recommended：close-ups, package contents, size references
+- Helpful：close-ups, package contents, size references
 - Optional：logo、packaging、brand colors、lifestyle or mood references
+- 上传后说明：We’ll classify them after upload.
 
 系统在后台识别素材类型，而不是要求用户按类别分开上传。白底产品图用于锁定产品外观。AI 生成时不允许重新设计产品主体，只能生成背景、场景、阴影、布局和非产品元素。
 
@@ -282,15 +296,14 @@ MVP 不让用户选择抽象的 Marketing direction。
 ```text
 01 Main image — product-only white background
 02 Core benefit — one-touch rechargeable seasoning
-03 Feature proof — adjustable coarseness / mechanism
+03 Feature detail — adjustable coarseness / mechanism
 ```
 
 每行可展开完整内容：
 
 ```text
-Why this matters
-Buyer question
-Sales role
+Purpose
+Placement
 ```
 
 这样用户可以先扫重点，需要时再看完整方案。
