@@ -313,6 +313,46 @@
     .shot-line { height:8px; border-radius:var(--r-pill); background:var(--forest-100); margin-top:8px; }
     .shot-line.short { width:66%; }
     .shot-line.gold { background:rgba(232,201,106,.58); }
+    .kit-modules { position:relative; z-index:3; display:grid; grid-template-columns:1.15fr .95fr; gap:12px; padding:18px; }
+    .kit-module { border:1px solid rgba(62,91,63,.10); border-radius:18px; background:rgba(255,255,255,.76); box-shadow:0 18px 36px -30px rgba(28,43,29,.35); overflow:hidden; }
+    .kit-module-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid rgba(62,91,63,.08); }
+    .kit-module-head strong { color:var(--forest-800); font-size:.78rem; }
+    .kit-module-head span { color:var(--muted); font-size:.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+    .kit-module-body { padding:14px; }
+    .kit-copy-lines { display:grid; gap:9px; }
+    .kit-copy-lines .shot-line { margin-top:0; }
+    .kit-copy-meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+    .kit-copy-meta span,
+    .kit-preview-meta span,
+    .kit-checklist li span { display:inline-flex; align-items:center; min-height:24px; padding:4px 8px; border-radius:var(--r-pill); border:1px solid rgba(62,91,63,.12); background:rgba(237,244,237,.82); color:var(--forest-700); font-size:.62rem; font-weight:800; }
+    .kit-visual-stack { display:grid; gap:8px; }
+    .kit-visual-grid { display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:8px; }
+    .kit-visual-main,.kit-visual-thumb,.kit-visual-banner,.kit-preview-card { position:relative; overflow:hidden; border:1px solid rgba(62,91,63,.08); border-radius:16px; background:linear-gradient(145deg,#fff,#edf4ed); }
+    .kit-visual-main { min-height:132px; }
+    .kit-visual-thumb { min-height:62px; }
+    .kit-visual-banner { min-height:72px; }
+    .kit-visual-main .product-photo,
+    .kit-visual-thumb .product-photo,
+    .kit-visual-banner .product-photo,
+    .kit-preview-card .product-photo { inset:0; }
+    .kit-visual-main .photo-label,
+    .kit-visual-thumb .photo-label,
+    .kit-visual-banner .photo-label { top:10px; left:10px; }
+    .kit-visual-main .product-photo { background-position:center; }
+    .kit-visual-thumb .product-photo { background-position:center; }
+    .kit-visual-banner .product-photo { background-position:center 45%; }
+    .kit-preview-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .kit-preview-card { min-height:118px; padding:12px; display:grid; align-content:space-between; }
+    .kit-preview-card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.78)); }
+    .kit-preview-card > * { position:relative; z-index:2; }
+    .kit-preview-meta { display:flex; flex-wrap:wrap; gap:7px; }
+    .kit-preview-copy strong { display:block; color:var(--forest-800); font-size:.72rem; margin-bottom:6px; }
+    .kit-preview-copy p { color:var(--neutral-700); font-size:.68rem; line-height:1.45; }
+    .kit-checklist { display:grid; gap:8px; margin:0; padding:0; list-style:none; }
+    .kit-checklist li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:9px 0; border-top:1px solid rgba(62,91,63,.08); }
+    .kit-checklist li:first-child { border-top:0; padding-top:0; }
+    .kit-checklist strong { display:block; color:var(--forest-800); font-size:.72rem; }
+    .kit-checklist small { display:block; margin-top:2px; color:var(--muted); font-size:.63rem; line-height:1.4; }
     .qa-stage { position:relative; z-index:1; margin:14px 18px 18px; display:grid; gap:12px; }
     .qa-head { display:grid; grid-template-columns:46px minmax(0,1fr) auto; gap:12px; align-items:center; padding:12px; border:1px solid rgba(62,91,63,.10); border-radius:18px; background:rgba(255,255,255,.72); }
     .qa-mark { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(145deg,#fff,#edf4ed); color:var(--forest-700); font-family:var(--serif); font-size:1.3rem; box-shadow:0 14px 32px -26px rgba(28,43,29,.7); }
@@ -779,6 +819,180 @@
     .summary-key { font-size:.78rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
     .summary-value { color:var(--neutral-900); font-size:.92rem; line-height:1.5; }
 
+    .pipeline-shell { display:grid; gap:26px; }
+    .pipeline-hero {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
+      padding-bottom:28px;
+      border-bottom:1px solid var(--border-soft);
+    }
+    .pipeline-hero-copy p { max-width:58ch; color:var(--neutral-700); font-size:.96rem; line-height:1.65; }
+    .pipeline-status {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+      color:var(--forest-800);
+      font-size:1rem;
+      font-weight:800;
+    }
+    .pipeline-status::before {
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#9FD7BE;
+      box-shadow:0 0 0 8px rgba(159,215,190,.18);
+      animation:pulseDot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(159,215,190,.22); }
+      50% { transform:scale(1.08); box-shadow:0 0 0 8px rgba(159,215,190,.12); }
+    }
+    .pipeline-kpis {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0;
+      margin-top:24px;
+      padding:16px 0 2px;
+      border-top:1px solid var(--border-soft);
+      border-bottom:1px solid var(--border-soft);
+    }
+    .pipeline-kpi {
+      padding:0 20px 14px 0;
+      min-width:0;
+    }
+    .pipeline-kpi + .pipeline-kpi {
+      padding-left:20px;
+      border-left:1px solid var(--border-soft);
+    }
+    .pipeline-kpi span {
+      display:block;
+      color:var(--muted);
+      font-size:.63rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .pipeline-kpi strong {
+      display:block;
+      margin-top:9px;
+      color:var(--neutral-900);
+      font-size:1.02rem;
+      line-height:1.28;
+    }
+    .pipeline-sidehead {
+      display:grid;
+      gap:10px;
+      justify-items:start;
+      text-align:left;
+    }
+    .pipeline-safe {
+      max-width:520px;
+      color:var(--muted);
+      font-size:.76rem;
+      line-height:1.5;
+    }
+    .pipeline-alert {
+      padding-left:16px;
+      border-left:2px solid rgba(37,99,235,.22);
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.6;
+    }
+    .pipeline-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .pipeline-card {
+      padding:0;
+      min-width:0;
+    }
+    .pipeline-grid > .pipeline-card:last-child {
+      padding-top:22px;
+      border-top:1px solid var(--border-soft);
+    }
+    .pipeline-card h3 { margin-bottom:6px; }
+    .pipeline-card p { color:var(--muted); font-size:.8rem; line-height:1.5; }
+    .pipeline-list { margin-top:18px; }
+    .pipeline-list .progress-row:first-child { padding-top:0; }
+    .pipeline-list .progress-row:last-child { border-bottom:0; padding-bottom:0; }
+    .pipeline-list .progress-row.done .row-title { color:var(--forest-700); }
+    .pipeline-phase {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:8px;
+      color:var(--forest-700);
+      font-family:var(--mono);
+      font-size:.68rem;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .pipeline-phase::before {
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:currentColor;
+      opacity:.72;
+    }
+    .pipeline-stream {
+      display:grid;
+      gap:0;
+      margin-top:18px;
+    }
+    .stream-card {
+      padding:15px 0 15px 16px;
+      border:0;
+      border-left:2px solid rgba(61,90,62,.10);
+      background:transparent;
+      opacity:.62;
+      transition:border-color .2s var(--ease), opacity .2s var(--ease);
+    }
+    .stream-card + .stream-card {
+      border-top:1px solid var(--border-soft);
+    }
+    .stream-card.ready {
+      opacity:1;
+      border-left-color:var(--forest-600);
+    }
+    .stream-card strong {
+      display:block;
+      color:var(--forest-700);
+      font-size:.68rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .stream-card h4 {
+      margin:7px 0 0;
+      font-size:.92rem;
+      line-height:1.35;
+      color:var(--neutral-900);
+    }
+    .stream-card p {
+      margin-top:6px;
+      color:var(--neutral-700);
+      font-size:.78rem;
+      line-height:1.55;
+    }
+    .stream-meta {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.72rem;
+      line-height:1.4;
+    }
+    .stream-empty { color:var(--muted); font-size:.74rem; }
+
     .plan-intro { padding-bottom:22px; border-bottom:1px solid var(--border-soft); }
     .plan-intro h2 { margin-bottom:10px; }
     .plan-intro p { color:var(--neutral-700); font-size:.95rem; line-height:1.6; }
@@ -808,6 +1022,16 @@
     }
     .plan-editing .rule[contenteditable="true"] { display:block; margin-left:16px; }
     .plan-editing .rule[contenteditable="true"]::before { display:none; }
+    .output-head { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .output-head p { margin-top:6px; color:var(--muted); font-size:.82rem; line-height:1.5; }
+    .path-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:14px; }
+    .path-card { border:1px solid var(--border-soft); border-radius:14px; background:var(--card); padding:14px; min-width:0; }
+    .path-card strong { display:block; color:var(--neutral-900); font-size:.8rem; line-height:1.35; }
+    .path-card code { display:block; margin-top:8px; color:var(--forest-700); font-family:var(--mono); font-size:.72rem; line-height:1.5; white-space:normal; word-break:break-word; }
+    .path-card span { display:block; margin-top:8px; color:var(--muted); font-size:.72rem; line-height:1.45; }
+    .path-card.internal { background:var(--oat-100); }
+    .image-section-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+    .image-root { color:var(--muted); font-family:var(--mono); font-size:.68rem; line-height:1.45; }
 
     .progress-row { grid-template-columns:32px minmax(0,1fr) auto; }
     .progress-icon { width:24px; height:24px; display:grid; place-items:center; border-radius:50%; background:var(--oat-200); color:var(--muted); }
@@ -915,6 +1139,7 @@
       .upload-panel { grid-template-columns:1fr; }
       .field-grid,.aplus-module { grid-template-columns:1fr; }
       .summary-row { grid-template-columns:1fr; gap:7px; }
+      .path-grid { grid-template-columns:1fr; }
     }
     @media (max-width:760px) {
       .nav-links { display:none; }
@@ -966,6 +1191,21 @@
       .thumb { width:56px; }
       .package-row,.plan-row,.progress-row { grid-template-columns:minmax(0,1fr); }
       .plan-row > .details { grid-column:1 / -1; }
+      .pipeline-hero,
+      .pipeline-grid { grid-template-columns:1fr; }
+      .pipeline-sidehead { justify-items:start; text-align:left; }
+      .pipeline-safe { max-width:none; }
+      .pipeline-kpis { grid-template-columns:1fr; }
+      .pipeline-kpi + .pipeline-kpi {
+        padding-left:0;
+        padding-top:14px;
+        border-left:0;
+        border-top:1px solid var(--border-soft);
+      }
+      .pipeline-grid > .pipeline-card:last-child {
+        padding-top:22px;
+        border-top:1px solid var(--border-soft);
+      }
       .asset-row { grid-template-columns:1fr; gap:6px; }
       .row-meta { justify-content:flex-start; }
       .access-note,.pay-note,.unlock-banner { grid-template-columns:1fr; }
@@ -1130,7 +1370,7 @@
           </article>
           <article class="feature-panel reverse">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/launch-plan</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">launch-plan</div></div>
               <div class="product-stage scene-kitchen">
                 <i class="product-photo lifestyle-photo stage-photo"></i>
                 <span class="ingredient left"></span>
@@ -1151,34 +1391,76 @@
           </article>
           <article class="feature-panel">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/output-kit</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">listing-kit</div></div>
               <div class="product-stage">
-                <div class="kit-gallery">
-                  <div class="kit-main photo-main has-photo">
-                    <span class="photo-label">01 Main image</span>
-                    <i class="product-photo main-photo kit-photo"></i>
+                <div class="kit-modules">
+                  <div class="kit-module">
+                    <div class="kit-module-head"><strong>Listing text</strong><span>Title · bullets · search terms</span></div>
+                    <div class="kit-module-body">
+                      <div class="kit-copy-lines">
+                        <div class="shot-line"></div>
+                        <div class="shot-line short"></div>
+                        <div class="shot-line gold"></div>
+                      </div>
+                      <div class="kit-copy-meta"><span>Editable</span><span>SEO-ready</span><span>One approved plan</span></div>
+                    </div>
                   </div>
-                  <div class="kit-grid">
-                    <span class="kit-thumb photo-feature has-photo"><b>Feature proof</b><i class="product-photo main-photo thumb-photo"></i></span>
-                    <span class="kit-thumb photo-lifestyle has-photo"><b>Lifestyle</b><i class="product-photo lifestyle-photo thumb-photo"></i></span>
-                    <span class="kit-thumb photo-spec has-photo"><b>Size / spec</b><i class="product-photo main-photo thumb-photo"></i></span>
-                    <span class="kit-thumb photo-pack has-photo"><b>Compare</b><i class="product-photo compare-photo thumb-photo"></i></span>
-                    <span class="kit-banner photo-aplus"><b>A+ Hero</b><span>Season with one touch</span></span>
+                  <div class="kit-module">
+                    <div class="kit-module-head"><strong>Gallery + A+</strong><span>Visual assets</span></div>
+                    <div class="kit-module-body kit-visual-stack">
+                      <div class="kit-visual-grid">
+                        <div class="kit-visual-main">
+                          <span class="photo-label">01 Main image</span>
+                          <i class="product-photo main-photo"></i>
+                        </div>
+                        <div class="kit-visual-thumb">
+                          <span class="photo-label">Feature proof</span>
+                          <i class="product-photo main-photo"></i>
+                        </div>
+                        <div class="kit-visual-thumb">
+                          <span class="photo-label">Lifestyle</span>
+                          <i class="product-photo lifestyle-photo"></i>
+                        </div>
+                      </div>
+                      <div class="kit-visual-banner">
+                        <span class="photo-label">A+ Hero</span>
+                        <i class="product-photo lifestyle-photo"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="shot-body">
                 <div class="shot-split">
-                  <div class="shot-box"><strong>Listing text</strong><div class="shot-line"></div><div class="shot-line short"></div><div class="shot-line gold"></div></div>
-                  <div class="shot-box"><strong>Images</strong><div class="mini-electric has-photo"><i class="product-photo lifestyle-photo"></i></div></div>
+                  <div class="shot-box">
+                    <strong>Preview</strong>
+                    <div class="kit-preview-grid">
+                      <div class="kit-preview-card">
+                        <div class="kit-preview-meta"><span>Desktop</span></div>
+                        <div class="kit-preview-copy"><strong>Amazon page preview</strong><p>Title, gallery images and A+ come together in one preview before download.</p></div>
+                      </div>
+                      <div class="kit-preview-card">
+                        <div class="kit-preview-meta"><span>Mobile</span></div>
+                        <div class="kit-preview-copy"><strong>Mobile-safe crop</strong><p>Critical copy and image framing stay readable before export.</p></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="shot-box">
+                    <strong>Ready checklist</strong>
+                    <ul class="kit-checklist">
+                      <li><div><strong>Accuracy</strong><small>Product body and included items match source photos.</small></div><span>Checked</span></li>
+                      <li><div><strong>Upload order</strong><small>Text, gallery and A+ are packaged for Seller Central.</small></div><span>Ready</span></li>
+                      <li><div><strong>Dimensions</strong><small>Preview verifies image sizes before final download.</small></div><span>Verified</span></li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="shot-chipline"><span>Title</span><span>Bullets</span><span>Search terms</span><span>Images</span><span>A+</span><span>Checklist</span></div>
+                <div class="shot-chipline"><span>Copy</span><span>Gallery</span><span>A+</span><span>Preview</span><span>Checklist</span><span class="shot-pill gold">Export-ready</span></div>
               </div>
             </div>
             <div class="feature-content">
               <div class="feature-k">03</div>
               <h3>Creates the full kit</h3>
-              <p>Title, bullets, search terms, listing images, A+, preview and upload checklist come from one approved plan.</p>
+              <p>One approved plan turns into listing text, gallery images, A+, page previews and a ready checklist without splitting the work across separate tools.</p>
               <div class="feature-entry"><a class="btn btn-primary" href="#workspace" data-start-workspace>Create my kit</a></div>
             </div>
           </article>
@@ -1212,7 +1494,7 @@
           </article>
           <article class="feature-panel">
             <div class="feature-visual" aria-hidden="true">
-              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">workspace/difference-map</div></div>
+              <div class="shot-chrome"><i></i><i></i><i></i><div class="shot-url">product-differences</div></div>
               <div class="compare-stage">
                 <div class="compare-card photo-card">
                   <span class="compare-label">Your product</span>
@@ -1321,7 +1603,7 @@
     </section>
 
     <section class="page workspace-band" id="workspace" hidden>
-      <div class="workspace-intro">
+          <div class="workspace-intro">
         <span class="eyebrow">Build your listing</span>
         <h2>Launch Listing</h2>
         <p>Add product details, review the plan, then generate the listing kit.</p>
@@ -1607,10 +1889,10 @@ Stainless steel look for modern kitchens</textarea>
               <span class="chip chip-clear">Recommended</span>
             </div>
             <div class="scope-picker" aria-label="what should be created">
-              <button class="scope-option active" type="button"><strong>Images + A+</strong>Default for existing listings</button>
-              <button class="scope-option" type="button"><strong>Listing text only</strong>Title, bullets, search terms</button>
-              <button class="scope-option" type="button"><strong>A+ only</strong>Standard A+ modules</button>
-              <button class="scope-option" type="button"><strong>Full rebuild</strong>Listing text, images and A+</button>
+              <button class="scope-option active" type="button" data-generation-scope="images_aplus"><strong>Images + A+</strong>Default for existing listings</button>
+              <button class="scope-option" type="button" data-generation-scope="listing_text_only"><strong>Listing text only</strong>Title, bullets, search terms</button>
+              <button class="scope-option" type="button" data-generation-scope="aplus_only"><strong>A+ only</strong>Standard A+ modules</button>
+              <button class="scope-option" type="button" data-generation-scope="full_rebuild"><strong>Full rebuild</strong>Listing text, images and A+</button>
             </div>
             <div class="rebuild-defaults-head" style="margin-top:4px">
               <strong>Default protections</strong>
@@ -1620,7 +1902,7 @@ Stainless steel look for modern kitchens</textarea>
               <label><input type="checkbox" checked><span>Keep main image unchanged</span></label>
               <label><input type="checkbox" checked><span>Match current visual style</span></label>
             </div>
-            <div class="rebuild-scope">These choices will shape the listing plan.</div>
+            <div class="rebuild-scope">We’ll use these choices in your plan.</div>
           </div>
         </div>
         <div class="toolbar">
@@ -1636,7 +1918,7 @@ Stainless steel look for modern kitchens</textarea>
         </header>
         <div class="panel">
           <div class="summary-hero">
-            <div class="summary-label">Product understood as</div>
+            <div class="summary-label">Product we’re planning for</div>
             <div class="summary-title" id="summary-title">Rechargeable salt & pepper grinder set</div>
           </div>
           <div class="summary-list">
@@ -1668,6 +1950,53 @@ Stainless steel look for modern kitchens</textarea>
         </div>
       </section>
 
+      <section class="state" id="state-planning" hidden>
+        <header class="head">
+          <span class="eyebrow">Launch plan</span>
+          <h1>Building the launch plan</h1>
+        </header>
+        <div class="panel pipeline-shell">
+          <div class="pipeline-hero">
+            <div class="pipeline-hero-copy">
+              <div class="pipeline-status" id="planning-status-label">Building your launch plan</div>
+              <p>This usually takes 3 to 5 minutes. We’ll show the main parts of your plan as soon as they’re ready, so you can start reviewing before everything finishes.</p>
+              <div class="pipeline-kpis">
+                <div class="pipeline-kpi">
+                  <span>ETA</span>
+                  <strong id="planning-eta">3-5 minutes</strong>
+                </div>
+                <div class="pipeline-kpi">
+                  <span>Current phase</span>
+                  <strong id="planning-current-phase">Understanding your product</strong>
+                </div>
+                <div class="pipeline-kpi">
+                  <span>Ready so far</span>
+                  <strong id="planning-ready-count">0 / 4 outputs</strong>
+                </div>
+              </div>
+            </div>
+            <div class="pipeline-sidehead">
+              <span class="chip chip-clear" id="planning-scope-pill">Listing + Standard A+</span>
+              <div class="pipeline-safe">You can switch tabs while we keep working on your plan.</div>
+            </div>
+          </div>
+
+          <div class="pipeline-grid">
+            <div class="pipeline-card">
+              <h3>In progress</h3>
+              <p>We’ll move through these steps before opening the full plan.</p>
+              <div class="progress-list pipeline-list" id="planning-progress-list"></div>
+            </div>
+
+            <aside class="pipeline-card">
+              <h3>Ready to review</h3>
+              <p id="planning-stream-copy">We’ll add each part here as soon as it’s ready.</p>
+              <div class="pipeline-stream" id="planning-output-stream"></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       <section class="state" id="state-plan" hidden>
         <header class="head">
           <span class="eyebrow">Launch plan</span>
@@ -1676,12 +2005,12 @@ Stainless steel look for modern kitchens</textarea>
         <div class="panel">
           <div class="plan-intro">
             <div class="plan-intro-top">
-              <h2>Listing + Standard A+</h2>
+              <h2 id="plan-scope-title">Listing + Standard A+</h2>
               <button class="btn btn-outline btn-sm" id="edit-plan" type="button">Edit plan</button>
             </div>
           </div>
 
-          <div class="plan-block">
+          <div class="plan-block" id="plan-copy-block">
             <h3>Listing text</h3>
             <div class="plan-list">
               <div class="plan-row">
@@ -1720,13 +2049,13 @@ Stainless steel look for modern kitchens</textarea>
             </div>
           </div>
 
-          <div class="plan-block">
+          <div class="plan-block" id="plan-gallery-block">
             <h3>Listing image plan · 1024 x 1024 · 1K</h3>
             <div class="plan-list" id="gallery-plan"></div>
           </div>
 
-          <div class="plan-block">
-            <h3>A+ plan · Standard 970 x 600 · 1K</h3>
+          <div class="plan-block" id="plan-aplus-block">
+            <h3 id="plan-aplus-heading">A+ plan · Standard 970 x 600 · 1K</h3>
             <div class="plan-list" id="aplus-plan"></div>
           </div>
 
@@ -1796,9 +2125,9 @@ Stainless steel look for modern kitchens</textarea>
 
         <div class="result-tabs">
           <div class="segmented" role="tablist" aria-label="result sections">
-            <button class="active" type="button" role="tab" aria-selected="true" data-result-tab="copy">Listing text</button>
-            <button type="button" role="tab" aria-selected="false" data-result-tab="images">Images</button>
-            <button type="button" role="tab" aria-selected="false" data-result-tab="preview">Preview</button>
+            <button class="active" type="button" role="tab" aria-selected="true" data-result-tab="copy" id="result-tab-copy">Listing text</button>
+            <button type="button" role="tab" aria-selected="false" data-result-tab="images" id="result-tab-images">Images</button>
+            <button type="button" role="tab" aria-selected="false" data-result-tab="preview" id="result-tab-preview">Preview</button>
           </div>
         </div>
 
@@ -1842,8 +2171,8 @@ Stainless steel look for modern kitchens</textarea>
         </div>
 
         <div class="result-view" id="result-images" role="tabpanel" hidden>
-          <div class="image-section">
-            <h3>Listing images</h3>
+          <div class="image-section" id="result-gallery-section">
+            <div class="image-section-head"><h3>Listing images</h3></div>
             <div class="image-grid">
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>01 Main image</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>02 Core benefit</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
@@ -1854,8 +2183,8 @@ Stainless steel look for modern kitchens</textarea>
               <div class="image-card"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>07 Gift / trust</strong><span>1024 x 1024 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
             </div>
           </div>
-          <div class="image-section">
-            <h3>A+ images</h3>
+          <div class="image-section" id="result-aplus-section">
+            <div class="image-section-head"><h3>A+ images</h3></div>
             <div class="image-grid">
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A1 Hero</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
               <div class="image-card wide"><div class="image-card-art"><span class="watermark">Preview</span></div><div class="image-card-copy"><strong>A2 Key benefits</strong><span>970 x 600 · 1K · <span class="locked-only">locked</span><span class="unlocked-only">ready</span></span></div></div>
@@ -1898,7 +2227,7 @@ Stainless steel look for modern kitchens</textarea>
                   </ul>
                 </div>
               </div>
-              <div class="aplus-preview">
+              <div class="aplus-preview" id="preview-desktop-aplus">
                 <div class="aplus-module">
                   <div class="aplus-copy">
                     <h3>Season with one touch</h3>
@@ -1937,7 +2266,7 @@ Stainless steel look for modern kitchens</textarea>
                       <li>Stainless steel finish fits modern kitchens and gift-ready setups.</li>
                     </ul>
                   </div>
-                  <div class="mobile-section mobile-aplus">
+                  <div class="mobile-section mobile-aplus" id="preview-mobile-aplus">
                     <div class="mobile-aplus-block">
                       <div class="mobile-aplus-img"></div>
                       <div class="mobile-aplus-copy"><strong>Season with one touch</strong><span>Rechargeable grinders help keep daily cooking fast, clean and easy to control.</span></div>
@@ -2054,7 +2383,7 @@ Stainless steel look for modern kitchens</textarea>
     <section class="band band-dark final-cta landing-section">
       <div class="container">
         <h2>Move from product idea to <em>Seller Central-ready</em> listing.</h2>
-        <p>Use the workspace to review the plan, edit details, generate images and preview the listing before download.</p>
+        <p>Review the plan, edit details, generate images and preview the listing before download.</p>
         <div class="hero-actions" style="justify-content:center">
           <a class="btn btn-on-dark btn-lg" href="#workspace" data-start-workspace>Create free plan</a>
           <a class="btn btn-outline btn-lg" href="#workspace" data-start-workspace data-open-existing style="color:var(--oat-100);border-color:rgba(217,232,218,.32)">Use Amazon URL</a>
@@ -2112,11 +2441,11 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-select-view">
         <div class="checkout-head">
           <div>
-            <span class="eyebrow" id="checkpoint-eyebrow">Credit checkpoint</span>
+            <span class="eyebrow" id="checkpoint-eyebrow">Luckee credits</span>
             <h2 id="checkout-title">Use Luckee credits</h2>
-            <p id="checkout-copy">Confirm the Luckee credits checkpoint before continuing.</p>
+            <p id="checkout-copy">Confirm your credits to continue.</p>
           </div>
-          <button class="checkout-close" id="checkout-close" type="button" aria-label="Close credit checkpoint">×</button>
+          <button class="checkout-close" id="checkout-close" type="button" aria-label="Close credits dialog">×</button>
         </div>
         <div class="checkout-body">
           <div class="credit-cost" id="checkout-cost">Free — included in your first complete loop</div>
@@ -2131,7 +2460,7 @@ Stainless steel look for modern kitchens</textarea>
         <div class="checkout-head">
           <div>
             <h2 id="checkpoint-processing-title">Confirming credits</h2>
-            <p id="checkpoint-processing-copy">Applying the checkpoint to this listing.</p>
+            <p id="checkpoint-processing-copy">Applying your credits to this listing.</p>
           </div>
         </div>
         <div class="checkout-body">
@@ -2145,14 +2474,14 @@ Stainless steel look for modern kitchens</textarea>
       <div class="checkout-view" id="checkout-success-view" hidden>
         <div class="checkout-head">
           <div>
-            <h2 id="checkpoint-success-head">Checkpoint confirmed</h2>
-            <p id="checkpoint-success-sub">Your Luckee credits checkpoint is complete.</p>
+            <h2 id="checkpoint-success-head">Credits confirmed</h2>
+            <p id="checkpoint-success-sub">Your listing is ready to continue.</p>
           </div>
         </div>
         <div class="checkout-body">
           <div class="checkout-success">
             <div class="success-mark">✓</div>
-            <h2 id="checkpoint-success-title">Checkpoint confirmed</h2>
+            <h2 id="checkpoint-success-title">Credits confirmed</h2>
             <p id="checkpoint-success-copy">You can continue with this listing.</p>
             <div class="toolbar" style="margin-top:24px">
               <button class="btn btn-primary btn-lg" id="checkout-back-results" type="button">Continue</button>
@@ -2165,8 +2494,8 @@ Stainless steel look for modern kitchens</textarea>
 
   <script>
     (function () {
-      const states = ['intake', 'snapshot', 'summary', 'plan', 'generate', 'preview'];
-      const stepIndex = { intake: 1, snapshot: 2, summary: 2, plan: 3, generate: 4, preview: 5 };
+      const states = ['intake', 'snapshot', 'summary', 'planning', 'plan', 'generate', 'preview'];
+      const stepIndex = { intake: 1, snapshot: 2, summary: 2, planning: 3, plan: 3, generate: 4, preview: 5 };
       const wrap = document.getElementById('wrap');
       const workspaceSection = document.getElementById('workspace');
       const landingSections = document.querySelectorAll('.landing-section');
@@ -2176,6 +2505,14 @@ Stainless steel look for modern kitchens</textarea>
       let pendingAuthAction = null;
       let exportsUnlocked = false;
       let heroMode = 'new';
+      let runState = {
+        taskId: 'pending-task',
+        planPath: 'report/generate_plan/pending-task/plan.json',
+        listingPath: 'report/generate_listing/pending-task/listing.json',
+        galleryRoot: 'image/imagegen/gallery/pending-task/',
+        aplusRoot: 'image/imagegen/aplus/pending-task/',
+        internalRoot: 'output/internal/pending-task/'
+      };
       const ACCOUNT_KEY = 'luckee-launch-listing-account-v1';
       const defaultAccountState = {
         signedIn: false,
@@ -2213,6 +2550,54 @@ Stainless steel look for modern kitchens</textarea>
           '"': '&quot;',
           "'": '&#39;'
         }[char]));
+      }
+      function slugify(value) {
+        return String(value == null ? '' : value)
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'launch-listing';
+      }
+      function extractAsin(value) {
+        const match = String(value || '').match(/(?:\/dp\/|\/gp\/product\/|^)([A-Z0-9]{10})(?:[/?]|$)/i);
+        return match ? match[1].toLowerCase() : '';
+      }
+      function buildTaskId() {
+        const seed = projectMode === 'existing'
+          ? extractAsin(document.getElementById('existing-url').value) || slugify(document.getElementById('existing-url').value).slice(0, 24)
+          : slugify(document.getElementById('product-name').value).slice(0, 24);
+        const stamp = new Date().toISOString().replace(/\D/g, '').slice(0, 14);
+        return `${seed || 'launch-listing'}-${stamp}`;
+      }
+      function assignRunState(taskId) {
+        const nextTaskId = taskId || buildTaskId();
+        runState = {
+          taskId: nextTaskId,
+          planPath: `report/generate_plan/${nextTaskId}/plan.json`,
+          listingPath: `report/generate_listing/${nextTaskId}/listing.json`,
+          galleryRoot: `image/imagegen/gallery/${nextTaskId}/`,
+          aplusRoot: `image/imagegen/aplus/${nextTaskId}/`,
+          internalRoot: `output/internal/${nextTaskId}/`
+        };
+        syncWorkspaceOutput();
+      }
+      function setText(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value;
+      }
+      function syncWorkspaceOutput() {
+        setText('plan-output-path', runState.planPath);
+        setText('plan-internal-path', runState.internalRoot);
+        setText('listing-output-path', runState.listingPath);
+        setText('gallery-output-root', runState.galleryRoot);
+        setText('aplus-output-root', runState.aplusRoot);
+        setText('result-internal-path', runState.internalRoot);
+        setText('gallery-section-root', runState.galleryRoot);
+        setText('aplus-section-root', runState.aplusRoot);
+        const galleryCard = document.getElementById('gallery-output-card');
+        const aplusCard = document.getElementById('aplus-output-card');
+        if (galleryCard) galleryCard.hidden = !currentRunConfig().modules.gallery;
+        if (aplusCard) aplusCard.hidden = !currentRunConfig().modules.aplus;
       }
       function renderAccountSlot() {
         const slot = document.getElementById('account-slot');
@@ -2324,6 +2709,271 @@ Stainless steel look for modern kitchens</textarea>
         const active = document.querySelector('.package-row.active');
         return active ? active.dataset.packageName : 'Listing + Standard A+';
       }
+      function selectedGenerationScope() {
+        const active = document.querySelector('.scope-option.active');
+        return active ? active.dataset.generationScope : 'images_aplus';
+      }
+      const packageConfigs = {
+        'Listing Generator': {
+          label: 'Listing Generator',
+          packageType: 'listing_generator',
+          generationScope: 'derived_from_package_type',
+          aplusHeading: 'A+ plan',
+          modules: { copy: true, gallery: true, aplus: false }
+        },
+        'Listing + Standard A+': {
+          label: 'Listing + Standard A+',
+          packageType: 'listing_standard_aplus',
+          generationScope: 'derived_from_package_type',
+          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          modules: { copy: true, gallery: true, aplus: true }
+        },
+        'Listing + Premium A+': {
+          label: 'Listing + Premium A+',
+          packageType: 'listing_premium_aplus',
+          generationScope: 'derived_from_package_type',
+          aplusHeading: 'A+ plan · Premium 1464 x 600 · 4K + mobile crops',
+          modules: { copy: true, gallery: true, aplus: true }
+        }
+      };
+      const existingScopeConfigs = {
+        images_aplus: {
+          label: 'Images + A+',
+          packageType: 'listing_standard_aplus',
+          generationScope: 'images_aplus',
+          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          modules: { copy: false, gallery: true, aplus: true }
+        },
+        listing_text_only: {
+          label: 'Listing text only',
+          packageType: 'listing_standard_aplus',
+          generationScope: 'listing_text_only',
+          aplusHeading: 'A+ plan',
+          modules: { copy: true, gallery: false, aplus: false }
+        },
+        aplus_only: {
+          label: 'A+ only',
+          packageType: 'listing_standard_aplus',
+          generationScope: 'aplus_only',
+          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          modules: { copy: false, gallery: false, aplus: true }
+        },
+        full_rebuild: {
+          label: 'Full rebuild',
+          packageType: 'listing_standard_aplus',
+          generationScope: 'full_rebuild',
+          aplusHeading: 'A+ plan · Standard 970 x 600 · 1K',
+          modules: { copy: true, gallery: true, aplus: true }
+        }
+      };
+      function currentRunConfig() {
+        if (projectMode === 'existing') {
+          return existingScopeConfigs[selectedGenerationScope()] || existingScopeConfigs.images_aplus;
+        }
+        return packageConfigs[selectedPackageName()] || packageConfigs['Listing + Standard A+'];
+      }
+      function defaultResultTab(config) {
+        if (config.modules.copy) return 'copy';
+        if (config.modules.gallery || config.modules.aplus) return 'images';
+        return 'preview';
+      }
+      function syncScopeDependentViews() {
+        const config = currentRunConfig();
+        document.getElementById('plan-scope-title').textContent = config.label;
+        document.getElementById('plan-copy-block').hidden = !config.modules.copy;
+        document.getElementById('plan-gallery-block').hidden = !config.modules.gallery;
+        document.getElementById('plan-aplus-block').hidden = !config.modules.aplus;
+        document.getElementById('plan-aplus-heading').textContent = config.aplusHeading;
+        document.getElementById('result-tab-copy').hidden = !config.modules.copy;
+        document.getElementById('result-tab-images').hidden = !(config.modules.gallery || config.modules.aplus);
+        document.getElementById('result-gallery-section').hidden = !config.modules.gallery;
+        document.getElementById('result-aplus-section').hidden = !config.modules.aplus;
+        document.getElementById('preview-desktop-aplus').hidden = !config.modules.aplus;
+        document.getElementById('preview-mobile-aplus').hidden = !config.modules.aplus;
+        const galleryCard = document.getElementById('gallery-output-card');
+        const aplusCard = document.getElementById('aplus-output-card');
+        if (galleryCard) galleryCard.hidden = !config.modules.gallery;
+        if (aplusCard) aplusCard.hidden = !config.modules.aplus;
+        const activeTab = document.querySelector('[data-result-tab][aria-selected="true"]');
+        if (!activeTab || activeTab.hidden) showResultTab(defaultResultTab(config));
+        syncWorkspaceOutput();
+        return config;
+      }
+      let planningTimeouts = [];
+      let planningRunToken = 0;
+      function clearPlanningSimulation() {
+        planningRunToken++;
+        planningTimeouts.forEach(timeoutId => window.clearTimeout(timeoutId));
+        planningTimeouts = [];
+      }
+      function selectedModuleSummary(config) {
+        const modules = [];
+        if (config.modules.copy) modules.push('listing text');
+        if (config.modules.gallery) modules.push('listing images');
+        if (config.modules.aplus) modules.push('A+ modules');
+        if (!modules.length) return 'Scope still being resolved';
+        if (modules.length === 1) return modules[0];
+        return modules.slice(0, -1).join(', ') + ' and ' + modules[modules.length - 1];
+      }
+      function buildPlanningSteps(config) {
+        const productName = document.getElementById('summary-title').textContent.trim() || 'Your product';
+        const moduleSummary = selectedModuleSummary(config);
+        let moduleDetail = 'We’re shaping each part so the copy and images work together without repeating the same message.';
+        if (config.modules.copy && config.modules.gallery && config.modules.aplus) {
+          moduleDetail = 'We’re lining up the copy, listing images and A+ so the story stays consistent from search result to product page.';
+        } else if (config.modules.gallery && config.modules.aplus) {
+          moduleDetail = 'We’re lining up the listing images and A+ so they support the same main message.';
+        } else if (config.modules.copy) {
+          moduleDetail = 'We’re drafting the copy around the questions shoppers are most likely to have.';
+        }
+        return [
+          {
+            title: 'Understand your product',
+            desc: 'Confirming product type, buyer angle and missing proof before drafting.',
+            phase: 'Positioning',
+            artifact: {
+              label: 'Product summary',
+              title: productName,
+              desc: 'We’ve chosen a clear launch angle built around everyday use, simple benefits and language that stays accurate.',
+              meta: 'Ready to review'
+            }
+          },
+          {
+            title: 'Check key claims',
+            desc: 'Checking which promises are supported now and which ones still need confirmation.',
+            phase: 'Accuracy',
+            artifact: {
+              label: 'Claim check',
+              title: 'Main claims are now sorted',
+              desc: 'Core messaging can stay around convenience, control and kitchen fit. Battery-life and included-item language will stay softer until you confirm them.',
+              meta: 'Ready to review'
+            }
+          },
+          {
+            title: 'Plan your content',
+            desc: 'Planning ' + moduleSummary + ' so each part of the page has a clear role.',
+            phase: 'Scope',
+            artifact: {
+              label: 'Content plan',
+              title: 'Planning ' + moduleSummary,
+              desc: moduleDetail,
+              meta: 'Ready to review'
+            }
+          },
+          {
+            title: 'Final review',
+            desc: 'Checking that the plan is complete, consistent and ready for you to review.',
+            phase: 'Review',
+            artifact: {
+              label: 'Plan status',
+              title: 'Your launch plan is ready',
+              desc: 'The main checks are done and the full plan is ready for your review.',
+              meta: 'Next step: review and edit'
+            }
+          }
+        ];
+      }
+      function renderPlanningSteps(steps) {
+        document.getElementById('planning-progress-list').innerHTML = steps.map((step, index) => `
+          <div class="progress-row" data-plan-step="${index}">
+            <div class="progress-icon">•</div>
+            <div class="progress-main">
+              <div class="row-title">${step.title}</div>
+              <div class="row-desc">${step.desc}</div>
+              <div class="pipeline-phase">${step.phase}</div>
+            </div>
+            <span class="chip chip-info">Queued</span>
+          </div>`).join('');
+      }
+      function renderPlanningOutputCards(steps) {
+        document.getElementById('planning-output-stream').innerHTML = steps.map((step, index) => `
+          <article class="stream-card" data-plan-artifact="${index}">
+            <strong>${step.artifact.label}</strong>
+            <h4>Coming up next</h4>
+            <p>${step.desc}</p>
+            <div class="stream-meta">
+              <span class="stream-empty">We’ll add this here as soon as it’s ready.</span>
+              <span class="chip chip-info">Pending</span>
+            </div>
+          </article>`).join('');
+      }
+      function setPlanningProgress(index, status) {
+        const row = document.querySelector('[data-plan-step="' + index + '"]');
+        if (!row) return;
+        row.classList.remove('active', 'done');
+        const icon = row.querySelector('.progress-icon');
+        const chip = row.querySelector('.chip');
+        if (status === 'active') {
+          row.classList.add('active');
+          icon.innerHTML = '<span class="spinner"></span>';
+          chip.className = 'chip chip-warn';
+          chip.textContent = 'Working';
+          return;
+        }
+        row.classList.add('done');
+        icon.innerHTML = CHECK;
+        chip.className = 'chip chip-clear';
+        chip.textContent = 'Ready';
+      }
+      function revealPlanningArtifact(index, step) {
+        const card = document.querySelector('[data-plan-artifact="' + index + '"]');
+        if (!card) return;
+        card.classList.add('ready');
+        card.innerHTML = `
+          <strong>${step.artifact.label}</strong>
+          <h4>${step.artifact.title}</h4>
+          <p>${step.artifact.desc}</p>
+          <div class="stream-meta">
+            <span>${step.artifact.meta}</span>
+            <span class="chip chip-clear">Ready</span>
+          </div>`;
+      }
+      function updatePlanningOverview(steps, activeIndex) {
+        const completed = Math.min(activeIndex, steps.length);
+        document.getElementById('planning-ready-count').textContent = completed + ' / ' + steps.length + ' outputs';
+        document.getElementById('planning-current-phase').textContent = activeIndex < steps.length ? steps[activeIndex].title : 'Ready to review';
+        document.getElementById('planning-stream-copy').textContent = completed
+          ? 'Each finished section stays here so you can review it before the full plan opens.'
+          : 'We’ll add each part here as soon as it’s ready.';
+      }
+      function startPlanningWorkspace() {
+        clearPlanningSimulation();
+        const config = currentRunConfig();
+        const steps = buildPlanningSteps(config);
+        document.getElementById('planning-scope-pill').textContent = config.label;
+        document.getElementById('planning-eta').textContent = config.modules.aplus ? '3-5 minutes' : '2-4 minutes';
+        document.getElementById('planning-status-label').textContent = 'Building your launch plan';
+        renderPlanningSteps(steps);
+        renderPlanningOutputCards(steps);
+        updatePlanningOverview(steps, 0);
+        showState('planning');
+        const token = planningRunToken;
+        const delays = [2800, 3200, 3000, 2600];
+        let activeIndex = 0;
+        setPlanningProgress(activeIndex, 'active');
+        const advance = () => {
+          if (token !== planningRunToken) return;
+          revealPlanningArtifact(activeIndex, steps[activeIndex]);
+          setPlanningProgress(activeIndex, 'done');
+          activeIndex += 1;
+          if (activeIndex < steps.length) {
+            updatePlanningOverview(steps, activeIndex);
+            setPlanningProgress(activeIndex, 'active');
+            planningTimeouts.push(window.setTimeout(advance, delays[activeIndex] || 2600));
+            return;
+          }
+          document.getElementById('planning-status-label').textContent = 'Your launch plan is ready';
+          updatePlanningOverview(steps, steps.length);
+          planningTimeouts.push(window.setTimeout(() => {
+            if (token !== planningRunToken) return;
+            renderPlan('gallery-plan', galleryRows);
+            renderPlan('aplus-plan', aplusRows);
+            syncScopeDependentViews();
+            showState('plan');
+          }, 1200));
+        };
+        planningTimeouts.push(window.setTimeout(advance, delays[0] || 2600));
+      }
       function packageCreditCost(packageName) {
         if (packageName === 'Listing Generator') return '1,500 Credits';
         if (packageName === 'Listing + Premium A+') return '12,000 Credits';
@@ -2354,6 +3004,7 @@ Stainless steel look for modern kitchens</textarea>
         if (heroPackage && premiumLocked && heroPackage.value === 'Listing + Premium A+') {
           heroPackage.value = 'Listing + Standard A+';
         }
+        syncScopeDependentViews();
       }
       syncPackageAvailability();
       function selectWorkspacePackage(packageName) {
@@ -2362,6 +3013,7 @@ Stainless steel look for modern kitchens</textarea>
         document.querySelectorAll('.package-row').forEach(row => {
           row.classList.toggle('active', row.dataset.packageName === packageName);
         });
+        syncScopeDependentViews();
       }
       function applyHeroStart(trigger) {
         if (trigger && trigger.dataset.openExisting !== undefined) setHeroMode('existing');
@@ -2457,7 +3109,7 @@ Stainless steel look for modern kitchens</textarea>
       let checkpointContext = { type: 'export', onConfirm: null };
       const checkpointCopy = {
         'free-plan': {
-          eyebrow: 'First loop · free',
+          eyebrow: 'First plan · free',
           title: 'Create the launch plan?',
           body: 'This creates and saves your free Launch Listing plan for the selected package.',
           cost: 'Free — included in your first complete loop',
@@ -2466,7 +3118,7 @@ Stainless steel look for modern kitchens</textarea>
           processingTitle: 'Creating free plan',
           processingCopy: 'Saving your product inputs and preparing the launch plan.',
           progressTitle: 'Preparing launch plan',
-          progressDesc: 'Summary and plan steps will become available after this checkpoint.',
+          progressDesc: 'Your summary and plan will open next.',
           successHead: 'Free plan created',
           successSub: 'Your first Launch Listing loop is attached to your Luckee account.',
           successTitle: 'Free plan created',
@@ -2478,7 +3130,7 @@ Stainless steel look for modern kitchens</textarea>
           title: 'Use credits for this launch plan?',
           body: 'Your free Launch Listing plan has already been used. Continue with Luckee credits from your main account.',
           cost: 'Uses the selected package credits',
-          footnote: 'This follows the same Luckee credits checkpoint used by the listing optimization flow.',
+          footnote: 'This uses the same Luckee credits as the rest of your account.',
           primary: 'Use credits and continue',
           processingTitle: 'Confirming credits',
           processingCopy: 'Applying Luckee credits to this launch plan.',
@@ -2495,7 +3147,7 @@ Stainless steel look for modern kitchens</textarea>
           title: 'Premium A+ requires credits',
           body: 'Premium A+ uses larger 4K modules and mobile crops, so it is available after a paid plan or enough Luckee credits.',
           cost: '12,000 Credits',
-          footnote: 'Confirming credits unlocks Premium A+ for this prototype session.',
+          footnote: 'Once confirmed, Premium A+ will be available for this listing.',
           primary: 'Use credits and select Premium',
           processingTitle: 'Confirming Premium A+ credits',
           processingCopy: 'Unlocking the Premium A+ package for this listing.',
@@ -2556,7 +3208,7 @@ Stainless steel look for modern kitchens</textarea>
       }
       function openCreditCheckpoint(type = 'export', options = {}) {
         if (!accountState.signedIn) {
-          openAuthModal(() => openCreditCheckpoint(type, options), 'Sign in to continue with your Luckee credits checkpoint.', 'login');
+          openAuthModal(() => openCreditCheckpoint(type, options), 'Sign in to continue with Luckee credits.', 'login');
           return;
         }
         checkpointContext = { type, onConfirm: options.onConfirm || null };
@@ -2622,6 +3274,7 @@ Stainless steel look for modern kitchens</textarea>
         document.querySelectorAll('.scratch-only').forEach(node => {
           node.classList.toggle('scratch-hidden', mode === 'existing');
         });
+        syncScopeDependentViews();
       }
       document.querySelectorAll('[data-project-mode]').forEach(button => {
         button.addEventListener('click', () => setProjectMode(button.dataset.projectMode));
@@ -2636,6 +3289,7 @@ Stainless steel look for modern kitchens</textarea>
           }
           document.querySelectorAll('.package-row').forEach(row => row.classList.remove('active'));
           button.classList.add('active');
+          syncScopeDependentViews();
         });
       });
 
@@ -2814,8 +3468,10 @@ Stainless steel look for modern kitchens</textarea>
         button.addEventListener('click', () => {
           document.querySelectorAll('.scope-option').forEach(option => option.classList.remove('active'));
           button.classList.add('active');
+          syncScopeDependentViews();
         });
       });
+      syncScopeDependentViews();
 
       const galleryRows = [
         ['01', 'Main image — product-only white background', 'Fast recognition, product-only crop.', '<b>Why this matters:</b> make the product instantly recognizable. <b>Buyer question:</b> what is this? <b>Sales role:</b> establish product identity before benefit images.'],
@@ -2857,6 +3513,8 @@ Stainless steel look for modern kitchens</textarea>
 
       function createFreePlanAfterCheckpoint() {
         const productName = document.getElementById('product-name').value.trim() || 'New Amazon product';
+        clearPlanningSimulation();
+        assignRunState();
         document.getElementById('summary-title').textContent = productName;
         writeAccountState({ freeLaunchPlanUsed: true });
         showState('summary');
@@ -2874,6 +3532,8 @@ Stainless steel look for modern kitchens</textarea>
         createFreePlanAfterCheckpoint();
       }
       function fetchExistingListingAfterCheckpoint() {
+        clearPlanningSimulation();
+        assignRunState();
         document.getElementById('summary-title').textContent = 'Rechargeable Salt and Pepper Grinder Set';
         writeAccountState({ freeLaunchPlanUsed: true });
         showState('snapshot');
@@ -2899,42 +3559,68 @@ Stainless steel look for modern kitchens</textarea>
       document.getElementById('back-fetch').addEventListener('click', () => showState('intake'));
       document.getElementById('continue-existing-summary').addEventListener('click', () => showState('summary'));
       document.getElementById('back-intake').addEventListener('click', () => showState('intake'));
-      document.getElementById('continue-plan').addEventListener('click', () => {
-        renderPlan('gallery-plan', galleryRows);
-        renderPlan('aplus-plan', aplusRows);
-        showState('plan');
-      });
+      document.getElementById('continue-plan').addEventListener('click', startPlanningWorkspace);
       document.getElementById('back-summary').addEventListener('click', () => showState('summary'));
 
-      const progress = [
-        ['Writing listing preview', 'Title, bullets and search terms'],
-        ['Generating listing image preview', '7 product-accurate image previews'],
-        ['Building A+ preview', '6 Standard A+ module previews'],
-        ['Checking product accuracy', 'Product match check'],
-        ['Preparing Amazon preview', 'Desktop and mobile preview'],
-        ['Preparing ready checklist', 'Accuracy, wording, dimensions and upload order']
-      ];
       const CHECK = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><path d="m4 8 3 3 7-7"/></svg>';
-      function renderProgress() {
-        document.getElementById('progress-list').innerHTML = progress.map((row, index) => `
+      function createProgressSteps(config) {
+        return [
+          {
+            title: 'Writing listing preview',
+            desc: 'Title, bullets and search terms',
+            status: config.modules.copy ? 'pending' : 'not_required'
+          },
+          {
+            title: 'Generating listing image preview',
+            desc: '7 product-accurate image previews',
+            status: config.modules.gallery ? 'pending' : 'not_required'
+          },
+          {
+            title: 'Building A+ preview',
+            desc: config.packageType === 'listing_premium_aplus' ? 'Premium A+ module previews and mobile crops' : '6 Standard A+ module previews',
+            status: config.modules.aplus ? 'pending' : 'not_required'
+          },
+          {
+            title: 'Checking product accuracy',
+            desc: 'Product match check',
+            status: config.modules.gallery || config.modules.aplus ? 'pending' : 'not_required'
+          },
+          {
+            title: 'Preparing Amazon preview',
+            desc: 'Desktop and mobile preview',
+            status: 'pending'
+          },
+          {
+            title: 'Preparing ready checklist',
+            desc: 'Accuracy, wording, dimensions and upload order',
+            status: 'pending'
+          }
+        ];
+      }
+      function renderProgress(steps) {
+        document.getElementById('progress-list').innerHTML = steps.map((row, index) => `
           <div class="progress-row" data-i="${index}">
             <div class="progress-icon">•</div>
-            <div class="progress-main"><div class="row-title">${row[0]}</div><div class="row-desc">${row[1]}</div></div>
+            <div class="progress-main"><div class="row-title">${row.title}</div><div class="row-desc">${row.desc}</div></div>
             <span class="chip chip-info">Pending</span>
           </div>`).join('');
+        steps.forEach((step, index) => {
+          if (step.status === 'not_required') setProgress(index, 'not_required');
+        });
       }
       function setProgress(index, status) {
         const row = document.querySelector('.progress-row[data-i="' + index + '"]');
         if (!row) return;
         row.classList.remove('active', 'done');
-        row.classList.add(status);
         const icon = row.querySelector('.progress-icon');
         const chip = row.querySelector('.chip');
         if (status === 'active') {
+          row.classList.add('active');
           icon.innerHTML = '<span class="spinner"></span>';
           chip.className = 'chip chip-warn';
           chip.textContent = index === 3 ? 'Auto refining' : 'Working';
-        } else if (status === 'done') {
+        } else if (status === 'done' || status === 'not_required') {
+          row.classList.add('done');
           icon.innerHTML = CHECK;
           chip.className = 'chip chip-clear';
           chip.textContent = 'Done';
@@ -2942,19 +3628,29 @@ Stainless steel look for modern kitchens</textarea>
       }
       document.getElementById('approve-generate').addEventListener('click', () => {
         resetExportState();
+        const config = syncScopeDependentViews();
+        const steps = createProgressSteps(config);
+        const requiredIndexes = steps.map((step, index) => step.status === 'pending' ? index : -1).filter(index => index >= 0);
         showState('generate');
-        renderProgress();
-        let index = 0;
-        setProgress(0, 'active');
+        renderProgress(steps);
+        let progressIndex = 0;
+        if (!requiredIndexes.length) {
+          showResultTab(defaultResultTab(config));
+          showPreviewTab('desktop');
+          showState('preview');
+          return;
+        }
+        setProgress(requiredIndexes[0], 'active');
         const timer = setInterval(() => {
-          setProgress(index, 'done');
-          index++;
-          if (index < progress.length) {
-            setProgress(index, 'active');
+          const current = requiredIndexes[progressIndex];
+          setProgress(current, 'done');
+          progressIndex++;
+          if (progressIndex < requiredIndexes.length) {
+            setProgress(requiredIndexes[progressIndex], 'active');
           } else {
             clearInterval(timer);
             setTimeout(() => {
-              showResultTab('copy');
+              showResultTab(defaultResultTab(config));
               showPreviewTab('desktop');
               showState('preview');
             }, 600);
@@ -2963,8 +3659,10 @@ Stainless steel look for modern kitchens</textarea>
       });
       document.getElementById('result-back-plan').addEventListener('click', () => showState('plan'));
       document.getElementById('restart').addEventListener('click', () => {
+        clearPlanningSimulation();
         resetUploadedImages();
         resetExportState();
+        assignRunState('pending-task');
         showState('intake');
       });
     })();
