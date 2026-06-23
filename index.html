@@ -728,7 +728,7 @@
     .rebuild-scope { margin-top:10px; color:var(--muted); font-size:.78rem; }
 
     .summary-list,.plan-list,.progress-list { border-top:1px solid var(--border-soft); }
-    .package-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .package-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
     .package-row,.summary-row,.plan-row,.progress-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-soft); }
     .package-main,.summary-main,.plan-main,.progress-main { min-width:0; }
     .row-title { font-size:.92rem; font-weight:800; color:var(--neutral-900); }
@@ -771,14 +771,22 @@
     .upload-thumb-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--neutral-900); font-size:.68rem; font-weight:800; }
     .upload-thumb-type { margin-top:2px; color:var(--muted); font-size:.62rem; }
     .upload-remove { position:absolute; top:6px; right:6px; width:22px; height:22px; border:0; border-radius:50%; background:rgba(28,43,29,.78); color:var(--oat-100); display:grid; place-items:center; font-size:.86rem; line-height:1; }
+    .package-decision { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:10px; padding:10px 12px; border:1px solid var(--forest-100); border-radius:14px; background:linear-gradient(135deg,var(--forest-050),#fffaf2); }
+    .package-decision strong { display:block; color:var(--forest-800); font-size:.8rem; }
+    .package-decision span { display:block; margin-top:3px; color:var(--muted); font-size:.7rem; line-height:1.35; }
+    .package-guide { display:none; grid-template-columns:2fr 1fr; gap:10px; margin:0 0 8px; }
+    .package-section[data-package-variant="b"] .package-guide { display:grid; }
+    .package-guide span { display:block; padding:6px 10px; border-radius:999px; font-size:.64rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; text-align:center; }
+    .package-guide .free-lane { background:var(--success-bg); color:var(--success-600); }
+    .package-guide .paid-lane { background:#F7EBD2; color:#9A5B08; }
     .package-row {
       width:100%;
       display:flex;
-      min-height:324px;
+      min-height:274px;
       flex-direction:column;
       justify-content:space-between;
-      gap:16px;
-      padding:18px;
+      gap:10px;
+      padding:14px;
       border:1px solid var(--border-soft);
       background:var(--card);
       color:inherit;
@@ -798,13 +806,26 @@
     .package-row.active { background:var(--forest-050); border-color:var(--forest-600); box-shadow:0 0 0 1px var(--forest-600) inset, 0 12px 32px -24px rgba(28,43,29,.46); }
     .package-row.premium { border-color:rgba(214,138,0,.32); }
     .package-row.premium.active { border-color:#D68A00; box-shadow:0 0 0 1px #D68A00 inset, 0 12px 32px -24px rgba(214,138,0,.52); }
-    .package-row .row-meta { width:100%; justify-content:flex-start; gap:6px; padding-top:14px; margin-top:14px; border-top:1px solid var(--border-soft); }
-    .pkg-spec { color:var(--forest-600); font-family:var(--mono); font-size:.72rem; white-space:nowrap; }
-    .package-summary { margin-top:7px; color:var(--muted); font-size:.78rem; line-height:1.45; }
-    .package-features { list-style:none; display:grid; gap:9px; padding:0; margin:16px 0 0; color:var(--neutral-700); font-size:.76rem; line-height:1.4; }
-    .package-features li { display:grid; grid-template-columns:16px minmax(0,1fr); gap:8px; align-items:start; }
+    .package-section[data-package-variant="b"] .package-row:not(.premium) { background:linear-gradient(180deg,var(--forest-050),var(--card)); border-color:rgba(49,105,66,.22); }
+    .package-section[data-package-variant="b"] .package-row:not(.premium).active { border-color:var(--forest-600); }
+    .package-section[data-package-variant="b"] .package-row.premium { background:linear-gradient(180deg,#fffaf2,var(--card)); border-color:rgba(214,138,0,.46); }
+    .package-row .row-meta { width:100%; justify-content:flex-start; gap:5px; padding-top:9px; margin-top:10px; border-top:1px solid var(--border-soft); }
+    .package-card-top { display:grid; gap:7px; margin-bottom:8px; }
+    .package-card-top .row-title { min-width:0; }
+    .package-badges { display:flex; align-items:center; gap:5px; flex-wrap:wrap; justify-content:flex-start; flex-shrink:0; }
+    .package-pill { display:inline-flex; align-items:center; min-height:21px; padding:4px 8px; border-radius:999px; font-size:.58rem; font-weight:900; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+    .package-pill.free { background:var(--success-bg); color:var(--success-600); }
+    .package-pill.recommended { background:var(--forest-700); color:var(--oat-100); }
+    .package-pill.paid { background:#F7EBD2; color:#9A5B08; }
+    .package-entitlement { display:inline-flex; align-items:center; margin-top:8px; padding:6px 9px; border-radius:11px; background:rgba(221,241,228,.62); color:var(--success-600); font-size:.68rem; font-weight:900; line-height:1.2; }
+    .package-row.premium .package-entitlement { background:#F7EBD2; color:#9A5B08; }
+    .package-section[data-package-variant="b"] .package-entitlement { display:block; padding:7px 10px; border-radius:12px; }
+    .pkg-spec { color:var(--forest-600); font-family:var(--mono); font-size:.66rem; white-space:nowrap; }
+    .package-summary { margin-top:4px; color:var(--muted); font-size:.74rem; line-height:1.35; }
+    .package-features { list-style:none; display:grid; gap:6px; padding:0; margin:11px 0 0; color:var(--neutral-700); font-size:.72rem; line-height:1.32; }
+    .package-features li { display:grid; grid-template-columns:14px minmax(0,1fr); gap:7px; align-items:start; }
     .package-features li::before { content:"✓"; color:#D68A00; font-weight:900; line-height:1.2; }
-    .package-note { display:block; margin-top:10px; color:var(--muted); font-size:.7rem; line-height:1.42; }
+    .package-note { display:block; margin-top:7px; color:var(--muted); font-size:.66rem; line-height:1.34; }
 
     .adv-toggle,.detail-toggle { display:inline-flex; align-items:center; gap:8px; padding:6px 0; border:0; background:transparent; color:var(--forest-700); font-size:.88rem; font-weight:800; }
     .adv-toggle { margin-top:18px; }
@@ -1187,6 +1208,8 @@
       .snapshot-images { grid-template-columns:repeat(2,1fr); }
       .scope-picker { grid-template-columns:1fr; }
       .mode-list,.package-list { grid-template-columns:1fr; }
+      .package-decision { flex-direction:column; }
+      .package-guide { grid-template-columns:1fr; }
       .gallery { grid-template-columns:1fr; }
       .thumbs { flex-direction:row; }
       .thumb { width:56px; }
@@ -1731,17 +1754,31 @@ Stainless steel look for modern kitchens</textarea>
             </div>
           </div>
 
-          <div class="section scratch-only">
+          <div class="section scratch-only package-section" data-package-variant="b">
             <div class="section-head">
               <h3>Package</h3>
-              <span class="chip chip-clear">included</span>
+              <span class="chip chip-clear">2 free · 1 paid</span>
             </div>
-            <p class="section-note" style="margin-bottom:12px">Choose how much of the Amazon page you want Launch Listing to create. You can adjust details below.</p>
+            <p class="section-note" style="margin-bottom:12px">Choose the output scope. Listing Generator and Standard A+ are free to start; Premium A+ is a paid upgrade.</p>
+            <div class="package-decision">
+              <div>
+                <strong>Start free with the first two packages</strong>
+                <span>Standard A+ is the recommended free path. Premium A+ is a paid upgrade for higher-end modules.</span>
+              </div>
+            </div>
+            <div class="package-guide" aria-hidden="true">
+              <span class="free-lane">Free to start</span>
+              <span class="paid-lane">Paid upgrade</span>
+            </div>
             <div class="package-list">
               <button class="package-row" type="button" data-package-name="Listing Generator" data-free-once="true">
                 <div class="package-main">
-                  <div class="row-title">Listing Generator</div>
+                  <div class="package-card-top">
+                    <div class="row-title">Listing Generator</div>
+                    <div class="package-badges"><span class="package-pill free">Free</span></div>
+                  </div>
                   <div class="package-summary">Full basic listing — copy + 7 gallery images.</div>
+                  <div class="package-entitlement">Free to start</div>
                   <ul class="package-features">
                     <li>7 gallery images (1024 x 1024 · 1K)</li>
                     <li>SEO title + 5 bullets</li>
@@ -1749,12 +1786,16 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Checklist for Seller Central upload</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Preview included</span><span class="chip chip-lock">Final files locked</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Basic listing</span><span class="pkg-spec">1024 x 1024 · 1K</span></div>
               </button>
               <button class="package-row active" type="button" data-package-name="Listing + Standard A+" data-free-once="true">
                 <div class="package-main">
-                  <div class="row-title">Listing + Standard A+</div>
+                  <div class="package-card-top">
+                    <div class="row-title">Listing + Standard A+</div>
+                    <div class="package-badges"><span class="package-pill recommended">Recommended</span><span class="package-pill free">Free</span></div>
+                  </div>
                   <div class="package-summary">Full listing package — copy, 7 gallery images and Standard A+.</div>
+                  <div class="package-entitlement">Recommended free package</div>
                   <ul class="package-features">
                     <li>7 gallery images (1024 x 1024 · 1K)</li>
                     <li>SEO title + 5 bullets + backend search terms</li>
@@ -1762,21 +1803,25 @@ Stainless steel look for modern kitchens</textarea>
                     <li>Seller Central ready ZIP</li>
                   </ul>
                 </div>
-                <div class="row-meta"><span class="chip chip-clear">Recommended</span><span class="chip chip-clear">Preview included</span><span class="chip chip-lock">Final files locked</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
+                <div class="row-meta"><span class="chip chip-clear">Most sellers</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">970 x 600 · 1K</span></div>
               </button>
               <button class="package-row premium" type="button" data-package-name="Listing + Premium A+" data-paid-only="true">
                 <div class="package-main">
-                  <div class="row-title">Listing + Premium A+</div>
+                  <div class="package-card-top">
+                    <div class="row-title">Listing + Premium A+</div>
+                    <div class="package-badges"><span class="package-pill paid">Paid upgrade</span></div>
+                  </div>
                   <div class="package-summary">Premium full listing package — copy, 7 gallery images and Premium A+.</div>
+                  <div class="package-entitlement">Requires paid Luckee plan</div>
                   <ul class="package-features">
                     <li>7 gallery images (1024 x 1024 · 1K)</li>
                     <li>SEO title + 5 bullets + backend search terms</li>
                     <li>Premium A+ banners (1464 x 600 · 4K)</li>
                     <li>Mobile-ready crops (600 x 450)</li>
                   </ul>
-                  <span class="package-note">Premium final files unlock after preview.</span>
+                  <span class="package-note">Choose this only if you need Premium A+ banners and mobile crops.</span>
                 </div>
-                <div class="row-meta"><span class="chip chip-forest">Premium</span><span class="chip chip-lock">Unlock required</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
+                <div class="row-meta"><span class="chip chip-lock">Paid plan required</span><span class="pkg-spec">1024 x 1024 · 1K</span><span class="pkg-spec">1464 x 600 · 4K</span></div>
               </button>
             </div>
 
@@ -1798,7 +1843,7 @@ Stainless steel look for modern kitchens</textarea>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block scratch-only" id="analyze" type="button">Create free package plan</button>
+          <button class="btn btn-primary btn-lg btn-block scratch-only" id="analyze" type="button">Create free launch plan</button>
           <div class="reassure">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
             <span>Free preview first · purchase unlocks final files.</span>
@@ -3105,20 +3150,20 @@ Stainless steel look for modern kitchens</textarea>
       let checkpointContext = { type: 'export', onConfirm: null };
       const checkpointCopy = {
         'free-plan': {
-          eyebrow: 'First package plan · free',
-          title: 'Create the package plan?',
-          body: 'This creates and saves your free package plan for the selected option.',
-          cost: 'Free — included in your first complete loop',
-          footnote: 'No card needed. Later package plans use your existing Luckee credits.',
-          primary: 'Create free package plan',
-          processingTitle: 'Creating free package plan',
-          processingCopy: 'Saving your product inputs and preparing the package plan.',
-          progressTitle: 'Preparing package plan',
-          progressDesc: 'Your summary and package plan will open next.',
-          successHead: 'Free package plan created',
-          successSub: 'Your first Launch Listing loop is attached to your Luckee account.',
-          successTitle: 'Free package plan created',
-          successCopy: 'You can continue reviewing the package plan.',
+          eyebrow: 'First launch plan · free',
+          title: 'Create your free launch plan?',
+          body: 'We’ll build the plan for this listing and keep the result in this workflow.',
+          cost: 'Free today — first listing included',
+          footnote: 'No card needed for this first run. Future full Listing Kits use your Luckee plan or credits.',
+          primary: 'Create free plan',
+          processingTitle: 'Creating free launch plan',
+          processingCopy: 'Saving your product inputs and preparing the launch plan.',
+          progressTitle: 'Preparing launch plan',
+          progressDesc: 'Your summary and launch plan will open next.',
+          successHead: 'Free launch plan created',
+          successSub: 'Your first Launch Listing run is attached to your Luckee account.',
+          successTitle: 'Free launch plan created',
+          successCopy: 'You can continue reviewing the launch plan.',
           successButton: 'Continue'
         },
         'paid-plan': {
